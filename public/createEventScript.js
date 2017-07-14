@@ -15,14 +15,20 @@ document.addEventListener("DOMContentLoaded", function(){
             var titleTD = document.createElement("td");
                 titleTD.appendChild(title);
             
+            var date = document.createElement("input");
+                date.type = "date";
+                date.id = "date" + i;
+            var dateTD = document.createElement("td");
+                dateTD.appendChild(date);
+            
             var startTime = document.createElement("input");
-                startTime.type = "date";
+                startTime.type = "time";
                 startTime.id = "startTime" + i;
             var startTimeTD = document.createElement("td");
                 startTimeTD.appendChild(startTime);
             
             var endTime = document.createElement("input");
-                endTime.type = "date";
+                endTime.type = "time";
                 endTime.id   = "endTime" + i;
             var endTimeTD = document.createElement("td");
                 endTimeTD.appendChild(endTime);
@@ -36,6 +42,7 @@ document.addEventListener("DOMContentLoaded", function(){
             
             var row = document.createElement("tr");
                 row.appendChild(titleTD);
+                row.appendChild(dateTD);
                 row.appendChild(startTimeTD);
                 row.appendChild(endTimeTD);
                 row.appendChild(numPositionsTD);
@@ -48,6 +55,65 @@ document.addEventListener("DOMContentLoaded", function(){
     
     document.getElementById("submitButton").addEventListener("click", function(){
         //TODO: actually create new event! (Issue: how to determine what new id should be [1 or 2 or 54 etc])
+        
+        //hold updates
+        var updates = {};
+        
+        //get values
+        var eventName = document.getElementById("eventName").value;
+        var description = document.getElementById("description").value;
+        var location = document.getElementById("location").value;
+        var startDate = document.getElementById("startDate").value;
+        var endDate = document.getElementById("endDate").value;
+        
+        //var shifts = {};
+        
+        var eventInfo = {
+            name: eventName,
+            description: description,
+            location: location,
+            startDate: startDate,
+            endDate: endDate,
+            Shifts: {}
+        };
+        
+        //create new event and get key
+        var newEventKey = firebase.database().ref("/Events").push().key;
+        
+        updates["/Events/" + newEventKey] = eventInfo;
+        firebase.database().ref().update(updates);
+        updates = {}; //clear updates
+        
+        
+        //create all shifts
+        for(var i = 0; i<document.getElementById("numShifts").value; i++){
+            //var positions = {};
             
+            //get values
+            var shiftInfo = {
+                startTime: document.getElementById("startTime" + i).value,
+                endTime: document.getElementById("endTime" + i).value,
+                positionsAvailable: document.getElementById("numPositions" + i).value,
+                date: document.getElementById("date" + i).value,
+                Positions: {}
+            };
+            
+            var newShiftKey = firebase.database().ref("/Events/" + newEventKey + "/Shifts").push().key;
+            
+            updates["/Events/" + newEventKey + "/Shifts/" + newShiftKey] = shiftInfo;
+            firebase.database().ref().update(updates);
+            updates = {}; //clear updates
+            
+            //create all positions
+            for(var n = 0; n<document.getElementById("numPositions" + i).value; n++){
+                var newPosKey = firebase.database().ref("/Events/" + newEventKey + "/Shifts/" + newShiftKey).push().key;
+                
+                updates["/Events/" + newEventKey + "/Shifts/" + newShiftKey + "/Positions/" + newPosKey] = "";
+                firebase.database().ref().update(updates);
+                updates = {};
+            }
+        }
+        
+        alert("Event Created");
     });
 });

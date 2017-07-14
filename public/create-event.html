@@ -15,6 +15,8 @@
         }
         input, textarea{
             margin: 10px;
+        }
+        textarea{
             width: 169px;
         }
         #shiftsTable{
@@ -52,28 +54,33 @@
 
     <div id = "mainPanel" class = "classic panel">
         <p style = "text-align: center;">Create Event</p>
-        <br/>
-        <p>Event Name</p>
-        <input id = "eventName">
-        <p>Description</p>
-        <textarea id = "description"></textarea>
-        <p>Location</p>
-        <input id = "location">
-        <p>Date Range</p>
-        <input id = "startDate" type = "date"> <p style ="display:inline;">To</p> <input id = "endDate" type = "date">
-        <br/>
+        <table>
+            <thead>
+                <td><p>Event Name</p></td>
+                <td><p>Description</p></td>
+                <td><p>Location</p></td>
+                <td><p>Date Range</p></td>
+            </thead>
+            <tr>
+                <td><input id = "eventName"></td>
+                <td><input id = "description"></td>
+                <td><input id = "location"></td>
+                <td><input id = "startDate" type = "date"> <p style ="display:inline;">To</p> <input id = "endDate" type = "date"></td>
+            </tr>
+        </table>
         
         <hr>
         <table id = "shiftsTable">
             <thead>
                 <tr>
-                    <td><p style = "display:inline;">Shifts</p><input id = "numShifts" type = "number" value = "0" style = "width: 30px;"></td>
+                    <td><p style = "display:inline;">Shifts</p><input id = "numShifts" type = "number" value = "0" style = "width: 60px;"></td>
+                    <td><p>Date</p></td>
                     <td><p>Start Time</p></td>
                     <td><p>End Time</p></td>
-                    <td><p>Positions Available</p></td>
+                    <td><p>Positions</p></td>
                 </tr>
             </thead>
-            <tbody id = "shiftsTableBody"><!--TODO: make scrollable (had issue with table organization...)-->
+            <tbody id = "shiftsTableBody"><!--TODO: make scrollable (had issue with table layout...)-->
                 <!--Filled via JavaScript-->
             </tbody>
         </table>

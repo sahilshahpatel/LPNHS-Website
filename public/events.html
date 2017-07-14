@@ -35,9 +35,9 @@
             width: 100%;
         }
         #informationContainer div table th, td{
-            width: 33.33%;
             font-family: Bookman, sans-serif;
             font-size: 18px;
+            text-align: center;
         }
     </style>
     
@@ -59,12 +59,16 @@
                    //control tab color
                    $("#chapterEventsTab").click(function(){
                        $(this).removeClass("inactive");
+                       $("#chapterEventsDiv").removeClass("vanish");
+                       $("#myEventsDiv").addClass("vanish");
                        $("#myEventsTab").addClass("inactive");
                        
                        loadData();
                    });
                    $("#myEventsTab").click(function(){
                        $(this).removeClass("inactive");
+                       $("#chapterEventsDiv").addClass("vanish");
+                       $("#myEventsDiv").removeClass("vanish");
                        $("#chapterEventsTab").addClass("inactive");
                        
                        loadData();
@@ -89,28 +93,57 @@
         </div>
         <div id = "informationContainer">
             <!--Information loaded via JavaScript-->
-            <p>Upcoming Events</p>
-            <div id = "upcomingEvents">
-                <table id = "upcomingEventsTable">
-                    <tr>
-                        <th>Event Name</th>
-                        <th>Date</th>
-                        <th>Location</th>
-                    </tr>
-                </table>
-            </div>
-            
-            <hr>
+            <div id = "chapterEventsDiv" class = "vanish">
+                <p>Upcoming Events</p>
+                <div id = "chapterUpcomingEvents">
+                    <table id = "chapterUpcomingEventsTable">
+                        <tr>
+                            <th>Event Name</th>
+                            <th>Date</th>
+                            <th>Location</th>
+                        </tr>
+                    </table>
+                </div>
 
-            <p>Event History</p>
-            <div id = "eventHistory">
-                <table id = "eventHistoryTable">
-                    <tr>
-                        <th>Event Name</th>
-                        <th>Date</th>
-                        <th>Location</th>
-                    </tr>
-                </table>
+                <hr>
+
+                <p>Event History</p>
+                <div id = "chapterEventHistory">
+                    <table id = "chapterEventHistoryTable">
+                        <tr>
+                            <th>Event Name</th>
+                            <th>Date</th>
+                            <th>Location</th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div id = "myEventsDiv">
+                <p>Upcoming Events</p>
+                <div id = "myUpcomingEvents">
+                    <table id = "myUpcomingEventsTable">
+                        <tr>
+                            <th>Event Name</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Location</th>
+                        </tr>
+                    </table>
+                </div>
+
+                <hr>
+
+                <p>Event History</p>
+                <div id = "myEventHistory">
+                    <table id = "myEventHistoryTable">
+                        <tr>
+                            <th>Event Name</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Location</th>
+                        </tr>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

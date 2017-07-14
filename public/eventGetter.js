@@ -29,29 +29,25 @@ function loadData(){
                     snapshot.forEach(function(shiftsSnapshot){
                         shiftsSnapshot.forEach(function(positionsSnapshot){
                             positionsSnapshot.forEach(function(idSnapshot){
-                                if(!done && idSnapshot.val() === userId){
+                                if(!done && idSnapshot.val() == userId){
                                     var eventName = childSnapshot.val().name;
                                     var description = childSnapshot.val().description;
-                                    var startDate = childSnapshot.val().startDate;
-                                    var endDate = childSnapshot.val().endDate;
+                                    var date = shiftsSnapshot.val().date;
+                                    var startTime = shiftsSnapshot.val().startTime;
+                                    var endTime = shiftsSnapshot.val().endTime;
                                     var location = childSnapshot.val().location;
                                     
                                     //format data into HTML elements
                                     var row = document.createElement("tr");
+                                    row.classList.add("temp");
                                     var nameTD = document.createElement("td");
                                         nameTD.innerHTML = eventName;
                                         nameTD.title = description;
-                                        nameTD.classList.add("temp");
                                     var dateTD = document.createElement("td");
-                                        if(startDate === endDate){
-                                            dateTD.innerHTML = startDate;
-                                        }
-                                        else{
-                                            dateTD.innerHTML = startDate + " to " + endDate;
-                                        }
-                                        dateTD.classList.add("temp");
+                                        dateTD.innerHTML = date;
+                                    var timeTD = document.createElement("td");
+                                        timeTD.innerHTML = startTime + " to " + endTime;
                                     var locationTD = document.createElement("td");
-                                        locationTD.classList.add("temp");
                                     var locationLink = document.createElement("a");
                                         locationLink.href = "https://www.google.com/maps/place/" + location; 
                                         locationLink.innerHTML = location;
@@ -59,14 +55,15 @@ function loadData(){
 
                                     row.appendChild(nameTD);
                                     row.appendChild(dateTD);
+                                    row.appendChild(timeTD);
                                     row.appendChild(locationTD);
 
                                     //Check time - upcoming or past?
-                                    if(today>getDate(endDate)){
-                                        document.getElementById("eventHistoryTable").appendChild(row);
+                                    if(today>getDate(date)){
+                                        document.getElementById("myEventHistoryTable").appendChild(row);
                                     }
                                     else{
-                                        document.getElementById("upcomingEventsTable").appendChild(row);
+                                        document.getElementById("myUpcomingEventsTable").appendChild(row);
                                     }
                                     
                                     done = true;
@@ -112,10 +109,10 @@ function loadData(){
                 
                 //Check time - upcoming or past?
                 if(today>getDate(endDate)){
-                    document.getElementById("eventHistoryTable").appendChild(row);
+                    document.getElementById("chapterEventHistoryTable").appendChild(row);
                 }
                 else{
-                    document.getElementById("upcomingEventsTable").appendChild(row);
+                    document.getElementById("chapterUpcomingEventsTable").appendChild(row);
                 }
             }
         });
@@ -123,9 +120,9 @@ function loadData(){
 }
 
 function getDate(stringDate){
-    var month = stringDate.substring(0, stringDate.indexOf('/'));
-    var day = stringDate.substring(month.length+1, stringDate.indexOf('/', month.length+1));
-    var year = stringDate.substring(month.length + day.length+2);
+    var year = stringDate.substring(0, stringDate.indexOf('-'));
+    var month = stringDate.substring(year.length+1, stringDate.indexOf('-', year.length+1));
+    var day = stringDate.substring(year.length + month.length+2);
     
     return new Date(parseInt(year), parseInt(month)-1, parseInt(day)); //Months on a 0-11 scale
 }
