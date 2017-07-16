@@ -13,16 +13,13 @@
             text-align: left;
             margin: 0, 10px;
         }
-        input, textarea{
+        body input{
             margin: 10px;
-        }
-        textarea{
-            width: 169px;
         }
         #shiftsTable{
             width: 100%;
         }
-        button{
+        #mainPanel button{
             margin: 10px;
         }
     </style>
@@ -110,10 +107,13 @@
             if(firebaseUser){
                 firebase.database().ref("/Users/" + firebaseUser.uid).once("value").then(function(snapshot){
                     permissions = snapshot.val().permissions;
-                    if(!firebaseUser || permissions!=="full"){
+                    if(permissions!=="full"){
                         window.location.replace("https://nhs-project-test.firebaseapp.com/index.html");
                     }
                 });
+            }
+            else{
+                window.location.replace("https://nhs-project-test.firebaseapp.com/index.html");
             }
         });
     </script>
