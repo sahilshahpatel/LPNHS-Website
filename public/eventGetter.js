@@ -23,13 +23,11 @@ function loadData(){
         snapshot.forEach(function(childSnapshot){
             //Load My Events
             if(document.getElementById("chapterEventsTab").classList.contains("inactive")){
-                //Is this user in the event?
-                var done = false;
                 firebase.database().ref("/Events/" + childSnapshot.key + "/Shifts").once("value").then(function(snapshot){
                     snapshot.forEach(function(shiftsSnapshot){
                         shiftsSnapshot.forEach(function(positionsSnapshot){
                             positionsSnapshot.forEach(function(idSnapshot){
-                                if(!done && idSnapshot.val() == userId){
+                                if(idSnapshot.val() == userId){
                                     var eventName = childSnapshot.val().name;
                                     var description = childSnapshot.val().description;
                                     var date = shiftsSnapshot.val().date;
@@ -50,6 +48,7 @@ function loadData(){
                                     var locationTD = document.createElement("td");
                                     var locationLink = document.createElement("a");
                                         locationLink.href = "https://www.google.com/maps/place/" + location; 
+                                        locationLink.target = "_blank";
                                         locationLink.innerHTML = location;
                                     locationTD.appendChild(locationLink);
 
@@ -57,16 +56,15 @@ function loadData(){
                                     row.appendChild(dateTD);
                                     row.appendChild(timeTD);
                                     row.appendChild(locationTD);
-
+                                    
                                     //Check time - upcoming or past?
+                                    var tableBody = document.getElementById("myEventsTBody");
                                     if(today>getDate(date)){
-                                        document.getElementById("myEventHistoryTable").appendChild(row);
+                                        tableBody.appendChild(row);
                                     }
                                     else{
-                                        document.getElementById("myUpcomingEventsTable").appendChild(row);
+                                        tableBody.insertBefore(row, tableBody.children[1]);
                                     }
-                                    
-                                    done = true;
                                 }
                             });
                         });
@@ -100,6 +98,7 @@ function loadData(){
                     locationTD.classList.add("temp");
                 var locationLink = document.createElement("a");
                     locationLink.href = "https://www.google.com/maps/place/" + location; 
+                    locationLink.target = "_blank";
                     locationLink.innerHTML = location;
                 locationTD.appendChild(locationLink);
 
@@ -108,11 +107,12 @@ function loadData(){
                 row.appendChild(locationTD);
                 
                 //Check time - upcoming or past?
+                var tableBody = document.getElementById("chapterEventsTBody");
                 if(today>getDate(endDate)){
-                    document.getElementById("chapterEventHistoryTable").appendChild(row);
+                    tableBody.appendChild(row);
                 }
                 else{
-                    document.getElementById("chapterUpcomingEventsTable").appendChild(row);
+                    tableBody.insertBefore(row, tableBody.children[1]);
                 }
             }
         });

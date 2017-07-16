@@ -104,6 +104,19 @@
     </script>
     
     <script src = "createEventScript.js"></script>
+    <script>
+        firebase.auth().onAuthStateChanged(firebaseUser =>{
+            var permissions = "";
+            if(firebaseUser){
+                firebase.database().ref("/Users/" + firebaseUser.uid).once("value").then(function(snapshot){
+                    permissions = snapshot.val().permissions;
+                    if(!firebaseUser || permissions!=="full"){
+                        window.location.replace("https://nhs-project-test.firebaseapp.com/index.html");
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 
 <!--Included via JQuery-->
