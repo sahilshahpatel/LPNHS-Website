@@ -82,10 +82,10 @@ function loadData(){
                 
                 //format data into HTML elements
                 var row = document.createElement("tr");
+                    row.classList.add("temp");
                 var nameTD = document.createElement("td");
                     nameTD.innerHTML = eventName;
                     nameTD.title = description;
-                    nameTD.classList.add("temp");
                 var dateTD = document.createElement("td");
                     if(startDate === endDate){
                         dateTD.innerHTML = startDate;
@@ -93,9 +93,7 @@ function loadData(){
                     else{
                         dateTD.innerHTML = startDate + " to " + endDate;
                     }
-                    dateTD.classList.add("temp");
                 var locationTD = document.createElement("td");
-                    locationTD.classList.add("temp");
                 var locationLink = document.createElement("a");
                     locationLink.href = "https://www.google.com/maps/place/" + location; 
                     locationLink.target = "_blank";
