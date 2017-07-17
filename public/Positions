@@ -1,202 +1,128 @@
-/* General */
-    body{
-        margin: 0px;
-        background-color: #005da3;
-    }
-    footer{
-        margin: 0px;
-        padding: 10px;
-        background-color: #333;
-        width: calc(100% - 20px); /*10px padding*/
-        position: absolute;
-        top: calc(100% + 180px);
-    }
-    .hidden{
-        visibility: hidden;
-    }
-    .vanish{
-        display: none;
-    }
-
-/* Stuff above NavBar */
-    #banner {
-        background-color: #fff;
-        width: 100%;
-        overflow: hidden;
-    }
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>NHS Test - Positions</title>
     
-    #loginSlider{
-        position:absolute;
-        top:0; 
-        right: 0;
-        width: 60px; 
-        background-color: #333;
-        padding: 0 30px;
-    }
-
-    #login{
-        position:absolute; 
-        top: 23px; 
-        right:0px;
-        background-color: #333; 
-        padding: 10px;
-        visibility: hidden;
-        display: inline-block;
-        height: 81px;
-        width: 173px;
-        overflow: hidden;
-    }
-
-    #login div{
-        width: 100%;
-        height: 100%;
-        padding: 0;
-    }
-
-    #login button{
-        width: calc(50% - 2px); /*2px of margin between buttons*/
-        margin-top: 10px;
-        margin-bottom: 0px;
-    }
-
-    #login p{
-        margin: 5px 0px;
-        color: white;
-        text-align: left;
-    }
-
-    button{
-        border: none;
-        padding: 5px 10px;
-        border-radius: 15px;
-        font-size: 12px;
-    }
+    <!--TODO: Icon-->
     
-    button.classicColor{
-        background-color: #005da3;
-        color: white;
-    }
+    
+    <!--Style Sheets-->
+    <link rel="stylesheet" href="baseCSS.css">
+    <style>
+        #shiftsPanel{
+            padding: 0;
+        }
+        #shiftsPanel div{
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+        #tabs{
+            background-color: #e8cfa4; /*darkened moccasin*/
+        }
+        #tabs div{
+            display: inline-block;
+            margin: 0;
+            width: calc(100% - 2px);
+            background-color: #ffebcd; /*blanched almond*/
+        }
+        #tabs div.inactive{
+            background-color: #e8cfa4; /*darkened moccasin*/
+        }
+        #informationContainer{
+            padding: 10px;
+        }
+        #informationContainer div table{
+            width: 100%;
+        }
+        #informationContainer div table th, td{
+            width: 33.33%;
+            font-family: Bookman, sans-serif;
+            font-size: 18px;
+        }
+    </style>
+    
+    <!--Scripts-->
+    <!--jQuery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script>
+       $(document).ready(function() {
+            //load all common elements: header, footer
+            $("#header").load("https://nhs-project-test.firebaseapp.com/header.html", function(){
+               $("#footer").load("https://nhs-project-test.firebaseapp.com/footer.html", function(){
+                   //Get all scripts that refer to loaded elements
+                   $.getScript("firebaseScript.js");
+                   $.getScript("headerJQuery.js");
+                   
+                   //specify nav-bar active link
+                   $("#eventsLink").addClass("active");
+                   
+                   //control tab color
+                   $("#chapterEventsTab").click(function(){
+                       $(this).removeClass("inactive");
+                       $("#myEventsTab").addClass("inactive");
+                       
+                       loadData();
+                   });
+                   $("#myEventsTab").click(function(){
+                       $(this).removeClass("inactive");
+                       $("#chapterEventsTab").addClass("inactive");
+                       
+                       loadData();
+                   });
+               });
+            });          
+       }); 
+    </script>
+</head>
 
-    button.reverseColor{
-        background-color: white;
-        color: #005da3;
-        font-weight: bold;
-    }
+<!--Included via JQuery-->
+<header id = "header"></header>
+    
+<body>
+    <!--Fixed Img in Background-->
+        <img id = "fixedBGImg" src =   "https://www.nhs.us/assets/images/nhs/NHS_header_logo.png">
+    
+    <div id = "shiftsPanel" class = "classic panel">
+            <div id = "myEventsTab"><p>!Event</p></div>
+        <div id = "informationContainer">
+            <!--Information loaded via JavaScript-->
+            <div id = "Description">
+                <hr>
+                <p>!Description</p>
+                <p>!Date</p>
+            </div>
+        </div>
+    </div>
+    <div id = "informationContainer" class = "classic panel">
+        <p>Positions</p>
+            <div id = "Positions">
+                <table id = "PositionsTable">
+                    <tr>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Signup</th>
+                    </tr>
+                </table>
+                <hr>
+            </div>
+        </div>
+    <!--Firebase.js-->
+    <script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyByQW8Cyp9yAIMm5xCrNZqF-5kqJ-w6g-4",
+            authDomain: "nhs-project-test.firebaseapp.com",
+            databaseURL: "https://nhs-project-test.firebaseio.com",
+            projectId: "nhs-project-test",
+            storageBucket: "nhs-project-test.appspot.com",
+            messagingSenderId: "239221174231"
+        };
+        firebase.initializeApp(config);
+    </script>
+    <script src = "positionGetter.js"></script>
+</body>
 
-/* Nav Bar */
-    #navBar {
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        background-color: #fff;
-        border-radius: 0px;
-        margin-bottom: 0;
-        white-space: nowrap;
-    }
-
-    .navBar-fixed {
-    top: 0;
-    z-index: 100;
-    position: fixed;
-    width: 100%;
-    }
-
-    /* Add a black background color to the top navigation */
-    .topnav {
-        background-color: #333;
-        overflow: hidden;
-        display: block;
-        padding: 0px;
-        width: 100%;
-    }
-
-    /* Style the links inside the navigation bar */
-    .topnav a {
-        float: left;
-        display: inline-block;
-        color: black;
-        text-align: center;
-        padding: 14px 0px;
-        text-decoration: none;
-        font-size: 20px;
-        width: 25%;
-    }
-
-    /* Change the color of links on hover or active*/
-    .topnav a:hover {
-        background-color: #005da3;
-        color: white;
-    }
-    .topnav a.active {
-        background-color: #005da3;
-        color: white;
-    }
-
-/* Texts */
-    p{
-        font-family: Bookman, sans-serif;
-        text-align: center;
-    }
-    .baseText {
-        font-family: Bookman, sans-serif;
-        text-align: center;
-    }
-
-    .urgentText{
-        font-family: Trebuchet MS, sans-serif;
-        text-align: center;
-    }
-    .footerText{
-        color: #005da3;
-    }
-
-/* Panel Divs */
-    div.panel{
-        border: 3px solid;
-        border-radius: 15px;
-        margin: 30px 10%;
-        padding: 0px 10px;
-    }
-    div.urgent{
-        border-color: red; 
-        background-color: #eea29a;
-    }
-    div.classic{
-        border-color: #daa520; /*goldenrod*/
-        background-color: #ffebcd; /*blanched almond*/
-        
-    }
-    div.classic hr{
-        border-color: #005da3;
-    }
-    div.panel p{
-        margin: 10px;
-        font-size: 20px;
-    }
-
-/* Cards (shadowed imgs) */
-    .card{
-        margin: 30px auto;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);  
-        background-color: #fff;
-    }
-
-    .card p{
-        font-size: 20px;
-        margin: 0; 
-        padding: 10px;
-    }
-
-/* Select Imgs */
-    #LPLogo{
-        position:absolute;
-        bottom:calc(100% - 115px); 
-        right:calc(100% - 150px); 
-        z-index:1;
-    }
-    #fixedBGImg{
-        display: block;
-        position: fixed; 
-        opacity:0.25; 
-        width: 300px; 
-        margin: 10% calc(50% - 150px); /* img is 300px wide */
-        z-index:-1;
-    }
+<!--Included via JQuery-->
+<footer id = "footer"></footer>
+</html>
