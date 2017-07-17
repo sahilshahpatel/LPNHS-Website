@@ -1,15 +1,15 @@
 /* General */
     body{
         margin: 0px;
+        padding: 0px;
         background-color: #005da3;
     }
     footer{
         margin: 0px;
+        margin-top: 30px;
         padding: 10px;
         background-color: #333;
         width: calc(100% - 20px); /*10px padding*/
-        position: absolute;
-        top: calc(100% + 180px);
     }
     .hidden{
         visibility: hidden;
@@ -131,7 +131,7 @@
     }
 
 /* Texts */
-    p{
+    p, h1, h2, h3{
         font-family: Bookman, sans-serif;
         text-align: center;
     }
