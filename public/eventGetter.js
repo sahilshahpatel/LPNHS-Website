@@ -39,8 +39,11 @@ function loadData(){
                                     var row = document.createElement("tr");
                                     row.classList.add("temp");
                                     var nameTD = document.createElement("td");
-                                        nameTD.innerHTML = eventName;
                                         nameTD.title = description;
+                                    var pageLink = document.createElement("a");
+                                        pageLink.innerHTML = eventName;
+                                        pageLink.href = "volunteer.html?eventId=" + childSnapshot.key;
+                                    nameTD.appendChild(pageLink);
                                     var dateTD = document.createElement("td");
                                         dateTD.innerHTML = date;
                                     var timeTD = document.createElement("td");
@@ -84,8 +87,11 @@ function loadData(){
                 var row = document.createElement("tr");
                     row.classList.add("temp");
                 var nameTD = document.createElement("td");
-                    nameTD.innerHTML = eventName;
                     nameTD.title = description;
+                var pageLink = document.createElement("a");
+                    pageLink.innerHTML = eventName;
+                    pageLink.href = "volunteer.html?eventId=" + childSnapshot.key;
+                nameTD.appendChild(pageLink);
                 var dateTD = document.createElement("td");
                     if(startDate === endDate){
                         dateTD.innerHTML = startDate;

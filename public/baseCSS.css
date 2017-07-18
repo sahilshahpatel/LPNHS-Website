@@ -88,6 +88,11 @@
         font-weight: bold;
     }
 
+/* Links */
+    a:link, a:visited{
+        color: #005da3;
+    }
+
 /* Nav Bar */
     #navBar {
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
