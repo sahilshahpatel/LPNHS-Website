@@ -42,22 +42,26 @@
        }); 
     </script>
 </head>
-
-<!--Included via JQuery-->
-<header id = "header"></header>
     
 <body>
-    <!--Fixed Img in Background-->
-    <img id = "fixedBGImg" src = "https://www.nhs.us/assets/images/nhs/NHS_header_logo.png">
-    
-    <div class = "classic panel">
-        <p>Leadership</p>
-        <table id = "leadership"></table>
+    <div id = "footerPusher">
+        <!--Included via JQuery-->
+        <header id = "header"></header>
+
+        <!--Fixed Img in Background-->
+        <img id = "fixedBGImg" src = "https://www.nhs.us/assets/images/nhs/NHS_header_logo.png">
+
+        <div class = "classic panel">
+            <p>Leadership</p>
+            <table id = "leadership"></table>
+        </div>
+        <div class = "classic panel">
+            <p>Students</p>
+            <table id = "students"></table>
+        </div>
     </div>
-    <div class = "classic panel">
-        <p>Students</p>
-        <table id = "students"></table>
-    </div>
+    <!--Included via JQuery-->
+    <footer id = "footer"></footer>
     
     <!--Firebase.js-->
     <script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
@@ -75,7 +79,4 @@
     </script>
     <script src = "loadMembers.js"></script>
 </body>
-
-<!--Included via JQuery-->
-<footer id = "footer"></footer>
 </html>

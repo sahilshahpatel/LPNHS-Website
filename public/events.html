@@ -84,63 +84,68 @@
        }); 
     </script>
 </head>
-
-<!--Included via JQuery-->
-<header id = "header"></header>
     
 <body>
-    <!--Fixed Img in Background-->
-    <img id = "fixedBGImg" src = "https://www.nhs.us/assets/images/nhs/NHS_header_logo.png">
-    
-    <div id = "eventsPanel" class = "classic panel">
-        <div id = "tabs">
-            <div id = "chapterEventsTab" class = "inactive"><p>Chapter Events</p></div>
-            <div id = "myEventsTab"><p>My Events</p></div>
-        </div>
-        <div id = "informationContainer">
-            <!--Information loaded via JavaScript-->
-            <div id = "chapterEventsDiv" class = "vanish">
-                <p>Upcoming Events</p>
-                <table id = "chapterEventsTable">
-                    <tbody id = "chapterEventsTBody">
-                        <tr>
-                            <th>Event Name</th>
-                            <th>Date(s)</th>
-                            <th>Location</th>
-                        </tr>
-                        <tr class = "noChange"><td colspan = "3"><hr></td></tr>
-                        <tr class = "noChange"><td colspan = "3"><p>Event History</p></td></tr>
-                        <tr>
-                            <th>Event Name</th>
-                            <th>Date(s)</th>
-                            <th>Location</th>
-                        </tr>
-                    </tbody>
-                </table>
+    <div id = "footerPusher">
+        <!--Included via JQuery-->
+        <header id = "header"></header>
+
+        <!--Fixed Img in Background-->
+        <img id = "fixedBGImg" src = "https://www.nhs.us/assets/images/nhs/NHS_header_logo.png">
+
+        <div id = "eventsPanel" class = "classic panel">
+            <div id = "tabs">
+                <div id = "chapterEventsTab" class = "inactive"><p>Chapter Events</p></div>
+                <div id = "myEventsTab"><p>My Events</p></div>
             </div>
-            <div id = "myEventsDiv">
-                <p>Upcoming Events</p>
-                <table id = "myEventsTable">
-                    <tbody id = "myEventsTBody">
-                        <tr>
-                            <th>Event Name</th>
-                            <th>Date(s)</th>
-                            <th>Time</th>
-                            <th>Location</th>
-                        </tr>
-                        <tr class = "noChange"><td colspan = "4"><hr></td></tr>
-                        <tr class = "noChange"><td colspan = "4"><p>Event History</p></td></tr>
-                        <tr>
-                            <th>Event Name</th>
-                            <th>Date(s)</th>
-                            <th>Time</th>
-                            <th>Location</th>
-                        </tr>
-                    </tbody>
-                </table>
+            <div id = "informationContainer">
+                <!--Information loaded via JavaScript-->
+                <div id = "chapterEventsDiv" class = "vanish">
+                    <p>Upcoming Events</p>
+                    <table id = "chapterEventsTable">
+                        <tbody id = "chapterEventsTBody">
+                            <tr>
+                                <th>Event Name</th>
+                                <th>Date(s)</th>
+                                <th>Location</th>
+                            </tr>
+                            <tr class = "noChange"><td colspan = "3"><hr></td></tr>
+                            <tr class = "noChange"><td colspan = "3"><p>Event History</p></td></tr>
+                            <tr>
+                                <th>Event Name</th>
+                                <th>Date(s)</th>
+                                <th>Location</th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div id = "myEventsDiv">
+                    <p>Upcoming Events</p>
+                    <table id = "myEventsTable">
+                        <tbody id = "myEventsTBody">
+                            <tr>
+                                <th>Event Name</th>
+                                <th>Date(s)</th>
+                                <th>Time</th>
+                                <th>Location</th>
+                            </tr>
+                            <tr class = "noChange"><td colspan = "4"><hr></td></tr>
+                            <tr class = "noChange"><td colspan = "4"><p>Event History</p></td></tr>
+                            <tr>
+                                <th>Event Name</th>
+                                <th>Date(s)</th>
+                                <th>Time</th>
+                                <th>Location</th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
+    
+    <!--Included via JQuery-->
+    <footer id = "footer"></footer>
     
     <!--Firebase.js-->
     <script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
@@ -158,7 +163,4 @@
     </script>
     <script src = "eventGetter.js"></script>
 </body>
-
-<!--Included via JQuery-->
-<footer id = "footer"></footer>
 </html>

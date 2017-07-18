@@ -4,12 +4,17 @@
         padding: 0px;
         background-color: #005da3;
     }
+    #footerPusher{
+        min-height: calc(100vh - 300px); /*Height of footer + 50px (random extra spacing)*/
+        padding: 0;
+        padding-bottom: 30px;
+    }
     footer{
         margin: 0px;
-        margin-top: 30px;
         padding: 10px;
         background-color: #333;
         width: calc(100% - 20px); /*10px padding*/
+        height: 250px;
     }
     .hidden{
         visibility: hidden;
