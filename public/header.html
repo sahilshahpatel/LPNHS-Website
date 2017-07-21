@@ -18,8 +18,8 @@
             
             <!-- If logged in-->
             <div id = "loggedIn" class = "vanish">
-                <p>Hello,</p>
-                <p id = "userGreetingText">User</p>
+                <p id = "userGreetingText">Hello, User</p>
+                <button id = "adminDashboardButton" style = "display: block; margin: 0 auto; width: 90%;" class = "classicColor hidden" onclick = "location.href='admin-dashboard.html'">Admin Dashboard</button>
                 <button id = "myProfileButton" class = "classicColor" type = "button" onclick = "location.href='my-profile.html'">My Profile</button>
                 <button id = "logoutButton" class = "reverseColor" type = "button">Sign Out</button>
             </div>
@@ -34,3 +34,12 @@
             <a class = "baseText" id = "whatItTakesLink" href = "what-it-takes.html" title = "What It Takes">What It Takes</a>
         </nav>
     </div>
+<script>
+    try{
+        //will fail
+        var pageTester = firebase;
+    }
+    catch(e){
+        window.location.replace("index.html");
+    }
+</script>

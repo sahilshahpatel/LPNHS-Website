@@ -18,11 +18,17 @@
             var destination = getParameterByName("destination");
             
             firebase.auth().onAuthStateChanged(firebaseUser =>{
-                if(firebaseUser){
-                    window.location.replace("https://nhs-project-test.firebaseapp.com/" + destination);
+                //prevent null value 404
+                if(destination){
+                    if(firebaseUser){
+                        window.location.replace("https://nhs-project-test.firebaseapp.com/" + destination);
+                    }
+                    else{
+                        window.location.replace("https://nhs-project-test.firebaseapp.com/login.html?destination=" + destination);
+                    }
                 }
                 else{
-                    window.location.replace("https://nhs-project-test.firebaseapp.com/login.html?destination=" + destination);
+                    window.location.replace("https://nhs-project-test.firebaseapp.com/index.html");
                 }
             });
 

@@ -60,7 +60,7 @@
 
     #login button{
         width: calc(50% - 2px); /*2px of margin between buttons*/
-        margin-top: 10px;
+        margin-top: 5px;
         margin-bottom: 0px;
     }
 

@@ -1,12 +1,8 @@
 var user;
-var userId;
 
 document.addEventListener("DOMContentLoaded", function(){
     firebase.auth().onAuthStateChanged(firebaseUser => {
         user = firebaseUser;
-        firebase.database().ref("Users/" + user.uid).once("value").then(function(snapshot){
-            userId = snapshot.val().id;
-        });
         loadData();
     });
 });
@@ -27,7 +23,7 @@ function loadData(){
                     snapshot.forEach(function(shiftsSnapshot){
                         shiftsSnapshot.forEach(function(positionsSnapshot){
                             positionsSnapshot.forEach(function(idSnapshot){
-                                if(idSnapshot.val() == userId){
+                                if(idSnapshot.val() == user.uid){
                                     var eventName = childSnapshot.val().name;
                                     var description = childSnapshot.val().description;
                                     var date = shiftsSnapshot.val().date;

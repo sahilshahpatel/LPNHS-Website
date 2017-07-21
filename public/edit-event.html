@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>NHS Test - Create Event</title>
+    <title>NHS Test - Base Page</title>
     
     <!--TODO: Icon-->
     
@@ -9,17 +9,19 @@
     <!--Style Sheets-->
     <link rel="stylesheet" href="baseCSS.css">
     <style>
-        body input{
-            margin: 10px;
-        }
         table{
             width: 100%;
+            text-align: center;
         }
-        #mainPanel button{
-            margin: 10px;
+        #mainPanel{
+            padding: 10px;
+        }
+        table.positionTable{
+            border: solid 3px black;
+            width: auto; /*Override above 100% */
+            margin: 0 auto;
         }
     </style>
-    
     
     <!--Scripts-->
     <!--jQuery-->
@@ -45,9 +47,9 @@
 
         <!--Fixed Img in Background-->
         <img id = "fixedBGImg" src = "https://www.nhs.us/assets/images/nhs/NHS_header_logo.png">
-
+        
         <div id = "mainPanel" class = "classic panel">
-            <p style = "text-align: center;">Create Event</p>
+            <p style = "text-align: center;">Edit Event</p>
             <table>
                 <thead>
                     <td><p>Event Name</p></td>
@@ -56,7 +58,10 @@
                     <td><p>Date Range</p></td>
                 </thead>
                 <tr>
-                    <td><input id = "eventName"></td>
+                    <td>
+                        <input id = "eventName" list = "eventNameList">
+                        <datalist id = "eventNameList"><!--Options added in JavaScript--></datalist>
+                    </td>
                     <td><input id = "description"></td>
                     <td><input id = "location"></td>
                     <td><input id = "startDate" type = "date"> <p style ="display:inline;">To</p> <input id = "endDate" type = "date"></td>
@@ -67,7 +72,7 @@
             <table id = "shiftsTable">
                 <thead>
                     <tr>
-                        <td><p style = "display:inline;">Shifts</p><input id = "numShifts" type = "number" value = "0" style = "width: 60px;"></td>
+                        <td><p style = "display:inline;" id = "shiftsTitle">Shifts</p></td>
                         <td><p>Date</p></td>
                         <td><p>Start Time</p></td>
                         <td><p>End Time</p></td>
@@ -78,11 +83,13 @@
                     <!--Filled via JavaScript-->
                 </tbody>
             </table>
+            
+            <!--Filled and Used in editEvent.js-->
+            <datalist id = "studentList"></datalist>
 
             <button id = "submitButton" class = "classicColor" type = "button">Submit</button>
         </div>
     </div>
-    
     <!--Included via JQuery-->
     <footer id = "footer"></footer>
     
@@ -100,8 +107,7 @@
         };
         firebase.initializeApp(config);
     </script>
-    
-    <script src = "createEventScript.js"></script>
+    <script src = "editEvent.js"></script>
     <script src = requireAdminPermissions.js></script>
 </body>
 </html>

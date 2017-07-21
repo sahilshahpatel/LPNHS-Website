@@ -14,13 +14,21 @@ firebase.auth().onAuthStateChanged(firebaseUser =>{
 
         document.getElementById("loginSliderText").innerHTML = "Profile";
 
-        userGreetingText.innerHTML =  firebaseUser.displayName;
+        userGreetingText.innerHTML =  "Hello, " + firebaseUser.displayName;
+        
+        firebase.database().ref("/Users/" + firebaseUser.uid).once("value").then(function(snapshot){
+            if(snapshot.val().permissions === "admin"){
+                document.getElementById("adminDashboardButton").classList.remove("hidden");
+            }
+        });
     } 
     else{
         document.getElementById("notLoggedIn").classList.remove("vanish");
         document.getElementById("loggedIn").classList.add("vanish");
         
         document.getElementById("loginSliderText").innerHTML = "Sign In";
+        
+        document.getElementById("adminDashboardButton").classList.add("hidden");
     }
 });
     
