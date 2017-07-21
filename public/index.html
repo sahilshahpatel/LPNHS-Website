@@ -45,9 +45,9 @@
         </div>
 
         <!--Home Page Panels-->
-        <div id = "importantInfo" class = "urgent panel">
+        <div id = "importantInfo" class = "urgent panel vanish">
             <p class = "urgentText">Attention:</p>
-            <p class = "urgentText">*IMPORTANT INFO HERE*</p>
+            <p class = "urgentText" id = "indexAlert"></p>
         </div>
 
         <div id = "aboutUs" class = "classic panel">
@@ -71,6 +71,17 @@
             messagingSenderId: "239221174231"
         };
         firebase.initializeApp(config);
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function(){
+            firebase.database().ref("/Site Content/Index").once("value").then(function(snapshot){
+                //Load Alert
+                if(snapshot.val().Alert !== ""){
+                    document.getElementById("importantInfo").classList.remove("vanish");
+                    document.getElementById("indexAlert").innerHTML = snapshot.val().Alert;
+                }
+            });
+        });
     </script>
 </body>
 </html>

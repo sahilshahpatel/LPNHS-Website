@@ -1,13 +1,29 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>NHS Test - Base Page</title>
+    <title>NHS Test - Manage Site Content</title>
     
     <!--TODO: Icon-->
     
     
     <!--Style Sheets-->
     <link rel="stylesheet" href="baseCSS.css">
+    <style>
+        #footerPusher p{
+            text-align: left;
+        }
+        .expander{
+            display: inline-block;
+        }
+        #alertText{
+            display: block;
+            width: 75%;
+            margin: 10px;
+        }
+        button.submit{
+            margin: 10px;
+        }
+    </style>
     
     <!--Scripts-->
     <!--jQuery-->
@@ -33,6 +49,26 @@
 
         <!--Fixed Img in Background-->
         <img id = "fixedBGImg" src = "https://www.nhs.us/assets/images/nhs/NHS_header_logo.png">
+        
+        <div id = "index" class = "classic panel">
+            <p class = "expander">Manage Home Page</p>
+            <button type = "button" id = "indexExpander" class = "classicColor expander">Expand</button>
+            <div id = "indexDropdown" class = "vanish">
+                <hr>
+                <p>Alert</p>
+                <input id = "alertText" placeholder="Enter text to appear on Home Page. Leave empty to remove alert.">
+                <button id = "indexSubmit" type = "button" class = "classicColor submit">Submit</button>
+            </div>
+        </div>
+        <div id = "whatItTakes" class = "classic panel">
+            <p class = "expander">Manage What It Takes Page</p>
+            <button type = "button" id = "whatItTakesExpander" class = "classicColor expander">Expand</button>
+            <div id = "whatItTakesDropdown" class = "vanish">
+                <hr>
+                
+                <button id = "whatItTakesSubmit" type = "button" class = "classicColor submit">Submit</button>
+            </div>
+        </div>
     </div>
     <!--Included via JQuery-->
     <footer id = "footer"></footer>
@@ -51,14 +87,7 @@
         };
         firebase.initializeApp(config);
     </script>
-    <script>
-    try{
-        //will fail
-        var pageTester = firebase;
-    }
-    catch(e){
-        window.location.replace("index.html");
-    }
-</script>
+    <script src = "requireAdminPermissions.js"></script>
+    <script src = "manageSiteContent.js"></script>
 </body>
 </html>

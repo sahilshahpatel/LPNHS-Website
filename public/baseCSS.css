@@ -5,7 +5,7 @@
         background-color: #005da3;
     }
     #footerPusher{
-        min-height: calc(100vh - 300px); /*Height of footer + 50px (random extra spacing)*/
+        min-height: calc(100vh - 250px); /*Height of footer + 50px (random extra spacing)*/
         padding: 0;
         padding-bottom: 30px;
     }
@@ -14,7 +14,7 @@
         padding: 10px;
         background-color: #333;
         width: calc(100% - 20px); /*10px padding*/
-        height: 250px;
+        height: 200px;
     }
     .hidden{
         visibility: hidden;
@@ -209,4 +209,10 @@
         width: 300px; 
         margin: 10% calc(50% - 150px); /* img is 300px wide */
         z-index:-1;
+    }
+    #easterEgg{
+        bottom: 0;
+        left: 0;
+        
+        height: 25px;
     }

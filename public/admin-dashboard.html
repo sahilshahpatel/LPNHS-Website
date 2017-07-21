@@ -61,6 +61,12 @@
                    $("#editEventDiv").click(function(){
                        window.location.href = "edit-event.html";
                    });
+                   $("#manageMembers").click(function(){
+                       window.location.href = "manage-members.html";
+                   });
+                   $("#manageSiteContent").click(function(){
+                       window.location.href = "manage-site-content.html";
+                   });
                });
             });          
        }); 
@@ -107,5 +113,6 @@
         };
         firebase.initializeApp(config);
     </script>
+    <script src = "requireAdminPermissions.js"></script>
 </body>
 </html>
