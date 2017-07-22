@@ -55,20 +55,6 @@
                    
                    //specify nav-bar active link
                    $("#eventsLink").addClass("active");
-                   
-                   //control tab color
-                   $("#chapterEventsTab").click(function(){
-                       $(this).removeClass("inactive");
-                       $("#myEventsTab").addClass("inactive");
-                       
-                       loadData();
-                   });
-                   $("#myEventsTab").click(function(){
-                       $(this).removeClass("inactive");
-                       $("#chapterEventsTab").addClass("inactive");
-                       
-                       loadData();
-                   });
                });
             });          
        }); 
@@ -83,12 +69,13 @@
         <img id = "fixedBGImg" src =   "https://www.nhs.us/assets/images/nhs/NHS_header_logo.png">
     
     <div id = "shiftsPanel" class = "classic panel">
-            <div id = "myEventsTab"><p>!Event</p></div>
+            <div id = "shiftsTab"><p>!Event</p></div>
         <div id = "informationContainer">
             <!--Information loaded via JavaScript-->
             <div id = "Description">
                 <hr>
                 <p>!Description</p>
+                <p>!Location</p>
                 <p>!Date</p>
             </div>
         </div>
