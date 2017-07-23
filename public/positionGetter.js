@@ -37,7 +37,7 @@ function loadData(){
                 var startDate = firebase.database().ref("Events/" + eventid + "/startDate");
                 var endDate = firebase.database().ref("Events/" + eventid + "/endDate");
                 var location = firebase.database().ref("Events/" + eventid + "/location");
-                                      //format data into HTML elements
+                //format data into HTML elements
                 var row = document.createElement("tr");
                 var nameTD = document.createElement("td");
                 nameTD.innerHTML = eventName;
