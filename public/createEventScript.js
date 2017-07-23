@@ -109,11 +109,11 @@ document.addEventListener("DOMContentLoaded", function(){
                 var newPosKey = firebase.database().ref("/Events/" + newEventKey + "/Shifts/" + newShiftKey).push().key;
                 
                 updates["/Events/" + newEventKey + "/Shifts/" + newShiftKey + "/Positions/" + newPosKey] = "";
-                firebase.database().ref().update(updates);
+                firebase.database().ref().update(updates).then(function(){
+                    alert("Event Created");
+                });
                 updates = {};
             }
         }
-        
-        alert("Event Created");
     });
 });

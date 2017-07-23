@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function(){
         snapshot.forEach(function(eventSnapshot){
             var option = document.createElement("option");
                 option.value = eventSnapshot.val().name;
+                option.dataset.eventId = eventSnapshot.key;
             document.getElementById("eventNameList").appendChild(option);
         });
     });
@@ -25,6 +26,10 @@ document.addEventListener("DOMContentLoaded", function(){
         while(temps[0]){
             temps[0].parentNode.removeChild(temps[0]);
         }
+        document.getElementById("description").value = "";
+        document.getElementById("location").value = "";
+        document.getElementById("startDate").value = "";
+        document.getElementById("endDate").value = "";
         
         //get all elements
         var description = document.getElementById("description");
@@ -36,9 +41,17 @@ document.addEventListener("DOMContentLoaded", function(){
         firebase.database().ref("/Events").once("value").then(function(snapshot){
             var found = false;
             snapshot.forEach(function(eventSnapshot){
-                if(document.getElementById("eventName").value === eventSnapshot.val().name){
+                //find eventId
+                var eventId = document.querySelector('#eventNameList option[value=' + "'" + document.getElementById("eventName").value + "'" +']').dataset.eventId;
+                document.getElementById("eventName").dataset.eventId = eventId;
+                
+                if(document.getElementById("eventName").dataset.eventId === eventSnapshot.key){
                     found = true;
-                    document.getElementById("eventName").dataset.eventId = eventSnapshot.key;
+                    
+                    //show delete button
+                    document.getElementById("deleteButton").classList.remove("vanish");
+                    
+                    //document.getElementById("eventName").dataset.eventId = eventSnapshot.key;
                     
                     description.value = eventSnapshot.val().description;
                     location.value = eventSnapshot.val().location;
@@ -173,11 +186,15 @@ document.addEventListener("DOMContentLoaded", function(){
                 }
                 else if(!found){
                     document.getElementById("eventName").dataset.eventId = "";
+                    
+                    //hide delete button
+                    document.getElementById("deleteButton").classList.add("vanish");
                 }
             });
         });
     });
     
+    //Submit
     document.getElementById("submitButton").addEventListener("click", function(){
         //update database
         var eventId = document.getElementById("eventName").dataset.eventId;
@@ -218,8 +235,30 @@ document.addEventListener("DOMContentLoaded", function(){
             var updates = {};
             updates["/Events/" + eventId] = eventUpdates;
             
-            firebase.database().ref().update(updates);
-            alert("Event Updated");
+            firebase.database().ref().update(updates).then(function(){
+               alert("Event Updated"); 
+            });
+        }
+    });
+    
+    //Delete Event
+    document.getElementById("deleteButton").addEventListener("click", function(){
+        var eventId = document.getElementById("eventName").dataset.eventId;
+        if(eventId!=="" && confirm("Do you want to remove " + document.getElementById("eventName").value + "?")){
+            
+            firebase.database().ref("/Events/" + eventId).remove().then(function(){
+                alert("Event Removed")
+            });
+            //remove old elements
+            var temps = document.getElementsByClassName("temp");
+            while(temps[0]){
+                temps[0].parentNode.removeChild(temps[0]);
+            }
+            document.getElementById("description").value = "";
+            document.getElementById("location").value = "";
+            document.getElementById("startDate").value = "";
+            document.getElementById("endDate").value = "";
+            document.getElementById("eventName").value = "";
         }
     });
 });

@@ -41,7 +41,8 @@ document.addEventListener("DOMContentLoaded", function(){
         updates["/Site Content/Index"] = {
             Alert: document.getElementById("alertText").value
         };
-        firebase.database().ref().update(updates);
-        alert("Page Updated");
+        firebase.database().ref().update(updates).then(function(){
+           alert("Page Updated"); 
+        });
     });
 });
