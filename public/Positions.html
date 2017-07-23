@@ -52,9 +52,6 @@
                    //Get all scripts that refer to loaded elements
                    $.getScript("firebaseScript.js");
                    $.getScript("headerJQuery.js");
-                   
-                   //specify nav-bar active link
-                   $("#eventsLink").addClass("active");
                });
             });          
        }); 
@@ -94,6 +91,15 @@
             </div>
         </div>
     <!--Firebase.js-->
+   <div id = "footerPusher">
+        <!--Included via JQuery-->
+        <header id = "header"></header>
+
+    </div>
+    <!--Included via JQuery-->
+    <footer id = "footer"></footer>
+    
+    <!--Firebase.js-->
     <script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
     <script>
         // Initialize Firebase
@@ -107,6 +113,15 @@
         };
         firebase.initializeApp(config);
     </script>
+    <script>
+    try{
+        //will fail
+        var pageTester = firebase;
+    }
+    catch(e){
+        window.location.replace("index.html");
+    }
+</script>
     <script src = "positionGetter.js"></script>
 </body>
 
