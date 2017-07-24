@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", function(){
                     document.styleSheets[1].insertRule("table th, td{width: 50%;}", 0);
                 }
                 
+                //create table head
                 for(var i = 0; i<2; i++){
                     var thead = document.createElement("thead");
                     var tr = document.createElement("tr");
@@ -37,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function(){
                         studentList.appendChild(thead);
                     }
                 }
-                firebase.database().ref("/Users").once("value").then(function(snapshot){
+                firebase.database().ref("/Users").orderByChild("lastName").once("value").then(function(snapshot){
                     snapshot.forEach(function(childSnapshot){
                         var studentTR = document.createElement("tr");
 
@@ -63,10 +64,6 @@ document.addEventListener("DOMContentLoaded", function(){
                     });
                 });
             });
-        }
-        else{
-            //redirect user
-            //window.location.replace("https://nhs-project-test.firebaseapp.com");
         }
     });
 });

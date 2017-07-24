@@ -15,8 +15,8 @@ function loadData(){
     
     var today = new Date();
     
-    firebase.database().ref("/Events").once("value").then(function(snapshot){
-        snapshot.forEach(function(childSnapshot){
+    firebase.database().ref("/Events").orderByChild("startDate").once("value").then(function(snapshot){
+        snapshot.forEach(function(childSnapshot){            
             //Load My Events
             if(document.getElementById("chapterEventsTab").classList.contains("inactive")){
                 firebase.database().ref("/Events/" + childSnapshot.key + "/Shifts").once("value").then(function(snapshot){
@@ -62,7 +62,7 @@ function loadData(){
                                         tableBody.appendChild(row);
                                     }
                                     else{
-                                        tableBody.insertBefore(row, tableBody.children[1]);
+                                        tableBody.insertBefore(row, document.getElementById("myEventsHR"));
                                     }
                                 }
                             });
@@ -112,7 +112,7 @@ function loadData(){
                     tableBody.appendChild(row);
                 }
                 else{
-                    tableBody.insertBefore(row, tableBody.children[1]);
+                    tableBody.insertBefore(row, document.getElementById("chapterEventsHR"));
                 }
             }
         });

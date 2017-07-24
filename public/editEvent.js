@@ -247,18 +247,9 @@ document.addEventListener("DOMContentLoaded", function(){
         if(eventId!=="" && confirm("Do you want to remove " + document.getElementById("eventName").value + "?")){
             
             firebase.database().ref("/Events/" + eventId).remove().then(function(){
-                alert("Event Removed")
+                alert("Event Deleted");
+                    window.location.replace(window.location.href);
             });
-            //remove old elements
-            var temps = document.getElementsByClassName("temp");
-            while(temps[0]){
-                temps[0].parentNode.removeChild(temps[0]);
-            }
-            document.getElementById("description").value = "";
-            document.getElementById("location").value = "";
-            document.getElementById("startDate").value = "";
-            document.getElementById("endDate").value = "";
-            document.getElementById("eventName").value = "";
         }
     });
 });
