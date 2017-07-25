@@ -37,6 +37,7 @@ document.addEventListener("DOMContentLoaded", function(){
                 numPositions.type = "number";
                 numPositions.value = 1;
                 numPositions.id = "numPositions" + i;
+                numPositions.setAttribute("min", "1");
             var numPositionsTD = document.createElement("td");
                 numPositionsTD.appendChild(numPositions);    
             

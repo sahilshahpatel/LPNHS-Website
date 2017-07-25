@@ -21,6 +21,9 @@
         table tr:nth-child(even){
             background-color: #e8cfa4;
         }
+        #addUserTable th, td{
+            width: 14.28%;
+        }
     </style>
     
     <!--Scripts-->
@@ -50,14 +53,19 @@
 
         <!--Fixed Img in Background-->
         <img id = "fixedBGImg" src = "https://www.nhs.us/assets/images/nhs/NHS_header_logo.png">
-
+        
+        <div id = "addUserDiv" class = "classic panel vanish">
+            <p>Add User</p>
+            <table id = "addUserTable"></table>
+        </div>
+        
         <div class = "classic panel">
             <p>Leadership</p>
-            <table id = "leadership"></table>
+            <table id = "leadership" class = "listing"></table>
         </div>
         <div class = "classic panel">
             <p>Students</p>
-            <table id = "students"></table>
+            <table id = "students" class = "listing"></table>
         </div>
     </div>
     <!--Included via JQuery-->
