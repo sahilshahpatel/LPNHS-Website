@@ -30,6 +30,7 @@ document.addEventListener("DOMContentLoaded", function(){
             
             if(childSnapshot.key === "Index"){
                 document.getElementById("alertText").value = content.Alert;
+                document.getElementById("aboutUsText").value = content.AboutUs;
             }
         });
     });
@@ -39,7 +40,8 @@ document.addEventListener("DOMContentLoaded", function(){
         var updates = {};
         
         updates["/Site Content/Index"] = {
-            Alert: document.getElementById("alertText").value
+            Alert: document.getElementById("alertText").value,
+            AboutUs: document.getElementById("aboutUsText").value
         };
         firebase.database().ref().update(updates).then(function(){
            alert("Page Updated"); 

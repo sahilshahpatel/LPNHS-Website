@@ -52,7 +52,7 @@
 
         <div id = "aboutUs" class = "classic panel">
             <p>About Us...</p>
-            <p>*CONTENT*</p>
+            <p id = "aboutUsText">*CONTENT*</p>
         </div>
     </div>
     <!--Included via JQuery-->
@@ -80,6 +80,7 @@
                     document.getElementById("importantInfo").classList.remove("vanish");
                     document.getElementById("indexAlert").innerHTML = snapshot.val().Alert;
                 }
+                document.getElementById("aboutUsText").innerHTML = snapshot.val().AboutUs;
             });
         });
     </script>
