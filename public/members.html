@@ -22,7 +22,10 @@
             background-color: #e8cfa4;
         }
         #addUserTable th, td{
-            width: 14.28%;
+            width: 12.5%;
+        }
+        input{
+            max-width: 130px;
         }
     </style>
     
@@ -56,16 +59,22 @@
         
         <div id = "addUserDiv" class = "classic panel vanish">
             <p>Add User</p>
+            <div class = "scrollable">
             <table id = "addUserTable"></table>
+            </div>
         </div>
         
         <div class = "classic panel">
             <p>Leadership</p>
+            <div class = "scrollable">
             <table id = "leadership" class = "listing"></table>
+            </div>
         </div>
         <div class = "classic panel">
             <p>Students</p>
+            <div class = "scrollable">
             <table id = "students" class = "listing"></table>
+            </div>
         </div>
     </div>
     <!--Included via JQuery-->

@@ -13,7 +13,7 @@
         margin: 0px;
         padding: 10px;
         background-color: #333;
-        width: calc(100% - 20px); /*10px padding*/
+        //width: calc(100% - 20px); /*10px padding*/
         height: 200px;
     }
     .hidden{
@@ -120,6 +120,7 @@
 
     /* Style the links inside the navigation bar */
     .topnav a {
+        overflow: hidden;
         float: left;
         display: inline-block;
         color: black;
@@ -157,7 +158,10 @@
     .footerText{
         color: #005da3;
     }
-
+/*Div Options */
+    div.scrollable{
+        overflow-x: auto;
+    }
 /* Panel Divs */
     div.panel{
         border: 3px solid;

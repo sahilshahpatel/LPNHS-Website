@@ -112,7 +112,16 @@
             
             firebase.auth().onAuthStateChanged(firebaseUser =>{
                 if(firebaseUser){
-                    window.location.href = "https://nhs-project-test.firebaseapp.com/" + destination;
+                    //logout a disabled user
+                    firebase.database().ref("/Users/" + firebaseUser.uid).once("value").then(function(snapshot){
+                        if(snapshot.val().disabled === "true"){
+                            alert("Sorry, your account has been disabled. If you believe this is a mistake, contact the site admin.")
+                            firebase.auth().signOut();
+                        }
+                        else{
+                            window.location.href = "https://nhs-project-test.firebaseapp.com/" + destination;    
+                        }
+                    });
                 }
             });
         </script>

@@ -9,6 +9,14 @@ const userGreetingText = document.getElementById("userGreetingText");
 
 firebase.auth().onAuthStateChanged(firebaseUser =>{
     if(firebaseUser){
+        //logout a disabled user
+        firebase.database().ref("/Users/" + firebaseUser.uid).once("value").then(function(snapshot){
+            if(snapshot.val().disabled === "true"){
+                alert("Sorry, your account has been disabled. If you believe this is a mistake, contact the site admin.")
+                firebase.auth().signOut();
+            }
+        });
+        
         document.getElementById("notLoggedIn").classList.add("vanish");
         document.getElementById("loggedIn").classList.remove("vanish");
 

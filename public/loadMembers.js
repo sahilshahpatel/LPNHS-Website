@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", function(){
     firebase.auth().onAuthStateChanged(firebaseUser => {
         if(firebaseUser){
+            console.log(firebaseUser);
+            
             var leadershipList = document.getElementById("leadership");
             var studentList = document.getElementById("students");
             var addUserTable = document.getElementById("addUserTable");
@@ -62,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function(){
                     var vpTH = document.createElement("th");
                         vpTH.innerHTML = "Vice President";
                     var hoursTH = document.createElement("th");
-                        hoursTH.innerHTML = "Hours";
+                        hoursTH.innerHTML = "Initial Hours";
                     var permissionsTH = document.createElement("th");
                         permissionsTH.innerHTML = "Permissions";
                 
@@ -105,6 +107,7 @@ document.addEventListener("DOMContentLoaded", function(){
                         hoursInput.type = "number";
                         hoursInput.setAttribute("min", "0");
                         hoursInput.setAttribute("step", "any");
+                        hoursInput.value = 0;
                         hoursTD.appendChild(hoursInput);
                     var permissionsTD = document.createElement("td");
                         var permissionsInput = document.createElement("select");
@@ -117,6 +120,52 @@ document.addEventListener("DOMContentLoaded", function(){
                         permissionsInput.appendChild(optionStudent);
                         permissionsInput.appendChild(optionAdmin);
                         permissionsTD.appendChild(permissionsInput);
+                    var submitTD = document.createElement("td");
+                        var submitButton = document.createElement("button");
+                        submitButton.type = "button";
+                        submitButton.classList.add("classicColor");
+                        submitButton.innerHTML = "Create User";
+                        submitButton.addEventListener("click", function(){
+                            //setup second firebase app (to avoid logging out admin)
+                            var config = {
+                                apiKey: "AIzaSyByQW8Cyp9yAIMm5xCrNZqF-5kqJ-w6g-4",
+                                authDomain: "nhs-project-test.firebaseapp.com",
+                                databaseURL: "https://nhs-project-test.firebaseio.com",
+                                projectId: "nhs-project-test",
+                                storageBucket: "nhs-project-test.appspot.com",
+                                messagingSenderId: "239221174231"
+                            };
+                            var secondaryApp = firebase.initializeApp(config, "secondary");
+                            //create User --password is studentID--
+                            secondaryApp.auth().createUserWithEmailAndPassword(emailInput.value, idInput.value).catch(function(error){
+                                alert(error.message + " Error Code: " + error.code);
+                            }).then(function(newUser){
+                                //add user to database
+                                var updates = {};
+                                updates["/Users/" + newUser.uid] = {
+                                    email: emailInput.value,
+                                    firstName: firstNameInput.value,
+                                    lastName: lastNameInput.value,
+                                    id: idInput.value,
+                                    permissions: permissionsInput.value,
+                                    vicePresident: vpInput.value,
+                                    hoursCompleted: hoursInput.value,
+                                    disabled: "false"
+                                };
+                                firebase.database().ref().update(updates).then(function(){
+                                    //clear inputs
+                                    firstNameInput.value = "";
+                                    lastNameInput.value = "";
+                                    emailInput.value = "";
+                                    idInput.value = "";
+                                    vpInput.value = "";
+                                    hoursInput.value = "";
+                                    
+                                    alert("User created with student ID as password");
+                                });
+                            });
+                        });
+                        submitTD.appendChild(submitButton);
                     row.appendChild(firstNameTD);
                     row.appendChild(lastNameTD);
                     row.appendChild(emailTD);
@@ -124,6 +173,7 @@ document.addEventListener("DOMContentLoaded", function(){
                     row.appendChild(vpTD);
                     row.appendChild(hoursTD);
                     row.appendChild(permissionsTD);
+                    row.appendChild(submitTD);
                     
                     tbody.appendChild(row);
                     addUserTable.appendChild(tbody);
@@ -135,86 +185,90 @@ document.addEventListener("DOMContentLoaded", function(){
                 var i = 0;
                 firebase.database().ref("/Users").orderByChild("lastName").once("value").then(function(snapshot){
                     snapshot.forEach(function(childSnapshot){
-                        var studentTR = document.createElement("tr");
+                        if(childSnapshot.val().disabled!=="true"){
+                            var studentTR = document.createElement("tr");
 
-                        var studentName = document.createElement("td");
-                            studentName.innerHTML = childSnapshot.val().firstName + " " + childSnapshot.val().lastName;
-                            studentName.dataset.userId = childSnapshot.key;
-                        var studentEmail = document.createElement("td");
-                            studentEmail.innerHTML = childSnapshot.val().email;
-                        
-                        studentTR.appendChild(studentName);
-                        studentTR.appendChild(studentEmail);
-                        if(permissions==="admin"){
-                            var studentHours = document.createElement("td");
-                                studentHours.innerHTML = childSnapshot.val().hoursCompleted;
-                            var studentPermissionsTD = document.createElement("td");
-                            var studentPermissions = document.createElement("select");
-                                studentPermissions.id = "permissionsInput" + i;
-                                var optionAdmin = document.createElement("option");
-                                    optionAdmin.value = "admin";
-                                    optionAdmin.innerHTML = "admin";
-                                var optionStudent = document.createElement("option");
-                                    optionStudent.value = "student";
-                                    optionStudent.innerHTML = "student";
-                                if(childSnapshot.val().permissions === "admin"){
-                                    optionAdmin.setAttribute("selected", "selected");
-                                }
-                                else if(childSnapshot.val().permissions === "student"){
-                                    optionStudent.setAttribute("selected", "selected");
-                                }
-                            var permissionsButton = document.createElement("button");
-                                permissionsButton.innerHTML = "Submit Changes";
-                                permissionsButton.style = "margin: 0 10px;"
-                                permissionsButton.type = "button";
-                                permissionsButton.classList.add("classicColor");
-                                permissionsButton.id = "permissionsButton" + i;
-                            permissionsButton.addEventListener("click", function(){
-                                var n = this.id.substring(this.id.length - 1);
-                                
-                                var updates = {};
-                                updates["/Users/" + childSnapshot.key + "/permissions"] = document.getElementById("permissionsInput" + n).value;
-                                
-                                firebase.database().ref().update(updates).then(function(){
-                                    alert("Permissions updated");
-                                    window.location.replace(window.location.href);
-                                });
-                            });
-                            
-                            var removeTD = document.createElement("td");
-                            var removeButton = document.createElement("button");
-                                removeButton.innerHTML = "Remove";
-                                removeButton.type = "button";
-                                removeButton.classList.add("classicColor");
-                                removeButton.style = "background-color: red";
-                            removeButton.addEventListener("click", function(){
-                                if(confirm("Delete this user? This cannot be undone.")){
-                                    firebase.database().ref("/Users/" + childSnapshot.key).remove().then(function(){
-                                        alert("User removed");
+                            var studentName = document.createElement("td");
+                                studentName.innerHTML = childSnapshot.val().firstName + " " + childSnapshot.val().lastName;
+                                studentName.dataset.userId = childSnapshot.key;
+                            var studentEmail = document.createElement("td");
+                                studentEmail.innerHTML = childSnapshot.val().email;
+
+                            studentTR.appendChild(studentName);
+                            studentTR.appendChild(studentEmail);
+                            if(permissions==="admin"){
+                                var studentHours = document.createElement("td");
+                                    studentHours.innerHTML = childSnapshot.val().hoursCompleted;
+                                var studentPermissionsTD = document.createElement("td");
+                                var studentPermissions = document.createElement("select");
+                                    studentPermissions.id = "permissionsInput" + i;
+                                    var optionAdmin = document.createElement("option");
+                                        optionAdmin.value = "admin";
+                                        optionAdmin.innerHTML = "admin";
+                                    var optionStudent = document.createElement("option");
+                                        optionStudent.value = "student";
+                                        optionStudent.innerHTML = "student";
+                                    if(childSnapshot.val().permissions === "admin"){
+                                        optionAdmin.setAttribute("selected", "selected");
+                                    }
+                                    else if(childSnapshot.val().permissions === "student"){
+                                        optionStudent.setAttribute("selected", "selected");
+                                    }
+                                var permissionsButton = document.createElement("button");
+                                    permissionsButton.innerHTML = "Submit Changes";
+                                    permissionsButton.style = "margin: 0 10px;"
+                                    permissionsButton.type = "button";
+                                    permissionsButton.classList.add("classicColor");
+                                    permissionsButton.id = "permissionsButton" + i;
+                                permissionsButton.addEventListener("click", function(){
+                                    var n = this.id.substring(this.id.length - 1);
+
+                                    var updates = {};
+                                    updates["/Users/" + childSnapshot.key + "/permissions"] = document.getElementById("permissionsInput" + n).value;
+
+                                    firebase.database().ref().update(updates).then(function(){
+                                        alert("Permissions updated");
                                         window.location.replace(window.location.href);
                                     });
-                                }
-                            });
-                            removeTD.appendChild(removeButton);
-                            
-                            studentPermissions.appendChild(optionAdmin);
-                            studentPermissions.appendChild(optionStudent);
-                            studentPermissionsTD.appendChild(studentPermissions);
-                            studentPermissionsTD.appendChild(permissionsButton);
-                            
-                            studentTR.appendChild(studentHours);
-                            studentTR.appendChild(studentPermissionsTD);
-                            studentTR.appendChild(removeTD);
+                                });
+
+                                var removeTD = document.createElement("td");
+                                var removeButton = document.createElement("button");
+                                    removeButton.innerHTML = "Remove";
+                                    removeButton.type = "button";
+                                    removeButton.classList.add("classicColor");
+                                    removeButton.style = "background-color: red";
+                                removeButton.addEventListener("click", function(){
+                                    if(confirm("Disable this user? This cannot be undone.")){
+                                        var updates = {};
+                                        updates["/Users/" + childSnapshot.key + "/disabled"] = "true";
+                                        firebase.database().ref().update(updates).then(function(){
+                                            alert("User disabled");
+                                            window.location.replace(window.location.href);
+                                        });
+                                    }
+                                });
+                                removeTD.appendChild(removeButton);
+
+                                studentPermissions.appendChild(optionAdmin);
+                                studentPermissions.appendChild(optionStudent);
+                                studentPermissionsTD.appendChild(studentPermissions);
+                                studentPermissionsTD.appendChild(permissionsButton);
+
+                                studentTR.appendChild(studentHours);
+                                studentTR.appendChild(studentPermissionsTD);
+                                studentTR.appendChild(removeTD);
+                            }
+
+                            if(childSnapshot.val().permissions === "student"){
+                                studentList.appendChild(studentTR);
+                            }
+                            else{
+                                leadershipList.appendChild(studentTR);
+                            }
+
+                            i++;
                         }
-                        
-                        if(childSnapshot.val().permissions === "student"){
-                            studentList.appendChild(studentTR);
-                        }
-                        else{
-                            leadershipList.appendChild(studentTR);
-                        }
-                        
-                        i++;
                     });
                 });
             });
