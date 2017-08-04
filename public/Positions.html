@@ -66,19 +66,21 @@
         <img id = "fixedBGImg" src =   "https://www.nhs.us/assets/images/nhs/NHS_header_logo.png">
     
     <div id = "shiftsPanel" class = "classic panel">
-            <div id = "shiftsTab"><p>!Event</p></div>
+            <div id = "shiftsTab">
+                <p id="pE">!Event</p>
+            </div>
         <div id = "informationContainer">
             <!--Information loaded via JavaScript-->
-            <div id = "Description">
-                <hr>
-                <p>!Description</p>
-                <p>!Location</p>
-                <p>!Date</p>
+            <hr>
+            <div id = "eventDescription">
+                <p id="pD">!Description</p>
+                <p id="pL">!Location</p>
+                <p id="pT">!Date</p>
             </div>
-        </div>
-    </div>
-    <div id = "informationContainer" class = "classic panel">
-        <p>Positions</p>
+            
+            <hr>
+            
+            <p>Positions</p>
             <div id = "Positions">
                 <table id = "PositionsTable">
                     <tr>
@@ -90,6 +92,7 @@
                 <hr>
             </div>
         </div>
+    </div>
     <!--Firebase.js-->
    <div id = "footerPusher">
         <!--Included via JQuery-->
@@ -113,6 +116,8 @@
         };
         firebase.initializeApp(config);
     </script>
+    <script>
+</script>
     <script src = "positionGetter.js"></script>
 </body>
 </html>
