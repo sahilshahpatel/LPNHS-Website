@@ -32,11 +32,26 @@ function loadData(){
     
                 //Load My Events
                 var done = false;
-                var eventName = firebase.database().ref("Events/" + eventid + "/name");
-                var description = firebase.database().ref("Events/" + eventid + "/description");
-                var startDate = firebase.database().ref("Events/" + eventid + "/startDate");
-                var endDate = firebase.database().ref("Events/" + eventid + "/endDate");
-                var location = firebase.database().ref("Events/" + eventid + "/location");
+                var EN = firebase.database().ref("Events/" + eventid + "/name");
+                    EN.once("value". function(snapshot){
+                                   var eventName = snapshot.val()name;
+                                   });
+                var D = firebase.database().ref("Events/" + eventid + "/description");
+                    D.once("value". function(snapshot){
+                                   var description = snapshot.val().description;
+                                   });
+                var SD = firebase.database().ref("Events/" + eventid + "/startDate");
+                    SD.on("value". function(snapshot){
+                                   var startDate = snapshot.val().startDate;
+                                   });
+                var ED = firebase.database().ref("Events/" + eventid + "/endDate");
+                    ED.on("value". function(snapshot){
+                                   var eventDate = snapshot.val().endDate;
+                                   });
+                var L = firebase.database().ref("Events/" + eventid + "/location");
+                    L.on("value". function(snapshot){
+                                   var location = snapshot.val().location;
+                                   });
                 
                var ref = firebase.database().ref("Events/" + eventid + "/Shifts");
                     ref.once("value")
@@ -44,10 +59,22 @@ function loadData(){
                     var positionId = snapshot.child("Shifts").val();
                     });
     
-                var positionDate = firebase.database().ref("Events/" + eventid + "/Shifts/" + positionId + "/date");
-                var positionAvailable = firebase.database().ref("Events/" + eventid + "/Shifts/" + positionId + "/positionsAvailable");
-                var positionstartTime = firebase.database().ref("Events/" + eventid + "/Shifts/" + positionId + "/startTime");
-                var positionendTime = firebase.database().ref("Events/" + eventid + "/Shifts/" + positionId + "/endTime");
+                var PD = firebase.database().ref("Events/" + eventid + "/Shifts/" + positionId + "/date");
+                    PD.on("value". function(snapshot){
+                                   var positionDate = snapshot.val().date;
+                                   });
+                var PA = firebase.database().ref("Events/" + eventid + "/Shifts/" + positionId + "/positionsAvailable");
+                    PA.on("value". function(snapshot){
+                                   var positionAvailable = snapshot.val().positionsAvailable;
+                                   });
+                var PST = firebase.database().ref("Events/" + eventid + "/Shifts/" + positionId + "/startTime");
+                    PST.on("value". function(snapshot){
+                                   var positionstartTime = snapshot.val().startTime;
+                                   });
+                var PET = firebase.database().ref("Events/" + eventid + "/Shifts/" + positionId + "/endTime");
+                    PET.on("value". function(snapshot){
+                                   var positionendTime = snapshot.val().endtime;
+                                   });
     
                 var signupB = document.createElement("BUTTON");
                 var T = document.createTextNode("SIGN UP");
@@ -111,7 +138,7 @@ function loadData(){
                                         document.getElementById("signupB").value=("UNAVAILABLE");
                                     }            
                                 }
-                           })
+                           });
                 
                 done = true;
 }
