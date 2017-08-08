@@ -21,7 +21,6 @@ function getParameterByName(name, url) {
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 // Give the parameter a variable name
-var eventid = getParameterByName('eventid');
 function loadData(){
     var temporaries = document.getElementsByClassName("temp");
     while(temporaries[0]){
@@ -29,12 +28,12 @@ function loadData(){
     }
 
     var today = new Date();
-    
+    var eventid = getParameterByName('eventid');
                 //Load My Events
                 var done = false;
                 var EN = firebase.database().ref("Events/" + eventid + "/name");
                     EN.once("value". function(snapshot){
-                                   var eventName = snapshot.val()name;
+                                   var eventName = snapshot.val().name;
                                    });
                 var D = firebase.database().ref("Events/" + eventid + "/description");
                     D.once("value". function(snapshot){
