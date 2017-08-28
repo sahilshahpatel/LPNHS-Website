@@ -14,10 +14,6 @@
             display: inline-block;
         }
         
-        #ProfileDataDiv input{
-            text-align: center;
-        }
-        
         #ProfileDataDiv button{
             margin: 10px;
         }
@@ -63,9 +59,24 @@
                 <!--Editable Data-->
                 <p>Displayed Name:</p>
                 <input id = "displayName" placeholder = "e.g. John">
+                
+                <hr>
+                
+                <p style = "font-weight:bold">Reset Password</p>
                 <br/>
+                <p>Current Password:</p>
+                <input id = "currentPassword" type = "password">
+                <br/>
+                <p>New Password:</p>
+                <input id = "password" type = "password">
+                <br/>
+                <p>Confirm Password:</p>
+                <input id = "confirmPassword" type = "password">
+                <br/>
+                
+                <hr>
+                
                 <button id = "submitChanges" class = "classicColor" type = "button">Submit Changes</button>
-                <p id = "status" class = "hidden">-</p>
             </div>
         </div>
     </div> 
