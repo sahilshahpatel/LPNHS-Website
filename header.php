@@ -15,6 +15,10 @@
             <a class = "baseText" id = "homeLink" href = "index.php">Home</a>
             <a class = "baseText" id = "eventsLink" href = "events.php">Volunteer Events</a>
             <a class = "baseText" id = "Item3Link" href = "index.php">Item 3</a>
-            <a class = "baseText" id = "Item4Link" href = "index.php">Item 4</a>
+            <?php if(isset($_Session["StudentID"])) : ?>
+            <a class = "baseText" id = "What it Takes" href = "index.php">Item 4</a>
+            <?php else :?>
+            <a class = "baseText" id = "User Profile" href = "index.php">Item 4</a>
+            <?php endif; ?>
         </nav>
     </div>
