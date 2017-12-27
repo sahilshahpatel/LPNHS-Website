@@ -26,18 +26,8 @@
     <!--Scripts-->
     <!--jQuery-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script>
-       $(document).ready(function() {
-            //load all common elements: header, footer
-            $("#header").load("https://nhs-project-test.firebaseapp.com/header.html", function(){
-               $("#footer").load("https://nhs-project-test.firebaseapp.com/footer.html", function(){
-                   //Get all scripts that refer to loaded elements
-                   $.getScript("firebaseScript.js");
-                   $.getScript("headerJQuery.js");
-               });
-            });          
-       }); 
-    </script>
+    <script src="headerJQuery.js"></script>
+    <header id = "header"><?php include "header.php"; ?></header>
 </head>
 
 <!--Included via JQuery-->
