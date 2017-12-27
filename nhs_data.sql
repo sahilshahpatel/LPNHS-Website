@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 27, 2017 at 07:39 PM
--- Server version: 10.1.29-MariaDB
--- PHP Version: 7.2.0
+-- Generation Time: Dec 27, 2017 at 10:42 PM
+-- Server version: 10.1.28-MariaDB
+-- PHP Version: 7.1.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -155,6 +155,7 @@ CREATE TABLE `students` (
   `FirstName` varchar(12) NOT NULL,
   `LastName` varchar(12) NOT NULL,
   `Email` varchar(32) NOT NULL,
+  `Password` varchar(32) NOT NULL,
   `HoursCompleted` float NOT NULL,
   `VicePresident` varchar(12) NOT NULL,
   `Permissions` varchar(5) NOT NULL
@@ -164,9 +165,9 @@ CREATE TABLE `students` (
 -- Dumping data for table `students`
 --
 
-INSERT INTO `students` (`StudentID`, `FirstName`, `LastName`, `Email`, `HoursCompleted`, `VicePresident`, `Permissions`) VALUES
-(123456, 'Sahil', 'Patel', 'email@email.com', 2, 'Miloni', 'admin'),
-(654321, 'Ben', 'Wagrez', 'email2@email.com', 3.5, 'Nic', 'admin');
+INSERT INTO `students` (`StudentID`, `FirstName`, `LastName`, `Email`, `Password`, `HoursCompleted`, `VicePresident`, `Permissions`) VALUES
+(123456, 'Sahil', 'Patel', 'email@email.com', 'banana', 2, 'Miloni', 'admin'),
+(654321, 'Ben', 'Wagrez', 'email2@email.com', '', 3.5, 'Nic', 'admin');
 
 --
 -- Indexes for dumped tables
