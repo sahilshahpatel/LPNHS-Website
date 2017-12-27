@@ -136,7 +136,7 @@
         </div>
     </div>
 </body>
-
+<footer id = "footer"><?php include "footer.php"; ?></footer>
 <!--Included via JQuery-->
 <footer id = "footer"></footer>
 </html>
