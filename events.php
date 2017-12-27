@@ -43,11 +43,12 @@
         }
     </style>
     <header id = "header"><?php include "header.php"; ?></header>    <script src="headerJQuery.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
     <script src="headerJQuery.js"></script>
 
     <!--Scripts-->
     <!--jQuery-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script>
                    //specify nav-bar active link
                    $("#eventsLink").addClass("active");
