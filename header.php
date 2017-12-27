@@ -3,25 +3,7 @@
         
         <h1 class = "baseText" style = "padding-bottom: 0px; margin-bottom:0px; color: #005da3;  font-size:48px;"><span id = "LPNHS" onclick = "location.href='index.php'" title = "NHS Test - Home">Lake Park National Honor Society</span></h1>
         <h2 class = "baseText" style = "padding-top: 0px; margin-top:0px; color: #bbb; font-size:18px;">Scholarship | Leadership | Character | Service</h2>
-        
-        <div id = "loginSlider">
-            <p id = "loginSliderText" class = "baseText" style = "margin: 5px auto; color: white;">Sign In</p>
-        </div>
-        
-        <!-- <div id = "login">
-            <div id = "notLoggedIn">
-                <input id = "loginEmail" placeholder = "Email">
-                <input id = "loginPassword" placeholder = "Password" type = "password">
-                <button id = "loginButton" class = "classicColor" type = "button">Sign In</button>
-            </div>
-            
-            <div id = "loggedIn" class = "vanish">
-                <p>Hello,</p>
-                <p id = "userGreetingText">User</p>
-                <button id = "myProfileButton" class = "classicColor" type = "button" onclick = "location.href='my-profile.php'">My Profile</button>
-                <button id = "logoutButton" class = "reverseColor" type = "button">Sign Out</button>
-            </div>
-        </div>         -->
+
     </div>
     
     <div id = "navBarWrapper">

@@ -22,9 +22,9 @@ $(window).resize(function(){
 });
 
 //Log In dropdown (initial-hidden)
-$("#login").slideUp(1);
-$("#loginSlider").click(function(){
-    $("#login").css("visibility", "visible")
-    .stop()
-    .slideToggle(200);
-});
+// $("#login").slideUp(1);
+// $("#loginSlider").click(function(){
+//     $("#login").css("visibility", "visible")
+//     .stop()
+//     .slideToggle(200);
+//});
