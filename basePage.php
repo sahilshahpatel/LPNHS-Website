@@ -1,4 +1,8 @@
 <!DOCTYPE HTML>
+<?php 
+    session_start();
+    include "database.php";
+?>
 <html>
 <head>
     <title>NHS Test - Base Page</title>

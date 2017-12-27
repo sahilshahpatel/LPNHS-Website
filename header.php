@@ -1,3 +1,7 @@
+<?php 
+    session_start();
+    include "database.php";
+?>
 <div id = "banner" style = "width:100%">
         <img id = "LPLogo" src = "https://www.lphs.org/cms/lib/IL01904769/Centricity/Template/GlobalAssets/images///logos/_default.png">
         

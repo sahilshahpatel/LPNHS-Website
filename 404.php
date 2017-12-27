@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<?php 
+    session_start();
+    include "database.php";
+?>
 <html>
   <head>
     <meta charset="utf-8">

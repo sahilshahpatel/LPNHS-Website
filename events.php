@@ -1,5 +1,8 @@
 <!DOCTYPE HTML>
-<?php include "database.php"; ?>
+<?php 
+    session_start();
+    include "database.php";
+?>
 <html>
 <head>
     <title>NHS Test - Events</title>
