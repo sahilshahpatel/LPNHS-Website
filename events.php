@@ -42,32 +42,31 @@
             text-align: center;
         }
     </style>
-    <header id = "header"><?php include "header.php"; ?></header>    <script src="headerJQuery.js"></script>
+    <header id = "header"><?php include "header.php"; ?></header>
     <script src="headerJQuery.js"></script>
 
     <!--Scripts-->
     <!--jQuery-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script>
-                   //specify nav-bar active link
-                   $("#eventsLink").addClass("active");
-                   
-                   //control tab color
-                   $("#chapterEventsTab").click(function(){
-                       $(this).removeClass("inactive");
-                       $("#myEventsTab").addClass("inactive");
-                       
-                       loadData();
-                   });
-                   $("#myEventsTab").click(function(){
-                       $(this).removeClass("inactive");
-                       $("#chapterEventsTab").addClass("inactive");
-                       
-                       loadData();
-                   });
-               });
-            });          
-       }); 
+        $(document).ready(function(){
+           //specify nav-bar active link
+           $("#eventsLink").addClass("active");
+
+           //control tab color
+           $("#chapterEventsTab").click(function(){
+               $(this).removeClass("inactive");
+               $("#myEventsTab").addClass("inactive");
+
+               loadData();
+           });
+           $("#myEventsTab").click(function(){
+               $(this).removeClass("inactive");
+               $("#chapterEventsTab").addClass("inactive");
+
+               loadData();
+           });
+        });
     </script>
 </head>
 
@@ -95,6 +94,12 @@
                     </tr>
                     <!--Load data-->
                     <?php
+                        $dom = new DOMDocument();
+                        $dom->loadHTML("events.php");
+                        
+                        $myEventsTab = $dom->getElementById('myEventsTab');
+                        //if($myEventsTab.hasAttribute  
+                    
                         $sql = "SELECT * FROM events";
                         $stmt = $pdo->prepare($sql);
                         $stmt->execute();
