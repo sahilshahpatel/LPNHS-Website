@@ -17,6 +17,11 @@
     <!--jQuery-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="headerJQuery.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#homeLink").addClass("active");
+        });
+    </script>
 </head>
 
 <!--Included via PHP-->
@@ -42,21 +47,6 @@
         <p>About Us...</p>
         <p>*CONTENT*</p>
     </div>
-    
-    <!--Firebase-->
-    <script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
-    <script>
-        // Initialize Firebase
-        var config = {
-            apiKey: "AIzaSyByQW8Cyp9yAIMm5xCrNZqF-5kqJ-w6g-4",
-            authDomain: "nhs-project-test.firebaseapp.com",
-            databaseURL: "https://nhs-project-test.firebaseio.com",
-            projectId: "nhs-project-test",
-            storageBucket: "nhs-project-test.appspot.com",
-            messagingSenderId: "239221174231"
-        };
-        firebase.initializeApp(config);
-    </script>
 </body>
 
 <!--Included via PHP-->
