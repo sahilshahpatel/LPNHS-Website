@@ -54,24 +54,26 @@
         </style>
     </head>
     <body>
-       
-        <div id = "login">
-            <div>
-                <p style = "font-size: 30px; text-decoration: underline;">Sign in</p>
-                <br/><br/>
-                <p>Email</p>
-                <input id = "loginEmail" placeholder = "Email">
-                <br/><br/>
-                <p>Password</p>
-                <input id = "loginPassword" placeholder = "Password" type = "password">
-                <br/>
-                <br/>
-                <button id = "loginButton" type = "button">Sign In</button>
-            </div>
-            <div>
-                <img id = "tester" style = "margin: auto;" src = "https://www.nhs.us/assets/images/nhs/NHS_header_logo.png">
-            </div>
-        </div>
+            <form id="login" class="form" action="session.php" method="post" style="height:350px;">
+                <div>
+                    <p style = "font-size: 30px; text-decoration: underline;">Sign in</p>
+                    <br/><br/>
+                    <p>Email</p>
+                    <input id = "loginEmail" placeholder = "Email" type = "email" name = "email">
+                    <br/><br/>
+                    <p>Password</p>
+                    <input id = "loginPassword" placeholder = "Password" type = "password" name = "password">
+                    <br/>
+                    <br/>
+                    <button id = "loginButton" type = "submit" value="Log In">Sign In</button>
+                </div>
+                <div>
+                    <img id = "tester" style = "margin: auto;" src = "https://www.nhs.us/assets/images/nhs/NHS_header_logo.png">
+                </div>                
+            </form>
+        <!-- <div id = "login">
+            
+        </div> -->
     </body>
     <footer id = "footer"><?php include "footer.php"; ?></footer>
 
