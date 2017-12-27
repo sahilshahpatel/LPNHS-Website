@@ -34,7 +34,7 @@
         padding: 0 30px;
     }
 
-    #login{
+    /* #login{
         position:absolute; 
         top: 23px; 
         right:0px;
@@ -54,7 +54,7 @@
     }
 
     #login button{
-        width: calc(50% - 2px); /*2px of margin between buttons*/
+        width: calc(50% - 2px); /*2px of margin between buttons
         margin-top: 10px;
         margin-bottom: 0px;
     }
@@ -63,7 +63,7 @@
         margin: 5px 0px;
         color: white;
         text-align: left;
-    }
+    } */
 
     button{
         border: none;

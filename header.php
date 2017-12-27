@@ -8,22 +8,20 @@
             <p id = "loginSliderText" class = "baseText" style = "margin: 5px auto; color: white;">Sign In</p>
         </div>
         
-        <div id = "login">
-            <!--If NOT logged in-->
+        <!-- <div id = "login">
             <div id = "notLoggedIn">
                 <input id = "loginEmail" placeholder = "Email">
                 <input id = "loginPassword" placeholder = "Password" type = "password">
                 <button id = "loginButton" class = "classicColor" type = "button">Sign In</button>
             </div>
             
-            <!-- If logged in-->
             <div id = "loggedIn" class = "vanish">
                 <p>Hello,</p>
                 <p id = "userGreetingText">User</p>
                 <button id = "myProfileButton" class = "classicColor" type = "button" onclick = "location.href='my-profile.php'">My Profile</button>
                 <button id = "logoutButton" class = "reverseColor" type = "button">Sign Out</button>
             </div>
-        </div>        
+        </div>         -->
     </div>
     
     <div id = "navBarWrapper">
