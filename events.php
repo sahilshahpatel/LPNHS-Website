@@ -50,10 +50,11 @@
     <!--Scripts-->
     <!--jQuery-->
     <script>
+        var myEventsTabActive = true;
         $(document).ready(function(){
            //specify nav-bar active link
            $("#eventsLink").addClass("active");
-
+            
            //control tab color
            $("#chapterEventsTab").click(function(){
                $(this).removeClass("inactive");
@@ -89,39 +90,18 @@
                         <th>Date</th>
                         <th>Location</th>
                     </tr>
-                    <!--Load data-->
-                    <?php
-                        $dom = new DOMDocument();
-                        $dom->loadHTML('events.php'));
-                        $dom->validate();    
-                    
-                        $myEventsTab = $dom->getElementById('myEventsTab');
-                        if ($myEventsTab->hasAttribute('class') && strstr($myEventsTab->getAttribute('class'), 'inactive')):
-                            $sql = "SELECT * FROM events";
-                            $stmt = $pdo->prepare($sql);
-                            $stmt->execute();
-
-                            $eventCount = $stmt->rowCount();
-                            $eventIDs = array();
-                            array_push($eventIDs, $stmt->fetchAll(PDO::FETCH_COLUMN, 0));
-
-                            for($i = 0; $i<$eventCount; $i++){
-                                $sql = "SELECT * FROM events WHERE EventID=:eventID";
-                                $stmt = $pdo->prepare($sql);
-                                $stmt->execute(["eventID" => $eventIDs[0][$i]]);
-                                $data = array();
-                                $data = $stmt->fetchAll();
-
-                                echo '<tr>';
-                                echo '<td title =', $data[0][2] ,'>', $data[0][1], '</td>';
-                                echo '<td>', $data[0][3], ' to ', $data[0][4], '</td>';
-                                echo '<td>', $data[0][5], '</td>';
-                                echo '</tr>';
-                            } 
-                        else:
-                            echo "hey";
-                        endif;
-                    ?>
+                    <!--Load data-->                    
+                    <script>
+                        $(document).ready(function(){
+                            $("#upcomingEventsTable").load("myEventsGetter.php");
+                            $("#chapterEventsTab").click(function(){
+                               $("#upcomingEventsTable").load("chapterEventsGetter.php");
+                            });
+                            $("#myEventsTab").click(function(){
+                               $("#upcomingEventsTable").load("myEventsGetter.php");
+                            });
+                        });
+                    </script>
                 </table>
             </div>
             
