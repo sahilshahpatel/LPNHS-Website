@@ -1,4 +1,5 @@
 <!DOCTYPE HTML>
+<?php include "database.php"; ?>
 <html>
 <head>
     <title>NHS Test - Events</title>
@@ -38,6 +39,7 @@
             width: 33.33%;
             font-family: Bookman, sans-serif;
             font-size: 18px;
+            text-align: center;
         }
     </style>
     
@@ -97,6 +99,30 @@
                         <th>Date</th>
                         <th>Location</th>
                     </tr>
+                    <!--Load data-->
+                    <?php
+                        $sql = "SELECT * FROM events";
+                        $stmt = $pdo->prepare($sql);
+                        $stmt->execute();
+                        
+                        $eventCount = $stmt->rowCount();
+                        $eventIDs = array();
+                        array_push($eventIDs, $stmt->fetchAll(PDO::FETCH_COLUMN, 0));
+                    
+                        for($i = 0; $i<$eventCount; $i++){
+                            $sql = "SELECT * FROM events WHERE EventID=:eventID";
+                            $stmt = $pdo->prepare($sql);
+                            $stmt->execute(["eventID" => $eventIDs[0][$i]]);
+                            $data = array();
+                            $data = $stmt->fetchAll();
+                            
+                            echo '<tr>';
+                            echo '<td title =', $data[0][2] ,'>', $data[0][1], '</td>';
+                            echo '<td>', $data[0][3], ' to ', $data[0][4], '</td>';
+                            echo '<td>', $data[0][5], '</td>';
+                            echo '</tr>';
+                        }
+                    ?>
                 </table>
             </div>
             
@@ -114,22 +140,6 @@
             </div>
         </div>
     </div>
-    
-    <!--Firebase.js-->
-    <script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
-    <script>
-        // Initialize Firebase
-        var config = {
-            apiKey: "AIzaSyByQW8Cyp9yAIMm5xCrNZqF-5kqJ-w6g-4",
-            authDomain: "nhs-project-test.firebaseapp.com",
-            databaseURL: "https://nhs-project-test.firebaseio.com",
-            projectId: "nhs-project-test",
-            storageBucket: "nhs-project-test.appspot.com",
-            messagingSenderId: "239221174231"
-        };
-        firebase.initializeApp(config);
-    </script>
-    <script src = "eventGetter.js"></script>
 </body>
 
 <!--Included via JQuery-->
