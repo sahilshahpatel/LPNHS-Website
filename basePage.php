@@ -15,8 +15,8 @@
     <script>
        $(document).ready(function() {
             //load all common elements: header, footer
-            $("#header").load("https://nhs-project-test.firebaseapp.com/header.html", function(){
-               $("#footer").load("https://nhs-project-test.firebaseapp.com/footer.html", function(){
+            $("#header").load("header.php", function(){
+               $("#footer").load("footer.html", function(){
                    //Get all scripts that refer to loaded elements
                    $.getScript("firebaseScript.js");
                    $.getScript("headerJQuery.js");

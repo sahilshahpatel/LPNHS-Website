@@ -1,7 +1,13 @@
 <!Doctype HTML>
 <html>
     <head>
-        <title>NHS Test - Login</title>
+    <title>NHS Test - Login</title>
+
+        <script src="headerJQuery.js"></script>
+        <link rel="stylesheet" href="baseCSS.css">
+
+        <header id = "header"><?php include "header.php"; ?></header>
+
         <style>
             body{
                 margin: 0px;
@@ -48,6 +54,7 @@
         </style>
     </head>
     <body>
+       
         <div id = "login">
             <div>
                 <p style = "font-size: 30px; text-decoration: underline;">Sign in</p>
@@ -66,7 +73,9 @@
             </div>
         </div>
     </body>
-    <script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
+    <footer id = "footer"><?php include "footer.php"; ?></footer>
+
+    <!-- <script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
         <script>
             // Initialize Firebase
             var config = {
@@ -115,5 +124,5 @@
                     window.location.href = "https://nhs-project-test.firebaseapp.com/" + destination;
                 }
             });
-        </script>
+        </script> -->
 </html>
