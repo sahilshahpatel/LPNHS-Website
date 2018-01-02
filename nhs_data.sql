@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 02, 2018 at 06:21 PM
+-- Generation Time: Jan 02, 2018 at 08:24 PM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -181,16 +181,16 @@ CREATE TABLE `students` (
   `Password` varchar(32) NOT NULL,
   `HoursCompleted` float NOT NULL,
   `VicePresident` varchar(12) NOT NULL,
-  `Permissions` varchar(5) NOT NULL
+  `Position` varchar(16) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `students`
 --
 
-INSERT INTO `students` (`StudentID`, `FirstName`, `LastName`, `Email`, `Password`, `HoursCompleted`, `VicePresident`, `Permissions`) VALUES
-(123456, 'Sahil', 'Patel', 'email@email.com', 'banana', 2, 'Miloni', 'admin'),
-(654321, 'Ben', 'Wagrez', 'email2@email.com', '', 3.5, 'Nic', 'admin');
+INSERT INTO `students` (`StudentID`, `FirstName`, `LastName`, `Email`, `Password`, `HoursCompleted`, `VicePresident`, `Position`) VALUES
+(123456, 'Sahil', 'Patel', 'email@email.com', 'banana', 2, 'Miloni', 'bananaman'),
+(654321, 'Ben', 'Wagrez', 'email2@email.com', '', 3.5, 'Nic', 'Student');
 
 --
 -- Indexes for dumped tables
