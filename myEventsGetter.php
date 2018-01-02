@@ -22,10 +22,19 @@
         $data = array();
         $data = $stmt->fetchAll();
 
-        echo '<tr>';
-        echo '<td title =', $data[0][2] ,'>', $data[0][1], '</td>';
-        echo '<td>', $data[0][3], ' to ', $data[0][4], '</td>';
-        echo '<td>', $data[0][5], '</td>';
-        echo '</tr>';
+        $sql = "SELECT * FROM studentevent WHERE StudentID=:studentID";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute(["studentID" => $_SESSION["StudentID"]]);
+        $IDdata = array();
+        $IDdata = $stmt->fetchAll();
+        
+        if(true){
+
+            echo '<tr>';
+            echo '<td title =', $data[0][2] ,'>', $data[0][1], '</td>';
+            echo '<td>', $data[0][3], ' to ', $data[0][4], '</td>';
+            echo '<td>', $data[0][5], '</td>';
+            echo '</tr>';
+        }
     } 
 ?>
