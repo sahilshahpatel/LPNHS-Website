@@ -27,6 +27,10 @@ $(document).ready(function(){
     $("#headerLoginButton").click(function () {
         window.location = "login.php";
     });
+    //Log out button
+    $("#headerLogoutButton").click(function () {
+        window.location = "logout.php";
+    });
 
     //Log In dropdown (initial-hidden)
     // $("#login").slideUp(1);
