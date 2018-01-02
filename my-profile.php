@@ -25,6 +25,29 @@
         #ProfileDataDiv button{
             margin: 10px;
         }
+        div.dashboardButton{
+			text-align: center;
+            margin: 30px 10%;
+            border: 3px solid white;
+            border-radius: 10px;
+            
+            /* Adjust Text */
+            font-size: 28px;
+            align-items: center;
+            justify-content: center;
+            
+            /* Color */
+            background-color: white;
+            color: #005da3;
+        }
+        div.dashboardButton:hover {
+            background-color: transparent;
+            border-color: white;
+            color: white;
+        }
+		div.dashboardButton p{
+			margin: 5px;
+		}
     </style>
     
     <!--Scripts-->
@@ -34,6 +57,10 @@
     <script>
         $(document).ready(function(){
             $("#myProfileLink").addClass("active");
+
+			$("#adminDashboardButton").click(function(){
+				window.location.href = "admin-dashboard.php";
+			});
         });
     </script>
     <header id = "header"><?php include "header.php"; ?></header>
@@ -46,12 +73,25 @@
     <!--Fixed Img in Background-->
     <img id = "fixedBGImg" src = "https://www.nhs.us/assets/images/nhs/NHS_header_logo.png">
     
+	<!--Include Admin Dashboard link-->
+	<?php 
+		$sql = "SELECT * FROM students WHERE StudentID=:studentID";
+		$stmt = $pdo->prepare($sql);
+		$stmt->execute(["studentID" => $_SESSION["StudentID"]]);
+		$data = $stmt->fetch(PDO::FETCH_OBJ);
+		if($data->Position!=="Student"):
+			echo '<div id = "adminDashboardButton" class = "dashboardButton">
+                <p>Admin Dashboard</p>
+            </div>';
+		endif;
+	?>
+
     <div class = "classic panel">
         <p>My Information</p>
         <div id = "ProfileDataDiv">
             <!--View only data-->
 			<?php 
-				$sql = "SELECT * from students WHERE StudentID=:studentID";
+				$sql = "SELECT * FROM students WHERE StudentID=:studentID";
 				$stmt = $pdo->prepare($sql);
 				$stmt->execute(["studentID" => $_SESSION["StudentID"]]);
 				$data = $stmt->fetch(PDO::FETCH_OBJ);

@@ -17,7 +17,7 @@
                 <a class = "baseText" id = "homeLink" href = "index.php">Home</a>
                 <a class = "baseText" id = "eventsLink" href = "events.php">Community Events</a>
                 <a class = "baseText" id = "membersLink" href = "members.php">Members</a>
-				<a class = "baseText" id = "myProfileLink" href = "my-profile.php">User Profile</a>
+				<a class = "baseText" id = "myProfileLink" href = "my-profile.php">My Profile</a>
             <?php else :?>
                 <a class = "baseText" id = "homeLink" href = "index.php">Home</a>
                 <a class = "baseText" id = "communityInvolvementLink" href = "community-involvement.php">Community Events</a>

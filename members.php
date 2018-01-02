@@ -36,7 +36,8 @@
     <!--Scripts-->
     <!--jQuery-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script>
+    <script src="headerJQuery.js"></script>
+	<script>
        $(document).ready(function() {                 
 			//specify nav-bar active link
 			$("#membersLink").addClass("active");         
