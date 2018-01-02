@@ -2,6 +2,7 @@
 <?php 
     session_start();
     include "database.php";
+    include "adminCheck.php";
 ?>
 <html>
 <head>
@@ -60,7 +61,11 @@
 				window.location.href = "edit-event.php";
 			});
 			$("#manageMembers").click(function(){
+<<<<<<< HEAD
 				window.location.href = "members.php?manage=true";
+=======
+				window.location.href = "members.php";
+>>>>>>> d6708b389513876277c49b5f99a906e42d9d2e84
 			});
 			$("#manageSiteContent").click(function(){
 				window.location.href = "manage-site-content.php";
