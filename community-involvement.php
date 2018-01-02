@@ -29,6 +29,9 @@
             width: calc(50% - 2px);
             background-color: #ffebcd; /*blanched almond*/
         }
+        table tr:nth-child(even){
+            background-color: #e8cfa4;
+        }
         #tabs div.inactive{
             background-color: #e8cfa4; /*darkened moccasin*/
         }

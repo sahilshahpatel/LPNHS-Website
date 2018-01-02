@@ -16,6 +16,9 @@
         #eventsPanel{
             padding: 0;
         }
+        table tr:nth-child(even){
+            background-color: #e8cfa4;
+        }
         #eventsPanel div{
             border-top-left-radius: 15px;
             border-top-right-radius: 15px;
