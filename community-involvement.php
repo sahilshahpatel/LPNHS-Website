@@ -55,7 +55,7 @@
         var myEventsTabActive = true;
         $(document).ready(function(){
            //specify nav-bar active link
-           $("#communityInvolvmentLink").addClass("active");
+           $("#communityInvolvementLink").addClass("active");
         });
     </script>
 </head>
