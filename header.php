@@ -13,13 +13,16 @@
     
     <div id = "navBarWrapper">
         <nav id = "navBar" class = "topnav">
-            <a class = "baseText" id = "homeLink" href = "index.php">Home</a>
-            <a class = "baseText" id = "eventsLink" href = "events.php">Volunteer Events</a>
-            <a class = "baseText" id = "members" href = "index.php">Members</a>
             <?php if(isset($_SESSION["StudentID"])) : ?>
-				<a class = "baseText" id = "userProfile" href = "index.php">User Profile</a>
+                <a class = "baseText" id = "homeLink" href = "index.php">Home</a>
+                <a class = "baseText" id = "communityInvolvementLink" href = "events.php">Volunteer Events</a>
+                <a class = "baseText" id = "membersLink" href = "members.php">Members</a>
+				<a class = "baseText" id = "userProfileLink" href = "user-profile.php">User Profile</a>
             <?php else :?>
-				<a class = "baseText" id = "whatItTakes" href = "index.php">What It Takes</a>
+                <a class = "baseText" id = "homeLink" href = "index.php">Home</a>
+                <a class = "baseText" id = "eventsLink" href = "community-involvement.php">Volunteer Events</a>
+                <a class = "baseText" id = "membersLink" href = "members.php">Members</a>
+				<a class = "baseText" id = "whatItTakesLink" href = "what-it-takes.php">What It Takes</a>
             <?php endif; ?>
         </nav>
     </div>
