@@ -23,6 +23,11 @@ $(document).ready(function(){
         }
     });
 
+    //Log in button
+    $("#headerLoginButton").click(function () {
+        window.location = "login.php";
+    });
+
     //Log In dropdown (initial-hidden)
     // $("#login").slideUp(1);
     // $("#loginSlider").click(function(){

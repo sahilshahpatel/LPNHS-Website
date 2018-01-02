@@ -7,13 +7,6 @@
 			<div id = "headerLogout" class = "headerSignIn"><button id = "headerLogoutButton">Sign Out</button></div>
 		<?php else: ?>
 			<div id = "headerLogin" class = "headerSignIn"><button id = "headerLoginButton">Sign In</button></div>
-			<script>
-				$(document).ready(function(){
-					$("#headerLoginButton").click(function(){
-						window.location = "login.php";
-					});
-				});
-			</script>
 		<?php endif; ?>
 
     </div>
