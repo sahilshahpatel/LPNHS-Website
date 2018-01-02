@@ -5,7 +5,7 @@
 ?>
 <html>
 <head>
-    <title>NHS Test - Members</title>
+    <title>LPNHS - Members</title>
     
     <!--TODO: Icon-->
     
