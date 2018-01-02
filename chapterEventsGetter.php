@@ -1,4 +1,5 @@
 <?php
+    session_start();
     include "database.php";
 
     $sql = "SELECT * FROM events";

@@ -1,4 +1,5 @@
 <?php
+    session_start();
     include "database.php";
 
     $sql = "SELECT * FROM events";
@@ -22,13 +23,13 @@
         $data = array();
         $data = $stmt->fetchAll();
 
-        $sql = "SELECT * FROM studentevent WHERE StudentID=:studentID";
+        $sql = "SELECT * FROM studentevent WHERE EventID=:eventID";
         $stmt = $pdo->prepare($sql);
-        $stmt->execute(["studentID" => $_SESSION["StudentID"]]);
+        $stmt->execute(["eventID" => $eventIDs[0][$i]]);
         $IDdata = array();
         $IDdata = $stmt->fetchAll();
         
-        if(true){
+        if($IDdata[0][0]===$_SESSION["StudentID"]){
 
             echo '<tr>';
             echo '<td title =', $data[0][2] ,'>', $data[0][1], '</td>';
