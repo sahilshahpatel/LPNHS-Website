@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 27, 2017 at 10:42 PM
+-- Generation Time: Jan 02, 2018 at 06:21 PM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -42,7 +42,9 @@ CREATE TABLE `events` (
 --
 
 INSERT INTO `events` (`EventID`, `Name`, `Description`, `StartDate`, `EndDate`, `Location`) VALUES
-(1, 'TestEvent', 'This is a description', '2017-12-27', '2017-12-27', 'Here');
+(1, 'TestEvent', 'This is a description', '2017-12-27', '2017-12-27', 'Here'),
+(2, 'Wheaton rally', 'this is  abetter decsfiptiosnsns', '2018-01-17', '2018-01-19', 'my house'),
+(3, 'Wheaton rally 2', 'the bestes drsciption', '2018-01-17', '2018-01-19', 'my house #2');
 
 -- --------------------------------------------------------
 
@@ -128,6 +130,27 @@ INSERT INTO `shifts` (`ShiftID`, `Date`, `StartTime`, `EndTime`, `PositionsAvail
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `studentevent`
+--
+
+CREATE TABLE `studentevent` (
+  `StudentID` int(11) NOT NULL,
+  `EventID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `studentevent`
+--
+
+INSERT INTO `studentevent` (`StudentID`, `EventID`) VALUES
+(123456, 1),
+(123456, 1),
+(123456, 3),
+(654321, 2);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `studentposition`
 --
 
@@ -205,7 +228,7 @@ ALTER TABLE `students`
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `EventID` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `EventID` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `positions`
