@@ -3,6 +3,7 @@
         
         <h1 class = "baseText" style = "padding-bottom: 0px; margin-bottom:0px; color: #005da3;  font-size:48px;"><span id = "LPNHS" onclick = "location.href='index.php'" title = "NHS Test - Home">Lake Park National Honor Society</span></h1>
         <h2 class = "baseText" style = "padding-top: 0px; margin-top:0px; color: #bbb; font-size:18px;">Scholarship | Leadership | Character | Service</h2>
+		<div id = "login"><button class = "classicColor">Sign In</button></div>
         
     </div>
     
