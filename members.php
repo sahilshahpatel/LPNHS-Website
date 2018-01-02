@@ -65,13 +65,25 @@
         <div class = "classic panel">
             <p>Leadership</p>
             <div class = "scrollable">
-            <table id = "leadership" class = "listing"></table>
+            <table id = "leadership" class = "listing">
+                    <script>
+                        $(document).ready(function(){
+                            $("#leadership").load("getLeaders.php");
+                        });
+                    </script>
+            </table>
             </div>
         </div>
         <div class = "classic panel">
             <p>Students</p>
             <div class = "scrollable">
-            <table id = "students" class = "listing"></table>
+            <table id = "students" class = "listing">
+                    <script>
+                        $(document).ready(function(){
+                            $("#students").load("getMembers.php");
+                        });
+                    </script>
+            </table>
             </div>
         </div>
     </div>
