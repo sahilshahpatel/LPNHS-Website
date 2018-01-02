@@ -54,16 +54,16 @@
 	<script>
        $(document).ready(function() {       
 			$("#createEventDiv").click(function(){
-				window.location.href = "create-event.html";
+				window.location.href = "create-event.php";
 			});
 			$("#editEventDiv").click(function(){
-				window.location.href = "edit-event.html";
+				window.location.href = "edit-event.php";
 			});
 			$("#manageMembers").click(function(){
-				window.location.href = "members.html";
+				window.location.href = "members.php?manage=true";
 			});
 			$("#manageSiteContent").click(function(){
-				window.location.href = "manage-site-content.html";
+				window.location.href = "manage-site-content.php";
 			});
        });
     </script>

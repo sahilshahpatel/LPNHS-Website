@@ -67,11 +67,21 @@
             <p>Leadership</p>
             <div class = "scrollable">
             <table id = "leadership" class = "listing">
-                    <script>
-                        $(document).ready(function(){
-                            $("#leadership").load("getLeaders.php");
-                        });
-                    </script>
+                    <?php 
+					if(isset($_GET["manage"]) && htmlspecialchars($_GET["manage"])==="true"):
+						echo '<script>
+							$(document).ready(function(){
+								$("#leadership").load("getLeaders.php?manage=true");
+							});
+							</script>';
+					else:
+						echo '<script>
+							$(document).ready(function(){
+								$("#leadership").load("getLeaders.php");
+							});
+							</script>';
+					endif;
+				?>
             </table>
             </div>
         </div>
@@ -79,11 +89,21 @@
             <p>Students</p>
             <div class = "scrollable">
             <table id = "students" class = "listing">
-                    <script>
-                        $(document).ready(function(){
-                            $("#students").load("getMembers.php");
-                        });
-                    </script>
+				<?php 
+					if(isset($_GET["manage"]) && htmlspecialchars($_GET["manage"])==="true"):
+						echo '<script>
+							$(document).ready(function(){
+								$("#students").load("getMembers.php?manage=true");
+							});
+							</script>';
+					else:
+						echo '<script>
+							$(document).ready(function(){
+								$("#students").load("getMembers.php");
+							});
+							</script>';
+					endif;
+				?>
             </table>
             </div>
         </div>
