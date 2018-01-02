@@ -50,11 +50,17 @@
         <p>My Information</p>
         <div id = "ProfileDataDiv">
             <!--View only data-->
-            <p>Name: </p><p id = "fullName">-</p>
+			<?php 
+				$sql = "SELECT * from students WHERE StudentID=:studentID";
+				$stmt = $pdo->prepare($sql);
+				$stmt->execute(["studentID" => $_SESSION["StudentID"]]);
+				$data = $stmt->fetch(PDO::FETCH_OBJ);
+			?>
+            <p>Name: </p><p id = "fullName"><?php echo $data->FirstName, ' ', $data->LastName;?></p>
             <br/>
-            <p>Hours Worked: </p><p id = "hoursWorked">-</p>
+            <p>Hours Worked: </p><p id = "hoursWorked"><?php echo $data->HoursCompleted;?></p>
             <br/>
-            <p>Vice President: </p><p id = "vicePresident">-</p>
+            <p>Vice President: </p><p id = "vicePresident"><?php echo $data->VicePresident;?></p>
             
             <hr>
             
@@ -67,7 +73,7 @@
         </div>
     </div>
     
-    <!--Firebase-->
+    <!--Firebase
     <script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
     <script>
         // Initialize Firebase
@@ -82,8 +88,9 @@
         firebase.initializeApp(config);
     </script>
     <script src = "updateProfileDataScript.js"></script>
+	-->
 </body>
     
 <!--Included via JQuery-->
-<footer id = "footer"></footer>
+<footer id = "footer"><?php include 'footer.php';?></footer>
 </html>
