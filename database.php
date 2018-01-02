@@ -1,5 +1,6 @@
 <?php
 
+include "adminCheck.php";
 $host = "localhost";
 $user = "root";
 $dbname = "nhs_data";

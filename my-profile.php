@@ -2,6 +2,8 @@
 <?php 
     session_start();
     include "database.php";
+    include "loginCheck.php";
+    
 ?>
 <html>
 <head>

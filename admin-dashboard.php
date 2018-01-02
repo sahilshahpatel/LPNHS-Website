@@ -2,6 +2,7 @@
 <?php 
     session_start();
     include "database.php";
+    include "adminCheck.php";
 ?>
 <html>
 <head>
