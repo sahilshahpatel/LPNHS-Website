@@ -24,8 +24,8 @@
         width: 100%;
         overflow: hidden;
     }
-    
-    #loginSlider{
+
+    /*#loginSlider{
         position:absolute;
         top:0; 
         right: 0;
@@ -34,7 +34,7 @@
         padding: 0 30px;
     }
 
-    /* #login{
+    #login{
         position:absolute; 
         top: 23px; 
         right:0px;
@@ -81,6 +81,19 @@
         background-color: white;
         color: #005da3;
         font-weight: bold;
+    }
+
+    div.headerSignIn {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+
+    div.headerSignIn button {
+        border-radius: 0px;
+        border-bottom-left-radius: 5px;
+        background-color: #333;
+        color: #fff;
     }
 
 /* Nav Bar */
