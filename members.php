@@ -66,6 +66,11 @@
         <div class = "classic panel">
             <p>Leadership</p>
             <div class = "scrollable">
+			<?php 
+				if(isset($_GET["manage"]) && htmlspecialchars($_GET["manage"])==="true"):
+				echo '<form method = "post" action = "updateLeaders.php">';
+				endif;
+			?>
             <table id = "leadership" class = "listing">
                     <?php 
 					if(isset($_GET["manage"]) && htmlspecialchars($_GET["manage"])==="true"):
@@ -83,11 +88,21 @@
 					endif;
 				?>
             </table>
+			<?php 
+				if(isset($_GET["manage"]) && htmlspecialchars($_GET["manage"])==="true"):
+				echo '</form>';
+				endif;
+			?>
             </div>
         </div>
         <div class = "classic panel">
             <p>Students</p>
             <div class = "scrollable">
+			<?php 
+				if(isset($_GET["manage"]) && htmlspecialchars($_GET["manage"])==="true"):
+				echo '<form method = "post" action = "updateMembers.php">';
+				endif;
+			?>
             <table id = "students" class = "listing">
 				<?php 
 					if(isset($_GET["manage"]) && htmlspecialchars($_GET["manage"])==="true"):
@@ -105,6 +120,11 @@
 					endif;
 				?>
             </table>
+			<?php 
+				if(isset($_GET["manage"]) && htmlspecialchars($_GET["manage"])==="true"):
+				echo '</form>';
+				endif;
+			?>
             </div>
         </div>
     </div>

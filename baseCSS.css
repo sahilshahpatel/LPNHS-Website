@@ -83,6 +83,15 @@
         font-weight: bold;
     }
 
+    input.classicColor {
+        border: none;
+        padding: 5px 10px;
+        border-radius: 15px;
+        font-size: 12px;
+        background-color: #005da3;
+        color: white;
+    }
+
     div.headerSignIn {
         position: absolute;
         top: 0;
