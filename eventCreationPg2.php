@@ -41,15 +41,15 @@
             echo '<form id="eventCreator" action="eventCreationPg3.php?shifts=',$shifts,'" method="post">';
                  for($i = 0; $i<$shifts;$i++){
                 echo '<label>Shift Date :<span>*</span></label>
-                <input name="date',$i,'" type="date" placeholder="eg: 01/01/2018" required>
+                <input name="date[',$i,']" type="date" placeholder="eg: 01/01/2018" required>
                 <label>Start Time :<span>*</span></label>
-                <input name="starttime',$i,'" type="text" placeholder="eg: 8:00 AM" required>
+                <input name="starttime[',$i,']" type="text" placeholder="eg: 8:00 AM" required>
                 <label>End Time :<span>*</span></label>
-                <input name="endtime',$i,'" type="text" placeholder="eg: 5:00 PM" required>
+                <input name="endtime[',$i,']" type="text" placeholder="eg: 5:00 PM" required>
                 <label>Positions Available :<span>*</span></label>
-                <input name="positionsavailable',$i,'" type="text" placeholder="eg: 5 postions" required>';
+                <input name="positionsavailable[',$i,']" type="text" placeholder="eg: 5 postions" required>';
                 }?>
-                <input type="submit" value="Next" />
+                <input type="submit" value="Submit" />
             </form>
         </div>
     </div>        </div>
