@@ -24,7 +24,17 @@
         <p style = "text-align: center;">Create Event</p>
             <?php include "eventCreationPg1.php"; ?>
         </div>
+        <?php 
+    if(isset($_COOKIE['ERROR'])) {
+        $Error = $_COOKIE['ERROR'];
+        echo '<script>
+        $(document).ready(function(){
+            alert("', $Error,'");
+        });
+        </script>';
+    }
 
+    ?>
 </body>
 
 <footer id = "footer"><?php include "footer.php"; ?></footer>
