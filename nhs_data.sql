@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 02, 2018 at 08:24 PM
+-- Generation Time: Jan 03, 2018 at 01:14 AM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -34,17 +34,18 @@ CREATE TABLE `events` (
   `Description` varchar(64) NOT NULL,
   `StartDate` date NOT NULL,
   `EndDate` date NOT NULL,
-  `Location` varchar(32) NOT NULL
+  `Location` varchar(32) NOT NULL,
+  `Shifts` int(32) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `events`
 --
 
-INSERT INTO `events` (`EventID`, `Name`, `Description`, `StartDate`, `EndDate`, `Location`) VALUES
-(1, 'TestEvent', 'This is a description', '2017-12-27', '2017-12-27', 'Here'),
-(2, 'Wheaton rally', 'this is  abetter decsfiptiosnsns', '2018-01-17', '2018-01-19', 'my house'),
-(3, 'Wheaton rally 2', 'the bestes drsciption', '2018-01-17', '2018-01-19', 'my house #2');
+INSERT INTO `events` (`EventID`, `Name`, `Description`, `StartDate`, `EndDate`, `Location`, `Shifts`) VALUES
+(1, 'TestEvent', 'This is a description', '2017-12-27', '2017-12-27', 'Here', 0),
+(2, 'Wheaton rally', 'this is  abetter decsfiptiosnsns', '2018-01-17', '2018-01-19', 'my house', 0),
+(3, 'Wheaton rally 2', 'the bestes drsciption', '2018-01-17', '2018-01-19', 'my house #2', 0);
 
 -- --------------------------------------------------------
 
@@ -63,7 +64,11 @@ CREATE TABLE `eventshift` (
 
 INSERT INTO `eventshift` (`EventID`, `ShiftID`) VALUES
 (1, 1),
-(1, 2);
+(1, 2),
+(5, 3),
+(8, 6),
+(8, 6),
+(8, 6);
 
 -- --------------------------------------------------------
 
@@ -74,7 +79,7 @@ INSERT INTO `eventshift` (`EventID`, `ShiftID`) VALUES
 CREATE TABLE `positions` (
   `PositionID` int(12) NOT NULL,
   `ShiftID` int(12) NOT NULL,
-  `StudentID` int(12) NOT NULL
+  `StudentID` int(12) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -84,25 +89,6 @@ CREATE TABLE `positions` (
 INSERT INTO `positions` (`PositionID`, `ShiftID`, `StudentID`) VALUES
 (1, 1, 123456),
 (2, 2, 654321);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `shiftposition`
---
-
-CREATE TABLE `shiftposition` (
-  `ShiftID` int(12) NOT NULL,
-  `PositionID` int(12) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `shiftposition`
---
-
-INSERT INTO `shiftposition` (`ShiftID`, `PositionID`) VALUES
-(1, 1),
-(2, 2);
 
 -- --------------------------------------------------------
 
@@ -146,25 +132,6 @@ INSERT INTO `studentevent` (`StudentID`, `EventID`) VALUES
 (123456, 1),
 (123456, 1),
 (123456, 3),
-(654321, 2);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `studentposition`
---
-
-CREATE TABLE `studentposition` (
-  `StudentID` int(12) NOT NULL,
-  `PositionID` int(12) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `studentposition`
---
-
-INSERT INTO `studentposition` (`StudentID`, `PositionID`) VALUES
-(123456, 1),
 (654321, 2);
 
 -- --------------------------------------------------------
@@ -228,19 +195,19 @@ ALTER TABLE `students`
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `EventID` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `EventID` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `positions`
 --
 ALTER TABLE `positions`
-  MODIFY `PositionID` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `PositionID` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `shifts`
 --
 ALTER TABLE `shifts`
-  MODIFY `ShiftID` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ShiftID` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
