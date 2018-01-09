@@ -11,15 +11,16 @@
 
 
     for($i = 0; $i<$eventCount; $i++){
-        $sql = "SELECT * FROM events WHERE EventID=:eventID";
+        $sql = "SELECT * FROM events WHERE EventID=:eventID AND EndDate >= NOW()";
         $stmt = $pdo->prepare($sql);
         $stmt->execute(["eventID" => $eventIDs[0][$i]]);
         $data = array();
         $data = $stmt->fetchAll();
-
-        echo '<tr>';
-        echo '<td>', $data[0][1], '</td>';
-        echo '<td>', $data[0][2], '</td>';
-        echo '</tr>';
+		if(count($data)>0){
+			echo '<tr>';
+			echo '<td>', $data[0][1], '</td>';
+			echo '<td>', $data[0][2], '</td>';
+			echo '</tr>';
+		}
     } 
 ?>

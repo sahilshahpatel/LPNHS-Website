@@ -15,18 +15,38 @@
         <th>Date</th>
         <th>Location</th>
     </tr>';
+	if($_GET['history'] === "false"){
+		for($i = 0; $i<$eventCount; $i++){
+			$sql = "SELECT * FROM events WHERE EventID=:eventID AND EndDate >= NOW()";
+			$stmt = $pdo->prepare($sql);
+			$stmt->execute(["eventID" => $eventIDs[0][$i]]);
+			$data = array();
+			$data = $stmt->fetchAll();
 
-    for($i = 0; $i<$eventCount; $i++){
-        $sql = "SELECT * FROM events WHERE EventID=:eventID";
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute(["eventID" => $eventIDs[0][$i]]);
-        $data = array();
-        $data = $stmt->fetchAll();
+			if(count($data)>0){
+				echo '<tr>';
+				echo '<td title =', $data[0][2] ,'>', $data[0][1], '</td>';
+				echo '<td>', $data[0][3], ' to ', $data[0][4], '</td>';
+				echo '<td><a href="https://www.maps.google.com/maps/search/?api=1&query=', str_replace(" ", "+", $data[0][5]),'+IL" target = "_blank">', $data[0][5], '</a></td>';
+				echo '</tr>';
+			}
+		} 
+	}
+	else{
+		for($i = 0; $i<$eventCount; $i++){
+			$sql = "SELECT * FROM events WHERE EventID=:eventID AND EndDate < NOW()";
+			$stmt = $pdo->prepare($sql);
+			$stmt->execute(["eventID" => $eventIDs[0][$i]]);
+			$data = array();
+			$data = $stmt->fetchAll();
 
-        echo '<tr>';
-        echo '<td title =', $data[0][2] ,'>', $data[0][1], '</td>';
-        echo '<td>', $data[0][3], ' to ', $data[0][4], '</td>';
-        echo '<td>', $data[0][5], '</td>';
-        echo '</tr>';
-    } 
+			if(count($data)>0){
+				echo '<tr>';
+				echo '<td title =', $data[0][2] ,'>', $data[0][1], '</td>';
+				echo '<td>', $data[0][3], ' to ', $data[0][4], '</td>';
+				echo '<td><a href="https://www.maps.google.com/maps/search/?api=1&query=', str_replace(" ", "+", $data[0][5]),'+IL" target = "_blank">', $data[0][5], '</a></td>';
+				echo '</tr>';
+			}
+		} 
+	}
 ?>

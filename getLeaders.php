@@ -71,7 +71,6 @@
 		echo '<tr>
 		<th>Name</th>
 		<th>Email</th>
-		<th>Position</th>
 		</tr>';
 		for($i = 0; $i<$studentCount; $i++){
 			$sql = "SELECT * FROM students WHERE StudentID=:studentID";
@@ -83,7 +82,6 @@
 				echo '<tr>';
 				echo '<td>', $data[0][1],' ',$data[0][2] ,'</td>';
 				echo '<td>', $data[0][3], '</td>';
-				echo '<td>', $data[0][7], '</td>';
 				echo '</tr>';
 			}
 		} 

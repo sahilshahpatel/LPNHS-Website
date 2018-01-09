@@ -99,12 +99,12 @@
                     <!--Load data-->                    
                     <script>
                         $(document).ready(function(){
-                            $("#upcomingEventsTable").load("myEventsGetter.php");
+                            $("#upcomingEventsTable").load("myEventsGetter.php?history=false");
                             $("#chapterEventsTab").click(function(){
-                               $("#upcomingEventsTable").load("chapterEventsGetter.php");
+                               $("#upcomingEventsTable").load("chapterEventsGetter.php?history=false");
                             });
                             $("#myEventsTab").click(function(){
-                               $("#upcomingEventsTable").load("myEventsGetter.php");
+                               $("#upcomingEventsTable").load("myEventsGetter.php?history=false");
                             });
                         });
                     </script>
@@ -121,6 +121,18 @@
                         <th>Date</th>
                         <th>Location</th>
                     </tr>
+					<!--Load data-->                    
+                    <script>
+                        $(document).ready(function(){
+                            $("#eventHistoryTable").load("myEventsGetter.php?history=true");
+                            $("#chapterEventsTab").click(function(){
+                               $("#eventHistoryTable").load("chapterEventsGetter.php?history=true");
+                            });
+                            $("#myEventsTab").click(function(){
+                               $("#eventHistoryTable").load("myEventsGetter.php?history=true");
+                            });
+                        });
+                    </script>
                 </table>
             </div>
         </div>
