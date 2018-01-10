@@ -50,6 +50,40 @@
 		div.dashboardButton p{
 			margin: 5px;
 		}
+		#eventsPanel{
+            padding: 0;
+        }
+        table tr:nth-child(even){
+            background-color: #e8cfa4;
+        }
+        #eventsPanel div{
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+        #tabs{
+            background-color: #e8cfa4; /*darkened moccasin*/
+        }
+        #tabs div{
+            display: inline-block;
+            margin: 0;
+            width: calc(50% - 2px);
+            background-color: #ffebcd; /*blanched almond*/
+        }
+        #tabs div.inactive{
+            background-color: #e8cfa4; /*darkened moccasin*/
+        }
+        #informationContainer{
+            padding: 10px;
+        }
+        #informationContainer div table{
+            width: 100%;
+        }
+        #informationContainer div table th, td{
+            width: 33.33%;
+            font-family: Bookman, sans-serif;
+            font-size: 18px;
+            text-align: center;
+        }
     </style>
     
     <!--Scripts-->
@@ -103,36 +137,31 @@
             <p>Hours Worked: </p><p id = "hoursWorked"><?php echo $data->HoursCompleted;?></p>
             <br/>
             <p>Vice President: </p><p id = "vicePresident"><?php echo $data->VicePresident;?></p>
-            
-            <hr>
-            
-            <!--Editable Data-->
-            <p>Displayed Name:</p>
-            <input id = "displayName" placeholder = "e.g. John">
-            <br/>
-            <button id = "submitChanges" class = "classicColor" type = "button">Submit Changes</button>
-            <p id = "status" class = "hidden">-</p>
         </div>
     </div>
-    
-    <!--Firebase
-    <script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
-    <script>
-        // Initialize Firebase
-        var config = {
-            apiKey: "AIzaSyByQW8Cyp9yAIMm5xCrNZqF-5kqJ-w6g-4",
-            authDomain: "nhs-project-test.firebaseapp.com",
-            databaseURL: "https://nhs-project-test.firebaseio.com",
-            projectId: "nhs-project-test",
-            storageBucket: "nhs-project-test.appspot.com",
-            messagingSenderId: "239221174231"
-        };
-        firebase.initializeApp(config);
-    </script>
-    <script src = "updateProfileDataScript.js"></script>
-	-->
+
+	<div id = "eventsPanel" class = "classic panel">
+        <div id = "informationContainer">
+            <p>My Event History</p>
+            <div id = "eventHistory">
+                <table id = "eventHistoryTable">
+                    <tr>
+                        <th>Event Name</th>
+                        <th>Date</th>
+                        <th>Location</th>
+                    </tr>
+					<!--Load data-->                    
+                    <script>
+                        $(document).ready(function(){
+                            $("#eventHistoryTable").load("myEventsGetter.php?history=true");
+                        });
+                    </script>
+                </table>
+            </div>
+        </div>
+    </div>
 </body>
     
-<!--Included via JQuery-->
+<!--Included via php-->
 <footer id = "footer"><?php include 'footer.php';?></footer>
 </html>

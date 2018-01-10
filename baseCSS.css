@@ -2,14 +2,16 @@
     body{
         margin: 0px;
         background-color: #005da3;
+        min-height: 100%;
     }
-    footer{
+    footer {
         margin: 0px;
         padding: 10px;
         background-color: #333;
         width: calc(100% - 20px); /*10px padding*/
         position: absolute;
-        top: calc(100% + 180px);
+        /*top: calc(100% + 180px);*/  /*Works for small pages but not long pages*/
+        /*Works for long pages but not short pages*/  top: expression((0-(footer.offsetHeight)+(document.documentElement.clientHeight ? document.documentElement.clientHeight : document.body.clientHeight)+(ignoreMe = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop))+'px');
     }
     .hidden{
         visibility: hidden;
