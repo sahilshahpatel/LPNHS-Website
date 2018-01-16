@@ -50,8 +50,6 @@
 
 <body>
     <div id = "footerPusher">
-        <!--Included via JQuery-->
-        <header id = "header"></header>
 
         <!--Fixed Img in Background-->
         <img id = "fixedBGImg" src = "https://www.nhs.us/assets/images/nhs/NHS_header_logo.png">

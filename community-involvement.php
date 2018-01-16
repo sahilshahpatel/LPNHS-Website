@@ -67,22 +67,24 @@
 <header id = "header"></header>
     
 <body>
+
     <!--Fixed Img in Background-->
     <img id = "fixedBGImg" src = "https://www.nhs.us/assets/images/nhs/NHS_header_logo.png">
-    
-    <div id = "eventsPanel" class = "classic panel">
-        <div id = "informationContainer">
-            <!--Information loaded via JavaScript-->
-            <p>Community Events</p>
-            <div id = "communityEvents">
-                <table id = "communityEventsTable">
-                    <tr>
-                        <th>Event Name</th>
-                        <th>Description</th>
-                    </tr>
-                    <!--Load data-->                    
-                    <?php include 'communityEventsGetter.php';?>
-                </table>
+    <div id = "footerPusher">
+        <div id = "eventsPanel" class = "classic panel">
+            <div id = "informationContainer">
+                <!--Information loaded via JavaScript-->
+                <p>Community Events</p>
+                <div id = "communityEvents">
+                    <table id = "communityEventsTable">
+                        <tr>
+                            <th>Event Name</th>
+                            <th>Description</th>
+                        </tr>
+                        <!--Load data-->                    
+                        <?php include 'communityEventsGetter.php';?>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

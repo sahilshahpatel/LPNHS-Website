@@ -19,11 +19,12 @@
 <body>
     <!--Fixed Img in Background-->
     <img id = "fixedBGImg" src = "https://www.nhs.us/assets/images/nhs/NHS_header_logo.png">
-
-    <div id = "mainPanel" class = "classic panel">
-        <p style = "text-align: center;">Create Event</p>
+    <div id = "footerPusher">
+        <div id = "mainPanel" class = "classic panel">
+            <p style = "text-align: center;">Create Event</p>
             <?php include "eventCreationPg1.php"; ?>
         </div>
+    </div>
         <?php 
     if(isset($_COOKIE['ERROR'])) {
         $Error = $_COOKIE['ERROR'];
@@ -32,7 +33,8 @@
             alert("', $Error,'");
         });
         </script>';
-    }
+        setcookie("ERROR","", time() - (86400 * 30), "/");
+        }
 
     ?>
 </body>

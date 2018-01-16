@@ -73,70 +73,69 @@
         });
     </script>
 </head>
-
-<!--Included via JQuery-->
-<header id = "header"></header>
     
 <body>
     <!--Fixed Img in Background-->
     <img id = "fixedBGImg" src = "https://www.nhs.us/assets/images/nhs/NHS_header_logo.png">
-    
-    <div id = "eventsPanel" class = "classic panel">
-        <div id = "tabs">
-            <div id = "chapterEventsTab" class = "inactive"><p>Chapter Events</p></div>
-            <div id = "myEventsTab"><p>My Events</p></div>
-        </div>
-        <div id = "informationContainer">
-            <!--Information loaded via JavaScript-->
-            <p>Upcoming Events</p>
-            <div id = "upcomingEvents">
-                <table id = "upcomingEventsTable">
-                    <tr>
-                        <th>Event Name</th>
-                        <th>Date</th>
-                        <th>Location</th>
-                    </tr>
-                    <!--Load data-->                    
-                    <script>
-                        $(document).ready(function(){
-                            $("#upcomingEventsTable").load("myEventsGetter.php?history=false");
-                            $("#chapterEventsTab").click(function(){
-                               $("#upcomingEventsTable").load("chapterEventsGetter.php?history=false");
-                            });
-                            $("#myEventsTab").click(function(){
-                               $("#upcomingEventsTable").load("myEventsGetter.php?history=false");
-                            });
-                        });
-                    </script>
-                </table>
+    <div id = "footerPusher">
+        <div id = "eventsPanel" class = "classic panel">
+            <div id = "tabs">
+                <div id = "chapterEventsTab" class = "inactive"><p>Chapter Events</p></div>
+                <div id = "myEventsTab"><p>My Events</p></div>
             </div>
-            
-            <hr>
+            <div id = "informationContainer">
+                <!--Information loaded via JavaScript-->
+                <p>Upcoming Events</p>
+                <div id = "upcomingEvents">
+                    <table id = "upcomingEventsTable">
+                        <tr>
+                            <th>Event Name</th>
+                            <th>Date</th>
+                            <th>Location</th>
+                        </tr>
+                        <!--Load data-->                    
+                        <script>
+                            $(document).ready(function(){
+                                $("#upcomingEventsTable").load("myEventsGetter.php?history=false");
+                                $("#chapterEventsTab").click(function(){
+                                $("#upcomingEventsTable").load("chapterEventsGetter.php?history=false");
+                                });
+                                $("#myEventsTab").click(function(){
+                                $("#upcomingEventsTable").load("myEventsGetter.php?history=false");
+                                });
+                            });
+                        </script>
+                    </table>
+                </div>
+                
+                <hr>
 
-            <p>Event History</p>
-            <div id = "eventHistory">
-                <table id = "eventHistoryTable">
-                    <tr>
-                        <th>Event Name</th>
-                        <th>Date</th>
-                        <th>Location</th>
-                    </tr>
-					<!--Load data-->                    
-                    <script>
-                        $(document).ready(function(){
-                            $("#eventHistoryTable").load("myEventsGetter.php?history=true");
-                            $("#chapterEventsTab").click(function(){
-                               $("#eventHistoryTable").load("chapterEventsGetter.php?history=true");
+                <p>Event History</p>
+                <div id = "eventHistory">
+                    <table id = "eventHistoryTable">
+                        <tr>
+                            <th>Event Name</th>
+                            <th>Date</th>
+                            <th>Location</th>
+                        </tr>
+                        <!--Load data-->                    
+                        <script>
+                            $(document).ready(function(){
+                                $("#eventHistoryTable").load("myEventsGetter.php?history=true");
+                                $("#chapterEventsTab").click(function(){
+                                $("#eventHistoryTable").load("chapterEventsGetter.php?history=true");
+                                });
+                                $("#myEventsTab").click(function(){
+                                $("#eventHistoryTable").load("myEventsGetter.php?history=true");
+                                });
                             });
-                            $("#myEventsTab").click(function(){
-                               $("#eventHistoryTable").load("myEventsGetter.php?history=true");
-                            });
-                        });
-                    </script>
-                </table>
+                        </script>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
+    <footer id = "footer"><?php include "footer.php"; ?></footer>
 </body>
-<footer id = "footer"><?php include "footer.php"; ?></footer>
+
 </html>
