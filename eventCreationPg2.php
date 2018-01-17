@@ -15,10 +15,40 @@
     $shifts = $_POST['shifts'];
 ?>
 <html>
+
 <head>
     <title>NHS Test - Create Event</title>
     <!--jQuery-->
     <link rel = "stylesheet" href="baseCSS.css">
+    <style>
+        form{
+            display: inline-block;
+            font-family: Bookman, sans-serif;
+            font-size: 20px;
+            align-items: center;
+            justify-content: center;
+            text-align: left;
+            }
+        table{
+            width: 100%;
+            font-family: Bookman, sans-serif;
+            text-align: center;
+        }
+        table td{
+            padding: 5px 0;
+            margin: 0;
+        }
+        table tr:nth-child(even){
+            background-color: #e8cfa4;
+        }
+        #addUserTable th, td{
+            width: 12.5%;
+        }
+        input{
+            max-width: 130px;
+        }
+    </style>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="headerJQuery.js"></script>
 </head>
@@ -38,18 +68,34 @@
             <span id="error">
     
             </span><?php
-            echo '<form id="eventCreator" action="eventCreationPg3.php?shifts=',$shifts,'" method="post">';
+            echo '<form id="eventCreator" action="eventCreationPg3.php?shifts=',$shifts,'" method="post"><table style="width=100%;" class = "listing">';
                  for($i = 0; $i<$shifts;$i++){
-                echo '<label>Shift Date :<span>*</span></label>
-                <input name="date[',$i,']" type="date" placeholder="eg: 01/01/2018" required>
-                <label>Start Time :<span>*</span></label>
-                <input name="starttime[',$i,']" type="text" placeholder="eg: 8:00 AM" required>
-                <label>End Time :<span>*</span></label>
-                <input name="endtime[',$i,']" type="text" placeholder="eg: 5:00 PM" required>
-                <label>Positions Available :<span>*</span></label>
-                <input name="positionsavailable[',$i,']" type="text" placeholder="eg: 5 postions" required>';
+                echo    
+                
+                        '
+                        <tr>
+                            <td><label>Shift Date :<span>*</span></label></td>
+                            <td><input name="date[',$i,']" type="date" placeholder="eg: 01/01/2018" required></td>
+                        </tr>
+                        <tr>
+                            <td><label>Start Time :<span>*</span></label></td>
+                            <td><input name="starttime[',$i,']" type="text" placeholder="eg: 8:00 AM" required></td>
+                        </tr>
+                        <tr>
+                            <td><label>End Time :<span>*</span></label></td>
+                            <td><input name="endtime[',$i,']" type="text" placeholder="eg: 5:00 PM" required></td>
+                        </tr>
+                        <tr>
+                            <td><label>Positions Available :<span>*</span></label></td>
+                            <td><input name="positionsavailable[',$i,']" type="text" placeholder="eg: 5 postions" required></td>
+                        </tr>';
+
                 }?>
-                <input type="submit" value="Submit" />
+                <tr>
+                <td></td>
+                <td style="text-align:center;"><input type="submit" style="text-align=right;" value="Submit" class = "classicColor" /></td>
+                </tr>
+                </table>
             </form>
         </div>
     </div>        </div>
