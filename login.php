@@ -58,6 +58,7 @@
         </style>
     </head>
     <body>
+		<div id = "footerPusher">
             <form id="login" class="form" action="session.php" method="post" style="height:350px;">
                 <div>
                     <p style = "font-size: 30px; text-decoration: underline;">Sign in</p>
@@ -75,9 +76,7 @@
                     <img id = "tester" style = "margin: auto;" src = "https://www.nhs.us/assets/images/nhs/NHS_header_logo.png">
                 </div>                
             </form>
-        <!-- <div id = "login">
-            
-        </div> -->
+        </div>
     </body>
     <footer id = "footer"><?php include "footer.php"; ?></footer>
 

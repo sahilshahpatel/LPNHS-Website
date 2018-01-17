@@ -14,21 +14,26 @@
     <!--Style Sheets-->
     <link rel="stylesheet" href="baseCSS.css">
     <style>
-        #dashboard{
+        div.dashboard{
             width: 80%;
-            height: 500px;
             margin: 30px auto;
             padding: 0;
             
             display: flex;
             align-self: center;
         }
+		#dashboard{
+			height: 250px;
+		}
+		#presidentialOptions{
+			height: 75px;
+		}
         div.dashboardButton{
             display: inline-flex;
             margin: 5px;
             padding: 0 15px;
             width: 50%;
-            height: 50%;
+            height: 100%;
             border: 5px solid white;
             border-radius: 10px;
             
@@ -53,7 +58,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<script src="headerJQuery.js"></script>
 	<script>
-       $(document).ready(function() {       
+       $(document).ready(function() {
+			$("#setRosters").click(function(){
+				window.location.href = "roster-requests.php";
+			});
+			$("#confirmHours").click(function(){
+				window.location.href = "hour-logs.php";
+			});
 			$("#createEventDiv").click(function(){
 				window.location.href = "create-event.php";
 			});
@@ -81,7 +92,16 @@
         <!--Fixed Img in Background-->
         <img id = "fixedBGImg" src = "https://www.nhs.us/assets/images/nhs/NHS_header_logo.png">
         
-        <div id = "dashboard">
+		<div id = "presidentialOptions" class = "dashboard">
+			<div id = "setRosters" class = "dashboardButton">
+                <p>Accept/Deny Roster Requests</p>
+            </div>
+			<div id = "confirmHours" class = "dashboardButton">
+                <p>Confirm Student Volunteer Hours</p>
+            </div>
+		</div>
+
+        <div id = "dashboard" class = "dashboard">
             <div id = "createEventDiv" class = "dashboardButton">
                 <p>Create an Event</p>
             </div>

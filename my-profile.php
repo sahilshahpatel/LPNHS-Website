@@ -109,57 +109,59 @@
     <!--Fixed Img in Background-->
     <img id = "fixedBGImg" src = "https://www.nhs.us/assets/images/nhs/NHS_header_logo.png">
     
-	<!--Include Admin Dashboard link-->
-	<?php 
-		$sql = "SELECT * FROM students WHERE StudentID=:studentID";
-		$stmt = $pdo->prepare($sql);
-		$stmt->execute(["studentID" => $_SESSION["StudentID"]]);
-		$data = $stmt->fetch(PDO::FETCH_OBJ);
-		if($data->Position!=="Student"):
-			echo '<div id = "adminDashboardButton" class = "dashboardButton">
-                <p>Admin Dashboard</p>
-            </div>';
-		endif;
-	?>
+	<div id = "footerPusher">
+		<!--Include Admin Dashboard link-->
+		<?php 
+			$sql = "SELECT * FROM students WHERE StudentID=:studentID";
+			$stmt = $pdo->prepare($sql);
+			$stmt->execute(["studentID" => $_SESSION["StudentID"]]);
+			$data = $stmt->fetch(PDO::FETCH_OBJ);
+			if($data->Position!=="Student"):
+				echo '<div id = "adminDashboardButton" class = "dashboardButton">
+					<p>Admin Dashboard</p>
+				</div>';
+			endif;
+		?>
 
-    <div class = "classic panel">
-        <p>My Information</p>
-        <div id = "ProfileDataDiv">
-            <!--View only data-->
-			<?php 
-				$sql = "SELECT * FROM students WHERE StudentID=:studentID";
-				$stmt = $pdo->prepare($sql);
-				$stmt->execute(["studentID" => $_SESSION["StudentID"]]);
-				$data = $stmt->fetch(PDO::FETCH_OBJ);
-			?>
-            <p>Name: </p><p id = "fullName"><?php echo $data->FirstName, ' ', $data->LastName;?></p>
-            <br/>
-            <p>Hours Worked: </p><p id = "hoursWorked"><?php echo $data->HoursCompleted;?></p>
-            <br/>
-            <p>Vice President: </p><p id = "vicePresident"><?php echo $data->VicePresident;?></p>
-        </div>
-    </div>
+		<div class = "classic panel">
+			<p>My Information</p>
+			<div id = "ProfileDataDiv">
+				<!--View only data-->
+				<?php 
+					$sql = "SELECT * FROM students WHERE StudentID=:studentID";
+					$stmt = $pdo->prepare($sql);
+					$stmt->execute(["studentID" => $_SESSION["StudentID"]]);
+					$data = $stmt->fetch(PDO::FETCH_OBJ);
+				?>
+				<p>Name: </p><p id = "fullName"><?php echo $data->FirstName, ' ', $data->LastName;?></p>
+				<br/>
+				<p>Hours Worked: </p><p id = "hoursWorked"><?php echo $data->HoursCompleted;?></p>
+				<br/>
+				<p>Vice President: </p><p id = "vicePresident"><?php echo $data->VicePresident;?></p>
+			</div>
+		</div>
 
-	<div id = "eventsPanel" class = "classic panel">
-        <div id = "informationContainer">
-            <p>My Event History</p>
-            <div id = "eventHistory">
-                <table id = "eventHistoryTable">
-                    <tr>
-                        <th>Event Name</th>
-                        <th>Date</th>
-                        <th>Location</th>
-                    </tr>
-					<!--Load data-->                    
-                    <script>
-                        $(document).ready(function(){
-                            $("#eventHistoryTable").load("myEventsGetter.php?history=true");
-                        });
-                    </script>
-                </table>
-            </div>
-        </div>
-    </div>
+		<div id = "eventsPanel" class = "classic panel">
+			<div id = "informationContainer">
+				<p>My Event History</p>
+				<div id = "eventHistory">
+					<table id = "eventHistoryTable">
+						<tr>
+							<th>Event Name</th>
+							<th>Date</th>
+							<th>Location</th>
+						</tr>
+						<!--Load data-->                    
+						<script>
+							$(document).ready(function(){
+								$("#eventHistoryTable").load("myEventsGetter.php?history=true");
+							});
+						</script>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
     
 <!--Included via php-->
