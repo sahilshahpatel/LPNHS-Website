@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 03, 2018 at 01:14 AM
--- Server version: 10.1.28-MariaDB
--- PHP Version: 7.1.11
+-- Generation Time: Jan 18, 2018 at 01:18 AM
+-- Server version: 10.1.29-MariaDB
+-- PHP Version: 7.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -43,7 +43,7 @@ CREATE TABLE `events` (
 --
 
 INSERT INTO `events` (`EventID`, `Name`, `Description`, `StartDate`, `EndDate`, `Location`, `Shifts`) VALUES
-(1, 'TestEvent', 'This is a description', '2017-12-27', '2017-12-27', 'Here', 0),
+(1, 'TestEvent', 'This is a description', '2017-12-27', '2017-12-27', '357 Erie Circle, Bloomingdale', 0),
 (2, 'Wheaton rally', 'this is  abetter decsfiptiosnsns', '2018-01-17', '2018-01-19', 'my house', 0),
 (3, 'Wheaton rally 2', 'the bestes drsciption', '2018-01-17', '2018-01-19', 'my house #2', 0);
 
@@ -156,8 +156,27 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`StudentID`, `FirstName`, `LastName`, `Email`, `Password`, `HoursCompleted`, `VicePresident`, `Position`) VALUES
-(123456, 'Sahil', 'Patel', 'email@email.com', 'banana', 2, 'Miloni', 'bananaman'),
+(123456, 'Sahil', 'Patel', 'email@email.com', 'banana', 2, 'Miloni', 'Admin'),
 (654321, 'Ben', 'Wagrez', 'email2@email.com', '', 3.5, 'Nic', 'Student');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `studentshiftrequests`
+--
+
+CREATE TABLE `studentshiftrequests` (
+  `EventID` int(12) NOT NULL,
+  `StudentID` int(12) NOT NULL,
+  `ShiftID` int(12) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `studentshiftrequests`
+--
+
+INSERT INTO `studentshiftrequests` (`EventID`, `StudentID`, `ShiftID`) VALUES
+(1, 123456, 1);
 
 --
 -- Indexes for dumped tables
@@ -195,19 +214,19 @@ ALTER TABLE `students`
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `EventID` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `EventID` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `positions`
 --
 ALTER TABLE `positions`
-  MODIFY `PositionID` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `PositionID` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `shifts`
 --
 ALTER TABLE `shifts`
-  MODIFY `ShiftID` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `ShiftID` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
