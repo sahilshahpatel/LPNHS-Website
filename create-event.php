@@ -34,7 +34,7 @@
             width: 12.5%;
         }
         input{
-            width: 250px;
+            width: 275px;
             line-height: 2em;
         }
     </style>

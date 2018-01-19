@@ -2,6 +2,7 @@
 <?php
     session_start();
     include "database.php";
+    include "adminCheck.php";
 ?>
 <html>
 <head>
@@ -63,6 +64,7 @@
         <div id = "mainPanel" class = "classic panel">
             <p style = "text-align: center;">Edit Event</p>
                  <table id = "upcomingEventsTable" style="width:100%;">
+                 
                         <?php 
                         $sql = "SELECT * FROM events";
                         $stmt = $pdo->prepare($sql);
@@ -71,12 +73,13 @@
                         $eventCount = $stmt->rowCount();
                         $eventIDs = array();
                         array_push($eventIDs, $stmt->fetchAll(PDO::FETCH_COLUMN, 0));
+                        echo '<form method = "post" action = "edit-eventpg1.php">';
                         echo '<p colspan="3" id = "tableheader">Upcoming Events</p>';
                         echo '<tr>
                             <th>Event Name</th>
                             <th>Date</th>
                             <th>Location</th>
-                            <th>Submit Changes</th>
+                            <th>Edit</th>
 				            <th>Remove</th>
                             </tr>';
                         for($i = 0; $i<$eventCount; $i++){
@@ -87,10 +90,13 @@
                             $data = $stmt->fetchAll();
                 
                             if(count($data)>0){
+                                echo '<input name = "eventID[', $i,']" type = "hidden" value = "', $data[0][0],'">';
                                 echo '<tr>';
                                 echo '<td title =', $data[0][2] ,'>', $data[0][1], '</td>';
                                 echo '<td>', $data[0][3], ' to ', $data[0][4], '</td>';
                                 echo '<td><a href="https://www.maps.google.com/maps/search/?api=1&query=', str_replace(" ", "+", $data[0][5]),'+IL" target = "_blank">', $data[0][5], '</a></td>';
+                                echo '<td><input name = "edit[', $i,']" value = "Edit" class = "classicColor" type = "submit"></td>';
+					            echo '<td><input name = "remove[', $i,']" value = "Remove" class = "classicColor" type = "submit" onclick="return confirm(\'Are you sure?\')" style = "margin-right: 0px; background-color:red"></td>';
                                 echo '</tr>';
                             }
                         } 
@@ -103,7 +109,7 @@
                             <th>Event Name</th>
                             <th>Date</th>
                             <th>Location</th>
-                            <th>Submit Changes</th>
+                            <th>Edit</th>
 				            <th>Remove</th>
                             </tr>';
                         for($i = 0; $i<$eventCount; $i++){
@@ -118,8 +124,11 @@
                                 echo '<td title =', $data[0][2] ,'>', $data[0][1], '</td>';
                                 echo '<td>', $data[0][3], ' to ', $data[0][4], '</td>';
                                 echo '<td><a href="https://www.maps.google.com/maps/search/?api=1&query=', str_replace(" ", "+", $data[0][5]),'+IL" target = "_blank">', $data[0][5], '</a></td>';
+                                echo '<td><input name = "edit[', $i,']" value = "Edit" class = "classicColor" type = "submit"></td>';
+					            echo '<td><input name = "remove[', $i,']" value = "Remove" class = "classicColor" type = "submit" onclick="return confirm(\'Are you sure?\')" style = "margin-right: 0px; background-color:red"></td>';
                                 echo '</tr>';
                             }
+                            echo '</form>';
                         }?>
                     </table>
         </div>
