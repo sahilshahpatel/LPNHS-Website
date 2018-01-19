@@ -43,7 +43,7 @@
         for($i = 0;$i<(int)$_GET["shifts"];$i++){
             $sql = "INSERT INTO `shifts`(`Date`, `StartTime`, `EndTime`, `PositionsAvailable`, `EventID`) VALUES (:date, :starttime, :endtime, :positionsavailable, :eventid)";
             $stmt = $pdo->prepare($sql);
-            $stmt->execute(["date" => $date[$i], "starttime" => $starttime[$i], "endtime" => $endtime[$i], "positionsavailable" => $positionsavailable[$i], "eventid" => $eventID[$i]]); //order of arrays corresponds order of ?
+            $stmt->execute(["date" => $date[$i], "starttime" => $starttime[$i], "endtime" => $endtime[$i], "positionsavailable" => $positionsavailable[$i], "eventid" => $eventID]); //order of arrays corresponds order of ?
         
             $sql = "SELECT * FROM `shifts` WHERE EventID=:eventID AND Date=:date AND StartTime=:starttime AND EndTime=:endtime";
             $stmt = $pdo->prepare($sql);
@@ -53,11 +53,12 @@
 
             $sql = "INSERT INTO `eventshift`(`EventID`, `ShiftID`) VALUES (:eventid, :shiftid)";
             $stmt = $pdo->prepare($sql);
-            $stmt->execute(["eventid" => $eventID[$i], "shiftid" => $shiftID]); //order of arrays corresponds order of ?
-
-            $sql = "INSERT INTO `positions`(`ShiftID`) VALUES (:shiftid)";
-            $stmt = $pdo->prepare($sql);
-            $stmt->execute(["shiftid" => $shiftID]); //order of arrays corresponds order of ?
+            $stmt->execute(["eventid" => $eventID, "shiftid" => $shiftID]); //order of arrays corresponds order of ?
+            for($j = 0;$j<$positionsavailable[$i];$j++){
+                $sql = "INSERT INTO `positions`(`ShiftID`) VALUES (:shiftid)";
+                $stmt = $pdo->prepare($sql);
+                $stmt->execute(["shiftid" => $shiftID]); //order of arrays corresponds order of ?
+            }
         }
     }
     else{

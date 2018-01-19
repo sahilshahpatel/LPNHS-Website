@@ -17,7 +17,6 @@
 <html>
 
 <head>
-    <title>NHS Test - Create Event</title>
     <!--jQuery-->
     <link rel = "stylesheet" href="baseCSS.css">
     <style>
@@ -41,11 +40,9 @@
         table tr:nth-child(even){
             background-color: #e8cfa4;
         }
-        #addUserTable th, td{
-            width: 12.5%;
-        }
         input{
-            max-width: 130px;
+            max-width: 250px;
+            line-height: 2em;
         }
     </style>
 
@@ -59,20 +56,19 @@
 <body>
     <!--Fixed Img in Background-->
     <img id = "fixedBGImg" src = "https://www.nhs.us/assets/images/nhs/NHS_header_logo.png">
-
+    <div id = "footerPusher">
     <div id = "mainPanel" class = "classic panel">
-        <p style = "text-align: center;">Create Event</p>
+        <p style = "text-align: center;">Create Event - Shifts</p>
         <div class="container">
         <div class="main">
-            <h2>PHP Multi Page Form</h2>
             <span id="error">
     
             </span><?php
-            echo '<form id="eventCreator" action="eventCreationPg3.php?shifts=',$shifts,'" method="post"><table style="width=100%;" class = "listing">';
+            echo '<form style="width:100%;" id="eventCreator" action="eventCreationPg3.php?shifts=',$shifts,'" method="post"><table style="width=100%;" class = "listing">';
                  for($i = 0; $i<$shifts;$i++){
                 echo    
                 
-                        '
+                        '<tr><td colspan=2><hr style="font-size:20px;"></td></tr>
                         <tr>
                             <td><label>Shift Date :<span>*</span></label></td>
                             <td><input name="date[',$i,']" type="date" placeholder="eg: 01/01/2018" required></td>
@@ -99,6 +95,7 @@
             </form>
         </div>
     </div>        </div>
+    </div>
 
 </body>
 

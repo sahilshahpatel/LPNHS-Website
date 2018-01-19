@@ -1,9 +1,7 @@
 <!DOCTYPE HTML>
-<?php 
+<?php
     session_start();
     include "database.php";
-    
-    include "adminCheck.php";
 ?>
 <html>
 <head>
@@ -15,17 +13,34 @@
     <!--Style Sheets-->
     <link rel="stylesheet" href="baseCSS.css">
     <style>
-        table{
-            width: 100%;
+        #eventsPanel{
+            padding: 0;
+        }
+        table tr:nth-child(even){
+            background-color: #e8cfa4;
+        }
+        #eventsPanel div{
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+        #tabs{
+            background-color: #e8cfa4; /*darkened moccasin*/
+        }
+        #tabs div{
+            display: inline-block;
+            margin: 0;
+            width: calc(50% - 2px);
+            background-color: #ffebcd; /*blanched almond*/
+        }
+        #mainPanel table th, td{
+            width: 33.33%;
+            font-family: Bookman, sans-serif;
+            font-size: 18px;
             text-align: center;
         }
-        #mainPanel{
-            padding: 10px;
-        }
-        table.positionTable{
-            border: solid 3px black;
-            width: auto; /*Override above 100% */
-            margin: 0 auto;
+        #tableheader{
+            font-size: 20px;
+        
         }
     </style>
     
@@ -47,66 +62,69 @@
         
         <div id = "mainPanel" class = "classic panel">
             <p style = "text-align: center;">Edit Event</p>
-            <table>
-                <thead>
-                    <td><p>Event Name</p></td>
-                    <td><p>Description</p></td>
-                    <td><p>Location</p></td>
-                    <td><p>Date Range</p></td>
-                </thead>
-                <tr>
-                    <td>
-                        <input id = "eventName" list = "eventNameList" placeholder = "Search for events here!">
-                        <datalist id = "eventNameList"><!--Options added in JavaScript--></datalist>
-                    </td>
-                    <td><input id = "description"></td>
-                    <td><input id = "location"></td>
-                    <td><input id = "startDate" type = "date"> <p style ="display:inline;">To</p> <input id = "endDate" type = "date"></td>
-                </tr>
-            </table>
-
-            <hr>
-            <table id = "shiftsTable">
-                <thead>
-                    <tr>
-                        <td><p style = "display:inline;" id = "shiftsTitle">Shifts</p></td>
-                        <td><p>Date</p></td>
-                        <td><p>Start Time</p></td>
-                        <td><p>End Time</p></td>
-                        <td><p>Positions</p></td>
-                    </tr>
-                </thead>
-                <tbody id = "shiftsTableBody"><!--TODO: make scrollable (had issue with table layout...)-->
-                    <!--Filled via JavaScript-->
-                </tbody>
-            </table>
-            
-            <!--Filled and Used in editEvent.js-->
-            <datalist id = "studentList"></datalist>
-
-            <button id = "submitButton" class = "classicColor" type = "button">Submit</button>
-            <button id = "deleteButton" class = "classicColor vanish" style = "background-color: red;" type = "button">Delete Event</button>
+                 <table id = "upcomingEventsTable" style="width:100%;">
+                        <?php 
+                        $sql = "SELECT * FROM events";
+                        $stmt = $pdo->prepare($sql);
+                        $stmt->execute();
+                    
+                        $eventCount = $stmt->rowCount();
+                        $eventIDs = array();
+                        array_push($eventIDs, $stmt->fetchAll(PDO::FETCH_COLUMN, 0));
+                        echo '<p colspan="3" id = "tableheader">Upcoming Events</p>';
+                        echo '<tr>
+                            <th>Event Name</th>
+                            <th>Date</th>
+                            <th>Location</th>
+                            <th>Submit Changes</th>
+				            <th>Remove</th>
+                            </tr>';
+                        for($i = 0; $i<$eventCount; $i++){
+                            $sql = "SELECT * FROM events WHERE EventID=:eventID AND EndDate >= NOW()";
+                            $stmt = $pdo->prepare($sql);
+                            $stmt->execute(["eventID" => $eventIDs[0][$i]]);
+                            $data = array();
+                            $data = $stmt->fetchAll();
+                
+                            if(count($data)>0){
+                                echo '<tr>';
+                                echo '<td title =', $data[0][2] ,'>', $data[0][1], '</td>';
+                                echo '<td>', $data[0][3], ' to ', $data[0][4], '</td>';
+                                echo '<td><a href="https://www.maps.google.com/maps/search/?api=1&query=', str_replace(" ", "+", $data[0][5]),'+IL" target = "_blank">', $data[0][5], '</a></td>';
+                                echo '</tr>';
+                            }
+                        } 
+                        
+                        echo '</table>
+                            <hr style="font-size:20px;">
+                            <p colspan="3" id = "tableheader">Event History</p>
+                            <table  id = "upcomingEventsTable" style="width:100%;">';
+                        echo '<tr>
+                            <th>Event Name</th>
+                            <th>Date</th>
+                            <th>Location</th>
+                            <th>Submit Changes</th>
+				            <th>Remove</th>
+                            </tr>';
+                        for($i = 0; $i<$eventCount; $i++){
+                            $sql = "SELECT * FROM events WHERE EventID=:eventID AND EndDate < NOW()";
+                            $stmt = $pdo->prepare($sql);
+                            $stmt->execute(["eventID" => $eventIDs[0][$i]]);
+                            $data = array();
+                            $data = $stmt->fetchAll();
+                
+                            if(count($data)>0){
+                                echo '<tr>';
+                                echo '<td title =', $data[0][2] ,'>', $data[0][1], '</td>';
+                                echo '<td>', $data[0][3], ' to ', $data[0][4], '</td>';
+                                echo '<td><a href="https://www.maps.google.com/maps/search/?api=1&query=', str_replace(" ", "+", $data[0][5]),'+IL" target = "_blank">', $data[0][5], '</a></td>';
+                                echo '</tr>';
+                            }
+                        }?>
+                    </table>
         </div>
     </div>
     <!--Included via JQuery-->
     <footer id = "footer"><?php include 'footer.php';?></footer>
-    
-    <!--Firebase.js
-    <script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
-    <script>
-        // Initialize Firebase
-        var config = {
-            apiKey: "AIzaSyByQW8Cyp9yAIMm5xCrNZqF-5kqJ-w6g-4",
-            authDomain: "nhs-project-test.firebaseapp.com",
-            databaseURL: "https://nhs-project-test.firebaseio.com",
-            projectId: "nhs-project-test",
-            storageBucket: "nhs-project-test.appspot.com",
-            messagingSenderId: "239221174231"
-        };
-        firebase.initializeApp(config);
-    </script>
-    <script src = "editEvent.js"></script>
-    <script src = requireAdminPermissions.js></script>
-	-->
 </body>
 </html>

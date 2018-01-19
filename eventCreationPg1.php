@@ -1,6 +1,5 @@
 <div class="container">
     <div class="main">
-        <h2 style = "font-size:32px;text-align:center;">Event Creation Page</h2>
         <span id="error">
         </span>
         <form id="eventCreator" action="eventCreationPg2.php" method="post">
@@ -10,8 +9,9 @@
                     <td><input name="name" type="text" placeholder="eg: Winter Marathon" required></td>
                 </tr>
                 <tr>
-                <td><label>Description :</label></td>
-                <td><input name="description" type="text" placeholder="eg: Serve water to the runners during the marathon"></td>
+                <td><label>Description :</label></td><td>
+                <!-- <td><input name="description" type="text" placeholder="eg: Serve water to the runners during the marathon"> -->
+                <textarea rows="4" cols="33" style="overflow:hidden" width="250" name="description" placeholder="eg: Serve water to the runners during the marathon" form="eventCreator"></textarea></td>
                 </tr>
                 <tr>
                 <td><label>Start Date :<span>*</span></label></td>
