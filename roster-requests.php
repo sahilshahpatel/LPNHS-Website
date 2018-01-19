@@ -49,7 +49,7 @@
             text-align: center;
         }
     </style>
-    <header id = "header"><?php include "header.php"; ?></header>
+    <header id = "header"><?php include 'header.php'; ?></header>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="headerJQuery.js"></script>
 </head>
@@ -75,11 +75,7 @@
 								<th>Register</th>
 							</tr>-->
 							<!--Load data-->                    
-							<script>
-								$(document).ready(function(){
-									$("#eventRequestsTable").load("rosterRequestsGetter.php");
-								});
-							</script>
+							<?php include "rosterRequestsGetter.php";?>
 						</table>
 					</form>
                 </div>
