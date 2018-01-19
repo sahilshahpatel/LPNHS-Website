@@ -16,7 +16,7 @@
 			$stmt->execute(['studentID' => $_POST['studentID'][$i], 'eventID' => $_POST['eventID'][$i]]);
 
 			//Add data to studentevent/shifts/positions tables
-			$sql = "INSERT INTO studentevents (StudentID, EventID) VALUES (:studentID, :eventID)";
+			$sql = "INSERT INTO studentevent (StudentID, EventID) VALUES (:studentID, :eventID)";
 			$stmt = $pdo->prepare($sql);
 			$stmt->execute(['studentID' => $_POST['studentID'][$i], 'eventID' => $_POST['eventID'][$i]]);
 

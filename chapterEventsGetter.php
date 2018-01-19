@@ -27,8 +27,6 @@
 			$data = array();
 			$data = $stmt->fetchAll();
 
-			echo '<input type = "hidden" name = "eventID" value = "', $eventIDs[0][$i],'">';
-
 			if(count($data)>0){
 				echo '<tr>';
 				echo '<td title =', $data[0][2] ,'>', $data[0][1], '</td>';
@@ -36,6 +34,7 @@
 				echo '<td><a href="https://www.maps.google.com/maps/search/?api=1&query=', str_replace(" ", "+", $data[0][5]),'+IL" target = "_blank">', $data[0][5], '</a></td>';
 				echo '<td><input type = "submit" name = "submit[', $i, ']" value = "View Shifts" class = "classicColor"></td>';
 				echo '</tr>';
+				echo '<input type = "hidden" name = "eventID" value = "', $eventIDs[0][$i],'">';
 			}
 		} 
 	}
