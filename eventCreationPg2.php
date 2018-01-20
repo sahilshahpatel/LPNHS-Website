@@ -41,7 +41,7 @@
             background-color: #e8cfa4;
         }
         input{
-            max-width: 250px;
+            max-width: 275px;
             line-height: 2em;
         }
     </style>
