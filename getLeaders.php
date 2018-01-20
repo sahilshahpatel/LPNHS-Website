@@ -2,7 +2,7 @@
     session_start();
     include "database.php";
 
-    $sql = "SELECT * FROM students";
+    $sql = "SELECT * FROM students WHERE NOT Position='Student'";
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
 
@@ -32,16 +32,14 @@
 				$stmt->execute(["studentID" => $studentIDs[0][$i]]);
 				$data = array();
 				$data = $stmt->fetchAll();
-				if($data[0][7]!=='Student'){
-					echo '<tr>';
-					echo '<td>', $data[0][1],' ',$data[0][2] ,'</td>';
-					echo '<td>', $data[0][3], '</td>';
-					echo '<td><input name = "position[', $i,']" type = "text" style = "margin-left: 0px; max-width: 90px;" value=', $data[0][7], '></td>';
-					echo '<td><input name = "hoursCompleted[', $i,']" type = "number" style = "max-width: 40px;" value=', $data[0][5], '></td>';
-					echo '<td><input name = "submit[', $i,']" value = "Submit" class = "classicColor" type = "submit"></td>';
-					echo '<td><input name = "remove[', $i,']" value = "Remove" class = "classicColor" type = "submit" onclick="return confirm(\'Are you sure?\')" style = "margin-right: 0px; background-color:red"></td>';
-					echo '</tr>';
-				}
+				echo '<tr>';
+				echo '<td>', $data[0][1],' ',$data[0][2] ,'</td>';
+				echo '<td>', $data[0][3], '</td>';
+				echo '<td><input name = "position[', $i,']" type = "text" style = "margin-left: 0px; max-width: 90px;" value=', $data[0][7], '></td>';
+				echo '<td><input name = "hoursCompleted[', $i,']" type = "number" style = "max-width: 40px;" value=', $data[0][5], '></td>';
+				echo '<td><input name = "submit[', $i,']" value = "Submit" class = "classicColor" type = "submit"></td>';
+				echo '<td><input name = "remove[', $i,']" value = "Remove" class = "classicColor" type = "submit" onclick="return confirm(\'Are you sure?\')" style = "margin-right: 0px; background-color:red"></td>';
+				echo '</tr>';
 			} 
 			
 		else:
