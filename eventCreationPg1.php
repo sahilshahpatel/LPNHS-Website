@@ -6,11 +6,11 @@
             <table style="width=100%;" class = "listing">
                 <tr>
                     <td><label>Event Name :<span>*</span></label></td>
-                    <td><input name="name" type="text" placeholder="eg: Winter Marathon" required></td>
+                    <td><input name="name" maxlength="32" type="text" placeholder="eg: Winter Marathon" required></td>
                 </tr>
                 <tr>
                 <td><label>Description :</label></td><td>
-                <textarea rows="4" cols="36" style="overflow:hidden" width="250" name="description" placeholder="eg: Serve water to the runners during the marathon" form="eventCreator"></textarea></td>
+                <textarea rows="4" cols="36" maxlength="128" style="overflow:hidden" width="250" name="description" placeholder="eg: Serve water to the runners during the marathon" form="eventCreator"></textarea></td>
                 </tr>
                 <tr>
                 <td><label>Start Date :<span>*</span></label></td>
@@ -22,11 +22,11 @@
                 </tr>
                 <tr>
                 <td><label>Location :<span>*</span></label></td>
-                <td><input name="location" type="text" placeholder="eg: George Washington Ave" required></td>
+                <td><input name="location" maxlength="32" type="text" placeholder="eg: George Washington Ave" required></td>
                 </tr>
                 <tr>
                 <td><label>Shifts :<span>*</span></label></td>
-                <td><input name="shifts" type="text" placeholder="eg: 4 Shifts" required></td>
+                <td><input name="shifts" type="text" maxlength="2" placeholder="eg: 4 Shifts" required></td>
                 </tr>
                 <tr>
                 <td></td>

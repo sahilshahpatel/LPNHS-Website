@@ -12,18 +12,18 @@
     $adminData = $stmt->fetchAll();
     
 	for($i = 0; $i<$adminCount; $i++){
-		if(isset($_POST["edit"][$i])){
+        if(isset($_POST["edit"][$i])){
 			$sql = "SELECT * FROM events WHERE EventID=:eventID";
             $stmt = $pdo->prepare($sql);
-            $stmt->execute(["eventID" => $_POST["eventID"][$i]]);
+            $stmt->execute(['eventID' => $_POST['eventID'][$i]]);
+            $thisEventID = $_POST['eventID'][$i];
             $data = array();
             $data = $stmt->fetchAll();
-            echo 'Im here',$i,"bah";
 		}
 		elseif(isset($_POST["remove"][$i])){
 			$sql = "DELETE FROM events WHERE EventID=:eventID";
 			$stmt = $pdo->prepare($sql);
-			$stmt->execute(["eventID" => $_POST["eventID"][$i]]);
+			$stmt->execute(['eventID' => $_POST['eventID'][$i]]);
 			header('Location:edit-event.php');
         }
         
@@ -45,7 +45,7 @@
             }
         input[type="date"]:before {
             content: attr(placeholder) !important;
-            color: #aaa;
+            color: #a9a9a9;
             margin-right: 0.5em;
         }
         input[type="date"]:focus:before,
@@ -86,6 +86,7 @@
     <div id = "footerPusher">
         <div id = "mainPanel" class = "classic panel">
             <p style = "text-align: center;">Edit Event - <?php echo $data[0][1];?></p>
+            <p style = "text-align: center;">Only edit the fields you want to change</p>
             <div class="container">
                 <div class="main">
                     <span id="error">
@@ -94,28 +95,29 @@
                     echo'
                         <table style="width=100%;" class = "listing">
                             <tr>
+                            <input name = "eventID" type = "hidden" value = "',$thisEventID ,'">
                                 <td><label>Event Name :</label></td>
-                                <td><input name="name" type="text" placeholder=',$data[0][1],' required></td>
+                                <td><input name="name" maxlength="32" type="text" placeholder="Current: ',$data[0][1],'" ></td>
                             </tr>
                             <tr>
                             <td><label>Description :</label></td><td>
-                            <textarea rows="4" cols="36" style="overflow:hidden" width="250" name="description" placeholder=',$data[0][2],' form="eventCreator"></textarea></td>
+                            <textarea rows="4" cols="36" maxlength="128" style="overflow:hidden" width="250" name="description" placeholder="Current: ',$data[0][2],'" form="eventCreator"></textarea></td>
                             </tr>
                             <tr>
                             <td><label>Start Date :</label></td>
-                            <td><input name="startdate" type="date" placeholder="From ',$data[0][3],' To" required></td>
+                            <td><input name="startdate" type="date" placeholder="Current:  ',$data[0][3],'" ></td>
                             </tr>
                             <tr>
                             <td><label>End Date :</label></td>
-                            <td><input name="enddate" type="date" placeholder="From ',$data[0][4],' To" required></td>
+                            <td><input name="enddate" type="date" placeholder="Current:  ',$data[0][4],'" ></td>
                             </tr>
                             <tr>
                             <td><label>Location :</label></td>
-                            <td><input name="location" type="text" placeholder=',$data[0][5],' required></td>
+                            <td><input name="location" maxlength="32" type="text" placeholder="Current: ',$data[0][5],'" ></td>
                             </tr>
                             <tr>
                             <td><label>Shifts :</label></td>
-                            <td><input name="shifts" type="text" placeholder=',$data[0][6],' required></td>
+                            <td><p style="font-size:18px;">',$data[0][6],' </p></td>
                             </tr>
                             <tr>
                             <td></td>

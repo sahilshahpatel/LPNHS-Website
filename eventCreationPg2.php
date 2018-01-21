@@ -83,7 +83,7 @@
                         </tr>
                         <tr>
                             <td><label>Positions Available :<span>*</span></label></td>
-                            <td><input name="positionsavailable[',$i,']" type="text" placeholder="eg: 5 postions" required></td>
+                            <td><input name="positionsavailable[',$i,']" maxlength="2" type="text" placeholder="eg: 5 postions" required></td>
                         </tr>';
 
                 }?>
