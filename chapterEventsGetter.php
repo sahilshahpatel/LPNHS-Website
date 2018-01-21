@@ -30,7 +30,8 @@
 			if(count($data)>0){
 				echo '<tr>';
 				echo '<td title ="', $data[0][2] ,'">', $data[0][1], '</td>';
-				echo '<td>', $data[0][3], ' to ', $data[0][4], '</td>';
+				if($data[0][3]===$data[0][4]){echo '<td>', $data[0][3], '</td>';}
+				else{echo '<td>', $data[0][3], ' to ', $data[0][4], '</td>';}
 				echo '<td><a href="https://www.maps.google.com/maps/search/?api=1&query=', str_replace(" ", "+", $data[0][5]),'+IL" target = "_blank">', $data[0][5], '</a></td>';
 				echo '<td><input type = "submit" name = "submit[', $i, ']" value = "View Shifts" class = "classicColor"></td>';
 				echo '</tr>';
@@ -49,7 +50,8 @@
 			if(count($data)>0){
 				echo '<tr>';
 				echo '<td title ="', $data[0][2] ,'">', $data[0][1], '</td>';
-				echo '<td>', $data[0][3], ' to ', $data[0][4], '</td>';
+				if($data[0][3]===$data[0][4]){echo '<td>', $data[0][3], '</td>';}
+				else{echo '<td>', $data[0][3], ' to ', $data[0][4], '</td>';}
 				echo '<td><a href="https://www.maps.google.com/maps/search/?api=1&query=', str_replace(" ", "+", $data[0][5]),'+IL" target = "_blank">', $data[0][5], '</a></td>';
 				echo '</tr>';
 			}
