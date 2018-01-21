@@ -42,10 +42,6 @@ CREATE TABLE `events` (
 -- Dumping data for table `events`
 --
 
-INSERT INTO `events` (`EventID`, `Name`, `Description`, `StartDate`, `EndDate`, `Location`, `Shifts`) VALUES
-(1, 'TestEvent', 'This is a description', '2017-12-27', '2017-12-27', '357 Erie Circle, Bloomingdale', 0),
-(2, 'Wheaton rally', 'this is  abetter decsfiptiosnsns', '2018-01-17', '2018-01-19', 'my house', 0),
-(3, 'Wheaton rally 2', 'the bestes drsciption', '2018-01-17', '2018-01-19', 'my house #2', 0);
 
 -- --------------------------------------------------------
 
@@ -62,13 +58,6 @@ CREATE TABLE `eventshift` (
 -- Dumping data for table `eventshift`
 --
 
-INSERT INTO `eventshift` (`EventID`, `ShiftID`) VALUES
-(1, 1),
-(1, 2),
-(5, 3),
-(8, 6),
-(8, 6),
-(8, 6);
 
 -- --------------------------------------------------------
 
@@ -86,9 +75,6 @@ CREATE TABLE `positions` (
 -- Dumping data for table `positions`
 --
 
-INSERT INTO `positions` (`PositionID`, `ShiftID`, `StudentID`) VALUES
-(1, 1, 123456),
-(2, 2, 654321);
 
 -- --------------------------------------------------------
 
@@ -109,9 +95,6 @@ CREATE TABLE `shifts` (
 -- Dumping data for table `shifts`
 --
 
-INSERT INTO `shifts` (`ShiftID`, `Date`, `StartTime`, `EndTime`, `PositionsAvailable`, `EventID`) VALUES
-(1, '2017-12-27', '12:00', '1:00', 1, 1),
-(2, '2017-12-27', '1:00', '2:00', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -128,11 +111,6 @@ CREATE TABLE `studentevent` (
 -- Dumping data for table `studentevent`
 --
 
-INSERT INTO `studentevent` (`StudentID`, `EventID`) VALUES
-(123456, 1),
-(123456, 1),
-(123456, 3),
-(654321, 2);
 
 -- --------------------------------------------------------
 
@@ -175,8 +153,6 @@ CREATE TABLE `studentshiftrequests` (
 -- Dumping data for table `studentshiftrequests`
 --
 
-INSERT INTO `studentshiftrequests` (`EventID`, `StudentID`, `ShiftID`) VALUES
-(1, 123456, 1);
 
 --
 -- Indexes for dumped tables

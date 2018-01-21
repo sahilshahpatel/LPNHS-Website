@@ -23,7 +23,36 @@
 		elseif(isset($_POST["remove"][$i])){
 			$sql = "DELETE FROM events WHERE EventID=:eventID";
 			$stmt = $pdo->prepare($sql);
+            $stmt->execute(['eventID' => $_POST['eventID'][$i]]);
+            
+            $sql = "DELETE FROM shifts WHERE EventID=:eventID";
+			$stmt = $pdo->prepare($sql);
+            $stmt->execute(['eventID' => $_POST['eventID'][$i]]);
+            
+            $sql = "SELECT shiftID FROM eventshift WHERE EventID=:eventID";
+			$stmt = $pdo->prepare($sql);
+            $stmt->execute(['eventID' => $_POST['eventID'][$i]]);
+            $shiftIDS = array();
+			$shiftIDS = $stmt->fetchAll();         
+
+            $sql = "DELETE FROM eventshift WHERE EventID=:eventID";
+			$stmt = $pdo->prepare($sql);
+            $stmt->execute(['eventID' => $_POST['eventID'][$i]]);
+            
+            for($i=0;$i<sizeof($shiftIDS);$i++){
+                $sql = "DELETE FROM positions WHERE ShiftID=:shiftID";
+                $stmt = $pdo->prepare($sql);
+                $stmt->execute(['shiftID' => $shiftIDS[$i][0]]);
+            } 
+            
+            $sql = "DELETE FROM studentevent WHERE EventID=:eventID";
+			$stmt = $pdo->prepare($sql);
+            $stmt->execute(['eventID' => $_POST['eventID'][$i]]);
+            
+            $sql = "DELETE FROM studentshiftrequests WHERE EventID=:eventID";
+			$stmt = $pdo->prepare($sql);
 			$stmt->execute(['eventID' => $_POST['eventID'][$i]]);
+
 			header('Location:edit-event.php');
         }
         
