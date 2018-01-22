@@ -96,8 +96,13 @@
         #addUserTable th, td{
             width: 12.5%;
         }
-        input{
-            width: 275px;
+        textarea, input {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            resize: vertical;
+            width: 50%;
+            -moz-transition: none 0s ease 0s;
             line-height: 2em;
         }
     </style>
@@ -130,7 +135,7 @@
                             </tr>
                             <tr>
                             <td><label>Description :</label></td><td>
-                            <textarea rows="4" cols="36" maxlength="128" style="overflow:hidden" width="250" name="description" placeholder="Current: ',$data[0][2],'" form="eventCreator"></textarea></td>
+                            <textarea rows="4" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" cols="36" maxlength="128" style="overflow:hidden" width="250" name="description" placeholder="Current: ',$data[0][2],'" form="eventCreator"></textarea></td>
                             </tr>
                             <tr>
                             <td><label>Start Date :</label></td>

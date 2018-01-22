@@ -33,8 +33,13 @@
         #addUserTable th, td{
             width: 12.5%;
         }
-        input{
-            width: 275px;
+        textarea, input {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            resize: vertical;
+            width: 50%;
+            -moz-transition: none 0s ease 0s;
             line-height: 2em;
         }
     </style>

@@ -2,6 +2,12 @@
 <?php 
     session_start();
     include "database.php";
+    $sql = "SELECT * FROM sitecontent WHERE ID=:id";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute(["id" => 1]);
+    $sc = $stmt->fetch(PDO::FETCH_OBJ);
+    $aboutus = $sc->aboutUs;
+    $attention = $sc->attention;
 ?>
 <html>
 <head>
@@ -41,12 +47,12 @@
 		<!--Home Page Panels-->
 		<div id = "importantInfo" class = "urgent panel">
 			<p class = "urgentText">Attention:</p>
-			<p class = "urgentText">*IMPORTANT INFO HERE*</p>
+			<p class = "urgentText"><?php $attention ?></p>
 		</div>
 
 		<div id = "aboutUs" class = "classic panel">
 			<p>About Us...</p>
-			<p>*CONTENT*</p>
+			<p><?php $aboutus ?></p>
 		</div>
 	</div>
 </body>

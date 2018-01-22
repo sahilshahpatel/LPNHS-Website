@@ -40,8 +40,13 @@
         table tr:nth-child(even){
             background-color: #e8cfa4;
         }
-        input{
-            max-width: 275px;
+        textarea, input {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            resize: vertical;
+            width: 50%;
+            -moz-transition: none 0s ease 0s;
             line-height: 2em;
         }
     </style>

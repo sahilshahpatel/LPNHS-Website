@@ -48,6 +48,14 @@
             font-size: 18px;
             text-align: center;
         }
+        textarea, input {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            resize: vertical;
+            width: 80%;
+            -moz-transition: none 0s ease 0s
+        }
     </style>
     <header id = "header"><?php include "header.php"; ?></header>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>

@@ -10,7 +10,7 @@
                 </tr>
                 <tr>
                 <td><label>Description :</label></td><td>
-                <textarea rows="4" cols="36" maxlength="128" style="overflow:hidden" width="250" name="description" placeholder="eg: Serve water to the runners during the marathon" form="eventCreator"></textarea></td>
+                <textarea rows="4" cols="36" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" maxlength="128" style="overflow:hidden" width="250" name="description" placeholder="eg: Serve water to the runners during the marathon" form="eventCreator"></textarea></td>
                 </tr>
                 <tr>
                 <td><label>Start Date :<span>*</span></label></td>
