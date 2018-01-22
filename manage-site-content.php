@@ -108,9 +108,9 @@
                     <table>
                        
                         <tr><td><p style="text-align: center;">Alert</p></td></tr>
-                        <tr><td><textarea id="alert" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" rows="6" cols="144" maxlength="512" style="overflow:hidden" name="alert" placeholder="<?php echo $attention;?>" form="siteUpdater"></textarea></tr>
+                        <tr><td><textarea id="alert" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" rows="6" cols="144" maxlength="512" style="overflow:hidden" name="alert" placeholder="<?php echo $attention;?>" form="siteUpdater"><?php echo $attention;?></textarea></tr>
                         <tr><td><p style="text-align: center;">About Us</p></td></tr>
-                        <tr><td><textarea id="aboutUsText" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" rows="10" cols="144" maxlength="512" style="overflow:hidden" name="aboutUsText" placeholder="<?php echo $aboutus;?>" form="siteUpdater"></textarea></td></tr>
+                        <tr><td><textarea id="aboutUsText" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" rows="10" cols="144" maxlength="512" style="overflow:hidden" name="aboutUsText" placeholder="<?php echo $aboutus;?>" form="siteUpdater"><?php echo $aboutus;?></textarea></td></tr>
                         <tr><td><button id = "indexSubmit"  type="submit" value = "Submit" class = "classicColor submit">Submit</button></td></tr>
                     </table>
                 </div>
@@ -119,9 +119,9 @@
                     <hr style="font-size:18px;">
                     <table>
                         <tr><td><p style="text-align: center;">What It Takes</p></td></tr>
-                        <tr><td><textarea id="whatItTakes" rows="20" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" cols="144" maxlength="512" style="overflow:hidden" name="whatItTakes" placeholder="<?php echo $whatittakes;?>" form="siteUpdater"></textarea></td></tr>
+                        <tr><td><textarea id="whatItTakes" rows="20" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" cols="144" maxlength="512" style="overflow:hidden" name="whatItTakes" placeholder="<?php echo $whatittakes;?>" form="siteUpdater"><?php echo $whatittakes;?></textarea></td></tr>
                         <tr><td><p style="text-align: center;">What It Takes Part Two</p></td></tr>
-                        <tr><td><textarea id="whatItTakesUnder" rows="12" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" cols="144" maxlength="512" style="overflow:hidden" name="whatItTakes" placeholder="<?php echo $whatittakesunder;?>" form="siteUpdater"></textarea></td></tr>
+                        <tr><td><textarea id="whatItTakesUnder" rows="12" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" cols="144" maxlength="512" style="overflow:hidden" name="whatItTakes" placeholder="<?php echo $whatittakesunder;?>" form="siteUpdater"><?php echo $whatittakesunder;?></textarea></td></tr>
                         <tr><td><button id = "whatItTakesSubmit"  type="submit" value = "Submit" class = "classicColor submit">Submit</button></td></tr>
                     </table>
                 </div>

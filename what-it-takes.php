@@ -84,7 +84,7 @@
                 <img src = "http://www.ispi.org/images/volunteer.png">
                 <p>Image Caption</p>
             </div>
-            <p><?php $whatittakes ?></p>
+            <p><?php echo $whatittakes; ?></p>
             <div id = "applicationRequirements" class = "classic">
                 <h2 style = "color: #005da3">Application Requirements</h2>
                 <ul>
@@ -92,7 +92,7 @@
                     <li>Req 2</li>
                 </ul>
             </div>
-            <p><?php $whatittakesunder ?></p>
+            <p><?php echo $whatittakesunder; ?></p>
         </div>
     </div>
     <!--Included via php-->
