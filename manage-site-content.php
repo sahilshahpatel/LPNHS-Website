@@ -103,23 +103,25 @@
             <img id = "fixedBGImg" src = "https://www.nhs.us/assets/images/nhs/NHS_header_logo.png">
             <form id="siteUpdater" action="siteUpdate.php" method="post">
                 <div id = "homePage" style="text-align: center;" class = "classic panel">
+                        <p class = "expander">Manage Home Page</p>
+                        <hr style="font-size:18px;">
                     <table>
-                        <tr><td><p class = "expander">Manage Home Page</p></td></tr>
-                        <tr><td><hr style="font-size:18px;"></td></tr>
+                       
                         <tr><td><p style="text-align: center;">Alert</p></td></tr>
-                        <tr><td><textarea id="alert" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" rows="6" cols="144" width="50%" maxlength="512" style="overflow:hidden" width="250" name="alert" placeholder="<?php $attention?>" form="eventCreator"></textarea></tr>
+                        <tr><td><textarea id="alert" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" rows="6" cols="144" maxlength="512" style="overflow:hidden" name="alert" placeholder="<?php echo $attention;?>" form="siteUpdater"></textarea></tr>
                         <tr><td><p style="text-align: center;">About Us</p></td></tr>
-                        <tr><td><textarea id="aboutUsText" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" rows="10" cols="144" maxlength="512" style="overflow:hidden" width="250" name="aboutUsText" placeholder="<?php $aboutus?>" form="eventCreator"></textarea></td></tr>
+                        <tr><td><textarea id="aboutUsText" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" rows="10" cols="144" maxlength="512" style="overflow:hidden" name="aboutUsText" placeholder="<?php echo $aboutus;?>" form="siteUpdater"></textarea></td></tr>
                         <tr><td><button id = "indexSubmit"  type="submit" value = "Submit" class = "classicColor submit">Submit</button></td></tr>
                     </table>
                 </div>
                 <div id = "whatItTakes" style="text-align: center;" class = "classic panel">
+                    <p class = "expander">Manage What It Takes Page</p>
+                    <hr style="font-size:18px;">
                     <table>
-                        <tr><td><p class = "expander">Manage What It Takes Page</p></td></tr>
-                        <tr><td><hr style="font-size:18px;"></td></tr>
                         <tr><td><p style="text-align: center;">What It Takes</p></td></tr>
-                        <tr><td><textarea id="whatItTakes" rows="20" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" cols="144" maxlength="512" style="overflow:hidden" width="250" name="whatItTakes" placeholder="<?php $whatittakes?>" form="eventCreator"></textarea></td></tr>
-                        <tr><td><textarea id="whatItTakesUnder" rows="12" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" cols="144" maxlength="512" style="overflow:hidden" width="250" name="whatItTakes" placeholder="<?php $whatittakesunder?>" form="eventCreator"></textarea></td></tr>
+                        <tr><td><textarea id="whatItTakes" rows="20" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" cols="144" maxlength="512" style="overflow:hidden" name="whatItTakes" placeholder="<?php echo $whatittakes;?>" form="siteUpdater"></textarea></td></tr>
+                        <tr><td><p style="text-align: center;">What It Takes Part Two</p></td></tr>
+                        <tr><td><textarea id="whatItTakesUnder" rows="12" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" cols="144" maxlength="512" style="overflow:hidden" name="whatItTakes" placeholder="<?php echo $whatittakesunder;?>" form="siteUpdater"></textarea></td></tr>
                         <tr><td><button id = "whatItTakesSubmit"  type="submit" value = "Submit" class = "classicColor submit">Submit</button></td></tr>
                     </table>
                 </div>

@@ -47,12 +47,12 @@
 		<!--Home Page Panels-->
 		<div id = "importantInfo" class = "urgent panel">
 			<p class = "urgentText">Attention:</p>
-			<p class = "urgentText"><?php $attention ?></p>
+			<p class = "urgentText"><?php echo $attention; ?></p>
 		</div>
 
 		<div id = "aboutUs" class = "classic panel">
 			<p>About Us...</p>
-			<p><?php $aboutus ?></p>
+			<p><?php echo $aboutus; ?></p>
 		</div>
 	</div>
 </body>

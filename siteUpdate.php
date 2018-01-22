@@ -9,11 +9,11 @@
             $stmt = $pdo->prepare($sql);
             $stmt->execute(["alert" => $_POST['alert'],"id" => 1]);
         }
-        if(!empty($_POST['aboutUs']))
+        if(!empty($_POST['aboutUsText']))
         {
             $sql = "UPDATE sitecontent SET aboutUs=:aboutUs WHERE ID=:id";
             $stmt = $pdo->prepare($sql);
-            $stmt->execute(["aboutUs" => $_POST['aboutUs'],"id" => 1]);
+            $stmt->execute(["aboutUs" => $_POST['aboutUsText'],"id" => 1]);
         }
         if(!empty($_POST['whatItTakes']))
         {
