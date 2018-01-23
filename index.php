@@ -45,11 +45,12 @@
 		</div>
     
 		<!--Home Page Panels-->
+        <?php if(trim($attention)!==""): ?>
 		<div id = "importantInfo" class = "urgent panel">
 			<p class = "urgentText">Attention:</p>
 			<p class = "urgentText"><?php echo $attention; ?></p>
 		</div>
-
+        <?php else: endif; ?>
 		<div id = "aboutUs" class = "classic panel">
 			<p>About Us...</p>
 			<p><?php echo $aboutus; ?></p>
