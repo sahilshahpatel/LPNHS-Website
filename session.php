@@ -5,7 +5,6 @@ session_start();
 //----------
     if(isset($_POST["email"])) {
         $useremail = $_POST["email"];
-       
     } 
     else
     echo 'operation banana failed';
@@ -35,13 +34,13 @@ session_start();
 
         echo "invalid username or password";
 
-    } else if($rowCount==1){ //if only 1 user returned
+    } else{ //if only 1 user returned
         //grab info from db
         $dbEmail = $user->Email;
-        $dbpass = $user->Password;
+        $dbpassHash =$user->PasswordHash;
         $studentID = $user->StudentID;        
 
-        if($useremail == $dbEmail && $userpassword == $dbpass) { 
+        if($useremail === $dbEmail && password_verify($userpassword, $dbpassHash)) { 
             $_SESSION["StudentID"] = $studentID;
             header('Location: index.php'); 
             echo ("You've reached the point you should move to a different website");
