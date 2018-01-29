@@ -43,7 +43,6 @@
             width: 100%;
         }
         #informationContainer div table th, td{
-            width: 33.33%;
             font-family: Bookman, sans-serif;
             font-size: 18px;
             text-align: center;

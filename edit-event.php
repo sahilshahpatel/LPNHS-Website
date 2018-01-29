@@ -34,7 +34,6 @@
             background-color: #ffebcd; /*blanched almond*/
         }
         #mainPanel table th, td{
-            width: 33.33%;
             font-family: Bookman, sans-serif;
             font-size: 18px;
             text-align: center;

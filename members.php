@@ -54,13 +54,6 @@
         <!--Fixed Img in Background-->
         <img id = "fixedBGImg" src = "https://www.nhs.us/assets/images/nhs/NHS_header_logo.png">
         
-        <div id = "addUserDiv" class = "classic panel vanish">
-            <p>Add User</p>
-            <div class = "scrollable">
-            <table id = "addUserTable"></table>
-            </div>
-        </div>
-        
         <div class = "classic panel">
             <p>Leadership</p>
             <div class = "scrollable">
@@ -128,22 +121,5 @@
     </div>
     <!--Included via JQuery-->
     <footer id = "footer"><?php include 'footer.php';?></footer>
-    
-    <!--Firebase.js
-    <script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
-    <script>
-        // Initialize Firebase
-        var config = {
-            apiKey: "AIzaSyByQW8Cyp9yAIMm5xCrNZqF-5kqJ-w6g-4",
-            authDomain: "nhs-project-test.firebaseapp.com",
-            databaseURL: "https://nhs-project-test.firebaseio.com",
-            projectId: "nhs-project-test",
-            storageBucket: "nhs-project-test.appspot.com",
-            messagingSenderId: "239221174231"
-        };
-        firebase.initializeApp(config);
-    </script>
-    <script src = "loadMembers.js"></script>
-	-->
 </body>
 </html>

@@ -55,7 +55,7 @@
             $stmt = $pdo->prepare($sql);
             $stmt->execute(["eventid" => $eventID, "shiftid" => $shiftID]); //order of arrays corresponds order of ?
             for($j = 0;$j<$positionsavailable[$i];$j++){
-                $sql = "INSERT INTO `positions`(`ShiftID`) VALUES (:shiftid)";
+                $sql = "INSERT INTO `positions`(`ShiftID`, `HoursConfirmed`) VALUES (:shiftid, 0)";
                 $stmt = $pdo->prepare($sql);
                 $stmt->execute(["shiftid" => $shiftID]); //order of arrays corresponds order of ?
             }

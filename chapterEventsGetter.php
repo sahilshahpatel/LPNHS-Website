@@ -21,7 +21,7 @@
 
 	if($_GET['history'] === "false"){
 		for($i = 0; $i<$eventCount; $i++){
-			$sql = "SELECT * FROM events WHERE EventID=:eventID AND EndDate >= NOW()";
+			$sql = "SELECT * FROM events WHERE EventID=:eventID AND EndDate >= CURDATE()";
 			$stmt = $pdo->prepare($sql);
 			$stmt->execute(["eventID" => $eventIDs[0][$i]]);
 			$data = array();
@@ -41,7 +41,7 @@
 	}
 	else{
 		for($i = 0; $i<$eventCount; $i++){
-			$sql = "SELECT * FROM events WHERE EventID=:eventID AND EndDate < NOW()";
+			$sql = "SELECT * FROM events WHERE EventID=:eventID AND EndDate < CURDATE()";
 			$stmt = $pdo->prepare($sql);
 			$stmt->execute(["eventID" => $eventIDs[0][$i]]);
 			$data = array();
