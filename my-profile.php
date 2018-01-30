@@ -75,14 +75,16 @@
         #informationContainer{
             padding: 10px;
         }
-        #informationContainer div table{
+        table{
             width: 100%;
         }
+		th, td{
+			font-family: Bookman, sans-serif;
+			font-size: 18px;
+            text-align: center;
+		}
         #informationContainer div table th, td{
             width: 33.33%;
-            font-family: Bookman, sans-serif;
-            font-size: 18px;
-            text-align: center;
         }
     </style>
     
@@ -125,20 +127,25 @@
 
 		<div class = "classic panel">
 			<p>My Information</p>
-			<div id = "ProfileDataDiv">
-				<!--View only data-->
-				<?php 
-					$sql = "SELECT * FROM students WHERE StudentID=:studentID";
-					$stmt = $pdo->prepare($sql);
-					$stmt->execute(["studentID" => $_SESSION["StudentID"]]);
-					$data = $stmt->fetch(PDO::FETCH_OBJ);
-				?>
-				<p>Name: </p><p id = "fullName"><?php echo $data->FirstName, ' ', $data->LastName;?></p>
-				<br/>
-				<p>Hours Worked: </p><p id = "hoursWorked"><?php echo $data->HoursCompleted;?></p>
-				<br/>
-				<p>Vice President: </p><p id = "vicePresident"><?php echo $data->VicePresident;?></p>
-			</div>
+			<!--View only data-->
+			<?php 
+				$sql = "SELECT * FROM students WHERE StudentID=:studentID";
+				$stmt = $pdo->prepare($sql);
+				$stmt->execute(["studentID" => $_SESSION["StudentID"]]);
+				$data = $stmt->fetch(PDO::FETCH_OBJ);
+			?>
+			<table id = "profileDataTable">
+				<tr>
+					<th>Name</th>
+					<th>Hours Worked</th>
+					<th>Vice President</th>
+				</tr>
+				<tr>
+					<td><?php echo $data->FirstName, ' ', $data->LastName;?></td>
+					<td><?php echo $data->HoursCompleted;?></td>
+					<td><?php echo $data->VicePresident;?></td>
+				</tr>
+			</table>
 		</div>
 
 		<div id = "eventsPanel" class = "classic panel">

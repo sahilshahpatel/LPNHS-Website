@@ -131,23 +131,23 @@
                             <tr>
                             <input name = "eventID" type = "hidden" value = "',$thisEventID ,'">
                                 <td><label>Event Name :</label></td>
-                                <td><input name="name" maxlength="32" type="text" placeholder="Current: ',$data[0][1],'" ></td>
+                                <td><input name="name" maxlength="32" type="text" value="',$data[0][1],'" ></td>
                             </tr>
                             <tr>
                             <td><label>Description :</label></td><td>
-                            <textarea rows="4" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" cols="36" maxlength="128" style="overflow:hidden" width="250" name="description" placeholder="Current: ',$data[0][2],'" form="eventCreator"></textarea></td>
+                            <textarea rows="4" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" cols="36" maxlength="128" style="overflow:hidden" width="250" name="description" form="eventCreator">', $data[0][2], '</textarea></td>
                             </tr>
                             <tr>
                             <td><label>Start Date :</label></td>
-                            <td><input name="startdate" type="date" placeholder="Current:  ',$data[0][3],'" ></td>
+                            <td><input name="startdate" type="date" value="',$data[0][3],'"></td>
                             </tr>
                             <tr>
                             <td><label>End Date :</label></td>
-                            <td><input name="enddate" type="date" placeholder="Current:  ',$data[0][4],'" ></td>
+                            <td><input name="enddate" type="date" value="',$data[0][4],'"></td>
                             </tr>
                             <tr>
                             <td><label>Location :</label></td>
-                            <td><input name="location" maxlength="32" type="text" placeholder="Current: ',$data[0][5],'" ></td>
+                            <td><input name="location" maxlength="32" type="text" value="',$data[0][5],'"></td>
                             </tr>
                             <tr>
                             <td><label>Shifts :</label></td>
