@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 29, 2018 at 01:24 AM
--- Server version: 10.1.28-MariaDB
--- PHP Version: 7.1.11
+-- Generation Time: Jan 30, 2018 at 02:36 AM
+-- Server version: 10.1.29-MariaDB
+-- PHP Version: 7.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -38,6 +38,13 @@ CREATE TABLE `events` (
   `Shifts` int(32) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `events`
+--
+
+INSERT INTO `events` (`EventID`, `Name`, `Description`, `StartDate`, `EndDate`, `Location`, `Shifts`) VALUES
+(2, 'Test Event', 'Testing hour confirmation', '2018-01-27', '2018-01-27', 'here', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -49,6 +56,13 @@ CREATE TABLE `eventshift` (
   `ShiftID` int(12) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `eventshift`
+--
+
+INSERT INTO `eventshift` (`EventID`, `ShiftID`) VALUES
+(2, 2);
+
 -- --------------------------------------------------------
 
 --
@@ -58,8 +72,17 @@ CREATE TABLE `eventshift` (
 CREATE TABLE `positions` (
   `PositionID` int(12) NOT NULL,
   `ShiftID` int(12) NOT NULL,
-  `StudentID` int(12) DEFAULT NULL
+  `StudentID` int(12) DEFAULT NULL,
+  `HoursConfirmed` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `positions`
+--
+
+INSERT INTO `positions` (`PositionID`, `ShiftID`, `StudentID`, `HoursConfirmed`) VALUES
+(3, 2, 123456, 1),
+(4, 2, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -70,11 +93,18 @@ CREATE TABLE `positions` (
 CREATE TABLE `shifts` (
   `ShiftID` int(12) NOT NULL,
   `Date` date NOT NULL,
-  `StartTime` varchar(12) NOT NULL,
-  `EndTime` varchar(12) NOT NULL,
+  `StartTime` time(4) NOT NULL,
+  `EndTime` time(4) NOT NULL,
   `PositionsAvailable` int(12) NOT NULL,
   `EventID` int(12) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `shifts`
+--
+
+INSERT INTO `shifts` (`ShiftID`, `Date`, `StartTime`, `EndTime`, `PositionsAvailable`, `EventID`) VALUES
+(2, '2018-01-27', '05:00:00.0000', '06:30:00.0000', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -108,6 +138,13 @@ CREATE TABLE `studentevent` (
   `EventID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `studentevent`
+--
+
+INSERT INTO `studentevent` (`StudentID`, `EventID`) VALUES
+(123456, 2);
+
 -- --------------------------------------------------------
 
 --
@@ -119,7 +156,7 @@ CREATE TABLE `students` (
   `FirstName` varchar(12) NOT NULL,
   `LastName` varchar(12) NOT NULL,
   `Email` varchar(32) NOT NULL,
-  `Password` varchar(32) NOT NULL,
+  `PasswordHash` varchar(255) NOT NULL,
   `HoursCompleted` float NOT NULL,
   `VicePresident` varchar(12) NOT NULL,
   `Position` varchar(16) NOT NULL
@@ -129,8 +166,8 @@ CREATE TABLE `students` (
 -- Dumping data for table `students`
 --
 
-INSERT INTO `students` (`StudentID`, `FirstName`, `LastName`, `Email`, `Password`, `HoursCompleted`, `VicePresident`, `Position`) VALUES
-(123456, 'Sahil', 'Patel', 'email@email.com', 'banana', 2, 'Miloni', 'Admin'),
+INSERT INTO `students` (`StudentID`, `FirstName`, `LastName`, `Email`, `PasswordHash`, `HoursCompleted`, `VicePresident`, `Position`) VALUES
+(123456, 'Sahil', 'Patel', 'email@email.com', '$2y$10$6ziHDtjv8GEJPAVdTJ/r..mJpZ/mDhpTsSM57aqWSlrSjW1EYv3sC', 5, 'Miloni', 'Admin'),
 (654321, 'Ben', 'Wagrez', 'email2@email.com', '', 3.5, 'Nic', 'Student');
 
 -- --------------------------------------------------------
@@ -187,19 +224,19 @@ ALTER TABLE `students`
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `EventID` int(12) NOT NULL AUTO_INCREMENT;
+  MODIFY `EventID` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `positions`
 --
 ALTER TABLE `positions`
-  MODIFY `PositionID` int(12) NOT NULL AUTO_INCREMENT;
+  MODIFY `PositionID` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `shifts`
 --
 ALTER TABLE `shifts`
-  MODIFY `ShiftID` int(12) NOT NULL AUTO_INCREMENT;
+  MODIFY `ShiftID` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
