@@ -11,7 +11,7 @@
 ?>
 <html>
 <head>
-    <title>NHS Test - Home</title>
+    <title>LPNHS - Home</title>
     
     <!--TODO: Icon-->
     

@@ -14,7 +14,7 @@
 ?>
 <html>
 <head>
-    <title>NHS Test - Manage Site Content</title>
+    <title>LPNHS - Manage Site Content</title>
     
     <!--TODO: Icon-->
     

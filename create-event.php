@@ -6,7 +6,7 @@
 ?>
 <html>
 <head>
-    <title>NHS Test - Create Event</title>
+    <title>LPNHS - Create Event</title>
     <!--jQuery-->
     <link rel = "stylesheet" href="baseCSS.css">
     <style>

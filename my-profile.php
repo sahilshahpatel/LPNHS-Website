@@ -7,7 +7,7 @@
 ?>
 <html>
 <head>
-    <title>NHS Test - My Profile</title>
+    <title>LPNHS - My Profile</title>
     
     <!--TODO: Icon-->
     

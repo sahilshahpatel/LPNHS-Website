@@ -5,7 +5,7 @@
 ?>
 <html>
     <head>
-    <title>NHS Test - Login</title>
+    <title>LPNHS - Login</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script src="headerJQuery.js"></script>
         <link rel="stylesheet" href="baseCSS.css">

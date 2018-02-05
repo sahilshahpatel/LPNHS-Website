@@ -6,7 +6,7 @@
 ?>
 <html>
 <head>
-    <title>NHS Test - Events</title>
+    <title>LPNHS - Events</title>
     
     <!--TODO: Icon-->
     
