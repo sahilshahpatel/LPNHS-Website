@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 30, 2018 at 02:36 AM
+-- Generation Time: Feb 05, 2018 at 05:14 AM
 -- Server version: 10.1.29-MariaDB
 -- PHP Version: 7.2.0
 
@@ -167,8 +167,8 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`StudentID`, `FirstName`, `LastName`, `Email`, `PasswordHash`, `HoursCompleted`, `VicePresident`, `Position`) VALUES
-(123456, 'Sahil', 'Patel', 'email@email.com', '$2y$10$6ziHDtjv8GEJPAVdTJ/r..mJpZ/mDhpTsSM57aqWSlrSjW1EYv3sC', 5, 'Miloni', 'Admin'),
-(654321, 'Ben', 'Wagrez', 'email2@email.com', '', 3.5, 'Nic', 'Student');
+(123456, 'Sahil', 'Patel', 'email@email.com', '$2y$10$TRpNkBJfdi0gk0u.YXR8sO/j92LlAXo05kJ/8oR.ZvkShdkcA451m', 5, 'Miloni', 'Admin'),
+(654321, 'Ben', 'Wagrez', 'email2@email.com', '$2y$10$T44pEYOXmU.nXNmXBIWkCeVFQhrsBvmUSauRoKgRJ4EQ8oh9Qz7tu', 3.5, 'Nic', 'Student');
 
 -- --------------------------------------------------------
 
