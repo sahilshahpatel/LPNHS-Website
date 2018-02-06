@@ -3,7 +3,7 @@
     session_start();
     include "database.php";
     include "adminCheck.php";
-    if(!empty($_POST['alert']))
+        if(isset($_POST['alert']))
         {
             $sql = "UPDATE sitecontent SET attention=:alert WHERE ID=:id";
             $stmt = $pdo->prepare($sql);

@@ -78,5 +78,8 @@
 				echo '</tr>';
 			}
 		}
+		else{
+			echo '<tr><td colspan = 7 style = "padding: 5px;">No student requests found</td></tr>';
+		}
 	}
 ?>

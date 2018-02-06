@@ -137,7 +137,7 @@
 			<table id = "profileDataTable">
 				<tr>
 					<th>Name</th>
-					<th>Hours Worked</th>
+					<th>Hours Volunteered</th>
 					<th>Vice President</th>
 				</tr>
 				<tr>

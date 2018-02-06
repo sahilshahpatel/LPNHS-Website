@@ -6,11 +6,9 @@ session_start();
     if(isset($_POST["email"])) {
         $useremail = $_POST["email"];
     } 
-    else
-    if(isset($_POST["password"])) {
+    if(isset($_POST['password'])) {
 
-        $userpassword = $_POST["password"];
- 
+        $userpassword = $_POST['password'];
     }
    
     
