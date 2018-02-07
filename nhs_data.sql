@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 05, 2018 at 05:14 AM
+-- Generation Time: Feb 07, 2018 at 04:14 AM
 -- Server version: 10.1.29-MariaDB
 -- PHP Version: 7.2.0
 
@@ -81,7 +81,7 @@ CREATE TABLE `positions` (
 --
 
 INSERT INTO `positions` (`PositionID`, `ShiftID`, `StudentID`, `HoursConfirmed`) VALUES
-(3, 2, 123456, 1),
+(3, 2, 123456, 0),
 (4, 2, NULL, 0);
 
 -- --------------------------------------------------------
@@ -93,8 +93,8 @@ INSERT INTO `positions` (`PositionID`, `ShiftID`, `StudentID`, `HoursConfirmed`)
 CREATE TABLE `shifts` (
   `ShiftID` int(12) NOT NULL,
   `Date` date NOT NULL,
-  `StartTime` time(4) NOT NULL,
-  `EndTime` time(4) NOT NULL,
+  `StartTime` time NOT NULL,
+  `EndTime` time NOT NULL,
   `PositionsAvailable` int(12) NOT NULL,
   `EventID` int(12) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -104,7 +104,7 @@ CREATE TABLE `shifts` (
 --
 
 INSERT INTO `shifts` (`ShiftID`, `Date`, `StartTime`, `EndTime`, `PositionsAvailable`, `EventID`) VALUES
-(2, '2018-01-27', '05:00:00.0000', '06:30:00.0000', 1, 2);
+(2, '2018-01-27', '05:00:00', '06:30:00', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -167,7 +167,9 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`StudentID`, `FirstName`, `LastName`, `Email`, `PasswordHash`, `HoursCompleted`, `VicePresident`, `Position`) VALUES
+(11111, 'Miloni', 'Shah', 'vp1@email.com', '', 0, 'Miloni', 'Vice President'),
 (123456, 'Sahil', 'Patel', 'email@email.com', '$2y$10$TRpNkBJfdi0gk0u.YXR8sO/j92LlAXo05kJ/8oR.ZvkShdkcA451m', 5, 'Miloni', 'Admin'),
+(222222, 'Nic', 'Conry', 'vp2@email.com', '', 0, 'Nic', 'Vice President'),
 (654321, 'Ben', 'Wagrez', 'email2@email.com', '$2y$10$T44pEYOXmU.nXNmXBIWkCeVFQhrsBvmUSauRoKgRJ4EQ8oh9Qz7tu', 3.5, 'Nic', 'Student');
 
 -- --------------------------------------------------------
@@ -224,19 +226,19 @@ ALTER TABLE `students`
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `EventID` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `EventID` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `positions`
 --
 ALTER TABLE `positions`
-  MODIFY `PositionID` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `PositionID` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `shifts`
 --
 ALTER TABLE `shifts`
-  MODIFY `ShiftID` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ShiftID` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
