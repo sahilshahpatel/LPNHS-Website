@@ -23,10 +23,18 @@
 				<th>Name</th>
 				<th>Email</th>
 				<th>Position</th>
+				<th>VP</th>
 				<th>Hours Completed</th>
 				<th>Submit Changes</th>
 				<th>Remove</th>
 				</tr>';
+
+			//Get list of all VPs
+			$sql = "SELECT * FROM students WHERE Position=:vp";
+			$stmt = $pdo->prepare($sql);
+			$stmt->execute(['vp'=>"Vice President"]);
+			$vpData = array();
+			$vpData = $stmt->fetchAll();
 			for($i = 0; $i<$studentCount; $i++){
 				$sql = "SELECT * FROM students WHERE StudentID=:studentID";
 				$stmt = $pdo->prepare($sql);
@@ -36,7 +44,32 @@
 				echo '<tr>';
 				echo '<td>', $data[0][1],' ',$data[0][2] ,'</td>';
 				echo '<td>', $data[0][3], '</td>';
-				echo '<td><input name = "position[', $i,']" type = "text" style = "margin-left: 0px; max-width: 90px;" value=', $data[0][7], '></td>';
+				
+				//Display list of positions
+				$positions = array("Admin", "Teacher", "President", "Vice President", "Student");
+				echo '<td><select name="position[', $i,']">';
+				foreach($positions as $p){
+					echo '<option ';
+					//set default value
+					if($data[0][7] === $p){
+						echo 'selected = "selected" ';
+					}
+					echo 'value = "', $p, '">', $p, '</option>';
+				}
+				unset($p);
+				echo '</select></td>';
+				
+				echo '<td><select name = "vicePresident[', $i, ']" form = "manageMembersForm">';
+				for($vp = 0; $vp<count($vpData); $vp++){
+					echo '<option ';
+					//set default value
+					if($vpData[$vp][1] === $data[0][6]){
+						echo 'selected = "selected" ';
+					}
+					echo 'value = "', $vpData[$vp][1], '">', $vpData[$vp][1], '</option>';
+				}
+				echo '</select></td>';
+
 				echo '<td><input name = "hoursCompleted[', $i,']" type = "number" style = "max-width: 40px;" value=', $data[0][5], '></td>';
 				echo '<td><input name = "submit[', $i,']" value = "Submit" class = "classicColor" type = "submit"></td>';
 				echo '<td><input name = "remove[', $i,']" value = "Remove" class = "classicColor" type = "submit" onclick="return confirm(\'Are you sure?\')" style = "margin-right: 0px; background-color:red"></td>';

@@ -59,7 +59,7 @@
             <div class = "scrollable">
 			<?php 
 				if(isset($_GET["manage"]) && htmlspecialchars($_GET["manage"])==="true"):
-				echo '<form method = "post" action = "updateLeaders.php">';
+				echo '<form id = "manageLeadersForm" method = "post" action = "updateLeaders.php">';
 				endif;
 			?>
             <table id = "leadership" class = "listing">
@@ -91,7 +91,7 @@
             <div class = "scrollable">
 			<?php 
 				if(isset($_GET["manage"]) && htmlspecialchars($_GET["manage"])==="true"):
-				echo '<form method = "post" action = "updateMembers.php">';
+				echo '<form id = "manageMembersForm" method = "post" action = "updateMembers.php">';
 				endif;
 			?>
             <table id = "students" class = "listing">
