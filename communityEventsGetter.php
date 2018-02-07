@@ -11,7 +11,7 @@
 
 
     for($i = 0; $i<$eventCount; $i++){
-        $sql = "SELECT * FROM events WHERE EventID=:eventID AND EndDate >= CURDATE()";
+        $sql = "SELECT * FROM events WHERE EventID=:eventID AND EndDate >= CURDATE() ORDER BY StartDate";
         $stmt = $pdo->prepare($sql);
         $stmt->execute(["eventID" => $eventIDs[0][$i]]);
         $data = array();

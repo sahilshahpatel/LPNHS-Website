@@ -1,7 +1,7 @@
 <?php
 	include "database.php";
 
-	$sql = "SELECT * FROM students WHERE NOT Position='Student'";
+	$sql = "SELECT * FROM students WHERE NOT Position='Student' ORDER BY Position, LastName, FirstName";
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute();
 	$adminCount = $stmt->rowCount();

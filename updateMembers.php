@@ -1,7 +1,7 @@
 <?php
 	include "database.php";
 
-	$sql = "SELECT * FROM students WHERE Position='Student'";
+	$sql = "SELECT * FROM students WHERE Position='Student' ORDER BY LastName, FirstName";
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute();
 	$studentCount = $stmt->rowCount();

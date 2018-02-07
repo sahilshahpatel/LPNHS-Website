@@ -2,7 +2,7 @@
     session_start();
     include "database.php";
 
-    $sql = "SELECT * FROM students WHERE Position='Student'";
+    $sql = "SELECT * FROM students WHERE Position='Student' ORDER BY LastName, FirstName";
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
 
@@ -29,12 +29,6 @@
 				<th>Remove</th>
 				</tr>';
 
-			//Get list of all VPs
-			$sql = "SELECT * FROM students WHERE Position=:vp";
-			$stmt = $pdo->prepare($sql);
-			$stmt->execute(['vp'=>"Vice President"]);
-			$vpData = array();
-			$vpData = $stmt->fetchAll();
 			for($i = 0; $i<$studentCount; $i++){
 				$sql = "SELECT * FROM students WHERE StudentID=:studentID";
 				$stmt = $pdo->prepare($sql);
@@ -46,7 +40,7 @@
 				echo '<td>', $data[0][3], '</td>';
 				
 				//Display list of positions
-				$positions = array("Admin", "Teacher", "President", "Vice President", "Student");
+				$positions = array("Admin", "President", "Vice President", "Student");
 				echo '<td><select name="position[', $i,']">';
 				foreach($positions as $p){
 					echo '<option ';
@@ -59,6 +53,12 @@
 				unset($p);
 				echo '</select></td>';
 				
+				//Get list of all VPs
+				$sql = "SELECT * FROM students WHERE Position=:vp";
+				$stmt = $pdo->prepare($sql);
+				$stmt->execute(['vp'=>"Vice President"]);
+				$vpData = array();
+				$vpData = $stmt->fetchAll();
 				echo '<td><select name = "vicePresident[', $i, ']" form = "manageMembersForm">';
 				for($vp = 0; $vp<count($vpData); $vp++){
 					echo '<option ';
