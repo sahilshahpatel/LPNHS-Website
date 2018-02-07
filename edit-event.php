@@ -71,6 +71,7 @@
         
         <div id = "mainPanel" class = "classic panel">
             <p style = "text-align: center;">Edit Event</p>
+			<hr>
             <form method = "post" action = "edit-eventpg1.php">
                  <table id = "upcomingEventsTable" style="width:100%;">
                  
@@ -111,7 +112,6 @@
                         } 
                         
                         echo '</table>
-                            <hr style="font-size:20px;">
                             <p colspan="3" id = "tableheader">Event History</p>
                             <table  id = "upcomingEventsTable" style="width:100%;">';
                         echo '<tr>
