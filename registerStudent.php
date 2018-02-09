@@ -27,6 +27,8 @@
 			$sql = "UPDATE positions SET StudentID =:studentID WHERE ShiftID =:shiftID AND StudentID IS NULL LIMIT 1";
 			$stmt = $pdo->prepare($sql);
 			$stmt->execute(['shiftID' => $_POST['shiftID'][$i], 'studentID' => $_POST['studentID'][$i]]);
+
+			setcookie("formSubmitConfirm", "Student registered", time()+3600);
 		}
 	}
 

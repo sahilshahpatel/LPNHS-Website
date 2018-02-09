@@ -49,9 +49,27 @@
             text-align: center;
         }
     </style>
-    <header id = "header"><?php include 'header.php'; ?></header>
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="headerJQuery.js"></script>
+
+	<?php
+	//Form Submission Confirmation
+	if(isset($_COOKIE['formSubmitConfirm'])):
+	?>
+		<script>
+		$(document).ready(function(){
+			$("#banner").animate({backgroundColor: '#00CC00'});
+			$("#banner").animate({backgroundColor: '#fff'});
+		});
+		</script>
+	<?php
+		$message = $_COOKIE['formSubmitConfirm'];
+		setcookie("formSubmitConfirm", "", time() - 3600); //delete cookie
+		endif;
+	?>
+
+	<header id = "header"><?php include 'header.php'; ?></header>
 </head>
     
 <body>

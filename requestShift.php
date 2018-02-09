@@ -19,6 +19,8 @@
 				$stmt = $pdo->prepare($sql);
 
 				$stmt->execute(['eventID' => $_POST['eventID'], 'studentID' => $_SESSION['StudentID'], 'shiftID' => $_POST['shiftID'][$l]]);
+
+				setcookie("formSubmitConfirm", "Shift requested", time()+3600);
 			}
 		}
 	}

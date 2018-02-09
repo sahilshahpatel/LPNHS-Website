@@ -56,6 +56,23 @@
     <!--Scripts-->
     <!--jQuery-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+	<script src="http://code.jquery.com/color/jquery.color.plus-names-2.1.2.min.js"	integrity="sha256-Wp3wC/dKYQ/dCOUD7VUXXp4neLI5t0uUEF1pg0dFnAE="	crossorigin="anonymous"></script>
+	<?php
+	//Form Submission Confirmation
+	if(isset($_COOKIE['formSubmitConfirm'])):
+	?>
+		<script>
+		$(document).ready(function(){
+			$("#banner").animate({backgroundColor: '#00CC00'});
+			$("#banner").animate({backgroundColor: '#fff'});
+		});
+		</script>
+	<?php
+		$message = $_COOKIE['formSubmitConfirm'];
+		setcookie("formSubmitConfirm", "", time() - 3600); //delete cookie
+		endif;
+	?>
 </head>
     
 	<!--Included via PHP-->

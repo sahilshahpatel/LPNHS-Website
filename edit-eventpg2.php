@@ -33,6 +33,7 @@
             $stmt = $pdo->prepare($sql);
             $stmt->execute(["description" => $_POST['description'], "eventID" => $_POST['eventID']]);
         }
+		setcookie("formSubmitConfirm", "Event edited", time()+3600);
         header("Location: edit-event.php");
     
 ?>

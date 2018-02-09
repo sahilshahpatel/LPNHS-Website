@@ -60,6 +60,7 @@
                 $stmt->execute(["shiftid" => $shiftID]); //order of arrays corresponds order of ?
             }
         }
+		setcookie("formSubmitConfirm", "Event Created", time()+3600);
     }
     else{
         setcookie("ERROR","Duplicate event detected.", time() + (86400 * 30), "/");

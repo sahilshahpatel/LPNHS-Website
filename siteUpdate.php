@@ -27,6 +27,8 @@
             $stmt = $pdo->prepare($sql);
             $stmt->execute(["whatItTakesUnder" => $_POST['whatItTakesUnder'],"id" => 1]);
         }
+
+		setcookie("formSubmitConfirm", "Site content updated", time()+3600);
         header("Location: manage-site-content.php");
     
 ?>

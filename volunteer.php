@@ -37,6 +37,16 @@
             text-align: center;
         }
     </style>
+
+	<?php
+	//Form Submission Confirmation
+	if(isset($_COOKIE['formSubmitConfirm'])){
+		$message = $_COOKIE['formSubmitConfirm'];
+		setcookie("formSubmitConfirm", "", time() - 3600); //delete cookie
+		echo '<script>alert("', $message, '")</script>';
+		}
+	?>
+
     <header id = "header"><?php include "header.php"; ?></header>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="headerJQuery.js"></script>

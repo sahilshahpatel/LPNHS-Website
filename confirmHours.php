@@ -26,7 +26,8 @@
 					$sql = "UPDATE students SET HoursCompleted = HoursCompleted + :hourTotal WHERE StudentID = :studentID";
 					$stmt = $pdo->prepare($sql);
 					$stmt->execute(['hourTotal' => $_POST['hourTotal'][$e][$p], 'studentID' => $_POST['studentID'][$e][$p]]);
-
+					
+					setcookie("formSubmitConfirm", "Student Volunteer Hours Confirmed", time()+3600);
 					header('location: hour-logs.php');
 				}
 			}
