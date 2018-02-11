@@ -2,7 +2,7 @@
 <?php 
     session_start();
     include "database.php";
-	if($_GET["manage"]==="true"){
+	if(isset($_GET["manage"]) && $_GET["manage"]==="true"){
 		include "adminCheck.php";
 	}
 ?>

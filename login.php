@@ -64,7 +64,7 @@
                     <p style = "font-size: 30px; text-decoration: underline;">Sign in</p>
                     <br/><br/>
                     <p>Email</p>
-                    <input id = "loginEmail" placeholder = "Email" type = "email" name = "email">
+                    <input id = "loginEmail" placeholder = "Email" type = "email" name = "email" autofocus>
                     <br/><br/>
                     <p>Password</p>
                     <input id = "loginPassword" placeholder = "Password" type = "password" name = "password">

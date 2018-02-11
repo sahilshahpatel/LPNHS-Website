@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 07, 2018 at 04:14 AM
+-- Generation Time: Feb 11, 2018 at 08:54 PM
 -- Server version: 10.1.29-MariaDB
 -- PHP Version: 7.2.0
 
@@ -43,7 +43,8 @@ CREATE TABLE `events` (
 --
 
 INSERT INTO `events` (`EventID`, `Name`, `Description`, `StartDate`, `EndDate`, `Location`, `Shifts`) VALUES
-(2, 'Test Event', 'Testing hour confirmation', '2018-01-27', '2018-01-27', 'here', 1);
+(2, 'Test Event', 'Testing hour confirmation', '2018-01-27', '2018-01-27', '600 Medinah Rd, Roselle, IL', 1),
+(3, 'Sign Up Test Event', 'Sign up for this event as part of the demo.', '2018-02-14', '2018-02-14', '500 W Bryn Mawr Ave, Roselle, IL', 1);
 
 -- --------------------------------------------------------
 
@@ -61,7 +62,8 @@ CREATE TABLE `eventshift` (
 --
 
 INSERT INTO `eventshift` (`EventID`, `ShiftID`) VALUES
-(2, 2);
+(2, 2),
+(3, 3);
 
 -- --------------------------------------------------------
 
@@ -82,7 +84,9 @@ CREATE TABLE `positions` (
 
 INSERT INTO `positions` (`PositionID`, `ShiftID`, `StudentID`, `HoursConfirmed`) VALUES
 (3, 2, 123456, 0),
-(4, 2, NULL, 0);
+(4, 2, NULL, 0),
+(5, 3, NULL, 0),
+(6, 3, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -104,7 +108,8 @@ CREATE TABLE `shifts` (
 --
 
 INSERT INTO `shifts` (`ShiftID`, `Date`, `StartTime`, `EndTime`, `PositionsAvailable`, `EventID`) VALUES
-(2, '2018-01-27', '05:00:00', '06:30:00', 1, 2);
+(2, '2018-01-27', '05:00:00', '06:30:00', 1, 2),
+(3, '2018-02-14', '04:00:00', '05:00:00', 2, 3);
 
 -- --------------------------------------------------------
 
@@ -125,7 +130,7 @@ CREATE TABLE `sitecontent` (
 --
 
 INSERT INTO `sitecontent` (`whatItTakes`, `whatItTakes2`, `attention`, `aboutUs`, `ID`) VALUES
-('NHS seeks out students who have a dedication to serving their community. \r\nCharacter is another category NHS pays attention to regarding candidates. A student with high character adheres to high standards of honesty, is courteous to others, and has a clean disciplinary record. Avoid people and situations where you might get in trouble. Things like recreational drug use and underage drinking look bad on an NHS application.\r\nYou cannot simply apply to NHS cold. A faculty member at your school must nominate yo', '', ' This is an Example Alert! Welome new NHS members! Visit The community Event Tab to see upcoming events and manage those you apply to!', 'This is an Example About Us! Here at NHS we recognize outstanding high school students. More than just an honor roll, NHS serves to recognize those students who have demonstrated excellence in the areas of scholarship, service, leadership, and character. These characteristics have been associated with membership in the organization since its beginning in 1921.', 1);
+('NHS seeks out students who have a dedication to serving their community. \r\nCharacter is another category NHS pays attention to regarding candidates. A student with high character adheres to high standards of honesty, is courteous to others, and has a clean disciplinary record. Avoid people and situations where you might get in trouble. Things like recreational drug use and underage drinking look bad on an NHS application.\r\nYou cannot simply apply to NHS cold. A faculty member at your school must nominate yo', '', 'This is an Example Alert! Welome new NHS members! Visit The community Event Tab to see upcoming events and manage those you apply to!', 'This is an Example About Us! Here at NHS we recognize outstanding high school students. More than just an honor roll, NHS serves to recognize those students who have demonstrated excellence in the areas of scholarship, service, leadership, and character. These characteristics have been associated with membership in the organization since its beginning in 1921.', 1);
 
 -- --------------------------------------------------------
 
@@ -167,6 +172,7 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`StudentID`, `FirstName`, `LastName`, `Email`, `PasswordHash`, `HoursCompleted`, `VicePresident`, `Position`) VALUES
+(0, 'Test', 'Student', 'test@email.com', '', 0, 'Nic', 'Student'),
 (11111, 'Miloni', 'Shah', 'vp1@email.com', '', 0, 'Miloni', 'Vice President'),
 (123456, 'Sahil', 'Patel', 'email@email.com', '$2y$10$TRpNkBJfdi0gk0u.YXR8sO/j92LlAXo05kJ/8oR.ZvkShdkcA451m', 5, 'Miloni', 'Admin'),
 (222222, 'Nic', 'Conry', 'vp2@email.com', '', 0, 'Nic', 'Vice President'),
@@ -226,7 +232,7 @@ ALTER TABLE `students`
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `EventID` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `EventID` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `positions`
@@ -238,7 +244,7 @@ ALTER TABLE `positions`
 -- AUTO_INCREMENT for table `shifts`
 --
 ALTER TABLE `shifts`
-  MODIFY `ShiftID` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ShiftID` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
