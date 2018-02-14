@@ -13,15 +13,15 @@
 		$stmt->execute(['eventID' => $eventData[$e][0]]);
 		$shiftData = $stmt->fetchAll();
 		for($s = 0; $s<count($shiftData); $s++){
-			$sql = "SELECT * FROM positions WHERE ShiftID = :shiftID AND HoursConfirmed = 0 AND StudentID = :studentID";
+			$sql = "SELECT * FROM positions WHERE ShiftID = :shiftID AND HoursConfirmed = 0 AND StudentID IS NOT NULL";
 			$stmt = $pdo->prepare($sql);
-			$stmt->execute(['shiftID' => $shiftData[$s][0], 'studentID' => $_POST['studentID'][$e][$p]]);
+			$stmt->execute(['shiftID' => $shiftData[$s][0]]);
 			$positionData = $stmt->fetchAll();
 			for($p = 0; $p<count($positionData); $p++){
 				if(isset($_POST['submit'][$e][$p])){
-					$sql = "UPDATE positions SET HoursConfirmed = 1 WHERE PositionID = :positionID";
+					$sql = "UPDATE positions SET HoursConfirmed = 1 WHERE PositionID = :positionID AND StudentID = :studentID";
 					$stmt = $pdo->prepare($sql);
-					$stmt->execute(['positionID' => $positionData[$p][0]]);
+					$stmt->execute(['positionID' => $positionData[$p][0], 'studentID' => $_POST['studentID'][$e][$p]]);
 
 					$sql = "UPDATE students SET HoursCompleted = HoursCompleted + :hourTotal WHERE StudentID = :studentID";
 					$stmt = $pdo->prepare($sql);

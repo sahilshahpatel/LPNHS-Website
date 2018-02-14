@@ -3,11 +3,17 @@
     session_start();
     include "database.php";
     include "adminCheck.php";
-    if(!empty($_POST['name']))
+		if(!empty($_POST['name']))
         {
             $sql = "UPDATE events SET Name=:name WHERE EventID=:eventID";
             $stmt = $pdo->prepare($sql);
             $stmt->execute(["name" => $_POST['name'], "eventID" => $_POST['eventID']]); 
+        }
+		if(!empty($_POST['releasedate']))
+        {
+            $sql = "UPDATE events SET ReleaseDate=:releasedate WHERE EventID=:eventID";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute(["releasedate" => $_POST['releasedate'], "eventID" => $_POST['eventID']]);
         }
         if(!empty($_POST['startdate']))
         {

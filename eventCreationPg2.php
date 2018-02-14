@@ -5,6 +5,7 @@
     include "adminCheck.php";
 
     if (empty($_POST['name'])
+	|| empty($_POST['releasedate'])
     || empty($_POST['startdate'])
     || empty($_POST['location'])
     || empty($_POST['enddate'])

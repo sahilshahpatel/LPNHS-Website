@@ -19,12 +19,16 @@
 	$eventData = $stmt->fetchAll();
 	$eventCount = $stmt->rowCount();
 
+	$requestsFound = false;
+
 	for($i = 0; $i<$eventCount; $i++){
 		$sql = "SELECT * FROM studentshiftrequests WHERE EventID=:eventID";
 		$stmt = $pdo->prepare($sql);
 		$stmt->execute(['eventID' => $eventData[$i][0]]);
 
 		if($stmt->rowCount() > 0){
+			$requestsFound = true;
+
 			$requestData = array();
 			$requestData = $stmt->fetchAll();
 
@@ -78,8 +82,8 @@
 				echo '</tr>';
 			}
 		}
-		else{
-			echo '<tr><td colspan = 7 style = "padding: 5px;">No student requests found</td></tr>';
-		}
+	}
+	if(!$requestsFound){
+		echo '<tr><td colspan = 7 style = "padding: 5px;">No student requests found</td></tr>';
 	}
 ?>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 11, 2018 at 08:54 PM
+-- Generation Time: Feb 14, 2018 at 11:42 PM
 -- Server version: 10.1.29-MariaDB
 -- PHP Version: 7.2.0
 
@@ -35,16 +35,18 @@ CREATE TABLE `events` (
   `StartDate` date NOT NULL,
   `EndDate` date NOT NULL,
   `Location` varchar(32) NOT NULL,
-  `Shifts` int(32) NOT NULL
+  `Shifts` int(32) NOT NULL,
+  `ReleaseDate` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `events`
 --
 
-INSERT INTO `events` (`EventID`, `Name`, `Description`, `StartDate`, `EndDate`, `Location`, `Shifts`) VALUES
-(2, 'Test Event', 'Testing hour confirmation', '2018-01-27', '2018-01-27', '600 Medinah Rd, Roselle, IL', 1),
-(3, 'Sign Up Test Event', 'Sign up for this event as part of the demo.', '2018-02-14', '2018-02-14', '500 W Bryn Mawr Ave, Roselle, IL', 1);
+INSERT INTO `events` (`EventID`, `Name`, `Description`, `StartDate`, `EndDate`, `Location`, `Shifts`, `ReleaseDate`) VALUES
+(2, 'Test Event', 'Testing hour confirmation', '2018-01-27', '2018-01-27', '600 Medinah Rd, Roselle, IL', 1, '2018-01-15'),
+(3, 'Sign Up Test Event', 'Sign up for this event as part of the demo.', '2018-02-14', '2018-02-14', '500 W Bryn Mawr Ave, Roselle, IL', 1, '2018-02-10'),
+(4, 'Release Date Test', '', '2018-02-16', '2018-02-16', 'location', 1, '2018-02-14');
 
 -- --------------------------------------------------------
 
@@ -63,7 +65,8 @@ CREATE TABLE `eventshift` (
 
 INSERT INTO `eventshift` (`EventID`, `ShiftID`) VALUES
 (2, 2),
-(3, 3);
+(3, 3),
+(4, 4);
 
 -- --------------------------------------------------------
 
@@ -83,10 +86,11 @@ CREATE TABLE `positions` (
 --
 
 INSERT INTO `positions` (`PositionID`, `ShiftID`, `StudentID`, `HoursConfirmed`) VALUES
-(3, 2, 123456, 0),
+(3, 2, 123456, 1),
 (4, 2, NULL, 0),
-(5, 3, NULL, 0),
-(6, 3, NULL, 0);
+(5, 3, 123456, 0),
+(6, 3, NULL, 0),
+(7, 4, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -109,7 +113,8 @@ CREATE TABLE `shifts` (
 
 INSERT INTO `shifts` (`ShiftID`, `Date`, `StartTime`, `EndTime`, `PositionsAvailable`, `EventID`) VALUES
 (2, '2018-01-27', '05:00:00', '06:30:00', 1, 2),
-(3, '2018-02-14', '04:00:00', '05:00:00', 2, 3);
+(3, '2018-02-14', '04:00:00', '05:00:00', 1, 3),
+(4, '2018-02-16', '01:00:00', '02:00:00', 1, 4);
 
 -- --------------------------------------------------------
 
@@ -148,7 +153,8 @@ CREATE TABLE `studentevent` (
 --
 
 INSERT INTO `studentevent` (`StudentID`, `EventID`) VALUES
-(123456, 2);
+(123456, 2),
+(123456, 3);
 
 -- --------------------------------------------------------
 
@@ -174,7 +180,7 @@ CREATE TABLE `students` (
 INSERT INTO `students` (`StudentID`, `FirstName`, `LastName`, `Email`, `PasswordHash`, `HoursCompleted`, `VicePresident`, `Position`) VALUES
 (0, 'Test', 'Student', 'test@email.com', '', 0, 'Nic', 'Student'),
 (11111, 'Miloni', 'Shah', 'vp1@email.com', '', 0, 'Miloni', 'Vice President'),
-(123456, 'Sahil', 'Patel', 'email@email.com', '$2y$10$TRpNkBJfdi0gk0u.YXR8sO/j92LlAXo05kJ/8oR.ZvkShdkcA451m', 5, 'Miloni', 'Admin'),
+(123456, 'Sahil', 'Patel', 'email@email.com', '$2y$10$TRpNkBJfdi0gk0u.YXR8sO/j92LlAXo05kJ/8oR.ZvkShdkcA451m', 6.5, 'Miloni', 'Admin'),
 (222222, 'Nic', 'Conry', 'vp2@email.com', '', 0, 'Nic', 'Vice President'),
 (654321, 'Ben', 'Wagrez', 'email2@email.com', '$2y$10$T44pEYOXmU.nXNmXBIWkCeVFQhrsBvmUSauRoKgRJ4EQ8oh9Qz7tu', 3.5, 'Nic', 'Student');
 
@@ -232,19 +238,19 @@ ALTER TABLE `students`
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `EventID` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `EventID` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `positions`
 --
 ALTER TABLE `positions`
-  MODIFY `PositionID` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `PositionID` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `shifts`
 --
 ALTER TABLE `shifts`
-  MODIFY `ShiftID` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ShiftID` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

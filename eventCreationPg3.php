@@ -30,9 +30,9 @@
     $stmt->execute(["eventName" => $enddate]); //order of arrays corresponds order of ?
     $eventEndDateSame = $stmt->rowCount();
     if($eventNameSame===0 || $eventStartDateSame ===0 ||$eventEndDateSame ===0){
-        $sql = "INSERT INTO `events`(`Name`, `Description`, `StartDate`,`EndDate`,`Location`,`Shifts`) VALUES (:name, :description, :startdate, :enddate, :location, :shifts)";
+        $sql = "INSERT INTO `events`(`Name`, `Description`, `StartDate`,`EndDate`,`Location`,`Shifts`, `ReleaseDate`) VALUES (:name, :description, :startdate, :enddate, :location, :shifts, :releasedate)";
         $stmt = $pdo->prepare($sql);
-        $stmt->execute(["name" => $name, "description" => $description, "startdate" => $startdate, "enddate" => $enddate, "location" => $location, "shifts" => $shifts]);
+        $stmt->execute(["name" => $name, "description" => $description, "startdate" => $startdate, "enddate" => $enddate, "location" => $location, "shifts" => $shifts, "releasedate" => $releasedate]);
 
         $sql = "SELECT * FROM events WHERE Name=:eventName";
         $stmt = $pdo->prepare($sql);

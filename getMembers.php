@@ -17,7 +17,7 @@
 		$stmt = $pdo->prepare($sql);
 		$stmt->execute(["studentID" => $_SESSION["StudentID"]]);
 		$data = $stmt->fetch(PDO::FETCH_OBJ);
-		if(isset($_GET["manage"]) && htmlspecialchars($_GET["manage"])==="true" && ($data->Position==="President" || $data->Position==="Teacher" || $data->Position==="Admin")):
+		if(isset($_GET["manage"]) && htmlspecialchars($_GET["manage"])==="true" && ($data->Position==="President" || $data->Position==="Advisor" || $data->Position==="Admin")):
 			//admin view
 			echo '<tr>
 				<th>Name</th>
@@ -40,7 +40,7 @@
 				echo '<td>', $data[0][3], '</td>';
 				
 				//Display list of positions
-				$positions = array("Admin", "President", "Vice President", "Student");
+				$positions = array("Admin", "Advisor", "President", "Vice President", "Student");
 				echo '<td><select name="position[', $i,']">';
 				foreach($positions as $p){
 					echo '<option ';
