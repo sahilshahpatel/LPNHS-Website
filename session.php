@@ -1,47 +1,49 @@
 <?php
-session_start();
-//----------
-//username needs to come from session
-//----------
-    if(isset($_POST["email"])) {
-        $useremail = $_POST["email"];
-    } 
-    if(isset($_POST['password'])) {
-
-        $userpassword = $_POST['password'];
-    }
-   
-    
-
+    session_start();
     include "database.php";
 
-    // $sql = "SELECT * FROM user WHERE username=:myUser";
-    // $stmt = $pdo->prepare($sql);
-    // $stmt->execute(["myUser" => $username]); //order of arrays corresponds order of ?
-    // $rows = $stmt->fetchAll(PDO::FETCH_OBJ);
+    // Checking previous input fields and assigning to variables
 
-    $sql = "SELECT * FROM students WHERE Email=:myEmail";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute(["myEmail" => $useremail]); //order of arrays corresponds order of ?
-    $user = $stmt->fetch(PDO::FETCH_OBJ);
+        if(isset($_POST["email"])) {
+            $useremail = $_POST["email"];
+        } 
+        if(isset($_POST['password'])) {
 
-    $rowCount = $stmt->rowCount();
-    //welcome to the hack
-    if ($rowCount != 1) { 
-
-        echo "invalid username or password";
-
-    } else{ //if only 1 user returned
-        //grab info from db
-        $dbEmail = $user->Email;
-        $dbpassHash =$user->PasswordHash;
-        $studentID = $user->StudentID;        
-
-        if($useremail === $dbEmail && password_verify($userpassword, $dbpassHash)) { 
-            $_SESSION["StudentID"] = $studentID;
-            header('Location: index.php'); 
-        } else{
-             echo "invalid username or password";
+            $userpassword = $_POST['password'];
         }
-    }
-     ?>
+   
+    // Pulling data from "students" where "Email" is the user inputed email
+
+        $sql = "SELECT * FROM students WHERE Email=:myEmail";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute(["myEmail" => $useremail]); 
+        $user = $stmt->fetch(PDO::FETCH_OBJ);
+        $rowCount = $stmt->rowCount();
+
+    // Checking if there is a user with same email, if not, invalid
+
+        if ($rowCount != 1) { 
+
+            setcookie("LOGINERROR","That Email is not registered.", time() + (86400 * 30), "/");
+            header("location: error.php");
+
+        } else{
+            // If the user is there grab information from the database
+            $dbEmail = $user->Email;
+            $dbpassHash =$user->PasswordHash;
+            $studentID = $user->StudentID;        
+
+            // Check if the password matches, if not, invalid
+
+                if($useremail === $dbEmail && password_verify($userpassword, $dbpassHash)) { 
+
+                    // If successfull, start SESSION with "StudentID"
+
+                        $_SESSION["StudentID"] = $studentID;
+                        header('Location: index.php'); 
+                } else{
+                    setcookie("LOGINERROR","Incorrect Password.", time() + (86400 * 30), "/");
+                    header("location: error.php");
+                }
+        }
+?>

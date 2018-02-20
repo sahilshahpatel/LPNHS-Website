@@ -5,76 +5,69 @@
 	include 'adminCheck.php';
 ?>
 <html>
-<head>
-    <title>LPNHS - Confirm Hours</title>
-    
-    <!--TODO: Icon-->
-    
-    
-    <!--Style Sheets-->
-    <link rel="stylesheet" href="baseCSS.css">
-    <style>
-        table{
-            width: 100%;
-            font-family: Bookman, sans-serif;
-            text-align: center;
-        }
-        table td{
-            padding: 5px 0;
-            margin: 0;
-        }
-        table tr:nth-child(even){
-            background-color: #e8cfa4;
-        }
-        #addUserTable th, td{
-            width: 12.5%;
-        }
-        input{
-            max-width: 130px;
-        }
-    </style>
-    
-    <!--Scripts-->
-    <!--jQuery-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="headerJQuery.js"></script>
+    <head>
 
-	<script src="http://code.jquery.com/color/jquery.color.plus-names-2.1.2.min.js"	integrity="sha256-Wp3wC/dKYQ/dCOUD7VUXXp4neLI5t0uUEF1pg0dFnAE="	crossorigin="anonymous"></script>
-	<?php
-	//Form Submission Confirmation
-	if(isset($_COOKIE['formSubmitConfirm'])):
-	?>
-		<script>
-		$(document).ready(function(){
-			$("#banner").animate({backgroundColor: '#00CC00'});
-			$("#banner").animate({backgroundColor: '#fff'});
-		});
-		</script>
-	<?php
-		$message = $_COOKIE['formSubmitConfirm'];
-		setcookie("formSubmitConfirm", "", time() - 3600); //delete cookie
-		endif;
-	?>
-</head>
-    
-	<!--Included via PHP-->
-<header id = "header"><?php include "header.php"; ?></header>
+        <title>LPNHS - Confirm Hours</title>
 
-<body>
-    <div id = "footerPusher">
+        <link rel="stylesheet" href="baseCSS.css">
+        <style>
+            table{
+                width: 100%;
+                font-family: Bookman, sans-serif;
+                text-align: center;
+            }
+            table td{
+                padding: 5px 0;
+                margin: 0;
+            }
+            table tr:nth-child(even){background-color: #e8cfa4;}
+            #addUserTable th, td{width: 12.5%;}
+            input{max-width: 130px;}
+        </style>
 
-        <!--Fixed Img in Background-->
-        <img id = "fixedBGImg" src = "https://www.nhs.us/assets/images/nhs/NHS_header_logo.png">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="headerJQuery.js"></script>
+        <script src="http://code.jquery.com/color/jquery.color.plus-names-2.1.2.min.js"	integrity="sha256-Wp3wC/dKYQ/dCOUD7VUXXp4neLI5t0uUEF1pg0dFnAE="	crossorigin="anonymous"></script>
         
-        <div class = "classic panel">
-            <div class = "scrollable">
-			<form method = "post" action = "confirmHours.php">
-				<?php include 'getHoursForConfirmation.php';?>
-			</form>
+        <?php
+
+            // Form Submission Confirmation
+
+                if(isset($_COOKIE['formSubmitConfirm'])):
+                ?>
+                    <script>
+                    $(document).ready(function(){
+                        $("#banner").animate({backgroundColor: '#00CC00'});
+                        $("#banner").animate({backgroundColor: '#fff'});
+                    });
+                    </script>
+                <?php
+                    $message = $_COOKIE['formSubmitConfirm'];
+                    setcookie("formSubmitConfirm", "", time() - 3600); // delete cookie
+                    endif;
+        ?>
+
+    </head>
+        
+    <header id = "header"><?php include "header.php"; ?></header>
+
+    <body>
+        <div id = "footerPusher">
+
+            <img id = "fixedBGImg" src = "https://www.nhs.us/assets/images/nhs/NHS_header_logo.png"> <!--Fixed Image in Background-->
+            
+            <div class = "classic panel">
+                <div class = "scrollable">
+                <!--Content to be loaded in PHP-->
+                <form method = "post" action = "confirmHours.php">
+                    <?php include 'getHoursForConfirmation.php';?>
+                </form>
+                </div>
             </div>
+
         </div>
-    </div>
-    <!--Included via JQuery-->
+    </body>
+
     <footer id = "footer"><?php include 'footer.php';?></footer>
-</body>
+
 </html>

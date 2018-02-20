@@ -3,6 +3,9 @@
     session_start();
     include "database.php";
     include "adminCheck.php";
+
+    // Checks input from previous fields, and then updates the corresponding data
+
         if(isset($_POST['alert']))
         {
             $sql = "UPDATE sitecontent SET attention=:alert WHERE ID=:id";
@@ -27,6 +30,8 @@
             $stmt = $pdo->prepare($sql);
             $stmt->execute(["whatItTakesUnder" => $_POST['whatItTakesUnder'],"id" => 1]);
         }
+
+    // Sets cookie for "formSubmitConfirm" and reroutes user to "manage-site-content.php"
 
 		setcookie("formSubmitConfirm", "Site content updated", time()+3600);
         header("Location: manage-site-content.php");

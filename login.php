@@ -5,13 +5,12 @@
 ?>
 <html>
     <head>
-    <title>LPNHS - Login</title>
+
+        <title>LPNHS - Login</title>
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script src="headerJQuery.js"></script>
         <link rel="stylesheet" href="baseCSS.css">
-
-        <header id = "header"><?php include "header.php"; ?></header>
-
         <style>
             body{
                 margin: 0px;
@@ -56,9 +55,16 @@
                 font-size: 24px;
             }
         </style>
+
     </head>
+
+    <header id = "header"><?php include "header.php"; ?></header>
+
     <body>
 		<div id = "footerPusher">
+
+            <img id = "fixedBGImg" src = "https://www.nhs.us/assets/images/nhs/NHS_header_logo.png"> <!--Fixed image in background-->
+
             <form id="login" class="form" action="session.php" method="post" style="height:350px;">
                 <div>
                     <p style = "font-size: 30px; text-decoration: underline;">Sign in</p>
@@ -76,7 +82,10 @@
                     <img id = "tester" style = "margin: auto;" src = "https://www.nhs.us/assets/images/nhs/NHS_header_logo.png">
                 </div>                
             </form>
+            
         </div>
     </body>
+
     <footer id = "footer"><?php include "footer.php"; ?></footer>
+
 </html>

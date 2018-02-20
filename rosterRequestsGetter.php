@@ -1,89 +1,113 @@
 <?php
     include "database.php";
 
-	echo '<tr>
-		<th>Event Name</th>
-		<th>Student Name</th>
-		<th>Total Confirmed Hours</th>
-        <th>Shift Date</th>
-		<th>Shift Time</th>
-		<th>Event Repetitions</th>
-		<th>Register</th>
-     </tr>';
+	// Displaying table header row in HTML elements
 
-	$sql = "SELECT * FROM events";
-	$stmt = $pdo->prepare($sql);
-	$stmt->execute();
+		echo '<tr>
+			  <th>Event Name</th>
+			  <th>Student Name</th>
+			  <th>Total Confirmed Hours</th>
+			  <th>Shift Date</th>
+			  <th>Shift Time</th>
+			  <th>Event Repetitions</th>
+			  <th>Register</th>
+		      </tr>';
 
-	$eventData = array();
-	$eventData = $stmt->fetchAll();
-	$eventCount = $stmt->rowCount();
+	// Pulling data from "events"
 
-	$requestsFound = false;
-
-	for($i = 0; $i<$eventCount; $i++){
-		$sql = "SELECT * FROM studentshiftrequests WHERE EventID=:eventID";
+		$sql = "SELECT * FROM events";
 		$stmt = $pdo->prepare($sql);
-		$stmt->execute(['eventID' => $eventData[$i][0]]);
+		$stmt->execute();
+		$eventData = array();
+		$eventData = $stmt->fetchAll();
+		$eventCount = $stmt->rowCount();
 
-		if($stmt->rowCount() > 0){
-			$requestsFound = true;
+	$requestsFound = false; // initializing variable for use
 
-			$requestData = array();
-			$requestData = $stmt->fetchAll();
+	// Looping for every event
 
-			for($q = 0; $q<count($requestData); $q++){
+		for($i = 0; $i<$eventCount; $i++){
 
-				$sql = "SELECT * FROM students WHERE StudentID=:studentID";
+			// Pulling from "studentshiftrequests"
+
+				$sql = "SELECT * FROM studentshiftrequests WHERE EventID=:eventID";
 				$stmt = $pdo->prepare($sql);
-				$stmt->execute(['studentID' => $requestData[0][1]]);
+				$stmt->execute(['eventID' => $eventData[$i][0]]);
 
-				$studentData = array();
-				$studentData = $stmt->fetchAll();
+			if($stmt->rowCount() > 0){
 
-				$sql = "SELECT * FROM shifts WHERE ShiftID=:shiftID";
-				$stmt = $pdo->prepare($sql);
-				$stmt->execute(['shiftID' => $requestData[0][2]]);
+				// If there is a request, set "requestsfound" to true and pull data
 
-				$shiftData = array();
-				$shiftData = $stmt->fetchAll();
+					$requestsFound = true;
+					$requestData = array();
+					$requestData = $stmt->fetchAll();
 
-				$sql = "SELECT * FROM events WHERE Name=:eventName";
-				$stmt = $pdo->prepare($sql);
-				$stmt->execute(['eventName' => $eventData[$i][1]]);
+				// Looping for the data in "requestData"
 
-				$sameEventsData = array();
-				$sameEventsData = $stmt->fetchAll();
-			
-				$repetitionCounter = 0;
+					for($q = 0; $q<count($requestData); $q++){
 
-				for($l = 0; $l<count($sameEventsData); $l++){
-					$sql = "SELECT * FROM studentevent WHERE EventID=:eventID AND StudentID=:studentID";
-					$stmt->execute(['eventID' => $sameEventsData[$l][0], 'studentID' => $studentData[$q][0]]);
-					$repetitionCounter += $stmt->rowCount();
-				}
+						// Pulling data from "students" that are in "requestData"
 
-			
+							$sql = "SELECT * FROM students WHERE StudentID=:studentID";
+							$stmt = $pdo->prepare($sql);
+							$stmt->execute(['studentID' => $requestData[0][1]]);
+							$studentData = array();
+							$studentData = $stmt->fetchAll();
 
-				echo '<tr>';
-			
-				//Hidden form info to be passed
-				echo '<input name = "studentID[', $i,']" type = "hidden" value = "', $studentData[$q][0],'">';
-				echo '<input name = "eventID[', $i,']" type = "hidden" value = "', $eventData[$i][0],'">';
-				echo '<input name = "shiftID[', $i,']" type = "hidden" value = "', $shiftData[$q][0],'">';
+						// Pulling data from "shifts" that are in "requestData"
 
-				echo '<td>', $eventData[$i][1], '</td>';
-				echo '<td>', $studentData[$q][1],' ', $studentData[$q][2], '</td>';
-				echo '<td>', $studentData[$q][5], '</td>';
-				echo '<td>', $shiftData[$q][1], '</td>';
-				echo '<td>', $shiftData[$q][2], ' to ', $shiftData[$q][3], '</td>';
-				echo '<td>', $repetitionCounter, '</td>';
-				echo '<td><input name = "submit[', $i,']" type = "image" src = "greenCheckMark.png" height = "30px" width = "30px" style = "margin-top: 5px;"></td>';
-				echo '</tr>';
+							$sql = "SELECT * FROM shifts WHERE ShiftID=:shiftID";
+							$stmt = $pdo->prepare($sql);
+							$stmt->execute(['shiftID' => $requestData[0][2]]);
+							$shiftData = array();
+							$shiftData = $stmt->fetchAll();
+
+						// Pulling data from "events" from which the request is from
+
+							$sql = "SELECT * FROM events WHERE Name=:eventName";
+							$stmt = $pdo->prepare($sql);
+							$stmt->execute(['eventName' => $eventData[$i][1]]);
+							$sameEventsData = array();
+							$sameEventsData = $stmt->fetchAll();
+					
+						$repetitionCounter = 0;// Initializing a variable for future use
+
+						// Looping for every event that that is the same that the user has done
+
+							for($l = 0; $l<count($sameEventsData); $l++){
+
+								// Pulling data from "studentevent" to see how many times the student has signed up for the same event
+
+									$sql = "SELECT * FROM studentevent WHERE EventID=:eventID AND StudentID=:studentID";
+									$stmt->execute(['eventID' => $sameEventsData[$l][0], 'studentID' => $studentData[$q][0]]);
+									$repetitionCounter += $stmt->rowCount();
+							}
+
+						// Display the data in HTML elements
+
+							echo '<tr>';
+						
+							// Hidden form info to be passed
+
+								echo '<input name = "studentID[', $i,']" type = "hidden" value = "', $studentData[$q][0],'">';
+								echo '<input name = "eventID[', $i,']" type = "hidden" value = "', $eventData[$i][0],'">';
+								echo '<input name = "shiftID[', $i,']" type = "hidden" value = "', $shiftData[$q][0],'">';
+
+							echo '<td>', $eventData[$i][1], '</td>';
+							echo '<td>', $studentData[$q][1],' ', $studentData[$q][2], '</td>';
+							echo '<td>', $studentData[$q][5], '</td>';
+							echo '<td>', $shiftData[$q][1], '</td>';
+							echo '<td>', $shiftData[$q][2], ' to ', $shiftData[$q][3], '</td>';
+							echo '<td>', $repetitionCounter, '</td>';
+							echo '<td><input name = "submit[', $i,']" type = "image" src = "greenCheckMark.png" height = "30px" width = "30px" style = "margin-top: 5px;"></td>';
+							echo '</tr>';
+					}
 			}
 		}
-	}
-	if(!$requestsFound){
-		echo '<tr><td colspan = 7 style = "padding: 5px;">No student requests found</td></tr>';
-	}
+
+		// If no requests are found
+
+			if(!$requestsFound){
+				echo '<tr><td colspan = 7 style = "padding: 5px;">No student requests found</td></tr>';
+			}
 ?>

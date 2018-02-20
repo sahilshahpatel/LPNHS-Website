@@ -1,4 +1,8 @@
+
+<!--This is PHP to be implemented into the page "create-event.php"-->
+
 <div class="container">
+
     <div class="main">
         <span id="error">
         </span>
@@ -39,4 +43,5 @@
             </table>
         </form>
     </div>
+
 </div>
