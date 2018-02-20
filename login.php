@@ -2,6 +2,15 @@
 <?php 
     session_start();
     include "database.php";
+
+    $loginError = false;
+
+    // Checking for error cookie
+
+        if(isset($_COOKIE['LOGINERROR'])) {
+            $loginError = true;
+        }
+
 ?>
 <html>
     <head>
@@ -68,7 +77,12 @@
             <form id="login" class="form" action="session.php" method="post" style="height:350px;">
                 <div>
                     <p style = "font-size: 30px; text-decoration: underline;">Sign in</p>
-                    <br/><br/>
+                    <br/>
+                    <?php 
+                        if($loginError){
+                            echo '<p style = "color: red; font-weight: bold;">Incorrect email or password</p>';
+                        }
+                    ?>
                     <p>Email</p>
                     <input id = "loginEmail" placeholder = "Email" type = "email" name = "email" autofocus>
                     <br/><br/>

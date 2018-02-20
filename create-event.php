@@ -62,6 +62,19 @@
                     setcookie("formSubmitConfirm", "", time() - 3600); // delete cookie
                     endif;
         ?>
+        <?php 
+                
+            // Checking for duplicate event
+
+                if(isset($_COOKIE['ERROR'])) 
+                {
+                    $Error = $_COOKIE['ERROR'];
+                    echo '<script>
+                        $(document).ready(function(){alert("', $Error,'");});
+                        </script>';
+                    setcookie("ERROR","", time() - (86400 * 30), "/");
+                }
+        ?>
     </head>
 
     <header id = "header"><?php include "header.php"; ?></header>
@@ -78,20 +91,6 @@
                 <?php include "eventCreationPg1.php"; ?> 
 
             </div>
-
-            <?php 
-                
-                // Checking for duplicate event
-
-                    if(isset($_COOKIE['ERROR'])) 
-                    {
-                        $Error = $_COOKIE['ERROR'];
-                        echo '<script>
-                            $(document).ready(function(){alert("', $Error,'");});
-                            </script>';
-                        setcookie("ERROR","", time() - (86400 * 30), "/");
-                    }
-            ?>
 
         </div>  
     </body>

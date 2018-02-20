@@ -24,8 +24,8 @@
 
         if ($rowCount != 1) { 
 
-            setcookie("LOGINERROR","That Email is not registered.", time() + (86400 * 30), "/");
-            header("location: error.php");
+            setcookie("LOGINERROR","error", time() + (86400 * 30), "/");
+            header("location: login.php");
 
         } else{
             // If the user is there grab information from the database
@@ -40,10 +40,11 @@
                     // If successfull, start SESSION with "StudentID"
 
                         $_SESSION["StudentID"] = $studentID;
+                        setcookie('LOGINERROR', '', time()-36000); //This isnt working...
                         header('Location: index.php'); 
                 } else{
-                    setcookie("LOGINERROR","Incorrect Password.", time() + (86400 * 30), "/");
-                    header("location: error.php");
+                    setcookie("LOGINERROR","error", time() + (86400 * 30), "/");
+                    header("location: login.php");
                 }
         }
 ?>
