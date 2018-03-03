@@ -24,13 +24,13 @@
 
         if ($rowCount != 1) { 
 
-            setcookie("LOGINERROR","error", time() + (86400 * 30), "/");
+            setcookie("LOGINERROR2","error", time() + (86400 * 30), "/");
             header("location: login.php");
+            $dbEmail = $user->Email;
+            $dbpassHash =$user->P;
 
         } else{
-            // If the user is there grab information from the database
-            $dbEmail = $user->Email;
-            $dbpassHash =$user->PasswordHash;
+            // If the user asswordHash;
             $studentID = $user->StudentID;        
 
             // Check if the password matches, if not, invalid
@@ -40,7 +40,6 @@
                     // If successfull, start SESSION with "StudentID"
 
                         $_SESSION["StudentID"] = $studentID;
-                        setcookie('LOGINERROR', '', time()-36000); //This isnt working...
                         header('Location: index.php'); 
                 } else{
                     setcookie("LOGINERROR","error", time() + (86400 * 30), "/");

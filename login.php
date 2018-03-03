@@ -8,6 +8,8 @@
     // Checking for error cookie
 
         if(isset($_COOKIE['LOGINERROR'])) {
+            setcookie("LOGINERROR", "", time()-3600);
+                echo "true";
             $loginError = true;
         }
 
@@ -84,10 +86,10 @@
                         }
                     ?>
                     <p>Email</p>
-                    <input id = "loginEmail" placeholder = "Email" type = "email" name = "email" autofocus>
+                    <input id = "loginEmail" placeholder = "Email" type = "email" name = "email" autofocus required>
                     <br/><br/>
                     <p>Password</p>
-                    <input id = "loginPassword" placeholder = "Password" type = "password" name = "password">
+                    <input id = "loginPassword" placeholder = "Password" type = "password" name = "password" required>
                     <br/>
                     <br/>
                     <button id = "loginButton" type = "submit" value="Log In">Sign In</button>
