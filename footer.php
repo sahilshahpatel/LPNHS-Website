@@ -2,4 +2,4 @@
     <p class = "footerText">Created by Sahil Patel and Ben Wagrez</p>
     
     <!--Notice that this page is UNOFFICIAL-->
-    <p style = "color: white;">***This website is UNOFFICIAL and is currently approved by neither Lake Park High School nor the Lake Park National Honor Society Chapter***</p>
+    <p style = "color: white;">***This website is UNOFFICIAL and is currently in development for the Lake Park National Honor Society Chapter***</p>

@@ -1,4 +1,8 @@
 //<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+// ^^^ use this line to call this script
+// This code is to be implemented in all pages as a script that makes header.php works
+
 $(document).ready(function(){
     //Sticky Nav (initial - prevents jump)
     $("#navBarWrapper").css("height", $("#navBar").height());
@@ -31,12 +35,4 @@ $(document).ready(function(){
     $("#headerLogoutButton").click(function () {
         window.location = "logout.php";
     });
-
-    //Log In dropdown (initial-hidden)
-    // $("#login").slideUp(1);
-    // $("#loginSlider").click(function(){
-    //     $("#login").css("visibility", "visible")
-    //     .stop()
-    //     .slideToggle(200);
-    //});
 });

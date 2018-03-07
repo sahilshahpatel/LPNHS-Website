@@ -9,7 +9,6 @@
 	$data = $stmt->fetch(PDO::FETCH_OBJ);
 
 	if($data->Position!=="Vice President"){
-		echo 'vp';
 		//Match President/Advisor/Admin query
 		$sql = "SELECT * FROM students WHERE NOT Position='Student' ORDER BY Position, LastName, FirstName";
 		$stmt = $pdo->prepare($sql);
@@ -26,7 +25,6 @@
 		$adminCount = $stmt->rowCount();
 		$adminData = array();
 		$adminData = $stmt->fetchAll();
-		echo 'vp';
 	}
 	for($i = 0; $i<$adminCount; $i++){
 		if(isset($_POST["submit"][$i])){
@@ -43,5 +41,4 @@
 			setcookie("formSubmitConfirm", "Leader account removed", time()+3600);
 			header('Location:members.php?manage=true');
 		}
-	}
 ?>

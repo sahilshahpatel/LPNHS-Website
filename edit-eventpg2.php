@@ -3,6 +3,9 @@
     session_start();
     include "database.php";
     include "adminCheck.php";
+
+    // Checking all previous entries for content and then updating the event
+
 		if(!empty($_POST['name']))
         {
             $sql = "UPDATE events SET Name=:name WHERE EventID=:eventID";
@@ -39,7 +42,10 @@
             $stmt = $pdo->prepare($sql);
             $stmt->execute(["description" => $_POST['description'], "eventID" => $_POST['eventID']]);
         }
-		setcookie("formSubmitConfirm", "Event edited", time()+3600);
+
+    // Setting cookie for Submit confirmation and rerouting user
+    
+        setcookie("formSubmitConfirm", "Event edited", time()+3600);
         header("Location: edit-event.php");
     
 ?>
