@@ -1,12 +1,33 @@
 <?php
 	include "database.php";
+	session_start();
 
-	$sql = "SELECT * FROM students WHERE NOT Position='Student' ORDER BY Position, LastName, FirstName";
+	//Get current users info
+	$sql = "SELECT * FROM students WHERE StudentID=:studentID";
 	$stmt = $pdo->prepare($sql);
-	$stmt->execute();
-	$adminCount = $stmt->rowCount();
-	$adminData = array();
-	$adminData = $stmt->fetchAll();
+	$stmt->execute(["studentID" => $_SESSION["StudentID"]]);
+	$data = $stmt->fetch(PDO::FETCH_OBJ);
+
+	if($data->Position!=="Vice President"){
+		echo 'vp';
+		//Match President/Advisor/Admin query
+		$sql = "SELECT * FROM students WHERE NOT Position='Student' ORDER BY Position, LastName, FirstName";
+		$stmt = $pdo->prepare($sql);
+		$stmt->execute();
+		$adminCount = $stmt->rowCount();
+		$adminData = array();
+		$adminData = $stmt->fetchAll();
+	}
+	else{
+		//Match VP query
+		$sql = "SELECT * FROM students WHERE VicePresident=:vpID AND NOT Position='Student' ORDER BY LastName, FirstName";
+		$stmt = $pdo->prepare($sql);
+		$stmt->execute(['vpID' => $_SESSION['StudentID']]);
+		$adminCount = $stmt->rowCount();
+		$adminData = array();
+		$adminData = $stmt->fetchAll();
+		echo 'vp';
+	}
 	for($i = 0; $i<$adminCount; $i++){
 		if(isset($_POST["submit"][$i])){
 			$sql = "UPDATE students SET HoursCompleted=:hrs, Position=:pos, VicePresident=:vp WHERE StudentID=:sID";
