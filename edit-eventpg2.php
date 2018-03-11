@@ -43,10 +43,10 @@
             $stmt->execute(["description" => $_POST['description'], "eventID" => $_POST['eventID']]);
         }
 
+        
     // Setting cookie for Submit confirmation and rerouting user
     
-        setcookie("formSubmitConfirm", "Event edited", time()+3600);
-        header("Location: edit-event.php");
+        header("Location: edit-event.php?formSubmitConfirm=true");
     
 ?>
 

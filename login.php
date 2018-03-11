@@ -7,11 +7,7 @@
 
     // Checking for error cookie
 
-        if(isset($_COOKIE['LOGINERROR'])) {
-            setcookie("LOGINERROR", "", time()-3600);
-                echo "true";
-            $loginError = true;
-        }
+        if(isset($_GET['login'])){$loginError = true;}
 
 ?>
 <html>
@@ -82,7 +78,7 @@
                     <br/>
                     <?php 
                         if($loginError){
-                            echo '<p style = "color: red; font-weight: bold;">Incorrect email or password</p>';
+                            echo '<p style = "color: red; font-weight: bold;font-size: 22px;">Incorrect email or password</p>';
                         }
                     ?>
                     <p>Email</p>

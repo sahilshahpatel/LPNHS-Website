@@ -40,7 +40,7 @@
 
     // Checking if duplicate event
 
-        if($eventNameSame===0 || $eventStartDateSame ===0 ||$eventEndDateSame ===0){
+        if($eventNameSame===0 || $eventStartDateSame ===0 || $eventEndDateSame ===0){
 
             // Inserting event into "events" with inputed data
 
@@ -91,18 +91,17 @@
 
             // Setting cookie for forSubmitConfirm
 
-                setcookie("formSubmitConfirm", "Event Created", time()+3600);
+                header("Location: create-event.php?formSubmitConfirm=true");
 
         }
         else{
             
             // Setting cookie for duplicate event
-                setcookie("ERROR","Duplicate event detected.", time() + (86400 * 30), "/");
 
+                header("Location: create-event.php?duplicate=true");
         }
 
     // Rerouting user to "create-event" page
 
         header("Location: create-event.php");
-
 ?>

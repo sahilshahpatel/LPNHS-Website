@@ -38,7 +38,7 @@
 
             // Form Submission Confirmation
 
-                if(isset($_COOKIE['formSubmitConfirm'])):
+                if(isset($_GET['formSubmitConfirm'])):
                 ?>
                     <script>
                     $(document).ready(function(){
@@ -47,22 +47,7 @@
                     });
                     </script>
                 <?php
-                    $message = $_COOKIE['formSubmitConfirm'];
-                    setcookie("formSubmitConfirm", "", time() - 3600); // delete cookie
                     endif;
-        ?>
-        <?php 
-                
-            // Checking for duplicate event
-
-                if(isset($_COOKIE['ERROR'])) 
-                {
-                    $Error = $_COOKIE['ERROR'];
-                    echo '<script>
-                        $(document).ready(function(){alert("', $Error,'");});
-                        </script>';
-                    setcookie("ERROR","", time() - (86400 * 30), "/");
-                }
         ?>
     </head>
         

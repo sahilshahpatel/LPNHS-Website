@@ -24,14 +24,14 @@
 
         if ($rowCount != 1) { 
 
-            setcookie("LOGINERROR2","error", time() + (86400 * 30), "/");
-            header("location: login.php");
-            $dbEmail = $user->Email;
-            $dbpassHash =$user->P;
+            header("location: login.php?login=invalid");
 
         } else{
             // If the user asswordHash;
             $studentID = $user->StudentID;        
+
+            $dbEmail = $user->Email;
+            $dbpassHash =$user->PasswordHash;
 
             // Check if the password matches, if not, invalid
 
@@ -42,8 +42,7 @@
                         $_SESSION["StudentID"] = $studentID;
                         header('Location: index.php'); 
                 } else{
-                    setcookie("LOGINERROR","error", time() + (86400 * 30), "/");
-                    header("location: login.php");
+                    header("location: login.php?login=invalid");
                 }
         }
 ?>
