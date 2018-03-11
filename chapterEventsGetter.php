@@ -30,12 +30,13 @@
 				$stmt->execute(["eventID" => $eventIDs[0][$i]]);
 				$data = array();
 				$data = $stmt->fetchAll();
-
+				$formatted_startDate = date('m/d/Y', strtotime($data[0][3]));
+				$formatted_endDate = date('m/d/Y', strtotime($data[0][4]));
 				if(count($data)>0){
 					echo '<tr>';
 					echo '<td title ="', $data[0][2] ,'">', $data[0][1], '</td>';
-					if($data[0][3]===$data[0][4]){echo '<td>', $data[0][3], '</td>';}
-					else{echo '<td>', $data[0][3], ' to ', $data[0][4], '</td>';}
+					if($data[0][3]===$data[0][4]){echo '<td>', $formatted_startDate, '</td>';}
+					else{echo '<td>', $formatted_startDate, ' to ', $formatted_endDate, '</td>';}
 					echo '<td><a href="https://www.maps.google.com/maps/search/?api=1&query=', str_replace(" ", "+", $data[0][5]),'+IL" target = "_blank">', $data[0][5], '</a></td>';
 					echo '<td><input type = "submit" name = "viewShifts[', $i, ']" value = "View Shifts" class = "classicColor"></td>';
 					echo '</tr>';
@@ -49,12 +50,13 @@
 				$stmt->execute(["eventID" => $eventIDs[0][$i]]);
 				$data = array();
 				$data = $stmt->fetchAll();
-
+				$formatted_startDate = date('m/d/Y', strtotime($data[0][3]));
+				$formatted_endDate = date('m/d/Y', strtotime($data[0][4]));
 				if(count($data)>0){
 					echo '<tr>';
 					echo '<td title ="', $data[0][2] ,'">', $data[0][1], '</td>';
-					if($data[0][3]===$data[0][4]){echo '<td>', $data[0][3], '</td>';}
-					else{echo '<td>', $data[0][3], ' to ', $data[0][4], '</td>';}
+					if($data[0][3]===$data[0][4]){echo '<td>', $formatted_startDate, '</td>';}
+					else{echo '<td>', $formatted_startDate, ' to ', $formatted_endDate, '</td>';}
 					echo '<td><a href="https://www.maps.google.com/maps/search/?api=1&query=', str_replace(" ", "+", $data[0][5]),'+IL" target = "_blank">', $data[0][5], '</a></td>';
 					echo '</tr>';
 				}
