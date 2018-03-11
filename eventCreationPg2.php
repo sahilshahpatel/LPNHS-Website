@@ -7,7 +7,6 @@
     // Checking if previous fields were all filled and then storing information into SESSION
 
         if (empty($_POST['name'])
-        || empty($_POST['releasedate'])
         || empty($_POST['startdate'])
         || empty($_POST['location'])
         || empty($_POST['enddate'])
@@ -46,16 +45,16 @@
                 -webkit-box-sizing: border-box;
                 -moz-box-sizing: border-box;
                 box-sizing: border-box;
-                resize: vertical;
+                resize: none;
                 width: 50%;
                 -moz-transition: none 0s ease 0s;
                 line-height: 2em;
             }
         </style>
-
+        
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script src="headerJQuery.js"></script>
-
+        
     </head>
 
     <header id = "header"><?php include "header.php"; ?></header>
@@ -71,7 +70,7 @@
                     <div class="main">
                         <!--Data to be put in through PHP-->
                         <?php
-                            echo '           <form style="width:100%;" id="eventCreator" action="eventCreationPg3.php?shifts=',$shifts,'" method="post"><table style="width=100%;" class = "listing">';
+                            echo '           <form style="width:100%;" autocomplete="off" id="eventCreator" action="eventCreationPg3.php?shifts=',$shifts,'" method="post"><table style="width=100%;" class = "listing">';
                                 
                             // Looping input fields for every shift in the event to add
 
@@ -81,15 +80,15 @@
                                             '<tr><td colspan=2><hr style="font-size:20px;"></td></tr>
                                             <tr>
                                                 <td><label>Shift Date :<span>*</span></label></td>
-                                                <td><input name="date[',$i,']" type="date" placeholder="eg: 01/01/2018" required></td>
+                                                <td><input name="date[',$i,']" type="date" value="',$_POST['startdate'],'" placeholder="eg: 01/01/2018" required></td>
                                             </tr>
                                             <tr>
                                                 <td><label>Start Time :<span>*</span></label></td>
-                                                <td><input name="starttime[',$i,']" type="text" placeholder="eg: 8:00 AM" required></td>
+                                                <td><input name="starttime[',$i,']" type="time" placeholder="eg: 8:00 AM" required></td>
                                             </tr>
                                             <tr>
                                                 <td><label>End Time :<span>*</span></label></td>
-                                                <td><input name="endtime[',$i,']" type="text" placeholder="eg: 5:00 PM" required></td>
+                                                <td><input name="endtime[',$i,']" type="time" placeholder="eg: 5:00 PM" required></td>
                                             </tr>
                                             <tr>
                                                 <td><label>Positions Available :<span>*</span></label></td>

@@ -113,7 +113,7 @@
                 -webkit-box-sizing: border-box;
                 -moz-box-sizing: border-box;
                 box-sizing: border-box;
-                resize: vertical;
+                resize: none;
                 width: 50%;
                 -moz-transition: none 0s ease 0s;
                 line-height: 2em;

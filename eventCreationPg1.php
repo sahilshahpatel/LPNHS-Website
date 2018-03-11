@@ -17,8 +17,8 @@
 					<td><textarea rows="4" cols="36" autocorrect="off" autocapitalize="off" spellcheck="false" maxlength="128" style="overflow:hidden" width="250" name="description" placeholder="eg: Serve water to the runners during the marathon" form="eventCreator"></textarea></td>
                 </tr>
 				<tr>
-					<td><label title = "Date when sign ups will be available">Release Date</label></td>
-					<td><input name="releasedate" type="date" placeholder="eg: 01/01/2018" required></td>
+					<td><label title = "Date when sign ups will be available - Leave blank to release immediately">Release Date</label></td>
+					<td><input name="releasedate" type="date" placeholder="eg: 01/01/2018"></td>
 				</tr>
                 <tr>
 					<td><label>Start Date :<span>*</span></label></td>
@@ -26,7 +26,7 @@
                 </tr>
                 <tr>
 					<td><label>End Date :<span>*</span></label></td>
-					<td><input name="enddate" onclick="autoCompleteDate()" id="endDate" type="date" placeholder="eg: 01/03/2018" required></td>
+					<td><input name="enddate" onfocus="autoCompleteDate();" id="endDate" type="date" placeholder="eg: 01/03/2018" required></td>
                 </tr>
                 <tr>
 					<td><label>Location :<span>*</span></label></td>
