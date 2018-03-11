@@ -104,17 +104,22 @@
 
             // Setting cookie for forSubmitConfirm
 
-                header("Location: create-event.php?formSubmitConfirm=true");
+                
 
         }
         else{
             
-            // Setting cookie for duplicate event
+            // Setting cookie for duplicate eventand resetting Session variables
 
+                $temp = $_SESSION['StudentID'];
+                session_unset();
+                $_SESSION['StudentID'] = $temp;
                 header("Location: create-event.php?duplicate=true");
         }
 
     // Rerouting user to "create-event" page
 
-        header("Location: create-event.php");}
-?>
+        $temp = $_SESSION['StudentID'];
+        session_unset();
+        $_SESSION['StudentID'] = $temp;
+        header("Location: create-event.php?formSubmitConfirm=true");}?>

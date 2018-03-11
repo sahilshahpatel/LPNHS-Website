@@ -84,7 +84,6 @@
                             // Looping input fields for every shift in the event to add for both error and non error session
 
                                 if($invalidshiftdate):
-                                    var_dump($_SESSION['dateErrors']);
                                     for($i = 0; $i<$shifts;$i++){
                                         echo    
                                         

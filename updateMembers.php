@@ -23,8 +23,7 @@
 						$sql = "UPDATE students SET HoursCompleted=:hrs, Position=:pos, VicePresident=:vp WHERE StudentID=:sID";
 						$stmt = $pdo->prepare($sql);
 						$stmt->execute(["hrs"=>$_POST["hoursCompleted"][$i], "pos"=>$_POST["position"][$i], "vp"=>$_POST['vicePresident'][$i], "sID" => $studentData[$i][0]]);
-						setcookie("formSubmitConfirm", "Student information updated", time()+3600);
-						header('Location:members.php?manage=true');
+						header('Location:members.php?manage=true&formSubmitConfirm=true');
 				}
 				else if(isset($_POST["remove"][$i])){
 					
@@ -34,7 +33,7 @@
 						$stmt = $pdo->prepare($sql);
 						$stmt->execute(["sID" => $studentData[$i][0]]);
 						setcookie("formSubmitConfirm", "Student account removed", time()+3600);
-						header('Location:members.php?manage=true');
+						header('Location:members.php?manage=true&formSubmitConfirm=true');
 				}
 		}
 ?>

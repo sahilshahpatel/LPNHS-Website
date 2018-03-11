@@ -47,7 +47,9 @@
 							$stmt->execute(['shiftID' => $shiftsList[$l][1]]);
 							$shiftData = array();
 							$shiftData = $stmt->fetchAll();
-
+							$formatted_startTime = date('g:i A', strtotime($shiftData[0][2]));
+							$formatted_endTime = date('g:i A', strtotime($shiftData[0][3]));
+							$formatted_date = date('m/d/Y', strtotime($shiftData[0][1]));
 						// Displaying the data for each shift
 
 							if(count($shiftData)>0){
@@ -58,8 +60,8 @@
 									echo '<input type = "hidden" name = "shiftID[', $l,']" value = "', $shiftData[0][0], '">';
 
 
-								echo '<td>', $shiftData[0][1], '</td>';
-								echo '<td>', $shiftData[0][2], ' to ', $shiftData[0][3], '</td>';
+								echo '<td>', $formatted_date, '</td>';
+								echo '<td>', $formatted_startTime, ' to ', $formatted_endTime, '</td>';
 								echo '<td>', $shiftData[0][4], '</td>';
 								echo '<td><input type = "submit" name = "submit[', $l, ']" value = "Volunteer!" class = "classicColor"></td>';
 								echo '</tr>';

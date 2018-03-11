@@ -83,6 +83,10 @@
 									$repetitionCounter += $stmt->rowCount();
 							}
 
+							$formatted_date = date('m/d/Y', strtotime($shiftData[$q][1]));// Formatting time
+							$formatted_startTime = date('g:i A', strtotime($shiftData[$q][2]));
+							$formatted_endTime = date('g:i A', strtotime($shiftData[$q][3]));
+
 						// Display the data in HTML elements
 
 							echo '<tr>';
@@ -92,12 +96,12 @@
 								echo '<input name = "studentID[', $i,']" type = "hidden" value = "', $studentData[$q][0],'">';
 								echo '<input name = "eventID[', $i,']" type = "hidden" value = "', $eventData[$i][0],'">';
 								echo '<input name = "shiftID[', $i,']" type = "hidden" value = "', $shiftData[$q][0],'">';
-
+							
 							echo '<td>', $eventData[$i][1], '</td>';
 							echo '<td>', $studentData[$q][1],' ', $studentData[$q][2], '</td>';
 							echo '<td>', $studentData[$q][5], '</td>';
-							echo '<td>', $shiftData[$q][1], '</td>';
-							echo '<td>', $shiftData[$q][2], ' to ', $shiftData[$q][3], '</td>';
+							echo '<td>', $formatted_date, '</td>';
+							echo '<td>', $formatted_startTime, ' to ', $formatted_endTime, '</td>';
 							echo '<td>', $repetitionCounter, '</td>';
 							echo '<td><input name = "submit[', $i,']" type = "image" src = "greenCheckMark.png" height = "30px" width = "30px" style = "margin-top: 5px;"></td>';
 							echo '</tr>';

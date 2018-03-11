@@ -43,9 +43,10 @@
 					$stmt = $pdo->prepare($sql);
 					$stmt->execute(['shiftID' => $_POST['shiftID'][$i], 'studentID' => $_POST['studentID'][$i]]);
 
-				setcookie("formSubmitConfirm", "Student registered", time()+3600);
+				header('Location: roster-requests.php?formSubmitConfirm=true');
+
 			}
 	}
 
-	header('Location: roster-requests.php');
+	header('Location: roster-requests.php?formSubmitConfirm=true');
 ?>

@@ -44,8 +44,11 @@
         }
 
         
-    // Setting cookie for Submit confirmation and rerouting user
-    
+    // Setting cookie for Submit confirmation and rerouting user plus resetting session variables
+            
+        $temp = $_SESSION['StudentID'];
+        session_unset();
+        $_SESSION['StudentID']; = $temp;
         header("Location: edit-event.php?formSubmitConfirm=true");
     
 ?>

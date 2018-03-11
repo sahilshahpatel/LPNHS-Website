@@ -59,13 +59,16 @@
 								$stmt = $pdo->prepare($sql);
 								$stmt->execute(['studentID' => $positionData[$p][2]]);
 								$studentData = $stmt->fetchAll();
+								$formatted_date = date('m/d/Y', strtotime( $specificShiftData[0][1]));// Formatting time
+								$formatted_startTime = date('g:i A', strtotime($specificShiftData[0][2]));
+								$formatted_endTime = date('g:i A', strtotime($specificShiftData[0][3]));
 
 							// Displaying data for each student, their position and hours
 
 								echo '<tr>';
 								echo '<td>', $studentData[0][1], ' ', $studentData[0][2], '</td>';
-								echo '<td>', $specificShiftData[0][1], '</td>';
-								echo '<td>', $specificShiftData[0][2], ' to ', $specificShiftData[0][3], '</td>';
+								echo '<td>',$formatted_date, '</td>';
+								echo '<td>', $formatted_startTime, ' to ', $formatted_endTime, '</td>';
 								echo '<td><input type = "submit" name = "submit[', $e, '][', $p, ']" class = "classicColor" value = "Confirm"></td>';
 								echo '<input type = "hidden" name = "studentID[', $e, '][', $p, ']" value = "', $positionData[$p][2], '">';
 								$startTime = new DateTime($specificShiftData[0][2]);
