@@ -28,7 +28,7 @@
 
             // Checking if remove was pressed for $i -> number event -> then removing that event
 
-                elseif(isset($_POST["remove"][$i])){
+                else if(isset($_POST["remove"][$i])){
 
                     // Deleting from database table "events" and "shifts"
 
