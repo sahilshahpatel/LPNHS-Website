@@ -53,8 +53,10 @@
         <script src="http://code.jquery.com/color/jquery.color.plus-names-2.1.2.min.js"	integrity="sha256-Wp3wC/dKYQ/dCOUD7VUXXp4neLI5t0uUEF1pg0dFnAE="	crossorigin="anonymous"></script>
         <?php
 
-            // Form Submission Confirmation
+            // Form Submission Confirmation and date validation
 
+                $invaliddate=false;
+                if(isset($_GET['date'])){$invaliddate = true;}
                 if(isset($_GET['formSubmitConfirm'])):
                 ?>
                     <script>
@@ -89,7 +91,9 @@
             <div id = "mainPanel" class = "classic panel">
 
                 <!--Content loaded through PHP script-->
-                <p style = "text-align: center;">Create Event</p>
+                <?php if($invaliddate):?><p style = "text-align: center;">Create Event<span style="color: red;margin-left: 20px;">*End Date must be after Start Date</span></p>
+                <?php else:?><p style = "text-align: center;">Create Event</p>
+                <?php endif;?>
                 <?php include "eventCreationPg1.php"; ?> 
 
             </div>

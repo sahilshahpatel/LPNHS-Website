@@ -42,7 +42,7 @@
         position: relative;
         display: inline-block;
       }
-      input {
+      input, textarea{
         border: 1px solid transparent;
         resize: none;
       }

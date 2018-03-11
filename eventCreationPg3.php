@@ -12,13 +12,26 @@
             || empty($_POST['endtime'][$i])
             || empty($_POST['positionsavailable'][$i])){ header("Location: eventCreationPg2.php");
             }
+            $dateinvalid = array();
+            for($i = 0;$i<(int)$_GET["shifts"];$i++){
+                if($_POST['date'][$i]>$_POST['Edate'] || $_POST['Sdate']>$_POST['date'][$i])
+                {
+                    array_push($dateinvalid, true);
+                }
+                else{
+                    array_push($dateinvalid, false);
+                }
+            }
         }
         foreach ($_POST as $key => $value) {
             $_SESSION['post'][$key] = $value;
         } 
-
+        $_SESSION['dateErrors'] = $dateinvalid;
+        $errors = false;
+        for($i = 0;$i<(int)$_GET["shifts"];$i++){if($dateinvalid[$i]){$errors = true;}}
     // Extracting all information from SESSION
-
+        if($errors){header("Location: eventCreationPg2.php?date=invalid");}
+            else{
         extract($_SESSION['post']); 
 
     // Pulling Data from "events" to check if there is a duplicate event
@@ -103,5 +116,5 @@
 
     // Rerouting user to "create-event" page
 
-        header("Location: create-event.php");
+        header("Location: create-event.php");}
 ?>
