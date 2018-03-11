@@ -33,7 +33,6 @@
 
     // Sets cookie for "formSubmitConfirm" and reroutes user to "manage-site-content.php"
 
-		setcookie("formSubmitConfirm", "Site content updated", time()+3600);
-        header("Location: manage-site-content.php");
+        header("Location: manage-site-content.php?formSubmitConfirm=true");
     
 ?>

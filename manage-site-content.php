@@ -63,10 +63,37 @@
                 -webkit-box-sizing: border-box;
                 -moz-box-sizing: border-box;
                 box-sizing: border-box;
-                resize: vertical;
-                width: 80%;
+                resize: none;
+                width: 38%;
+                margin-top: 10px;
+                margin-left:4%;
                 -moz-transition: none 0s ease 0s
             }
+            #article{
+                margin: 10px auto;
+                padding: 10px;
+                width: 100%;
+            }
+            #article p{text-align: left;}
+            #frontImg{
+                width: 50%;
+                margin: 10px;
+                float: right;
+            }
+            #frontImg p{text-align: center;}
+            #frontImg img{width: 100%;}
+            #applicationRequirements{
+                padding: 10px;
+                border-left: solid 10px #005da3;
+                background-color: white;
+                margin: 5px auto;
+                width: 90%;
+            }
+            ul{
+                font-family: Bookman, sans-serif;
+                font-size: 20px;
+            }
+            ul li{margin: 10px;}
         </style>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -76,7 +103,7 @@
 
             // Form Submission Confirmation
 
-                if(isset($_COOKIE['formSubmitConfirm'])):
+                if(isset($_GET['formSubmitConfirm'])):
                 ?>
                     <script>
                     $(document).ready(function(){
@@ -85,8 +112,6 @@
                     });
                     </script>
                 <?php
-                    $message = $_COOKIE['formSubmitConfirm'];
-                    setcookie("formSubmitConfirm", "", time() - 3600); // delete cookie
                     endif;
         ?>
     </head>
@@ -114,13 +139,26 @@
                     <div id = "whatItTakes" style="text-align: center;" class = "classic panel">
                         <p class = "expander">Manage What It Takes Page</p>
                         <hr style="font-size:18px;">
-                        <table>
-                            <tr><td><p style="text-align: center;">What It Takes</p></td></tr>
-                            <tr><td><textarea id="whatItTakes" rows="20" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" cols="144" maxlength="512" style="overflow:hidden" name="whatItTakes" placeholder="<?php echo $whatittakes;?>" form="siteUpdater"><?php echo $whatittakes;?></textarea></td></tr>
-                            <tr><td><p style="text-align: center;">What It Takes Part Two</p></td></tr>
-                            <tr><td><textarea id="whatItTakesUnder" rows="12" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" cols="144" maxlength="512" style="overflow:hidden" name="whatItTakes" placeholder="<?php echo $whatittakesunder;?>" form="siteUpdater"><?php echo $whatittakesunder;?></textarea></td></tr>
-                            <tr><td><button id = "whatItTakesSubmit"  type="submit" value = "Submit" class = "classicColor submit">Submit</button></td></tr>
-                        </table>
+                        <div id = "article" class = "classic card">
+                            <h1 style = "color: #005da3">What It Takes to Be a Member</h1>
+                            <hr style = "width: 90%;">
+                            <div>
+                                <div id = "frontImg" class = "card" style="margin-right: 5%;">
+                                    <img src = "http://www.ispi.org/images/volunteer.png">
+                                    <p>Image Caption</p>
+                                </div>
+                                <textarea id="whatItTakes" rows="16" autocomplete="off" autocorrect="off" style="font-size: 17px;" autocapitalize="off" spellcheck="false" cols="144" maxlength="752" style="overflow:hidden" name="whatItTakes" placeholder="<?php echo $whatittakes;?>" form="siteUpdater"><?php echo $whatittakes;?></textarea>
+                            </div>
+                            <div id = "applicationRequirements" class = "classic">
+                                <h2 style = "color: #005da3">Application Requirements</h2>
+                                <ul>
+                                    <li>Req 1</li>
+                                    <li>Req 2</li>
+                                </ul>
+                            </div>
+                            <p><textarea id="whatItTakesUnder" rows="12" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" cols="144" maxlength="512" style="overflow:hidden" name="whatItTakes" placeholder="<?php echo $whatittakesunder;?>" form="siteUpdater"><?php echo $whatittakesunder;?></textarea></p>
+                        </div>
+                        <button id = "whatItTakesSubmit"  type="submit" value = "Submit" class = "classicColor submit">Submit</button>
                     </div>
                 </form>
             </div>
@@ -128,6 +166,33 @@
         </div>
     </body>
 
+    <?php
+        $to = 'maryjane@email.com';
+        $subject = 'Marriage Proposal';
+        $from = 'peterparker@email.com';
+        
+        // To send HTML mail, the Content-type header must be set
+        $headers  = 'MIME-Version: 1.0' . "\r\n";
+        $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+        
+        // Create email headers
+        $headers .= 'From: '.$from."\r\n".
+            'Reply-To: '.$from."\r\n" .
+            'X-Mailer: PHP/' . phpversion();
+        
+        // Compose a simple HTML email message
+        $message = '<html><body>';
+        $message .= '<h1 style="color:#f40;">Hi Jane!</h1>';
+        $message .= '<p style="color:#080;font-size:18px;">Will you marry me?</p>';
+        $message .= '</body></html>';
+        
+        // Sending email
+        // if(mail($to, $subject, $message, $headers)){
+        //     echo 'Your mail has been sent successfully.';
+        // } else{
+        //     echo 'Unable to send email. Please try again.';
+        // }
+    ?>
     <footer id = "footer"><?php include 'footer.php';?></footer>
 
 </html>

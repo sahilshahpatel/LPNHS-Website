@@ -19,12 +19,6 @@
 
         <link rel="stylesheet" href="baseCSS.css">
         <style>
-            #article{
-                margin: 10px auto;
-                padding: 10px;
-                width: 60%;
-            }
-            #article p{text-align: left;}
             #frontImg{
                 width: 60%;
                 margin: 10px;
@@ -62,23 +56,27 @@
         <div id = "footerPusher">
 
             <img id = "fixedBGImg" src = "https://www.nhs.us/assets/images/nhs/NHS_header_logo.png"><!--Fixed Image in Background-->
-
-            <div id = "article" class = "classic card">
-                <h1 style = "color: #005da3">What It Takes to Be a Member</h1>
-                <hr style = "width: 90%;">
-                <div id = "frontImg" class = "card">
-                    <img src = "http://www.ispi.org/images/volunteer.png">
-                    <p>Image Caption</p>
-                </div>
-                <p><?php echo $whatittakes; ?></p>
-                <div id = "applicationRequirements" class = "classic">
-                    <h2 style = "color: #005da3">Application Requirements</h2>
-                    <ul>
-                        <li>Req 1</li>
-                        <li>Req 2</li>
-                    </ul>
-                </div>
-                <p><?php echo $whatittakesunder; ?></p>
+            <div style="padding: 10px;
+                        width: 60%;margin: 30px auto;
+                        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);  
+                        background-color: #fff;font-size: 20px;">
+                <article>
+                    <h1 style = "color: #005da3;text-align: center;">What It Takes to Be a Member</h1>
+                    <hr style = "width: 90%;">
+                    <div id = "frontImg" class = "card">
+                        <img src = "http://www.ispi.org/images/volunteer.png">
+                        <p>Image Caption</p>
+                    </div>
+                    <p><?php echo $whatittakes; ?></p>
+                    <div id = "applicationRequirements" class = "classic">
+                        <h2 style = "color: #005da3">Application Requirements</h2>
+                        <ul>
+                            <li>Req 1</li>
+                            <li>Req 2</li>
+                        </ul>
+                    </div>
+                    <p><?php echo $whatittakesunder; ?></p>
+                </article>
             </div>
 
         </div>
