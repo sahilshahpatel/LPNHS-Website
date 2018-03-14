@@ -13,6 +13,11 @@
         <title>LPNHS - Rosters</title>
         
         <link rel="stylesheet" href="baseCSS.css">
+        <style>
+            p{
+                font-family: 'Bookman', sans-serif;
+            }
+        </style>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script src="headerJQuery.js"></script>
