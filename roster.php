@@ -14,8 +14,17 @@
         
         <link rel="stylesheet" href="baseCSS.css">
         <style>
-            p{
-                font-family: 'Bookman', sans-serif;
+            td{
+                font-family: Bookman, sans-serif;
+            }
+            table, tr{
+                width: 100%;
+            }
+            #shiftDataTable tr th, td{
+                width: 33.33%;
+            }
+            #rosterTable tr th. td{
+                width: 50%;
             }
         </style>
 
@@ -52,8 +61,7 @@
                     $formatted_date = date('m/d/Y', strtotime($shiftData[0][1]));
 
                     // Displaying the data for each shift
-                    echo '<table>
-                        <tr>
+                    echo '<table id = "shiftDataTable"><tr>
                         <th>Date</th>
                         <th>Time</th>
                         <th>Request Shift</th>
