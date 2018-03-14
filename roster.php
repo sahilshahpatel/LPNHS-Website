@@ -52,7 +52,8 @@
                     $formatted_date = date('m/d/Y', strtotime($shiftData[0][1]));
 
                     // Displaying the data for each shift
-                    echo '<tr>
+                    echo '<table>
+                        <tr>
                         <th>Date</th>
                         <th>Time</th>
                         <th>Request Shift</th>
@@ -70,6 +71,7 @@
                         echo '<td><input type = "submit" name = "submit" value = "Volunteer!" class = "classicColor"></td>';
                         echo '</tr>';
                     }
+                    echo '</table>';
                 ?>
 
                 <form method = "post" action = "requestShift.php">
