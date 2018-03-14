@@ -27,6 +27,9 @@
             #rosterTable tr th. td{
                 width: 100%;
             }
+            table tr:nth-child(even){
+                background-color: #e8cfa4;
+            }
         </style>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -98,7 +101,7 @@
                             $positionData = array();
                             $positionData = $stmt->fetchAll();
 
-                            echo '<tr><th>Roster</th></tr>';
+                            echo '<tr><th>Current Roster</th></tr>';
                             for($i = 0; $i<count($positionData); $i++){
                                 echo '<tr>';
                                 if($positionData[$i][2]!==null){
