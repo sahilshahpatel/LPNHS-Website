@@ -48,7 +48,7 @@
             
         $temp = $_SESSION['StudentID'];
         session_unset();
-        $_SESSION['StudentID']; = $temp;
+        $_SESSION['StudentID'] = $temp;
         header("Location: edit-event.php?formSubmitConfirm=true");
     
 ?>
