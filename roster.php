@@ -27,7 +27,7 @@
             #rosterTable tr th. td{
                 width: 100%;
             }
-            table tr:nth-child(even){
+            #rosterTable tr:nth-child(even){
                 background-color: #e8cfa4;
             }
         </style>
@@ -113,7 +113,7 @@
                                     echo '<td>', $studentData[0][1], ' ', $studentData[0][2],'</td>';
                                 }
                                 else{
-                                    echo '<td><input type = "submit" name = "submit" title = "Volunteer!" value = "Available" class = "classicColor"></td>';
+                                    echo '<td><input type = "submit" name = "submit" title = "Volunteer!" value = "Position Available" class = "classicColor"></td>';
                                 }
                                 echo '</tr>';
                             }
