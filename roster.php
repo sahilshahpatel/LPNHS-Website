@@ -14,17 +14,18 @@
         
         <link rel="stylesheet" href="baseCSS.css">
         <style>
-            td{
+            th, td{
                 font-family: Bookman, sans-serif;
+                text-align: center;
             }
-            table, tr{
+            table, table tr{
                 width: 100%;
             }
             #shiftDataTable tr th, td{
                 width: 33.33%;
             }
             #rosterTable tr th. td{
-                width: 50%;
+                width: 100%;
             }
         </style>
 
@@ -93,6 +94,7 @@
                             $positionData = array();
                             $positionData = $stmt->fetchAll();
 
+                            echo '<tr><th>Roster</th></tr>';
                             for($i = 0; $i<count($positionData); $i++){
                                 echo '<tr>';
                                 if($positionData[$i][2]!==null){
