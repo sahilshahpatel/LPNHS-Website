@@ -45,48 +45,50 @@
         <div id = "footerPusher">
             <div class = "classic panel">
                 <!--Event and Shift Data-->
-                <?php
-                    $sql = "SELECT * FROM events WHERE EventID= :eventID";
-                    $stmt = $pdo->prepare($sql);
-                    $stmt->execute(['eventID'=>$_GET['eventID']]);
-                    $eventData = array();
-                    $eventData = $stmt->fetchAll();
+                <form method = "post" action = "requestShift.php">
+                    <table id = "shiftDataTable">
+                        <?php
+                            $sql = "SELECT * FROM events WHERE EventID= :eventID";
+                            $stmt = $pdo->prepare($sql);
+                            $stmt->execute(['eventID'=>$_GET['eventID']]);
+                            $eventData = array();
+                            $eventData = $stmt->fetchAll();
 
-                    echo '<p>', $eventData[0][1], '</p>'; //event name
-                    
-                    //shift data
-                    $sql = "SELECT * FROM shifts WHERE ShiftID=:shiftID";
-                    $stmt = $pdo->prepare($sql);
-                    $stmt->execute(['shiftID' => $_GET['shiftID']]);
-                    $shiftData = array();
-                    $shiftData = $stmt->fetchAll();
-                    $formatted_startTime = date('g:i A', strtotime($shiftData[0][2]));
-                    $formatted_endTime = date('g:i A', strtotime($shiftData[0][3]));
-                    $formatted_date = date('m/d/Y', strtotime($shiftData[0][1]));
+                            echo '<p>', $eventData[0][1], '</p>'; //event name
+                            
+                            //shift data
+                            $sql = "SELECT * FROM shifts WHERE ShiftID=:shiftID";
+                            $stmt = $pdo->prepare($sql);
+                            $stmt->execute(['shiftID' => $_GET['shiftID']]);
+                            $shiftData = array();
+                            $shiftData = $stmt->fetchAll();
+                            $formatted_startTime = date('g:i A', strtotime($shiftData[0][2]));
+                            $formatted_endTime = date('g:i A', strtotime($shiftData[0][3]));
+                            $formatted_date = date('m/d/Y', strtotime($shiftData[0][1]));
 
-                    // Displaying the data for each shift
-                    echo '<table id = "shiftDataTable">
-                        <tr><th colspan = "3">Shift Information</th></tr>
-                        <tr>
-                        <th>Date</th>
-                        <th>Time</th>
-                        <th>Request Shift</th>
-                        </tr>';
-                    
-                    if(count($shiftData)>0){
-                        echo '<tr>';
+                            // Displaying the data for each shift
+                            echo '<tr><th colspan = "3">Shift Information</th></tr>
+                                <tr>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Request Shift</th>
+                                </tr>';
+                            
+                            if(count($shiftData)>0){
+                                echo '<tr>';
 
-                        // Hidden form info to be passed
-                            echo '<input type = "hidden" name = "eventID" value = "', $_GET['eventID'], '">';
-                            echo '<input type = "hidden" name = "shiftID" value = "', $_GET['shiftID'], '">';
+                                // Hidden form info to be passed
+                                    echo '<input type = "hidden" name = "eventID" value = "', $_GET['eventID'], '">';
+                                    echo '<input type = "hidden" name = "shiftID" value = "', $_GET['shiftID'], '">';
 
-                        echo '<td>', $formatted_date, '</td>';
-                        echo '<td>', $formatted_startTime, ' to ', $formatted_endTime, '</td>';
-                        echo '<td><input type = "submit" name = "submit" value = "Volunteer!" class = "classicColor"></td>';
-                        echo '</tr>';
-                    }
-                    echo '</table>';
-                ?>
+                                echo '<td>', $formatted_date, '</td>';
+                                echo '<td>', $formatted_startTime, ' to ', $formatted_endTime, '</td>';
+                                echo '<td><input type = "submit" name = "submit" value = "Volunteer!" class = "classicColor"></td>';
+                                echo '</tr>';
+                            }
+                        ?>
+                    </table>
+                </form>
 
                 <hr>
 
@@ -104,6 +106,11 @@
                             echo '<tr><th>Current Roster</th></tr>';
                             for($i = 0; $i<count($positionData); $i++){
                                 echo '<tr>';
+
+                                // Hidden form info to be passed
+                                echo '<input type = "hidden" name = "eventID" value = "', $_GET['eventID'], '">';
+                                echo '<input type = "hidden" name = "shiftID" value = "', $_GET['shiftID'], '">';
+                                
                                 if($positionData[$i][2]!==null){
                                     $sql = "SELECT * FROM students WHERE StudentID= :studentID";
                                     $stmt = $pdo->prepare($sql);
