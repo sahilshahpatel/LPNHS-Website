@@ -27,7 +27,7 @@
             #rosterTable tr th. td{
                 width: 100%;
             }
-            #rosterTable tr:nth-child(even){
+            table tr:nth-child(even){
                 background-color: #e8cfa4;
             }
         </style>
@@ -77,8 +77,8 @@
                         echo '<tr>';
 
                         // Hidden form info to be passed
-                            echo '<input type = "hidden" name = "eventID" value = "', $eventIDs[0][$i], '">';
-                            echo '<input type = "hidden" name = "shiftID" value = "', $shiftData[0][0], '">';
+                            echo '<input type = "hidden" name = "eventID" value = "', $_GET['eventID'], '">';
+                            echo '<input type = "hidden" name = "shiftID" value = "', $_GET['shiftID'], '">';
 
                         echo '<td>', $formatted_date, '</td>';
                         echo '<td>', $formatted_startTime, ' to ', $formatted_endTime, '</td>';
