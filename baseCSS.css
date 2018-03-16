@@ -180,7 +180,6 @@
 
     /* Style the links inside the navigation bar */
     .topnav a {
-        float: left;
         display: inline-block;
         color: black;
         text-align: center;

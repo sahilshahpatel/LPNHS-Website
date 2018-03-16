@@ -59,23 +59,27 @@
             <div style="padding: 10px;
                         width: 60%;margin: 30px auto;
                         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);  
-                        background-color: #fff;font-size: 20px;">
+                        background-color: #fff;font-size: 20px;
+                        border-radius: 15px;
+                        border: 3px solid;
+                        border-color: DodgerBlue">
                 <article>
                     <h1 style = "color: #005da3;text-align: center;">What It Takes to Be a Member</h1>
-                    <hr style = "width: 90%;">
-                    <div id = "frontImg" class = "card">
-                        <img src = "http://www.ispi.org/images/volunteer.png">
-                        <p>Image Caption</p>
+                    <hr style = "width: 95%;">
+                    <div id = "frontImg" style="margin-right:30px;">
+                        <img src = "http://www.ispi.org/images/volunteer.png"> <!-- Will access database for picture -->
                     </div>
-                    <p><?php echo $whatittakes; ?></p>
-                    <div id = "applicationRequirements" class = "classic">
+                    <div style= "padding-left:30px;padding-top:10px;"><?php echo $whatittakes; ?></div>
+                    <hr style = "width: 95%;">
+                    <div id = "applicationRequirements" class = "classic" style="margin: 0 px; padding-top:0px;">
                         <h2 style = "color: #005da3">Application Requirements</h2>
                         <ul>
                             <li>Req 1</li>
                             <li>Req 2</li>
                         </ul>
                     </div>
-                    <p><?php echo $whatittakesunder; ?></p>
+                    <hr style = "width: 95%;">
+                    <div  style= "padding-left:30px;padding-right:30px;"><?php echo $whatittakesunder; ?></div>
                 </article>
             </div>
 

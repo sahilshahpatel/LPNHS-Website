@@ -146,8 +146,8 @@
                                     <img src = "http://www.ispi.org/images/volunteer.png">
                                     <p>Image Caption</p>
                                 </div>
-                                <textarea id="whatItTakes" rows="16" autocomplete="off" autocorrect="off" style="font-size: 17px;" autocapitalize="off" spellcheck="false" cols="144" maxlength="752" style="overflow:hidden" name="whatItTakes" placeholder="<?php echo $whatittakes;?>" form="siteUpdater"><?php echo $whatittakes;?></textarea>
-                            </div>
+                                <div><textarea id="whatItTakes" rows="16" autocomplete="off" autocorrect="off" style="font-size: 17px;" autocapitalize="off" spellcheck="false" cols="144" maxlength="752" style="overflow:hidden" name="whatItTakes" placeholder="<?php echo $whatittakes;?>" form="siteUpdater"><?php echo $whatittakes;?></textarea>
+                </div></div>
                             <div id = "applicationRequirements" class = "classic">
                                 <h2 style = "color: #005da3">Application Requirements</h2>
                                 <ul>
@@ -155,8 +155,8 @@
                                     <li>Req 2</li>
                                 </ul>
                             </div>
-                            <p><textarea id="whatItTakesUnder" rows="12" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" cols="144" maxlength="512" style="overflow:hidden; width: 100%;" name="whatItTakes" placeholder="<?php echo $whatittakesunder;?>" form="siteUpdater"><?php echo $whatittakesunder;?></textarea></p>
-                        </div>
+                            <div><textarea id="whatItTakesUnder" rows="12" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" cols="144" maxlength="512" style="overflow:hidden;" name="whatItTakesUnder" placeholder="<?php echo $whatittakesunder;?>" form="siteUpdater"><?php echo $whatittakesunder;?></textarea>
+                </div></div>
                         <button id = "whatItTakesSubmit"  type="submit" value = "Submit" class = "classicColor submit">Submit</button>
                     </div>
                 </form>
@@ -165,7 +165,7 @@
         </div>
     </body>
 
-    <?php
+    <?php // Setting up for future mail alert thing
         $to = 'maryjane@email.com';
         $subject = 'Marriage Proposal';
         $from = 'peterparker@email.com';

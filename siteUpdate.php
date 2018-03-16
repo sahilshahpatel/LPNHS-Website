@@ -20,13 +20,13 @@
         }
         if(!empty($_POST['whatItTakes']))
         {
-            $sql = "UPDATE sitecontent SET whatitTakes=:whatItTakes WHERE ID=:id";
+            $sql = "UPDATE sitecontent SET whatItTakes=:whatItTakes WHERE ID=:id";
             $stmt = $pdo->prepare($sql);
             $stmt->execute(["whatItTakes" => $_POST['whatItTakes'],"id" => 1]);
         }
         if(!empty($_POST['whatItTakesUnder']))
         {
-            $sql = "UPDATE sitecontent SET whatitTakes2=:whatItTakesUnder WHERE ID=:id";
+            $sql = "UPDATE sitecontent SET whatItTakes2=:whatItTakesUnder WHERE ID=:id";
             $stmt = $pdo->prepare($sql);
             $stmt->execute(["whatItTakesUnder" => $_POST['whatItTakesUnder'],"id" => 1]);
         }
