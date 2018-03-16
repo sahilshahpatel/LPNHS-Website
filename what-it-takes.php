@@ -11,6 +11,7 @@
     $sc = $stmt->fetch(PDO::FETCH_OBJ);
     $whatittakes = $sc->whatItTakes;
     $whatittakesunder = $sc->whatItTakes2;
+    $applicationRequirements = $sc->appReqs;
 ?>
 <html>
     <head>
@@ -74,12 +75,11 @@
                     <div id = "applicationRequirements" class = "classic" style="margin: 0 px; padding-top:0px;">
                         <h2 style = "color: #005da3">Application Requirements</h2>
                         <ul>
-                            <li>Req 1</li>
-                            <li>Req 2</li>
+                            <?php echo $applicationRequirements;?> <!-- Inserting reqs by loop of php -->
                         </ul>
                     </div>
                     <hr style = "width: 95%;">
-                    <div  style= "padding-left:30px;padding-right:30px;"><?php echo $whatittakesunder; ?></div>
+                    <div  style= "padding-left:30px;padding-right:30px; margin-bottom: 30px;"><?php echo $whatittakesunder; ?></div>
                 </article>
             </div>
 
