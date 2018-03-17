@@ -55,8 +55,14 @@
             }else{
                print_r($errors);
             }
-         }
-         if(!file_exists($_FILES['frontImg']['tmp_name']) || !is_uploaded_file($_FILES['frontImg']['tmp_name'])){
+        }
+        if(!empty($_POST['frontImgCaption']))
+        {
+            $sql = "UPDATE sitecontent SET frontImgCaption=:frontImgCaption WHERE ID=:id";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute(["frontImgCaption" => $_POST['frontImgCaption'],"id" => 1]);
+        }
+        if(!file_exists($_FILES['frontImg']['tmp_name']) || !is_uploaded_file($_FILES['frontImg']['tmp_name'])){
             $errors= array();
             $file_name = $_FILES['what_it_takes']['name'];
             $file_size =$_FILES['what_it_takes']['size'];
@@ -81,7 +87,7 @@
             }else{
                print_r($errors);
             }
-         }
+        }
 
     // Sets cookie for "formSubmitConfirm" and reroutes user to "manage-site-content.php"
 

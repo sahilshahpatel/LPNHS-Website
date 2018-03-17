@@ -11,6 +11,7 @@
         $sc = $stmt->fetch(PDO::FETCH_OBJ);
         $aboutus = $sc->aboutUs;
         $attention = $sc->attention;
+        $frontImgCaption = $sc->frontImgCaption;
 ?>
 <html>
     <head>
@@ -41,7 +42,7 @@
 
             <div id = "frontImg" class = "card" style = "width: 50%;">
                 <img src = "img/frontImg.jpg" style = "width: 100%;"><!--NHS picture of students-->
-                <p style = "font-style: italic; font-size: 16px;">Promoting appropriate recognition of students who reflect outstanding accomplishments in the areas of scholarship, leadership, character, and service.</p>
+                <p style = "font-style: italic; font-size: 16px;"><?php echo $frontImgCaption; ?></p>
             </div>
         
             <!--Home Page Panels-->
