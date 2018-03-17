@@ -30,6 +30,13 @@
             $stmt = $pdo->prepare($sql);
             $stmt->execute(["whatItTakesUnder" => $_POST['whatItTakesUnder'],"id" => 1]);
         }
+        if(!empty($_POST['frontImgCaption']))
+        {
+            echo 'frontImg caption';
+            $sql = "UPDATE sitecontent SET frontImgCaption=:frontImgCaption WHERE ID=:id";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute(["frontImgCaption" => $_POST['frontImgCaption'],"id" => 1]);
+        }
         if(!file_exists($_FILES['frontImg']['tmp_name']) || !is_uploaded_file($_FILES['frontImg']['tmp_name'])){
             $errors= array();
             $file_name = $_FILES['frontImg']['name'];
@@ -53,14 +60,8 @@
                move_uploaded_file($file_tmp, "img/frontImg.jpg");
                echo "Success";
             }else{
-               print_r($errors);
+                print_r($errors);
             }
-        }
-        if(!empty($_POST['frontImgCaption']))
-        {
-            $sql = "UPDATE sitecontent SET frontImgCaption=:frontImgCaption WHERE ID=:id";
-            $stmt = $pdo->prepare($sql);
-            $stmt->execute(["frontImgCaption" => $_POST['frontImgCaption'],"id" => 1]);
         }
         if(!file_exists($_FILES['frontImg']['tmp_name']) || !is_uploaded_file($_FILES['frontImg']['tmp_name'])){
             $errors= array();

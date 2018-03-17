@@ -142,7 +142,7 @@
                             <tr><td><p style = "text-align: center;">Home Image (Changes are irreversible!)</p></td></tr>
                             <tr><td><input type = "file" name = "frontImg" style = "border: 0; width: 180px; margin: 0 auto;"></td></tr>
                             <tr><td><p style = "text-align: center;">Home Image Caption</p></td></tr>
-                            <tr><td><textarea id="frontImgCaption" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" rows="6" cols="144" maxlength="512" style="overflow:hidden; width: 100%;" name="alert" placeholder="<?php echo $frontImgCaption;?>" form="siteUpdater"><?php echo $frontImgCaption;?></textarea></tr>
+                            <tr><td><textarea id="frontImgCaption" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" rows="6" cols="144" maxlength="512" style="overflow:hidden; width: 100%;" name="frontImgCaption" placeholder="<?php echo $frontImgCaption;?>" form="siteUpdater"><?php echo $frontImgCaption;?></textarea></tr>
                             <tr><td><p style="text-align: center;">Alert</p></td></tr>
                             <tr><td><textarea id="alert" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" rows="6" cols="144" maxlength="512" style="overflow:hidden; width: 100%;" name="alert" placeholder="<?php echo $attention;?>" form="siteUpdater"><?php echo $attention;?></textarea></tr>
                             <tr><td><p style="text-align: center;">About Us</p></td></tr>
