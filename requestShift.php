@@ -25,7 +25,6 @@
 					// Check for repeat
 
 						if($stmt->rowCount()===0){
-							echo 'no repeat';
 							// Inserting data into "studentshiftrequests"
 
 								$sql = "INSERT INTO studentshiftrequests (EventID, StudentID, ShiftID) VALUES ( :eventID, :studentID, :shiftID)";
