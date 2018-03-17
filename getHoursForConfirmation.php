@@ -1,6 +1,8 @@
 <?php
 	include 'database.php';
 
+		$dataFound = false;
+
 	// Getting events that are past
 
 		$sql = "SELECT * FROM events WHERE StartDate < CURDATE()";
@@ -34,6 +36,7 @@
 			// If there was data in positions display it
 
 				if(count($positionData)>0){
+					$dataFound = true;
 					echo '<p>', $eventData[$e][1], '</p>';
 					echo '<table class = "listing">';
 					echo '<tr></tr>'; //to reset the row shading
@@ -81,11 +84,10 @@
 					echo '</table>';
 					echo '<hr>';
 				}
-
-			// If no data to display then display this
-
-				else{
-					echo '<p>No hours to confirm</p>';
-				}
 		}
+
+	// If no data to display then display this
+	if(!$dataFound){
+		echo '<p>No hours to confirm</p>';
+	}
 ?>
