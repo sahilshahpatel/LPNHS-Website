@@ -10,15 +10,12 @@
 		$shiftsList = array();
 		$shiftsList = $stmt->fetchAll();
 
-		echo 'here';
 	// Looping for every shift
 
 		for($l = 0; $l<count($shiftsList); $l++){
 
 			// Checks if that shift is picked -> $l -> shift number
-				echo 'l = ', $l;
 				if(isset($_POST['submit'][$l])){
-					echo 'found submit';
 					// Pulling data from "studentshiftrequest" to check for a repeat
 
 						$sql = "SELECT * FROM studentshiftrequests WHERE EventID = :eventID AND StudentID = :studentID AND ShiftID = :shiftID";
@@ -42,5 +39,5 @@
 
 	// Rerouting user to "events.php"
 
-	//header('location: events.php');
+	header('location: events.php');
 ?>

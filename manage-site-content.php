@@ -36,6 +36,8 @@
                 display: block;
                 width: 75%;
                 margin: 10px;
+                font-family: Bookman, sans-serif;
+                border: 1px solid black;
             }
             button.submit{margin: 10px;}
             #eventsPanel{padding: 0;}
@@ -60,13 +62,15 @@
                 text-align: center;
             }
             textarea {
+                font-family: Bookman, sans-serif;
                 -webkit-box-sizing: border-box;
                 -moz-box-sizing: border-box;
                 box-sizing: border-box;
                 resize: none;
                 width: 38%;
                 margin-top: 10px;
-                -moz-transition: none 0s ease 0s
+                -moz-transition: none 0s ease 0s;
+                border: 1px solid black;
             }
             #article{
                 margin: 10px auto;
@@ -148,11 +152,9 @@
                         <!---->
                         <div style="padding: 10px;
                                     width: 90%;margin: 30px auto;
-                                    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);  
                                     background-color: #fff;font-size: 20px;
                                     border-radius: 15px;
-                                    border: 3px solid;
-                                    border-color: DodgerBlue">
+                                    border-color: #daa520; background-color: #ffebcd;">
                             <article>
                                 <h1 style = "color: #005da3;text-align: center;">What It Takes to Be a Member</h1>
                                 <hr style = "width: 95%;">
@@ -161,7 +163,7 @@
                                 </div>
                                 <div style= "padding-left:30px;padding-top:10px;"><a style="font-size:14px;">*Note, if you want to create a new paragraph, type in <\br> TBD!</a><textarea id="whatItTakes" rows="16" autocomplete="off" autocorrect="off" style="font-size: 17px;height:100%;" autocapitalize="off" spellcheck="false" cols="144" maxlength="1024" style="overflow:hidden" name="whatItTakes" placeholder="<?php echo $whatittakes;?>" form="siteUpdater"><?php echo $whatittakes;?></textarea></div>
                                 <hr style = "width: 95%;">
-                                <div id = "applicationRequirements" class = "classic" style="margin: 0 px; padding-top:0px;">
+                                <div id = "applicationRequirements" class = "classic" style="margin: 0 px; padding-top:0px; background-color: #ffebcd;">
                                     <h2 style = "color: #005da3">Application Requirements</h2>
                                     <ul id="appreqs" style="list-style-type:square;color: #005da3"> <!-- Inserting reqs by loop of php -->
 
@@ -170,26 +172,20 @@
                                     <script>
                                             function addItem(){
                                                 var liList = document.getElementById("appreqs").getElementsByTagName("li");
-                                                var largo = liList.length/2;
-                                                var li = document.createElement("LI");li.id="li[",largo,"]";
-                                                var li2 = document.createElement("LI");li2.id="li2[",largo,"]";
+                                                var largo = liList.length;
+                                                var li = document.createElement("LI");li.id="li["+largo+"]";
+                                                var input1 = document.createElement("input"); 
+                                                input1.id="appReqTitle["+largo+"]";
+                                                input1.name="appreqT["+largo+"]"; 
+                                                input1.placeholder="Bullet Heading";
                                                 var textareainput1 = document.createElement("textarea");  
-                                                textareainput1.id="appReqTitle[",largo,"]";
-                                                textareainput1.autocomplete="off";
-                                                textareainput1.autocapitalize="off";
-                                                textareainput1.autocorrect="off";
-                                                textareainput1.spellcheck="false";
-                                                textareainput1.rows="6";
-                                                textareainput1.cols="144";
-                                                textareainput1.maxlength="512";
-                                                textareainput1.style="overflow:hidden; width: 100%;";
-                                                textareainput1.name=""; // to be continued, work on adding name incremnted by things
-                                                var textareainput2 = document.createElement("textarea");  textareainput2.id="appReq[",largo,"]";
-                                                placeholder="<?php echo $attention;?>" form="siteUpdater">
+                                                textareainput1.id="appReqText["+largo+"]";
+                                                textareainput1.name="appreqTA["+largo+"]"; 
+                                                textareainput1.placeholder="Bullet Details";
+                                                textareainput1.style="width: 100%;";
                                                 document.getElementById("appreqs").appendChild(li);
-                                                document.getElementById("appreqs").appendChild(li2);
-                                                document.getElementById("li[",largo,"]").appendChild(textareainput1);
-                                                document.getElementById("li2[",largo,"]").appendChild(textareainput2);
+                                                document.getElementById("li["+largo+"]").appendChild(input1);
+                                                document.getElementById("li["+largo+"]").appendChild(textareainput1);
                                             }
                                         </script>
                                         <input type="button" id="btnAdd" value="Add" onclick="addItem()">

@@ -63,7 +63,8 @@
                         background-color: #fff;font-size: 20px;
                         border-radius: 15px;
                         border: 3px solid;
-                        border-color: DodgerBlue">
+                        border-color: #daa520;
+                        background-color: #ffebcd">
                 <article>
                     <h1 style = "color: #005da3;text-align: center;">What It Takes to Be a Member</h1>
                     <hr style = "width: 95%;">
@@ -72,7 +73,7 @@
                     </div>
                     <div style= "padding-left:30px;padding-top:10px;"><?php echo $whatittakes; ?></div>
                     <hr style = "width: 95%;">
-                    <div id = "applicationRequirements" class = "classic" style="margin: 0 px; padding-top:0px;">
+                    <div id = "applicationRequirements" class = "classic" style="margin: 0 px; padding-top:0px;background-color: #ffebcd;">
                         <h2 style = "color: #005da3">Application Requirements</h2>
                         <ul>
                             <?php echo $applicationRequirements;?> <!-- Inserting reqs by loop of php -->
