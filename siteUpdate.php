@@ -30,6 +30,58 @@
             $stmt = $pdo->prepare($sql);
             $stmt->execute(["whatItTakesUnder" => $_POST['whatItTakesUnder'],"id" => 1]);
         }
+        if(!file_exists($_FILES['frontImg']['tmp_name']) || !is_uploaded_file($_FILES['frontImg']['tmp_name'])){
+            $errors= array();
+            $file_name = $_FILES['frontImg']['name'];
+            $file_size =$_FILES['frontImg']['size'];
+            $file_tmp =$_FILES['frontImg']['tmp_name'];
+            $file_type=$_FILES['frontImg']['type'];
+            $split = explode('.', $_FILES['frontImg']['name']);
+            $file_ext=strtolower(end($split));
+            
+            $extensions= array("jpg");
+            
+            if(in_array($file_ext,$extensions)=== false){
+               $errors[]="Extension not allowed, please ensure the file is a .jpg (.jpeg is not allowed).";
+            }
+            
+            if($file_size > 2097152){
+               $errors[]='File size must be less than 2 MB';
+            }
+            
+            if(empty($errors)==true){
+               move_uploaded_file($file_tmp, "img/frontImg.jpg");
+               echo "Success";
+            }else{
+               print_r($errors);
+            }
+         }
+         if(!file_exists($_FILES['frontImg']['tmp_name']) || !is_uploaded_file($_FILES['frontImg']['tmp_name'])){
+            $errors= array();
+            $file_name = $_FILES['what_it_takes']['name'];
+            $file_size =$_FILES['what_it_takes']['size'];
+            $file_tmp =$_FILES['what_it_takes']['tmp_name'];
+            $file_type=$_FILES['what_it_takes']['type'];
+            $split = explode('.', $_FILES['what_it_takes']['name']);
+            $file_ext=strtolower(end($split));
+
+            $extensions= array("jpg");
+            
+            if(in_array($file_ext,$extensions)=== false){
+               $errors[]="Extension not allowed, please ensure the file is a .jpg (.jpeg is not allowed).";
+            }
+            
+            if($file_size > 2097152){
+               $errors[]='File size must be less than 2 MB';
+            }
+            
+            if(empty($errors)==true){
+               move_uploaded_file($file_tmp, "img/what_it_takes.jpg");
+               echo "Success";
+            }else{
+               print_r($errors);
+            }
+         }
 
     // Sets cookie for "formSubmitConfirm" and reroutes user to "manage-site-content.php"
 

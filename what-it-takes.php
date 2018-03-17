@@ -69,7 +69,7 @@
                     <h1 style = "color: #005da3;text-align: center;">What It Takes to Be a Member</h1>
                     <hr style = "width: 95%;">
                     <div id = "frontImg" style="margin-right:30px;">
-                        <img src = "http://www.ispi.org/images/volunteer.png"> <!-- Will access database for picture -->
+                        <img src = "what_it_takes.jpg">
                     </div>
                     <div style= "padding-left:30px;padding-top:10px;"><?php echo $whatittakes; ?></div>
                     <hr style = "width: 95%;">
