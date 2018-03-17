@@ -56,7 +56,7 @@
     <body>
         <div id = "footerPusher">
 
-            <img id = "fixedBGImg" src = "https://www.nhs.us/assets/images/nhs/NHS_header_logo.png"><!--Fixed Image in Background-->
+            <img id = "fixedBGImg" src = "img/NHS_logo.png"><!--Fixed Image in Background-->
             <div style="padding: 10px;
                         width: 60%;margin: 30px auto;
                         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);  

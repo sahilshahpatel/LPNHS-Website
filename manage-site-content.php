@@ -131,7 +131,7 @@
     <body>
         <div id = "footerPusher">
 
-                <img id = "fixedBGImg" src = "https://www.nhs.us/assets/images/nhs/NHS_header_logo.png"><!--Fixed Image in Background-->
+                <img id = "fixedBGImg" src = "img/NHS_logo.png"><!--Fixed Image in Background-->
 
                 <form id="siteUpdater" action="siteUpdate.php" method="post">
                     <div id = "homePage" style="text-align: center;" class = "classic panel">

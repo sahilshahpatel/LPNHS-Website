@@ -70,7 +70,7 @@
     <body>
 		<div id = "footerPusher">
 
-            <img id = "fixedBGImg" src = "https://www.nhs.us/assets/images/nhs/NHS_header_logo.png"> <!--Fixed image in background-->
+            <img id = "fixedBGImg" src = "img/NHS_logo.png"> <!--Fixed image in background-->
 
             <form id="login" class="form" action="session.php" method="post" style="height:350px;">
                 <div>

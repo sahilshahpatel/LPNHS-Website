@@ -33,14 +33,14 @@
 
     <body>
         
-        <img id = "fixedBGImg" src = "https://www.nhs.us/assets/images/nhs/NHS_header_logo.png"><!--Fixed Image in Background-->
+        <img id = "fixedBGImg" src = "img/NHS_logo.png"><!--Fixed Image in Background-->
         
         <div id = "footerPusher">
 
             <!--Home Page Main Image Card-->
 
             <div id = "frontImg" class = "card" style = "width: 50%;">
-                <img src = "https://www.lphs.org/cms/lib/IL01904769/Centricity/Domain/70/NHS%202017.jpg" style = "width: 100%;"><!--NHS picture of students-->
+                <img src = "img/lp_logo.png" style = "width: 100%;"><!--NHS picture of students-->
                 <p style = "font-style: italic; font-size: 16px;">Promoting appropriate recognition of students who reflect outstanding accomplishments in the areas of scholarship, leadership, character, and service.</p>
             </div>
         

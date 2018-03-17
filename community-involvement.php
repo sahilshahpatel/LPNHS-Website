@@ -51,7 +51,7 @@
     <body>
         <div id = "footerPusher">
 
-            <img id = "fixedBGImg" src = "https://www.nhs.us/assets/images/nhs/NHS_header_logo.png"> <!--Fixed image in background-->
+            <img id = "fixedBGImg" src = "img/NHS_logo.png"> <!--Fixed image in background-->
 
             <div id = "eventsPanel" class = "classic panel">
                 <div id = "informationContainer">

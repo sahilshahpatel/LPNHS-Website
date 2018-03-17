@@ -56,7 +56,7 @@
     <body>
         <div id = "footerPusher">
 
-            <img id = "fixedBGImg" src = "https://www.nhs.us/assets/images/nhs/NHS_header_logo.png"> <!--Fixed image in background-->
+            <img id = "fixedBGImg" src = "img/NHS_logo.png"> <!--Fixed image in background-->
             
             <div id = "mainPanel" class = "classic panel">
                 <p style = "text-align: center;">Edit Event</p>
