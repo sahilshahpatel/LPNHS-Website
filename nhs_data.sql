@@ -125,6 +125,7 @@ INSERT INTO `shifts` (`ShiftID`, `Date`, `StartTime`, `EndTime`, `PositionsAvail
 CREATE TABLE `sitecontent` (
   `whatItTakes` varchar(512) NOT NULL,
   `whatItTakes2` varchar(512) NOT NULL,
+  `appReqs` varchar(1024) NOT NULL,
   `attention` varchar(512) NOT NULL,
   `aboutUs` varchar(512) NOT NULL,
   `ID` int(11) NOT NULL,
@@ -135,8 +136,8 @@ CREATE TABLE `sitecontent` (
 -- Dumping data for table `sitecontent`
 --
 
-INSERT INTO `sitecontent` (`whatItTakes`, `whatItTakes2`, `attention`, `aboutUs`, `ID`, `frontImgCaption`) VALUES
-('NHS seeks out students who have a dedication to serving their community. \r\nCharacter is another category NHS pays attention to regarding candidates. A student with high character adheres to high standards of honesty, is courteous to others, and has a clean disciplinary record. Avoid people and situations where you might get in trouble. Things like recreational drug use and underage drinking look bad on an NHS application.\r\nYou cannot simply apply to NHS cold. A faculty member at your school must nominate yo', '', 'This is an Example Alert! Welome new NHS members! Visit The community Event Tab to see upcoming events and manage those you apply to!', 'This is an Example About Us! Here at NHS we recognize outstanding high school students. More than just an honor roll, NHS serves to recognize those students who have demonstrated excellence in the areas of scholarship, service, leadership, and character. These characteristics have been associated with membership in the organization since its beginning in 1921.', 1, 'Promoting appropriate recognition of students who reflect outstanding accomplishments in the areas of scholarship, leadership, character, and service.');
+INSERT INTO `sitecontent` (`whatItTakes`, `whatItTakes2`, `appReqs`, `attention`, `aboutUs`, `ID`, `frontImgCaption`) VALUES
+('NHS seeks out students who have a dedication to serving their community. \r\nCharacter is another category NHS pays attention to regarding candidates. A student with high character adheres to high standards of honesty, is courteous to others, and has a clean disciplinary record. Avoid people and situations where you might get in trouble. Things like recreational drug use and underage drinking look bad on an NHS application.\r\nYou cannot simply apply to NHS cold. A faculty member at your school must nominate yo', '', '', 'This is an Example Alert! Welome new NHS members! Visit The community Event Tab to see upcoming events and manage those you apply to!', 'This is an Example About Us! Here at NHS we recognize outstanding high school students. More than just an honor roll, NHS serves to recognize those students who have demonstrated excellence in the areas of scholarship, service, leadership, and character. These characteristics have been associated with membership in the organization since its beginning in 1921.', 1, 'Promoting appropriate recognition of students who reflect outstanding accomplishments in the areas of scholarship, leadership, character, and service.');
 
 -- --------------------------------------------------------
 
