@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 18, 2018 at 12:36 AM
+-- Generation Time: Mar 20, 2018 at 11:51 PM
 -- Server version: 10.1.29-MariaDB
 -- PHP Version: 7.2.0
 
@@ -123,8 +123,8 @@ INSERT INTO `shifts` (`ShiftID`, `Date`, `StartTime`, `EndTime`, `PositionsAvail
 --
 
 CREATE TABLE `sitecontent` (
-  `whatItTakes` varchar(512) NOT NULL,
-  `whatItTakes2` varchar(512) NOT NULL,
+  `whatItTakes` varchar(1024) NOT NULL,
+  `whatItTakes2` varchar(1024) NOT NULL,
   `appReqs` varchar(1024) NOT NULL,
   `attention` varchar(512) NOT NULL,
   `aboutUs` varchar(512) NOT NULL,
@@ -181,11 +181,11 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`StudentID`, `FirstName`, `LastName`, `Email`, `PasswordHash`, `HoursCompleted`, `VicePresident`, `Position`) VALUES
-(0, 'Test', 'Student', 'test@email.com', '$2y$10$TRpNkBJfdi0gk0u.YXR8sO/j92LlAXo05kJ/8oR.ZvkShdkcA451m', 0, 'Nic', 'Student'),
-(11111, 'Miloni', 'Shah', 'vp1@email.com', '', 0, 'Miloni', 'Vice President'),
-(123456, 'Sahil', 'Patel', 'email@email.com', '$2y$10$TRpNkBJfdi0gk0u.YXR8sO/j92LlAXo05kJ/8oR.ZvkShdkcA451m', 6.5, 'Miloni', 'Admin'),
-(222222, 'Nic', 'Conry', 'vp2@email.com', '', 0, 'Nic', 'Vice President'),
-(654321, 'Ben', 'Wagrez', 'email2@email.com', '$2y$10$T44pEYOXmU.nXNmXBIWkCeVFQhrsBvmUSauRoKgRJ4EQ8oh9Qz7tu', 3.5, 'Nic', 'Student');
+(0, 'Test', 'Student', 'test@email.com', '$2y$10$TRpNkBJfdi0gk0u.YXR8sO/j92LlAXo05kJ/8oR.ZvkShdkcA451m', 0, '111111', 'Student'),
+(111111, 'Miloni', 'Shah', 'vp1@email.com', '$2y$10$TRpNkBJfdi0gk0u.YXR8sO/j92LlAXo05kJ/8oR.ZvkShdkcA451m', 0, '111111', 'Vice President'),
+(123456, 'Sahil', 'Patel', 'email@email.com', '$2y$10$TRpNkBJfdi0gk0u.YXR8sO/j92LlAXo05kJ/8oR.ZvkShdkcA451m', 6.5, '111111', 'Admin'),
+(222222, 'Nic', 'Conry', 'vp2@email.com', '', 0, '222222', 'Vice President'),
+(654321, 'Ben', 'Wagrez', 'email2@email.com', '$2y$10$T44pEYOXmU.nXNmXBIWkCeVFQhrsBvmUSauRoKgRJ4EQ8oh9Qz7tu', 3.5, '222222', 'Student');
 
 -- --------------------------------------------------------
 

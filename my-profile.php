@@ -115,7 +115,15 @@
                     <tr>
                         <td><?php echo $data->FirstName, ' ', $data->LastName;?></td>
                         <td><?php echo $data->HoursCompleted;?></td>
-                        <td><?php echo $data->VicePresident;?></td>
+                        <td>
+                            <?php 
+                                $sql = "SELECT * FROM students WHERE StudentID=:studentID";
+                                $stmt = $pdo->prepare($sql);
+                                $stmt->execute(['studentID'=>($data->VicePresident)]);
+                                $vpData = $stmt->fetch(PDO::FETCH_OBJ);
+                                echo $vpData->FirstName, ' ', $vpData->LastName;
+                            ?>
+                        </td>
                     </tr>
                 </table>
             </div>

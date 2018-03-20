@@ -22,9 +22,22 @@
 				$stmt->execute(["studentID" => $_SESSION["StudentID"]]);
 				$data = $stmt->fetch(PDO::FETCH_OBJ);
 
+			//Resetting "students" $data if a VP is tryring to manage...
+
+			if((isset($_GET["manage"]) && htmlspecialchars($_GET["manage"])==="true" && $data->Position==="Vice President")){
+				//If a VP is trying to manage members, only load their specific students
+				$sql = "SELECT * FROM students WHERE VicePresident=:vpID AND NOT Position='Student' ORDER BY LastName, FirstName";
+				$stmt = $pdo->prepare($sql);
+				$stmt->execute(['vpID' => $_SESSION['StudentID']]);
+				
+				$studentCount = $stmt->rowCount();
+				$studentIDs = array();
+				array_push($studentIDs, $stmt->fetchAll(PDO::FETCH_COLUMN, 0));
+			}
+
 			// Checking users permissions based on "Position"
 
-				if(isset($_GET["manage"]) && htmlspecialchars($_GET["manage"])==="true" && ($data->Position==="President" || $data->Position==="Advisor" || $data->Position==="Admin")):
+				if(isset($_GET["manage"]) && htmlspecialchars($_GET["manage"])==="true" && ($data->Position==="President" || $data->Position==="Advisor" || $data->Position==="Admin" || $data->Position==="Vice President")):
 					
 					// User "Position" : admin view
 
@@ -88,7 +101,7 @@
 										if($vpData[$vp][1] === $data[0][6]){
 											echo 'selected = "selected" ';
 										}
-										echo 'value = "', $vpData[$vp][1], '">', $vpData[$vp][1], '</option>';
+										echo 'value = "', $vpData[$vp][0], '">', $vpData[$vp][1], ' ', $vpData[$vp][2], '</option>';
 									}
 									echo '</select></td>';
 									echo '<td><input name = "hoursCompleted[', $i,']" type = "number" style = "max-width: 40px;" value=', $data[0][5], '></td>';
