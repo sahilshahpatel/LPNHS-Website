@@ -14,17 +14,19 @@ $(document).ready(function(){
             $('#navBar').removeClass('navBar-fixed');
         }
     });
-
-    //Fade-out for #LPLogo img (initial and on resize)
-    var dist = $("#LPNHS").position().left - $("#LPLogo").position().left;
-    if(dist>0){
-        $("#LPLogo").css("opacity", (dist-180)/70);    
-    }
-    $(window).resize(function(){
+    
+    $(window).load(function(){
+        //Fade-out for #LPLogo img (initial and on resize)
         var dist = $("#LPNHS").position().left - $("#LPLogo").position().left;
         if(dist>0){
             $("#LPLogo").css("opacity", (dist-180)/70);    
         }
+        $(window).resize(function(){
+            var dist = $("#LPNHS").position().left - $("#LPLogo").position().left;
+            if(dist>0){
+                $("#LPLogo").css("opacity", (dist-180)/70);    
+            }
+        });
     });
 
     //Log in button
