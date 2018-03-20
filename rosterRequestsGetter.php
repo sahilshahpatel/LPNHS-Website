@@ -75,10 +75,9 @@
 						// Looping for every event that that is the same that the user has done
 
 							for($l = 0; $l<count($sameEventsData); $l++){
-
-								// Pulling data from "studentevent" to see how many times the student has signed up for the same event
-
-									$sql = "SELECT * FROM studentevent WHERE EventID = :eventID AND StudentID = :studentID";
+								// Pulling data from "studentevent" to see how many times the student has signed up for the same event (events with same name)
+									$sql = "SELECT * FROM studentevent WHERE EventID=:eventID AND StudentID=:studentID";
+									$stmt = $pdo->prepare($sql);
 									$stmt->execute(['eventID' => $sameEventsData[$l][0], 'studentID' => $studentData[$q][0]]);
 									$repetitionCounter += $stmt->rowCount();
 							}
