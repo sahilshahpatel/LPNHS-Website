@@ -1,8 +1,14 @@
 <!DOCTYPE HTML>
 <?php 
     session_start();
-    include "database.php";
-    include "adminCheck.php";
+    require "database.php";
+    require "adminCheck.php?vpAllowed=true";
+
+    //Get current user info
+    $sql = "SELECT * FROM students WHERE StudentID=:studentID";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute(["studentID"=>$_SESSION["StudentID"]]);
+    $userData = $stmt->fetch(PDO::FETCH_OBJ);
 ?>
 <html>
     <head>
@@ -77,28 +83,37 @@
 
             <img id = "fixedBGImg" src = "img/NHS_logo.png"><!--Fixed image in background-->
 
-            <div id = "presidentialOptions" class = "dashboard">
-                <div id = "setRosters" class = "dashboardButton">
-                    <p>Accept/Deny Roster Requests</p>
+            <!--Only display manage members if user is a VP-->
+            <?php if($userData->Position!== "Vice President"): ?>
+                <div id = "presidentialOptions" class = "dashboard">
+                    <div id = "setRosters" class = "dashboardButton">
+                        <p>Accept/Deny Roster Requests</p>
+                    </div>
+                    <div id = "confirmHours" class = "dashboardButton">
+                        <p>Confirm Student Volunteer Hours</p>
+                    </div>
                 </div>
-                <div id = "confirmHours" class = "dashboardButton">
-                    <p>Confirm Student Volunteer Hours</p>
-                </div>
-            </div>
+            <?php endif;?>
 
             <div id = "dashboard" class = "dashboard">
-                <div id = "createEventDiv" class = "dashboardButton">
-                    <p>Create an Event</p>
-                </div>
-                <div id = "editEventDiv" class = "dashboardButton">
-                    <p>Edit or Remove an Event</p>
-                </div>
-                <div id = "manageMembers" class = "dashboardButton">
+                <?php if($userData->Position!== "Vice President"): ?>
+                    <div id = "createEventDiv" class = "dashboardButton">
+                        <p>Create an Event</p>
+                    </div>
+                    <div id = "editEventDiv" class = "dashboardButton">
+                        <p>Edit or Remove an Event</p>
+                    </div>
+                <?php endif;?>
+
+                <div id = "manageMembers" class = "dashboardButton" <?php if($userData->Position === "Vice President"){echo 'style = "margin: 0 auto;"';}?>>
                     <p>Manage Members</p>
                 </div>
-                <div id = "manageSiteContent" class = "dashboardButton">
-                    <p>Manage Site Content</p>
-                </div>
+
+                <?php if($userData->Position!== "Vice President"): ?>
+                    <div id = "manageSiteContent" class = "dashboardButton">
+                        <p>Manage Site Content</p>
+                    </div>
+                <?php endif;?>
             </div>
 
         </div>

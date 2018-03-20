@@ -1,5 +1,5 @@
 <?php
-    include "loginCheck.php";
+    require "loginCheck.php";
 
     $sql = "SELECT * FROM students WHERE StudentID=:studentID";
     $stmt = $pdo->prepare($sql);
@@ -8,6 +8,8 @@
 
     if(!$data->Position==="President" && !$data->Position==="Admin" && !$data->Position==="Advisor")
     {
-        header("Location: index.php");
+        if(!(isset($_GET['vpAllowed']) && $_GET['vpAllowed']==="true" && $data->Position==="Vice President"){
+            header("Location: index.php");
+        }
     }
 ?>
