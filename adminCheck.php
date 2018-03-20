@@ -8,7 +8,7 @@
 
     if(!$data->Position==="President" && !$data->Position==="Admin" && !$data->Position==="Advisor")
     {
-        if(!(isset($_GET['vpAllowed']) && $_GET['vpAllowed']==="true" && $data->Position==="Vice President"){
+        if(!(isset($vpAllowed) && $vpAllowed===true && $data->Position==="Vice President")){
             header("Location: index.php");
         }
     }

@@ -2,7 +2,8 @@
 <?php 
     session_start();
     require "database.php";
-    require "adminCheck.php?vpAllowed=true";
+    $vpAllowed = true;
+    require "adminCheck.php";
 
     //Get current user info
     $sql = "SELECT * FROM students WHERE StudentID=:studentID";
