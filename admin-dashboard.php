@@ -72,6 +72,9 @@
                 $("#manageSiteContent").click(function(){
                     window.location.href = "manage-site-content.php";
                 });
+                $("#backups").click(function(){
+                    window.location.href = "databaseBackups.php";
+                });
         });
         </script>
 
@@ -116,7 +119,14 @@
                     </div>
                 <?php endif;?>
             </div>
-
+            <div id = "databaseOptions" class = "dashboard">
+                    <div id = "backups" class = "dashboardButton">
+                        <p>Restore From/Delete Database Backups</p>
+                    </div>
+                    <div id = "resetChapter" class = "dashboardButton">
+                        <p>Reset Chapter for New Year</p>
+                    </div>
+                </div>
         </div>
     </body>
 
