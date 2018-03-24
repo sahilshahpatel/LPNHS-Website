@@ -11,7 +11,7 @@
         fwrite($file, $contents);
 
         shell_exec('cd dbBackup');
-        shell_exec('/c nhsDataRestoreFromBackup.bat')
+        shell_exec('/c nhsDataRestoreFromBackup.bat');
     }
     header("Location: databaseBackups.php?formSubmitConfirmation=true");
 ?>
