@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <?php
     require 'database.php';
-    //require 'adminCheck.php';
+    require 'adminCheck.php';
 ?>
 <html>
     <head>
@@ -17,6 +17,20 @@
                 background-color: #e8cfa4;
             }
         </style>
+
+        <?php
+            // Form Submission Confirmation
+            if(isset($_GET['formSubmitConfirm'])):
+            ?>
+                <script>
+                $(document).ready(function(){
+                    $("#banner").animate({backgroundColor: '#00CC00'});
+                    $("#banner").animate({backgroundColor: '#fff'});
+                });
+                </script>
+        <?php
+            endif;
+        ?>
     </head>
     
     <header id = "header"><?php include "header.php"; ?></header>
@@ -31,9 +45,9 @@
                 <form method = "post" action = "">
                     <table id = "backupsTable" style = "width: 100%;">
                         <?php 
-                            //scan backups directory to see how many backups there are (two extra files are always returned "." and "..". Array_slice removes these)
+                            //scan backups directory to see how many backups there are (array_diff removes the batch files and dot directories)
                             //the . in front of \dbBackup specifies that it is a relative path
-                            $backups = array_slice(scandir('.\dbBackup'), 2);
+                            $backups = array_diff(scandir('.\dbBackup'), array('nhsDataBackup.bat', '.', '..'));
 
                             echo '<tr>
                                 <th><p>Backup Name (format: nhs_data_yyyyddmm.sql)</p></th>

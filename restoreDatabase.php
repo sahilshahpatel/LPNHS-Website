@@ -1,16 +1,9 @@
 <?php
     if(isset($_GET['filename'])){
         
-        $path = 'dbBackup\nhsDataRestoreFromBackup.bat';
-        //open file to write ('.' specifies path is relative, \\ escapes the slash)
-        $file = fopen('.\\'.$path, "w");
+        $commands = 'cd C:\xampp\mysql\bin && mysql -u root nhs_data < C:/xampp/htdocs/lpnhs/dbBackup/'.$_GET['filename'];
 
-        $contents = 'cd C:\xampp\mysql\bin'."\n".
-        'mysql -u root nhs_data < C:/xampp/htdocs/lpnhs/dbBackup/'.$_GET['filename'];
-
-        fwrite($file, $contents);
-
-        shell_exec('cd dbBackup && nhsDataRestoreFromBackup.bat');
+        shell_exec($commands);
     }
-    //header("Location: databaseBackups.php?formSubmitConfirmation=true");
+    header("Location: databaseBackups.php?formSubmitConfirm=true");
 ?>

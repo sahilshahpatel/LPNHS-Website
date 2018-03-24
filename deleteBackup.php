@@ -4,5 +4,5 @@
         $path = '.\dbBackup\\'.$_GET['filename'];
         unlink($path);
     }
-    header("Location: databaseBackups.php?formSubmitConfirmation=true");
+    header("Location: databaseBackups.php?formSubmitConfirm=true");
 ?>
