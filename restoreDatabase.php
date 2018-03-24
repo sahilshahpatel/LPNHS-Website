@@ -13,5 +13,5 @@
         shell_exec('cd dbBackup');
         shell_exec('nhsDataRestoreFromBackup.bat');
     }
-    header("Location: databaseBackups.php?formSubmitConfirmation=true");
+    //header("Location: databaseBackups.php?formSubmitConfirmation=true");
 ?>
