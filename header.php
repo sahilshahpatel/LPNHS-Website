@@ -17,15 +17,15 @@
 <div id = "navBarWrapper">
     <nav id = "navBar" class = "topnav">
         <?php if(isset($_SESSION["StudentID"])) : ?><!--Checking if student is logged in for different nav bar-->
-            <a class = "baseText" id = "homeLink" href = "index.php">Home</a>
-            <a class = "baseText" id = "eventsLink" href = "events.php">Community Events</a>
-            <a class = "baseText" id = "membersLink" href = "members.php">Members</a>
-			<a class = "baseText" id = "myProfileLink" href = "my-profile.php">My Profile</a>
+            <a class = "baseText" id = "homeLink" href = "index.php">Home</a><!--Removing spacing
+            --><a class = "baseText" id = "eventsLink" href = "events.php">Community Events</a><!--Removing spacing
+            --><a class = "baseText" id = "membersLink" href = "members.php">Members</a><!--Removing spacing
+			--><a class = "baseText" id = "myProfileLink" href = "my-profile.php">My Profile</a>
         <?php else :?><!--If not logged in then the nav bar below-->
-            <a class = "baseText" id = "homeLink" href = "index.php">Home</a>
-            <a class = "baseText" id = "communityInvolvementLink" href = "community-involvement.php">Community Events</a>
-            <a class = "baseText" id = "membersLink" href = "members.php">Members</a>
-			<a class = "baseText" id = "whatItTakesLink" href = "what-it-takes.php">What It Takes</a>
+            <a class = "baseText" id = "homeLink" href = "index.php">Home</a><!--Removing spacing
+            --><a class = "baseText" id = "communityInvolvementLink" href = "community-involvement.php">Community Events</a><!--Removing spacing
+            --><a class = "baseText" id = "membersLink" href = "members.php">Members</a><!--Removing spacing
+			--><a class = "baseText" id = "whatItTakesLink" href = "what-it-takes.php">What It Takes</a>
         <?php endif; ?>
     </nav>
 </div>
