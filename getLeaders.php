@@ -98,7 +98,7 @@
 									for($vp = 0; $vp<count($vpData); $vp++){
 										echo '<option ';
 										//set default value
-										if($vpData[$vp][1] === $data[0][6]){
+										if($vpData[$vp][0] === $data[0][6]){
 											echo 'selected = "selected" ';
 										}
 										echo 'value = "', $vpData[$vp][0], '">', $vpData[$vp][1], ' ', $vpData[$vp][2], '</option>';
