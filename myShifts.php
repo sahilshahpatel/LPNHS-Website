@@ -87,7 +87,7 @@
                                             echo '<tr>';
 
                                             // Hidden form info to be passed
-                                            echo '<input type = "hidden" name = "shiftID[', $l,']" value = "', $shiftData[0][0], '">';
+                                            echo '<input type = "hidden" name = "shiftID[', $s,'][', $p, ']" value = "', $shiftData[0][0], '">';
     
                                             echo '<td>', $formatted_date, '</td>';
                                             echo '<td>', $formatted_startTime, ' to ', $formatted_endTime, '</td>';
@@ -99,17 +99,18 @@
                                             $studentList = array();
                                             $studentList = $stmt->fetchAll();
 
-                                            echo '<td><select name = "covererID[', $i, ']" form = "requestShiftCoverForm">';
+
+                                            //Select tag used instead of datalist b/c datalists cannot be prevented from showing the "value" attribute bigger than the inside text, which is important here
+                                            //If datalist ever supports this, it would be much nicer b/c of it's searchability.
+                                            echo '<td><select name = "covererID[', $s, '][', $p, ']" form = "requestShiftCoverForm" required = "true">';
+                                            echo '<option value = "">---</option>';
                                             for($studentCounter = 0; $studentCounter<count($studentList); $studentCounter++){
-                                                echo '<option ';
-                                                //Defaults to your own name
-                                                if($studentList[$studentCounter][0]===$_SESSION['StudentID']){
-                                                    echo 'selected = "selected" ';
+                                                if($studentList[$studentCounter][0]!==$_SESSION['StudentID']){
+                                                    echo '<option value = "', $studentList[$studentCounter][0], '">', $studentList[$studentCounter][1], ' ', $studentList[$studentCounter][2], '</option>';
                                                 }
-                                                echo 'value = "', $studentList[$studentCounter][0], '">', $studentList[$studentCounter][1], ' ', $studentList[$studentCounter][2], '</option>';
                                             }
                                             echo '</select></td>';
-                                            echo '<td><input type = "submit" name = "submit[', $s, ']" value = "Request Shift Cover" class = "classicColor"></td>';
+                                            echo '<td><input type = "submit" name = "submit[', $s, '][', $p, ']" value = "Request Shift Cover" class = "classicColor"></td>';
                                             echo '</tr>';
                                         }
                                     }
