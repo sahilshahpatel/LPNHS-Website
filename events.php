@@ -79,7 +79,7 @@
                     <!--Information loaded via JavaScript-->
                     <p>Upcoming Events</p>
                     <div id = "upcomingEvents">
-                        <form method = "post" action = "volunteer.php">
+                        <form method = "post"><!--Form action determined in based on tab via php-->
                             <table id = "upcomingEventsTable">
                                 <!--Load data-->
                                 <script>

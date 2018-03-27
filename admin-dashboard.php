@@ -97,7 +97,7 @@
                         <p>Accept/Deny Roster Requests</p>
                     </div>
                     <div id = "shiftSwitches" class = "dashboardButton">
-                        <p>Accept/Deny Shift Switches</p>
+                        <p>Accept/Deny Shift Cover Requests</p>
                     </div>
                     <div id = "confirmHours" class = "dashboardButton">
                         <p>Confirm Volunteer Hours</p>

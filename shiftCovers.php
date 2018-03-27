@@ -109,17 +109,18 @@
                                         $stmt = $pdo->prepare($sql);
                                         $stmt->execute(['shiftID'=>$data->ShiftID]);
                                         $shiftData = $stmt->fetch(PDO::FETCH_OBJ);
-                                        
+
+                                        echo '<tr>';
+
                                         //Send hidden data to be used in coverShift.php
                                         echo '<input type = "hidden" name = "requesterID[',$i,']" value = "', $data->RequesterID, '">';
                                         echo '<input type = "hidden" name = "covererID[',$i,']" value = "', $data->CovererID, '">';
                                         echo '<input type = "hidden" name = "shiftID[',$i,']" value = "', $data->ShiftID, '">';
                                         echo '<input type = "hidden" name = "eventID[',$i,']" value = "', $eventData->EventID, '">';
 
-                                        echo '<tr>';
                                         echo '<td>', $eventData->Name, '</td>';
                                         echo '<td>', $covererData->FirstName, ' ', $covererData->LastName, ' covering for ', $requesterData->FirstName, ' ', $requesterData->LastName, '</td>';
-                                        echo '<td>', $shiftData->Date, '</td>';
+                                        echo '<td>', date('m/d/Y', strtotime($shiftData->Date)), '</td>';
                                         echo '<td>', $shiftData->StartTime, ' to ', $shiftData->EndTime, '</td>';
                                         echo '<td><input name = "submit[', $i,']" type = "image" src = "img/greenCheckMark.png" height = "30px" width = "30px" style = "margin-top: 5px;"></td>';
                                         echo '</tr>';

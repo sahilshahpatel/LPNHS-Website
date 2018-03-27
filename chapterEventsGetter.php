@@ -38,7 +38,7 @@
 					if($data[0][3]===$data[0][4]){echo '<td>', $formatted_startDate, '</td>';}
 					else{echo '<td>', $formatted_startDate, ' to ', $formatted_endDate, '</td>';}
 					echo '<td><a href="https://www.maps.google.com/maps/search/?api=1&query=', str_replace(" ", "+", $data[0][5]),'+IL" target = "_blank">', $data[0][5], '</a></td>';
-					echo '<td><input type = "submit" name = "viewShifts[', $i, ']" value = "View Shifts" class = "classicColor"></td>';
+					echo '<td><input type = "submit" name = "viewShifts[', $i, ']" value = "View Shifts" formaction = "volunteer.php" class = "classicColor"></td>';
 					echo '</tr>';
 				}
 			} 

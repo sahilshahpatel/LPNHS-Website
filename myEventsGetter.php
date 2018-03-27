@@ -10,18 +10,19 @@
 		$eventCount = $stmt->rowCount();
 		$eventIDs = array();
 		array_push($eventIDs, $stmt->fetchAll(PDO::FETCH_COLUMN, 0));
-
-	// Starting to display a table row element as a header
-
-		echo '<tr>
-			  <th>Event Name</th>
-			  <th>Date</th>
-			  <th>Location</th>
-			  </tr>';
 			  
 	// Checking if User History or Future events
 
 		if($_GET['history'] === "false"){
+
+			// Starting to display a table row element as a header
+
+			echo '<tr>
+			<th>Event Name</th>
+			<th>Date</th>
+			<th>Location</th>
+			<th></th>
+			</tr>';
 
 			// Looping for every event
 
@@ -59,6 +60,9 @@
 								if($data[0][3]===$data[0][4]){echo '<td>',$formatted_startDate, '</td>';}
 								else{echo '<td>', $formatted_startDate, ' to ', $formatted_endDate, '</td>';}
 								echo '<td><a href="https://www.maps.google.com/maps/search/?api=1&query=', str_replace(" ", "+", $data[0][5]),'+IL" target = "_blank">', $data[0][5], '</a></td>';
+								echo '<input type = "hidden" name = "eventID[', $i, ']" value = "'$eventIDs[0][$i]'">';
+								echo '<input type = "hidden" name = "eventName[', $i, ']" value = "'$data[0][1]'">';
+								echo '<td><input type = "submit" name = "myShifts[', $i, ']" value = "View my shifts" formaction = "myShifts.php" class = "classicColor"></td>';
 								echo '</tr>';
 						}
 				}
@@ -68,6 +72,13 @@
 	// If it is not on
 
 		else{
+
+			// Starting to display a table row element as a header
+			echo '<tr>
+			<th>Event Name</th>
+			<th>Date</th>
+			<th>Location</th>
+			</tr>';
 
 			// Looping for every event
 

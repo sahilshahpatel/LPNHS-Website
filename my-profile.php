@@ -127,6 +127,76 @@
                     </tr>
                 </table>
             </div>
+            
+            <!--Shift Cover requests-->
+            <div class = "classic panel">
+                <div id = "shiftCoverRequests">
+                    <form method = "post" action = "acceptCoverShifts.php">
+                        <p style = "margin-bottom: 0;">Accept/Deny Shift Covers</p>
+                        <p style = "font-size: 12px; font-style: italic; margin-top: 0;">Shift covers must be accepted by the president before going into effect</p>
+                        <table id = "shiftCoverRequestsTable">
+                            <?php
+                                $sql = "SELECT * FROM shiftcovers WHERE CovererID = :covererID AND Agreed=0";
+                                $stmt = $pdo->prepare($sql);
+                                $stmt->execute(['covererID'=>$_SESSION['StudentID']]);
+                                $count = $stmt->rowCount();
+                                $data = $stmt->fetch(PDO::FETCH_OBJ);
+                                
+                                echo '<tr>
+                                    <th>From</th>
+                                    <th>Event Name</th>
+                                    <th>Shift Date</th>
+                                    <th>Shift Time</th>
+                                    <th>Accept</th>
+                                    </tr>';
+
+                                if($count===0){
+                                    echo '<tr><td colspan = "5"><p>No shift cover requests found</p></td></tr>';
+                                }
+                                
+                                for($i=0; $i<$count; $i++){
+                                    //Find Event Name
+                                    $sql = "SELECT * FROM eventshift WHERE ShiftID=:shiftID";
+                                    $stmt = $pdo->prepare($sql);
+                                    $stmt->execute(['shiftID'=>$data->ShiftID]);
+                                    $event = $stmt->fetch(PDO::FETCH_OBJ);
+
+                                    $sql = "SELECT * FROM events WHERE EventID=:eventID";
+                                    $stmt = $pdo->prepare($sql);
+                                    $stmt->execute(['eventID'=>$event->EventID]);
+                                    $eventData = $stmt->fetch(PDO::FETCH_OBJ);
+
+                                    //Find Requester Name
+                                    $sql = "SELECT * FROM students WHERE StudentID=:studentID";
+                                    $stmt = $pdo->prepare($sql);
+                                    $stmt->execute(['studentID'=>$data->RequesterID]);
+                                    $requesterData = $stmt->fetch(PDO::FETCH_OBJ);
+
+                                    //Find Shift Data
+                                    $sql = "SELECT * FROM shifts WHERE ShiftID=:shiftID";
+                                    $stmt = $pdo->prepare($sql);
+                                    $stmt->execute(['shiftID'=>$data->ShiftID]);
+                                    $shiftData = $stmt->fetch(PDO::FETCH_OBJ);
+
+                                    echo '<tr>';
+
+                                    //Send hidden data to be used in coverShift.php
+                                    echo '<input type = "hidden" name = "requesterID[',$i,']" value = "', $data->RequesterID, '">';
+                                    echo '<input type = "hidden" name = "covererID" value = "', $data->CovererID, '">';
+                                    echo '<input type = "hidden" name = "shiftID[',$i,']" value = "', $data->ShiftID, '">';
+
+                                    echo '<td>', $requesterData->FirstName, ' ', $requesterData->LastName, '</td>';
+                                    echo '<td>', $eventData->Name, '</td>';
+                                    echo '<td>', date('m/d/Y', strtotime($shiftData->Date)), '</td>';
+                                    echo '<td>', $shiftData->StartTime, ' to ', $shiftData->EndTime, '</td>';
+                                    echo '<td><input name = "submit[', $i,']" type = "image" src = "img/greenCheckMark.png" height = "30px" width = "30px" style = "margin-top: 5px;"></td>';
+                                    echo '</tr>';
+                                }
+                            ?>
+                        </table>
+                    </form>
+                </div>
+            </div>
 
             <div id = "eventsPanel" class = "classic panel">
                 <div id = "informationContainer">
