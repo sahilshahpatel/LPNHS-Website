@@ -27,7 +27,7 @@
                 align-self: center;
             }
             #dashboard{height: 250px;}
-            #presidentialOptions{height: 75px;}
+            #presidentialOptions{height: 100px;}
             div.dashboardButton
             {
                 display: inline-flex;
@@ -56,6 +56,9 @@
         $(document).ready(function() {
                 $("#setRosters").click(function(){
                     window.location.href = "roster-requests.php";
+                });
+                $("#shiftSwitches").click(function(){
+                    window.location.href = "shiftCovers.php";
                 });
                 $("#confirmHours").click(function(){
                     window.location.href = "hour-logs.php";
@@ -93,8 +96,11 @@
                     <div id = "setRosters" class = "dashboardButton">
                         <p>Accept/Deny Roster Requests</p>
                     </div>
+                    <div id = "shiftSwitches" class = "dashboardButton">
+                        <p>Accept/Deny Shift Switches</p>
+                    </div>
                     <div id = "confirmHours" class = "dashboardButton">
-                        <p>Confirm Student Volunteer Hours</p>
+                        <p>Confirm Volunteer Hours</p>
                     </div>
                 </div>
             <?php endif;?>

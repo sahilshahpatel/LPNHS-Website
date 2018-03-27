@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 20, 2018 at 11:51 PM
+-- Generation Time: Mar 27, 2018 at 06:10 PM
 -- Server version: 10.1.29-MariaDB
 -- PHP Version: 7.2.0
 
@@ -46,7 +46,8 @@ CREATE TABLE `events` (
 INSERT INTO `events` (`EventID`, `Name`, `Description`, `StartDate`, `EndDate`, `Location`, `Shifts`, `ReleaseDate`) VALUES
 (2, 'Test Event', 'Testing hour confirmation', '2018-04-27', '2018-04-27', '600 Medinah Rd, Roselle, IL', 1, '2018-01-15'),
 (3, 'Sign Up Test Event', 'Sign up for this event as part of the demo.', '2018-02-14', '2018-02-14', '500 W Bryn Mawr Ave, Roselle, IL', 1, '2018-02-10'),
-(4, 'Release Date Test', '', '2018-02-16', '2018-02-16', 'location', 1, '2018-02-14');
+(4, 'Release Date Test', '', '2018-02-16', '2018-02-16', 'location', 1, '2018-02-14'),
+(5, 'Roster Request Bug Checker', '', '2018-03-31', '2018-03-31', 'aswd', 1, '2018-03-19');
 
 -- --------------------------------------------------------
 
@@ -66,7 +67,8 @@ CREATE TABLE `eventshift` (
 INSERT INTO `eventshift` (`EventID`, `ShiftID`) VALUES
 (2, 2),
 (3, 3),
-(4, 4);
+(4, 4),
+(5, 5);
 
 -- --------------------------------------------------------
 
@@ -90,7 +92,25 @@ INSERT INTO `positions` (`PositionID`, `ShiftID`, `StudentID`, `HoursConfirmed`)
 (4, 2, 0, 0),
 (5, 3, 123456, 0),
 (6, 3, NULL, 0),
-(7, 4, NULL, 0);
+(7, 4, NULL, 0),
+(8, 5, NULL, 0),
+(9, 5, NULL, 0),
+(10, 5, NULL, 0),
+(11, 5, NULL, 0),
+(12, 5, NULL, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `shiftcovers`
+--
+
+CREATE TABLE `shiftcovers` (
+  `RequesterID` int(11) NOT NULL,
+  `ShiftID` int(11) NOT NULL,
+  `CovererID` int(11) NOT NULL,
+  `Agreed` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -114,7 +134,8 @@ CREATE TABLE `shifts` (
 INSERT INTO `shifts` (`ShiftID`, `Date`, `StartTime`, `EndTime`, `PositionsAvailable`, `EventID`) VALUES
 (2, '2018-01-27', '05:00:00', '06:30:00', 0, 2),
 (3, '2018-02-14', '04:00:00', '05:00:00', 1, 3),
-(4, '2018-02-16', '01:00:00', '02:00:00', 1, 4);
+(4, '2018-02-16', '01:00:00', '02:00:00', 1, 4),
+(5, '2018-03-31', '12:00:00', '14:00:00', 5, 5);
 
 -- --------------------------------------------------------
 
@@ -200,6 +221,13 @@ CREATE TABLE `studentshiftrequests` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- Dumping data for table `studentshiftrequests`
+--
+
+INSERT INTO `studentshiftrequests` (`EventID`, `StudentID`, `ShiftID`) VALUES
+(5, 123456, 5);
+
+--
 -- Indexes for dumped tables
 --
 
@@ -241,19 +269,19 @@ ALTER TABLE `students`
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `EventID` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `EventID` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `positions`
 --
 ALTER TABLE `positions`
-  MODIFY `PositionID` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `PositionID` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `shifts`
 --
 ALTER TABLE `shifts`
-  MODIFY `ShiftID` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ShiftID` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
