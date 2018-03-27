@@ -1,7 +1,9 @@
 <!DOCTYPE HTML>
 <?php
+    session_start();
     require 'database.php';
-    require 'adminCheck.php';
+    $vpAllowed = false;
+    require "adminCheck.php";
 ?>
 <html>
     <head>

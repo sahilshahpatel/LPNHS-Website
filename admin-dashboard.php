@@ -119,7 +119,8 @@
                     </div>
                 <?php endif;?>
             </div>
-            <div id = "databaseOptions" class = "dashboard">
+            <?php if($userData->Position!== "Vice President"): ?>
+                <div id = "databaseOptions" class = "dashboard">
                     <div id = "backups" class = "dashboardButton">
                         <p>Restore From/Delete Database Backups</p>
                     </div>
@@ -127,6 +128,7 @@
                         <p>Reset Chapter for New Year</p>
                     </div>
                 </div>
+            <?php endif;?>
         </div>
     </body>
 
