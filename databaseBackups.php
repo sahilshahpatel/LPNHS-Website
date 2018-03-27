@@ -47,9 +47,9 @@
                 <form method = "post" action = "">
                     <table id = "backupsTable" style = "width: 100%;">
                         <?php 
-                            //scan backups directory to see how many backups there are (array_diff removes the batch files and dot directories)
+                            //scan backups directory to see how many backups there are (array_diff removes the batch files and dot directories, array_values resets indexes to 0)
                             //the . in front of \dbBackup specifies that it is a relative path
-                            $backups = array_diff(scandir('.\dbBackup'), array('nhsDataBackup.bat', '.', '..'));
+                            $backups = array_values(array_diff(scandir('.\dbBackup'), array('nhsDataBackup.bat', '.', '..')));
 
                             echo '<tr>
                                 <th><p>Backup Name (format: nhs_data_yyyyddmm.sql)</p></th>
