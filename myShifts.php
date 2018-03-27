@@ -39,24 +39,30 @@
 
             <div id = "shiftsPanel" class = "classic panel">
                 <div id = "informationContainer">
-                    <p>My Shifts</p>
                     <!--Content loaded throuhg PHP-->
                     <form id = "requestShiftCoverForm" method = "post" action = "requestShiftCover.php">
                         <table id = "shiftsTable">
                             <?php
                                 $i=0;
-                                while(!isset($_POST['submit'][$i])){
+                                while(!isset($_POST['myShifts'][$i])){
                                     $i++;
                                 }
 
                                 $sql = "SELECT * FROM eventshift WHERE EventID=:eventID";
                                 $stmt = $pdo->prepare($sql);
                                 $stmt->execute(['eventID'=>$_POST['eventID'][$i]]);
-                                $shiftList = array();
-                                $shiftList = $stmt->fetchAll();
+                                $shiftsList = array();
+                                $shiftsList = $stmt->fetchAll();
 
-                                echo '<p>', $_POST['eventName'][$i], '</p>'
-                                for($s = 0; $s<count($shiftList); $s++){
+                                echo '<tr>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                    <th>Select Coverer</th>
+                                    <th><th>
+                                    </tr>';
+
+                                echo '<p>', $_POST['eventName'][$i], '</p>';
+                                for($s = 0; $s<count($shiftsList); $s++){
                                     // Pulling from "shifts" database the data for each shift
 
                                     $sql = "SELECT * FROM shifts WHERE ShiftID=:shiftID";
@@ -87,9 +93,9 @@
                                             echo '<td>', $formatted_startTime, ' to ', $formatted_endTime, '</td>';
 
                                             //List of all students (pick who to cover for you)
-                                            $sql = "SELECT * FROM students WHERE Position != Advisor";
+                                            $sql = "SELECT * FROM students WHERE NOT Position = :position";
                                             $stmt = $pdo->prepare($sql);
-                                            $stmt->execute();
+                                            $stmt->execute(['position'=>'Advisor']);
                                             $studentList = array();
                                             $studentList = $stmt->fetchAll();
 
