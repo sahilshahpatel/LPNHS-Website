@@ -11,7 +11,11 @@
     $sc = $stmt->fetch(PDO::FETCH_OBJ);
     $whatittakes = $sc->whatItTakes;
     $whatittakesunder = $sc->whatItTakes2;
-    $applicationRequirements = $sc->appReqs;
+    $appreqs = $sc->appReqs;
+
+    $appreqsbpositions = array();
+    $appreqsbpositions = explode("^",$appreqs);
+    $appreqsnum = count($appreqsbpositions)-1;
 ?>
 <html>
     <head>
@@ -25,6 +29,17 @@
                 margin: 10px;
                 float: right;
             }
+            li {
+            padding-left: 1em; 
+            text-indent: -1.4em;
+            }
+
+            li::before {
+            content: "■";
+            padding-right:14px;
+            font-family:"Arial Black";
+            color: #005da3; /* or whatever color you prefer */
+            }
             #frontImg p{text-align: center;}
             #frontImg img{width: 100%;}
             #applicationRequirements{
@@ -35,8 +50,10 @@
                 width: 90%;
             }
             ul{
+                list-style: none;
+                padding: 0;
                 font-family: Bookman, sans-serif;
-                font-size: 20px;
+                font-size: 18px;
             }
             ul li{margin: 10px;}
         </style>
@@ -75,8 +92,15 @@
                     <hr style = "width: 95%;">
                     <div id = "applicationRequirements" class = "classic" style="margin: 0 px; padding-top:0px;background-color: #ffebcd;">
                         <h2 style = "color: #005da3">Application Requirements</h2>
-                        <ul>
-                            <?php echo $applicationRequirements;?> <!-- Inserting reqs by loop of php -->
+                        <ul id="appreqs" >
+                            <?php $arraysplitter = array();
+                                            for($k = 1; $k<=$appreqsnum; $k++)
+                                            {
+                                                $arraysplitter = explode("&",$appreqsbpositions[$k-1]);
+                                                $arraysplitter = explode("&",$appreqsbpositions[$k-1]);
+                                                echo '<li style="color: black;"><b style="color: #005da3">',$arraysplitter[0],'</b><br>';
+                                                echo $arraysplitter[1], '</li>';
+                                                }?> <!-- Inserting reqs by loop of php -->
                         </ul>
                     </div>
                     <hr style = "width: 95%;">

@@ -15,6 +15,11 @@
         $aboutus = $sc->aboutUs;
         $attention = $sc->attention;
         $frontImgCaption = $sc->frontImgCaption;
+        $appreqs = $sc->appReqs;
+
+        $appreqsbpositions = array();
+        $appreqsbpositions = explode("^",$appreqs);
+        $appreqsnum = count($appreqsbpositions)-1;
 ?>
 <html>
     <head>
@@ -34,9 +39,7 @@
                 }
             .expander{display: inline-block;}
             input{
-                display: block;
-                width: 75%;
-                margin: 10px;
+                width: 100%;
                 font-family: Bookman, sans-serif;
                 border: 1px solid black;
             }
@@ -93,9 +96,22 @@
                 margin: 5px auto;
                 width: 90%;
             }
+            li {
+            padding-left: 1em; 
+            text-indent: -1.4em;
+            }
+
+            li::before {
+            content: "■";
+            padding-right:14px;
+            font-family:"Arial Black";
+            color: #005da3; /* or whatever color you prefer */
+            }
             ul{
+                list-style: none;
+                padding: 0;
                 font-family: Bookman, sans-serif;
-                font-size: 20px;
+                font-size: 18px;
             }
             ul li{margin: 10px;}
         </style>
@@ -168,33 +184,53 @@
                                 <hr style = "width: 95%;">
                                 <div id = "applicationRequirements" class = "classic" style="margin: 0 px; padding-top:0px; background-color: #ffebcd;">
                                     <h2 style = "color: #005da3">Application Requirements</h2>
-                                    <ul id="appreqs" style="list-style-type:square;color: #005da3"> <!-- Inserting reqs by loop of php -->
-
+                                    <ul id="appreqs"> <!-- Inserting reqs by loop of php -->
+                                        <?php
+                                        $arraysplitter = array();
+                                            for($k = 1; $k<=$appreqsnum; $k++)
+                                            {
+                                                $arraysplitter = explode("&",$appreqsbpositions[$k-1]);
+                                                echo '<li><input value="',$arraysplitter[0],'" style="width: 80%;"  id="appReqTitle[',$k,']" name="appreqT[',$k,']" placeholder="Bullet Heading"></input>';
+                                                echo '<textarea form="siteUpdater" id="appReqText[',$k,']" style="width: 80%;" name="appreqTA[',$k,']" placeholder="Bullet Details">',$arraysplitter[1],'</textarea></li>';
+                                            }
+                                        ?>
                                         
                                     </ul>
                                     <script>
-                                            function addItem(){
+                                        
                                                 var liList = document.getElementById("appreqs").getElementsByTagName("li");
-                                                var largo = liList.length;
-                                                var li = document.createElement("LI");li.id="li["+largo+"]";
+                                                var largo = "" + (liList.length);
+
                                                 var input1 = document.createElement("input"); 
-                                                input1.id="appReqTitle["+largo+"]";
-                                                input1.name="appreqT["+largo+"]"; 
-                                                input1.placeholder="Bullet Heading";
-                                                var textareainput1 = document.createElement("textarea");  
-                                                textareainput1.id="appReqText["+largo+"]";
-                                                textareainput1.name="appreqTA["+largo+"]"; 
-                                                textareainput1.placeholder="Bullet Details";
-                                                textareainput1.style="width: 100%;";
-                                                document.getElementById("appreqs").appendChild(li);
-                                                document.getElementById("li["+largo+"]").appendChild(input1);
-                                                document.getElementById("li["+largo+"]").appendChild(textareainput1);
+                                                input1.id="largo";
+                                                input1.name="largo"; 
+                                                //input1.type="hidden";
+                                                document.getElementById("siteUpdater").appendChild(input1);
+                                                document.getElementById("largo").value = largo;
+                                                function addItem(){
+                                                    var liList = document.getElementById("appreqs").getElementsByTagName("li");
+                                                        largo = "" + (liList.length+1);
+                                                    var li = document.createElement("LI");li.id="li["+largo+"]";
+                                                    var input1 = document.createElement("input"); 
+                                                        input1.id="appReqTitle["+largo+"]";
+                                                        input1.name="appreqT["+largo+"]"; 
+                                                        input1.placeholder="Bullet Heading";
+                                                    var textareainput1 = document.createElement("textarea");  
+                                                        textareainput1.id="appReqText["+largo+"]";
+                                                        textareainput1.name="appreqTA["+largo+"]"; 
+                                                        textareainput1.placeholder="Bullet Details";
+                                                        textareainput1.style="width: 100%;";
+                                                        textareainput1.form="siteUpdater";
+                                                    document.getElementById("appreqs").appendChild(li);
+                                                    document.getElementById("li["+largo+"]").appendChild(input1);
+                                                    document.getElementById("li["+largo+"]").appendChild(textareainput1);
+                                                    document.getElementById("largo").value = largo;
                                             }
                                         </script>
                                         <input type="button" id="btnAdd" value="Add" onclick="addItem()">
                                 </div>
                                 <hr style = "width: 95%;">
-                                <div  style= "padding-left:30px;padding-right:30px; margin-bottom: 30px;"><textarea id="whatItTakesUnder" style="width:100%;font-size: 17px;" rows="12" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" cols="144" maxlength="1024" style="overflow:hidden;" name="whatItTakesUnder" placeholder="<?php echo $whatittakesunder;?>" form="siteUpdater"><?php echo $whatittakesunder;?></textarea></div>
+                                <textarea id="whatItTakesUnder" style="width:100%;font-size: 17px;" rows="12" autocomplete="off" autocorrect="off" cols="144" maxlength="1024" style="overflow:hidden;" name="whatItTakesUnder" placeholder="<?php echo $whatittakesunder;?>" form="siteUpdater"><?php echo $whatittakesunder;?></textarea>
                             </article>
                             <button id = "whatItTakesSubmit"  type="submit" value = "Submit" class = "classicColor submit">Submit</button>
                         </div>

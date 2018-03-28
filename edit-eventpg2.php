@@ -42,7 +42,14 @@
             $stmt = $pdo->prepare($sql);
             $stmt->execute(["description" => $_POST['description'], "eventID" => $_POST['eventID']]);
         }
+        for($i = 0;$i<(int)$_GET["shifts"];$i++){
 
+            // Putting in inputed data for the shift
+
+                $sql = "UPDATE `shifts` SET date=:date starttime=:starttime endtime=:endtime WHERE eventID=:eventID";
+                $stmt = $pdo->prepare($sql);
+                $stmt->execute(["date" => $_POST['date'][$i], "starttime" => $_POST['starttime'][$i], "endtime" => $_POST['endtime'][$i], "eventID" => $eventID]); //order of arrays corresponds order of ?
+        }
         
     // Setting cookie for Submit confirmation and rerouting user plus resetting session variables
             

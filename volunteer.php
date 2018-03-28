@@ -30,20 +30,18 @@
         <script src="headerJQuery.js"></script>
         <?php
 
-        // Form Submission Confirmation
+            // Form Submission Confirmation
 
-            if(isset($_COOKIE['formSubmitConfirm'])):
-            ?>
-                <script>
-                $(document).ready(function(){
-                    $("#banner").animate({backgroundColor: '#00CC00'});
-                    $("#banner").animate({backgroundColor: '#fff'});
-                });
-                </script>
-            <?php
-                $message = $_COOKIE['formSubmitConfirm'];
-                setcookie("formSubmitConfirm", "", time() - 3600); // delete cookie
-                endif;
+                if(isset($_GET['formSubmitConfirm'])):
+                ?>
+                    <script>
+                    $(document).ready(function(){
+                        $("#banner").animate({backgroundColor: '#00CC00'});
+                        $("#banner").animate({backgroundColor: '#fff'});
+                    });
+                    </script>
+                <?php
+                    endif;
         ?>
 
     </head>

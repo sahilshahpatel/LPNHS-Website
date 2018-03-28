@@ -24,6 +24,12 @@
                     $thisEventID = $_POST['eventID'][$i];
                     $data = array();
                     $data = $stmt->fetchAll();
+
+                    $sql = "SELECT shiftID FROM eventshift WHERE EventID=:eventID";
+                    $stmt = $pdo->prepare($sql);
+                    $stmt->execute(['eventID' => $_POST['eventID'][$i]]);
+                    $shiftIDS = array();
+                    $shiftIDS = $stmt->fetchAll(); 
                 }
 
             // Checking if remove was pressed for $i -> number event -> then removing that event
@@ -139,13 +145,18 @@
                     <div class="main">
                         
                         <!--Data loaded through PHP-->
-
-                        <form id="eventCreator" action="edit-eventPg2.php" method="post">
-                            <?php
-                                echo'
+                        
+                        <?php
+                            $sql = "SELECT * FROM eventshift WHERE EventID=:eventID";
+                            $stmt = $pdo->prepare($sql);
+                            $stmt->execute(['eventID'=>$thisEventID]);
+                            $shiftsList = array();
+                            $shiftsList = $stmt->fetchAll();
+                            
+                                echo'<form id="eventCreator" action="edit-eventPg2.php?shifts=',count($shiftsList),'" method="post">
                                     <table style="width=100%;" class = "listing">
                                         <tr>
-                                        <input name = "eventID" type = "hidden" value = "',$thisEventID ,'">
+                                        <input name = "eventID" type = "hidden" value = "',$thisEventID,'">
                                             <td><label>Event Name :</label></td>
                                             <td><input name="name" maxlength="32" type="text" value="',$data[0][1],'" ></td>
                                         </tr>
@@ -168,18 +179,86 @@
                                         <tr>
                                             <td><label>Location :</label></td>
                                             <td><input name="location" maxlength="32" type="text" value="',$data[0][5],'"></td>
-                                        </tr>
-                                        <tr>
-                                            <td><label>Shifts :</label></td>
-                                            <td><p style="font-size:18px;">',$data[0][6],' </p></td>
-                                        </tr>
-                                        <tr>
-                                        <td></td>
-                                        <td style = "text-align:center;"><input type="submit" value="Submit Changes" class = "classicColor"/></td>
-                                        </tr>
-                                    </table>';
+                                        </tr>                       
+                                    ';
+                                    
+                                    for($i = 0; $i<count($shiftsList);$i++){
+
+                                        $sql = "SELECT * FROM shifts WHERE ShiftID=:shiftID";
+                                        $stmt = $pdo->prepare($sql);
+                                        $stmt->execute(['shiftID' => $shiftsList[$i][1]]);
+                                        $shiftData = array();
+                                        $shiftData = $stmt->fetchAll();
+                                        // Displaying the data for each shift
+
+                                        if(count($shiftData)>0){
+
+                                        echo    
+                                        
+                                                '<tr><td colspan=2><hr style="font-size:20px;">
+                                                <hr style="font-size:20px;"></td></tr>
+                                                <tr><td colspan=2>Shift ',($i+1),'</td></tr>
+                                                <tr><td colspan=2><hr style="font-size:20px;"></td></tr>
+                                                <tr>
+                                                    <td><label>Shift Date :<span>*</span></label></td>
+                                                    <td><input name="date[',$i,']" type="date" value="',$shiftData[0][1],'" required></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label>Start Time :<span>*</span></label></td>
+                                                    <td><input name="starttime[',$i,']" value="',$shiftData[0][2],'" type="time" placeholder="eg: 8:00 AM" required></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label>End Time :<span>*</span></label></td>
+                                                    <td><input name="endtime[',$i,']" value="',$shiftData[0][3],'" type="time" placeholder="eg: 5:00 PM" required></td>
+                                                </tr>
+                                                <tr><td colspan=2>Positions</td></tr>
+                                                ';
+
+                                                $sql = "SELECT * FROM positions WHERE ShiftID=:shiftID";
+                                                $stmt = $pdo->prepare($sql);
+                                                $stmt->execute(['shiftID' => $shiftsList[$i][1]]);
+                                                $positionList = array();
+                                                $positionList = $stmt->fetchAll();
+
+                                                for($g = 0; $g<count($positionList);$g++){
+
+                                                    $sql = "SELECT * FROM positions WHERE PositionID=:positionID";
+                                                    $stmt = $pdo->prepare($sql);
+                                                    $stmt->execute(['positionID' => $positionList[$g][1]]);
+                                                    $positionData = array();
+                                                    $positionData = $stmt->fetchAll();
+                                                    // Displaying the data for each shift
+            
+                                                    if(count($positionData)>0){
+                                                    if($positionData[0][2]!=null){
+                                                        $sql = "SELECT * FROM students WHERE StudentID=:studentID";
+                                                        $stmt = $pdo->prepare($sql);
+                                                        $stmt->execute(['studentID' => $positionData[0][2]]);
+                                                        $sct = $stmt->fetch(PDO::FETCH_OBJ);
+                                                        $studentemail = $sct->Email;
+                                                        echo    
+                                                    
+                                                        '
+                                                        <tr>
+                                                            <td>Current State: Occupied by ',$studentemail,'</td>
+                                                            <td><input name = "remove[', $i,']" value = "Remove" class = "classicColor" type = "submit" onclick="return confirm(\'Are you sure?\')" style = "margin-right: 0px; background-color:red"></td>
+                                                        </tr>';}
+                                                    else{echo    
+                                                    
+                                                        '
+                                                        <tr>
+                                                            <td>Current State: Empty</td>
+                                                            <td><input name = "remove[', $i,']" value = "Remove" class = "classicColor" type = "submit" onclick="return confirm(\'Are you sure?\')" style = "margin-right: 0px; background-color:red"></td>
+                                                        </tr>';}
+                                                    
+                                                }}
+                                    }}
+                                    echo'<tr>
+                                    <td></td>
+                                    <td style = "text-align:center;"><input type="submit" value="Submit Changes" class = "classicColor"/></td>
+                                    </tr></table>';
                                 ?>
-                        </form>
+                                </form>
                     </div>
                 </div>
             </div>
