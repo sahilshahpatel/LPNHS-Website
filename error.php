@@ -8,7 +8,7 @@
     else{$Error="Unidentified error!";}
 ?>
 <html>
-
+<link rel="icon" type="image/png" href="img/nhs_logo.png">
 	<style>
 		body{
 			margin: 0px;

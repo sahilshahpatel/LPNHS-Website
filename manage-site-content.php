@@ -27,6 +27,7 @@
         <title>LPNHS - Manage Site Content</title>
 
         <link rel="stylesheet" href="baseCSS.css">
+        <link rel="icon" type="image/png" href="img/nhs_logo.png">
         <style>
             #footerPusher p{text-align: left;}
             form{

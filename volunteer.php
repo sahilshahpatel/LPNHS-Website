@@ -10,6 +10,7 @@
         <title>LPNHS - Volunteer</title>
         
         <link rel="stylesheet" href="baseCSS.css">
+        <link rel="icon" type="image/png" href="img/nhs_logo.png">
         <style>
             #shiftsPanel{padding: 0;}
             table tr:nth-child(even){background-color: #e8cfa4;}

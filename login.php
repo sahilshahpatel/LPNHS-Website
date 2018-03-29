@@ -18,6 +18,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script src="headerJQuery.js"></script>
         <link rel="stylesheet" href="baseCSS.css">
+        <link rel="icon" type="image/png" href="img/nhs_logo.png">
         <style>
             body{
                 margin: 0px;

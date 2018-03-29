@@ -15,6 +15,7 @@
 		<title>LPNHS - Members</title>
 		
 		<link rel="stylesheet" href="baseCSS.css">
+		<link rel="icon" type="image/png" href="img/nhs_logo.png">
 		<style>
 			table{
 				width: 100%;

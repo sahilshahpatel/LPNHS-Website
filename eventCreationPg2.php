@@ -29,6 +29,7 @@
     <head>
 
         <link rel = "stylesheet" href="baseCSS.css">
+        <link rel="icon" type="image/png" href="img/nhs_logo.png">
         <style>
             form{
                 display: inline-block;
