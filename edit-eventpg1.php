@@ -11,75 +11,91 @@
 	$adminData = array();
     $adminData = $stmt->fetchAll();
     
-    // A loop check for every data listing on the last page to find the event selected
+    // If returning from edit-eventpg2
+    if(isset($_GET["eventID"])){
+        $sql = "SELECT * FROM events WHERE EventID=:eventID";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute(['eventID' => (int)$_GET["eventID"]]);
+        $thisEventID = $_GET["eventID"];
+        $data = array();
+        $data = $stmt->fetchAll();
+        $sql = "SELECT shiftID FROM eventshift WHERE EventID=:eventID";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute(['eventID' => (int)$_GET["eventID"]]);
+        $shiftIDS = array();
+        $shiftIDS = $stmt->fetchAll(); 
+    }
+    else{
+        // A loop check for every data listing on the last page to find the event selected
 
-        for($i = 0; $i<$adminCount; $i++){
+            for($i = 0; $i<$adminCount; $i++){
 
-            // Checking if edit was pressed for $i -> number event -> then setting page to edit that event
+                // Checking if edit was pressed for $i -> number event -> then setting page to edit that event
 
-                if(isset($_POST["edit"][$i])){
-                    $sql = "SELECT * FROM events WHERE EventID=:eventID";
-                    $stmt = $pdo->prepare($sql);
-                    $stmt->execute(['eventID' => $_POST['eventID'][$i]]);
-                    $thisEventID = $_POST['eventID'][$i];
-                    $data = array();
-                    $data = $stmt->fetchAll();
-
-                    $sql = "SELECT shiftID FROM eventshift WHERE EventID=:eventID";
-                    $stmt = $pdo->prepare($sql);
-                    $stmt->execute(['eventID' => $_POST['eventID'][$i]]);
-                    $shiftIDS = array();
-                    $shiftIDS = $stmt->fetchAll(); 
-                }
-
-            // Checking if remove was pressed for $i -> number event -> then removing that event
-
-                else if(isset($_POST["remove"][$i])){
-
-                    // Deleting from database table "events" and "shifts"
-
-                        $sql = "DELETE FROM events WHERE EventID=:eventID";
+                    if(isset($_POST["edit"][$i])){
+                        $sql = "SELECT * FROM events WHERE EventID=:eventID";
                         $stmt = $pdo->prepare($sql);
                         $stmt->execute(['eventID' => $_POST['eventID'][$i]]);
-                        
-                        $sql = "DELETE FROM shifts WHERE EventID=:eventID";
-                        $stmt = $pdo->prepare($sql);
-                        $stmt->execute(['eventID' => $_POST['eventID'][$i]]);
-
-                        $sql = "DELETE FROM studentevent WHERE EventID=:eventID";
-                        $stmt = $pdo->prepare($sql);
-                        $stmt->execute(['eventID' => $_POST['eventID'][$i]]);
-                        
-                        $sql = "DELETE FROM studentshiftrequests WHERE EventID=:eventID";
-                        $stmt = $pdo->prepare($sql);
-                        $stmt->execute(['eventID' => $_POST['eventID'][$i]]);
-                    
-                    // Finding all the Shifts of the event being deleted -> putting them into an array and then
-                    // deleting those shifts from the table "eventshift"
+                        $thisEventID = $_POST['eventID'][$i];
+                        $data = array();
+                        $data = $stmt->fetchAll();
 
                         $sql = "SELECT shiftID FROM eventshift WHERE EventID=:eventID";
                         $stmt = $pdo->prepare($sql);
                         $stmt->execute(['eventID' => $_POST['eventID'][$i]]);
                         $shiftIDS = array();
-                        $shiftIDS = $stmt->fetchAll();         
+                        $shiftIDS = $stmt->fetchAll(); 
+                    }
 
-                        $sql = "DELETE FROM eventshift WHERE EventID=:eventID";
-                        $stmt = $pdo->prepare($sql);
-                        $stmt->execute(['eventID' => $_POST['eventID'][$i]]);
-                    
-                    // Going through the table "positions" and deleting all of the positions through data from array of shifts
+                // Checking if remove was pressed for $i -> number event -> then removing that event
 
-                        for($i=0;$i<sizeof($shiftIDS);$i++){
-                            $sql = "DELETE FROM positions WHERE ShiftID=:shiftID";
+                    else if(isset($_POST["remove"][$i])){
+
+                        // Deleting from database table "events" and "shifts"
+
+                            $sql = "DELETE FROM events WHERE EventID=:eventID";
                             $stmt = $pdo->prepare($sql);
-                            $stmt->execute(['shiftID' => $shiftIDS[$i][0]]);
-                        } 
+                            $stmt->execute(['eventID' => $_POST['eventID'][$i]]);
+                            
+                            $sql = "DELETE FROM shifts WHERE EventID=:eventID";
+                            $stmt = $pdo->prepare($sql);
+                            $stmt->execute(['eventID' => $_POST['eventID'][$i]]);
 
-                    // Rerouting back to first page
+                            $sql = "DELETE FROM studentevent WHERE EventID=:eventID";
+                            $stmt = $pdo->prepare($sql);
+                            $stmt->execute(['eventID' => $_POST['eventID'][$i]]);
+                            
+                            $sql = "DELETE FROM studentshiftrequests WHERE EventID=:eventID";
+                            $stmt = $pdo->prepare($sql);
+                            $stmt->execute(['eventID' => $_POST['eventID'][$i]]);
+                        
+                        // Finding all the Shifts of the event being deleted -> putting them into an array and then
+                        // deleting those shifts from the table "eventshift"
 
-                        header('Location:edit-event.php');
-                }
-            
+                            $sql = "SELECT shiftID FROM eventshift WHERE EventID=:eventID";
+                            $stmt = $pdo->prepare($sql);
+                            $stmt->execute(['eventID' => $_POST['eventID'][$i]]);
+                            $shiftIDS = array();
+                            $shiftIDS = $stmt->fetchAll();         
+
+                            $sql = "DELETE FROM eventshift WHERE EventID=:eventID";
+                            $stmt = $pdo->prepare($sql);
+                            $stmt->execute(['eventID' => $_POST['eventID'][$i]]);
+                        
+                        // Going through the table "positions" and deleting all of the positions through data from array of shifts
+
+                            for($i=0;$i<sizeof($shiftIDS);$i++){
+                                $sql = "DELETE FROM positions WHERE ShiftID=:shiftID";
+                                $stmt = $pdo->prepare($sql);
+                                $stmt->execute(['shiftID' => $shiftIDS[$i][0]]);
+                            } 
+
+                        // Rerouting back to first page
+
+                            header('Location:edit-event.php?formSubmitConfirm=true');
+                    }
+                
+            }
         }
 ?>
 <html>
@@ -125,6 +141,22 @@
                 line-height: 2em;
             }
         </style>
+
+        <?php
+
+        // Form Submission Confirmation
+
+            if(isset($_GET['formSubmitConfirm'])):
+            ?>
+                <script>
+                $(document).ready(function(){
+                    $("#banner").animate({backgroundColor: '#00CC00'});
+                    $("#banner").animate({backgroundColor: '#fff'});
+                });
+                </script>
+            <?php
+                endif;
+        ?>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script src="headerJQuery.js"></script>
@@ -211,7 +243,7 @@
                                                     <td><label>End Time :<span>*</span></label></td>
                                                     <td><input name="endtime[',$i,']" value="',$shiftData[0][3],'" type="time" placeholder="eg: 5:00 PM" required></td>
                                                 </tr>
-                                                <tr><td colspan=2>Positions</td></tr>
+                                                <tr><td colspan=2>Positions<input type="hidden" value="',$shiftData[0][0],'" name="shiftID[',$i,']"></td></tr>
                                                 ';
 
                                                 $sql = "SELECT * FROM positions WHERE ShiftID=:shiftID";
@@ -219,17 +251,18 @@
                                                 $stmt->execute(['shiftID' => $shiftsList[$i][1]]);
                                                 $positionList = array();
                                                 $positionList = $stmt->fetchAll();
-
                                                 for($g = 0; $g<count($positionList);$g++){
 
                                                     $sql = "SELECT * FROM positions WHERE PositionID=:positionID";
                                                     $stmt = $pdo->prepare($sql);
-                                                    $stmt->execute(['positionID' => $positionList[$g][1]]);
+                                                    $stmt->execute(['positionID' => $positionList[$g][0]]);
                                                     $positionData = array();
                                                     $positionData = $stmt->fetchAll();
                                                     // Displaying the data for each shift
             
                                                     if(count($positionData)>0){
+                                                        echo'<tr> <td><input type="hidden" name="positionID[',$i,'][',$g,']" value="',$positionData[0][0],'">
+                                                        <input type="hidden" name="PA" value="',$shiftData[0][4],'">';
                                                     if($positionData[0][2]!=null){
                                                         $sql = "SELECT * FROM students WHERE StudentID=:studentID";
                                                         $stmt = $pdo->prepare($sql);
@@ -239,16 +272,15 @@
                                                         echo    
                                                     
                                                         '
-                                                        <tr>
-                                                            <td>Current State: Occupied by ',$studentemail,'</td>
-                                                            <td><input name = "remove[', $i,']" value = "Remove" class = "classicColor" type = "submit" onclick="return confirm(\'Are you sure?\')" style = "margin-right: 0px; background-color:red"></td>
+                                                            Position ',($g+1),': ',$studentemail,'</td>
+                                                            <td><input name = "empty[',$i,'][',$g,']" value = "Empty" class = "classicColor" type = "submit">
+                                                            <input name = "remove[',$i,'][',$g,']" value = "Delete" class = "classicColor" type = "submit" onclick="return confirm(\'Are you sure?\')" style = "margin-right: 0px; background-color:red"></td>
                                                         </tr>';}
                                                     else{echo    
                                                     
                                                         '
-                                                        <tr>
-                                                            <td>Current State: Empty</td>
-                                                            <td><input name = "remove[', $i,']" value = "Remove" class = "classicColor" type = "submit" onclick="return confirm(\'Are you sure?\')" style = "margin-right: 0px; background-color:red"></td>
+                                                            Position ',($g+1),': Empty</td>
+                                                            <td><input name = "remove[',$i,'][',$g,']" value = "Delete" class = "classicColor" type = "submit" onclick="return confirm(\'Are you sure?\')" style = "margin-right: 0px; background-color:red"></td>
                                                         </tr>';}
                                                     
                                                 }}

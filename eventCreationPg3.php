@@ -122,4 +122,5 @@
         $temp = $_SESSION['StudentID'];
         session_unset();
         $_SESSION['StudentID'] = $temp;
-        header("Location: create-event.php?formSubmitConfirm=true");}?>
+        header("Location: create-event.php?formSubmitConfirm=true");
+    }?>

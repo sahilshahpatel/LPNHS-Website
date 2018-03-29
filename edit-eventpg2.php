@@ -44,11 +44,66 @@
         }
         for($i = 0;$i<(int)$_GET["shifts"];$i++){
 
-            // Putting in inputed data for the shift
+            // Putting in inputed data for the shift based on what has been changed
 
-                $sql = "UPDATE `shifts` SET date=:date starttime=:starttime endtime=:endtime WHERE eventID=:eventID";
+                if(!empty($_POST['date'][$i])){
+                    $sql = "UPDATE `shifts` SET Date=:date WHERE ShiftID=:ShiftID";
+                    $stmt = $pdo->prepare($sql);
+                    $stmt->execute(["date" => $_POST['date'][$i], "ShiftID" => $_POST['shiftID'][$i]]); //order of arrays corresponds order of ?
+                }
+                if(!empty($_POST['starttime'][$i])){
+                    $sql = "UPDATE `shifts` SET StartTime=:starttime WHERE ShiftID=:ShiftID";
+                    $stmt = $pdo->prepare($sql);
+                    $stmt->execute(["starttime" => $_POST['starttime'][$i], "ShiftID" => $_POST['shiftID'][$i]]); //order of arrays corresponds order of ?
+                }
+                if(!empty($_POST['endtime'][$i])){
+                    $sql = "UPDATE `shifts` SET EndTime=:endtime WHERE ShiftID=:ShiftID";
+                    $stmt = $pdo->prepare($sql);
+                    $stmt->execute(["endtime" => $_POST['endtime'][$i], "ShiftID" => $_POST['shiftID'][$i]]); //order of arrays corresponds order of ?    
+                }
+
+                $sql = "SELECT * FROM positions WHERE ShiftID=:shiftID";
                 $stmt = $pdo->prepare($sql);
-                $stmt->execute(["date" => $_POST['date'][$i], "starttime" => $_POST['starttime'][$i], "endtime" => $_POST['endtime'][$i], "eventID" => $eventID]); //order of arrays corresponds order of ?
+                $stmt->execute(['shiftID' => $_POST['shiftID'][$i]]);
+                $positionData = $stmt->rowcount();
+
+
+                for($f = 0 ; $f < $positionData;$f++){
+
+                    if(isset($_POST["remove"][$i][$f])){
+
+                        $sql = "DELETE FROM positions WHERE PositionID=:PID";
+                        $stmt = $pdo->prepare($sql);
+                        $stmt->execute(['PID' => $_POST['positionID'][$i][$f]]);
+
+                        $sql = "UPDATE `shifts` SET PositionsAvailable=:PA WHERE ShiftID=:ShiftID";
+                        $stmt = $pdo->prepare($sql);
+                        $stmt->execute(["PA" => ((int)$_POST['PA']-1), "ShiftID" => $_POST['shiftID'][$i]]); //order of arrays corresponds order of ?    
+                    
+                    }
+
+                    if(isset($_POST["empty"][$i][$f])){
+
+                        $sql = "SELECT StudentID FROM positions WHERE PositionID=:PID";
+                        $stmt = $pdo->prepare($sql);
+                        $stmt->execute(['PID' => $_POST['positionID'][$i][$f]]);
+                        $data = $stmt->fetch(PDO::FETCH_OBJ);
+                        $sid = $data->StudentID;
+                        echo $sid;
+                        if(!empty($sid)){
+
+                            $sql = "UPDATE positions SET StudentID=:SID WHERE PositionID=:PID";
+                            $stmt = $pdo->prepare($sql);
+                            $stmt->execute(['PID' => $_POST['positionID'][$i][$f],'SID' => NULL]);
+
+                            $sql = "UPDATE `shifts` SET PositionsAvailable=:PA WHERE ShiftID=:ShiftID";
+                            $stmt = $pdo->prepare($sql);
+                            $stmt->execute(["PA" => ((int)$_POST['PA']-1), "ShiftID" => $_POST['shiftID'][$i]]); //order of arrays corresponds order of ?    
+                        }
+
+                    }
+
+                }
         }
         
     // Setting cookie for Submit confirmation and rerouting user plus resetting session variables
@@ -56,7 +111,8 @@
         $temp = $_SESSION['StudentID'];
         session_unset();
         $_SESSION['StudentID'] = $temp;
-        header("Location: edit-event.php?formSubmitConfirm=true");
+
+        header("Location: edit-eventpg1.php?formSubmitConfirm=true&eventID=".$_POST['eventID']);
     
 ?>
 

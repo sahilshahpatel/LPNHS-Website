@@ -39,7 +39,7 @@
                 }
             .expander{display: inline-block;}
             input{
-                width: 100%;
+                width:95%;
                 font-family: Bookman, sans-serif;
                 border: 1px solid black;
             }
@@ -190,8 +190,8 @@
                                             for($k = 1; $k<=$appreqsnum; $k++)
                                             {
                                                 $arraysplitter = explode("&",$appreqsbpositions[$k-1]);
-                                                echo '<li><input value="',$arraysplitter[0],'" style="width: 80%;"  id="appReqTitle[',$k,']" name="appreqT[',$k,']" placeholder="Bullet Heading"></input>';
-                                                echo '<textarea form="siteUpdater" id="appReqText[',$k,']" style="width: 80%;" name="appreqTA[',$k,']" placeholder="Bullet Details">',$arraysplitter[1],'</textarea></li>';
+                                                echo '<li><input value="',$arraysplitter[0],'" id="appReqTitle[',$k,']" name="appreqT[',$k,']" placeholder="Bullet Heading"></input>';
+                                                echo '<textarea form="siteUpdater" id="appReqText[',$k,']" style="width: 75%;" name="appreqTA[',$k,']" placeholder="Bullet Details">',$arraysplitter[1],'</textarea></li>';
                                             }
                                         ?>
                                         
