@@ -24,7 +24,7 @@
                 margin: 30px 10%;
                 border: 3px solid white;
                 border-radius: 10px;
-                
+                cursor: pointer;
                 /* Adjust Text */
                 font-size: 28px;
                 align-items: center;

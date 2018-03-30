@@ -30,6 +30,7 @@
             #presidentialOptions{height: 100px;}
             div.dashboardButton
             {
+                cursor: pointer;
                 display: inline-flex;
                 margin: 5px;
                 padding: 0 15px;

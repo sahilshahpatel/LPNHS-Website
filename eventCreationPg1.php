@@ -63,8 +63,8 @@
 					<td><textarea rows="4" cols="36" autocorrect="off" autocapitalize="off" spellcheck="false" maxlength="128" style="overflow:hidden" width="250" name="description" placeholder="eg: Serve water to the runners during the marathon" form="eventCreator"></textarea></td>
                 </tr>
 				<tr>
-					<td><label title = "Date when sign ups will be available - Leave blank to release immediately">Release Date</label></td>
-					<td><input name="releasedate" type="date" placeholder="eg: 01/01/2018"></td>
+					<td><label title = "Date when sign ups will be available - Leave as today to release immediately">Release Date</label></td>
+					<td><input name="releasedate" type="date" value=<?php echo '"',date("Y-m-j"),'"'?> placeholder="eg: 01/01/2018"></td>
 				</tr>
                 <tr>
 					<td><label>Start Date :<span>*</span></label></td>
