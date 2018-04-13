@@ -49,7 +49,7 @@
                                             padding: 10px 0 0 0;opacity: 0.8">
 				<p>Contact</p>
 				<p style="font-weight: 500;
-                        font-size: 14px;">West Campus: 500 W. Bryn Mawr Ave.<br>Roselle, IL 60172-1978</p>
+                        font-size: 14px;">plovelace@lphs.org<br>plaudadio@lphs.org<br>West Campus: 500 W. Bryn Mawr Ave.<br>Roselle, IL 60172-1978</p>
 			</div>
 		</div>
 	</div>
