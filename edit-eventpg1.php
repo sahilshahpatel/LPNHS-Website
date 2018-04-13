@@ -230,7 +230,7 @@
                                         
                                                 '<tr><td colspan=2><hr style="font-size:20px;">
                                                 <hr style="font-size:20px;"></td></tr>
-                                                <tr><td colspan=2>Shift ',($i+1),'</td></tr>
+                                                <tr><td>Shift ',($i+1),'</td><td><input name = "removeShift[',$i,']" value = "Delete" class = "classicColor" type = "submit" onclick="return confirm(\'Are you sure?\')" style = "margin-right: 0px; background-color:red"></td></tr>
                                                 <tr><td colspan=2><hr style="font-size:20px;"></td></tr>
                                                 <tr>
                                                     <td><label>Shift Date :<span>*</span></label></td>

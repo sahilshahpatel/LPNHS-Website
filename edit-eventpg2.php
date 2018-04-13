@@ -70,6 +70,35 @@
 
                 for($f = 0 ; $f < $positionData;$f++){
 
+                    if(isset($_POST["removeShift"][$i])){
+
+                        $sql = "DELETE FROM shifts WHERE ShiftID=:ShiftID";
+                        $stmt = $pdo->prepare($sql);
+                        $stmt->execute(["ShiftID" => $_POST['shiftID'][$i]]);
+
+                        $sql = "DELETE FROM studentevent WHERE ShiftID=:ShiftID";
+                        $stmt = $pdo->prepare($sql);
+                        $stmt->execute(["ShiftID" => $_POST['shiftID'][$i]]);
+                        
+                        $sql = "DELETE FROM studentshiftrequests WHERE ShiftID=:ShiftID";
+                        $stmt = $pdo->prepare($sql);
+                        $stmt->execute(["ShiftID" => $_POST['shiftID'][$i]]);
+                    
+                    // deleting the shifts from the table "eventshift"
+    
+
+                        $sql = "DELETE FROM eventshift WHERE ShiftID=:ShiftID";
+                        $stmt = $pdo->prepare($sql);
+                        $stmt->execute(["ShiftID" => $_POST['shiftID'][$i]]);
+                    
+                    // Going through the table "positions" and deleting all of the positions through data from shift
+
+                        $sql = "DELETE FROM positions WHERE ShiftID=:ShiftID";
+                        $stmt = $pdo->prepare($sql);
+                        $stmt->execute(["ShiftID" => $_POST['shiftID'][$i]]);
+                    
+                    }
+
                     if(isset($_POST["remove"][$i][$f])){
 
                         $sql = "DELETE FROM positions WHERE PositionID=:PID";

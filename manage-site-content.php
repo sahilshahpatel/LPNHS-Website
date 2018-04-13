@@ -256,10 +256,24 @@
             'X-Mailer: PHP/' . phpversion();
         
         // Compose a simple HTML email message
-        $message = '<html><body>';
-        $message .= '<h1 style="color:#f40;">Hi Jane!</h1>';
-        $message .= '<p style="color:#080;font-size:18px;">Will you marry me?</p>';
-        $message .= '</body></html>';
+        $message = '<table>';
+        $message .= '<tr>';
+        $message .= '<td>Lake Park National Honors Society</td>';
+        $message .= '</tr>';
+        $message .= '<tr>';
+        $message .= '<td>';
+        $message .= '<table>';
+        $message .= '<tr>';
+        $message .= '<td><img src="left_image.jpg"></td>';//Image linked how?
+        $message .= '<td>Sweet, sweet copy</td>';
+        $message .= '</tr>';
+        $message .= '</table>';
+        $message .= '</td>';
+        $message .= '</tr>';
+        $message .= '<tr>';
+        $message .= '<td align="center">123 Main St. Nashville, TN 37212</td>';
+        $message .= '</tr>';
+        $message .= '</table>';
         
         // Sending email
         // if(mail($to, $subject, $message, $headers)){

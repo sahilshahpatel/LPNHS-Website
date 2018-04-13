@@ -60,7 +60,7 @@
                 </tr>
                 <tr>
 					<td><label>Description :</label></td>
-					<td><textarea rows="4" cols="36" autocorrect="off" autocapitalize="off" spellcheck="false" maxlength="128" style="overflow:hidden" width="250" name="description" placeholder="eg: Serve water to the runners during the marathon" form="eventCreator"></textarea></td>
+					<td><textarea rows="4" required cols="36" autocorrect="off" autocapitalize="off" spellcheck="false" maxlength="128" style="overflow:hidden" width="250" name="description" placeholder="eg: Serve water to the runners during the marathon" form="eventCreator"></textarea></td>
                 </tr>
 				<tr>
 					<td><label title = "Date when sign ups will be available - Leave as today to release immediately">Release Date</label></td>
