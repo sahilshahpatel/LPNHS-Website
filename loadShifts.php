@@ -77,9 +77,30 @@
 								echo '<td>', $formatted_date, '</td>';
 								echo '<td>', $formatted_startTime, ' to ', $formatted_endTime, '</td>';
 								echo '<td><a title = "Click to view current roster" href = "roster.php?eventID=', $eventIDs[0][$i],'&shiftID=', $shiftData[0][0], '">', $shiftData[0][4], '</a></td>';
-								if($StudentRowCount!==0){echo '<td><p>Request Sent</p></td>';}
-								else if($shiftData[0][4]!=0){echo '<td><input type = "submit" name = "submit[', $l, ']" value = "Volunteer!" class = "classicColor"></td>';}
-								else{echo '<td><p>Full</p></td>';}
+								
+								// Check if the volunteer button should appear
+									$otherEntry = "none";
+										
+									if($shiftData[0][4]==0){
+										$otherEntry = "Full";
+									}
+
+									if($StudentRowCount!==0){
+										$otherEntry = "Request Sent";
+									}
+
+									$sql = "SELECT * FROM positions WHERE ShiftID=:shiftID AND StudentID=:studentID";
+									$stmt = $pdo->prepare($sql);
+									$stmt->execute(['shiftID'=>$shiftData[0][0], 'studentID'=>$_SESSION['StudentID']]);
+									$shiftRepetitions = $stmt->rowCount();
+									if($shiftRepetitions>0){
+										$otherEntry = "Already Registered";
+									}
+
+									if($otherEntry==="none"){
+										echo '<td><input type = "submit" name = "submit[', $l, ']" value = "Volunteer!" class = "classicColor"></td>';
+									}
+									else{echo '<td><p>', $otherEntry, '</p></td>';}
 								echo '</tr>';
 							}
 					}

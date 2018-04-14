@@ -102,7 +102,7 @@
 							echo '<td>', $formatted_date, '</td>';
 							echo '<td>', $formatted_startTime, ' to ', $formatted_endTime, '</td>';
 							echo '<td>', $repetitionCounter, '</td>';
-							echo '<td><input name = "submit[', $i,']" type = "image" src = "img/greenCheckMark.png" height = "30px" width = "30px" style = "margin-top: 5px;"></td>';
+							echo '<td><input name = "submit[', $i,'][', $q,']" type = "image" src = "img/greenCheckMark.png" height = "30px" width = "30px" style = "margin-top: 5px;"></td>';
 							echo '</tr>';
 					}
 			}

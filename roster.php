@@ -84,8 +84,28 @@
 
                                 echo '<td>', $formatted_date, '</td>';
                                 echo '<td>', $formatted_startTime, ' to ', $formatted_endTime, '</td>';
-                                if($shiftData[0][4]!=0){echo '<td><input type = "submit" name = "submit" value = "Volunteer!" class = "classicColor"></td>';}
-                                else{echo '<td>Full</td>';}
+                                
+                                // Check if the volunteer button should appear
+                                    $otherEntry = "none";
+                                    
+                                    if($shiftData[0][4]==0){
+                                        $otherEntry = "Full";
+                                    }
+
+                                    $sql = "SELECT * FROM positions WHERE ShiftID=:shiftID AND StudentID=:studentID";
+                                    $stmt = $pdo->prepare($sql);
+                                    $stmt->execute(['shiftID'=>$shiftData[0][0], 'studentID'=>$_SESSION['StudentID']]);
+                                    $shiftRepetitions = $stmt->rowCount();
+                                    if($shiftRepetitions>0){
+                                        $otherEntry = "Already Registered";
+                                    }
+
+                                    if($otherEntry==="none"){
+                                        echo '<td><input type = "submit" name = "submit" value = "Volunteer!" class = "classicColor"></td>';
+                                    }
+                                    else{
+                                        echo '<td>', $otherEntry, '</td>';
+                                    }
                                 echo '</tr>';
                             }
                         ?>
