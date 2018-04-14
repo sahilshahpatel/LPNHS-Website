@@ -94,7 +94,6 @@
 
                 <hr>
 
-                <form method = "post" action = "requestShift.php">
                     <table id = "rosterTable">
                         <!--Fill in table with roster data-->
                         <?php
@@ -107,12 +106,7 @@
 
                             echo '<tr><th>Current Roster</th></tr>';
                             for($i = 0; $i<count($positionData); $i++){
-                                echo '<tr>';
-
-                                // Hidden form info to be passed
-                                echo '<input type = "hidden" name = "eventID" value = "', $_GET['eventID'], '">';
-                                echo '<input type = "hidden" name = "shiftID" value = "', $_GET['shiftID'], '">';
-                                
+                                echo '<tr>';                                
                                 if($positionData[$i][2]!==null){
                                     $sql = "SELECT * FROM students WHERE StudentID= :studentID";
                                     $stmt = $pdo->prepare($sql);
@@ -122,13 +116,12 @@
                                     echo '<td>', $studentData[0][1], ' ', $studentData[0][2],'</td>';
                                 }
                                 else{
-                                    echo '<td><input type = "submit" name = "submit" title = "Volunteer!" value = "Position Available" class = "classicColor"></td>';
+                                    echo '<td style = "font-style: italic;">Position Available</td>';
                                 }
                                 echo '</tr>';
                             }
                         ?>
                     </table>
-                </form>
             </div>
         </div>
     </body>
