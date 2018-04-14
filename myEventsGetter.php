@@ -27,44 +27,41 @@
 			// Looping for every event
 
 			for($i = 0; $i<$eventCount; $i++){
+				// Pulling data from "studentevent" to get the students attending those events
 
-				// Pulling data from "events" that have passed
-
-					$sql = "SELECT * FROM events WHERE EventID=:eventID AND EndDate >= CURDATE()";
+					$sql = "SELECT * FROM studentevent WHERE EventID=:eventID AND StudentID=:stID";
 					$stmt = $pdo->prepare($sql);
-					$stmt->execute(["eventID" => $eventIDs[0][$i]]);
-					$data = array();
-					$data = $stmt->fetchAll();
+					$stmt->execute(["eventID" => $eventIDs[0][$i], 'stID'=> $_SESSION['StudentID']]);
+					$IDdata = array();
+					$IDdata = $stmt->fetchAll();
 
-				if(count($data)>0){
+				for($q = 0; $q<count($IDdata); $q++){
+					// Pulling data from "events" that have passed
 
-					// Pulling data from "studentevent" to get the students attending those events
-
-						$sql = "SELECT * FROM studentevent WHERE EventID=:eventID";
+						$sql = "SELECT * FROM events WHERE EventID=:eventID AND EndDate >= CURDATE()";
 						$stmt = $pdo->prepare($sql);
-						$stmt->execute(["eventID" => $eventIDs[0][$i]]);
-						$IDdata = array();
-						$IDdata = $stmt->fetchAll();
-			
-					// Checking if current user is in the event
+						$stmt->execute(["eventID" => $IDdata[$q][1]]);
+						$data = array();
+						$data = $stmt->fetchAll();
+					
+					// Checking if event IS in the future
+					if(!empty($data)){
+						
+						// display the data in HTML elements
 
-						if($IDdata[0][0]===$_SESSION["StudentID"]){
+							$formatted_startDate = date('m/d/Y', strtotime($data[0][3]));
+							$formatted_endDate = date('m/d/Y', strtotime($data[0][4]));
 
-							// If the user is then display the data in HTML elements
-
-								$formatted_startDate = date('m/d/Y', strtotime($data[0][3]));
-								$formatted_endDate = date('m/d/Y', strtotime($data[0][4]));
-
-								echo '<tr>';
-								echo '<td title ="', $data[0][2] ,'">', $data[0][1], '</td>';
-								if($data[0][3]===$data[0][4]){echo '<td>',$formatted_startDate, '</td>';}
-								else{echo '<td>', $formatted_startDate, ' to ', $formatted_endDate, '</td>';}
-								echo '<td><a href="https://www.maps.google.com/maps/search/?api=1&query=', str_replace(" ", "+", $data[0][5]),'+IL" target = "_blank">', $data[0][5], '</a></td>';
-								echo '<input type = "hidden" name = "eventID[', $i, ']" value = "', $eventIDs[0][$i], '">';
-								echo '<input type = "hidden" name = "eventName[', $i, ']" value = "', $data[0][1], '">';
-								echo '<td><input type = "submit" name = "myShifts[', $i, ']" value = "View My Shifts" formaction = "myShifts.php" class = "classicColor"></td>';
-								echo '</tr>';
-						}
+							echo '<tr>';
+							echo '<td title ="', $data[0][2] ,'">', $data[0][1], '</td>';
+							if($data[0][3]===$data[0][4]){echo '<td>',$formatted_startDate, '</td>';}
+							else{echo '<td>', $formatted_startDate, ' to ', $formatted_endDate, '</td>';}
+							echo '<td><a href="https://www.maps.google.com/maps/search/?api=1&query=', str_replace(" ", "+", $data[0][5]),'+IL" target = "_blank">', $data[0][5], '</a></td>';
+							echo '<input type = "hidden" name = "eventID[', $i, ']" value = "', $eventIDs[0][$i], '">';
+							echo '<input type = "hidden" name = "eventName[', $i, ']" value = "', $data[0][1], '">';
+							echo '<td><input type = "submit" name = "myShifts[', $i, ']" value = "View My Shifts" formaction = "myShifts.php" class = "classicColor"></td>';
+							echo '</tr>';
+					}
 				}
 			}
 		}
@@ -83,41 +80,38 @@
 			// Looping for every event
 
 			for($i = 0; $i<$eventCount; $i++){
+				// Pulling data from "studentevent" to get the students attending those events
 
-				// Pulling data from "events" that have not passed
-
-					$sql = "SELECT * FROM events WHERE EventID=:eventID AND EndDate < CURDATE()";
+					$sql = "SELECT * FROM studentevent WHERE EventID=:eventID AND StudentID=:stID";
 					$stmt = $pdo->prepare($sql);
-					$stmt->execute(["eventID" => $eventIDs[0][$i]]);
-					$data = array();
-					$data = $stmt->fetchAll();
+					$stmt->execute(["eventID" => $eventIDs[0][$i], 'stID'=> $_SESSION['StudentID']]);
+					$IDdata = array();
+					$IDdata = $stmt->fetchAll();
 
-				if(count($data)>0){
+				for($q = 0; $q<count($IDdata); $q++){
+					// Pulling data from "events" that have passed
 
-					// Pulling data from "studentevent" to get the students attending those events
-
-						$sql = "SELECT * FROM studentevent WHERE EventID=:eventID";
+						$sql = "SELECT * FROM events WHERE EventID=:eventID AND EndDate < CURDATE()";
 						$stmt = $pdo->prepare($sql);
-						$stmt->execute(["eventID" => $eventIDs[0][$i]]);
-						$IDdata = array();
-						$IDdata = $stmt->fetchAll();
-			
-					// Checking if the user is in the event
+						$stmt->execute(["eventID" => $IDdata[$q][1]]);
+						$data = array();
+						$data = $stmt->fetchAll();
 
-						if($IDdata[0][0]===$_SESSION["StudentID"]){
+					// Checking if event IS in the past
+					if(!empty($data)){
 
-							// If the user is then display the data in HTML elements
+						// display the data in HTML elements
 
-								$formatted_startDate = date('m/d/Y', strtotime($data[0][3]));
-								$formatted_endDate = date('m/d/Y', strtotime($data[0][4]));
+							$formatted_startDate = date('m/d/Y', strtotime($data[0][3]));
+							$formatted_endDate = date('m/d/Y', strtotime($data[0][4]));
 
-								echo '<tr>';
-								echo '<td title ="', $data[0][2] ,'">', $data[0][1], '</td>';
-								if($data[0][3]===$data[0][4]){echo '<td>',$formatted_startDate, '</td>';}
-								else{echo '<td>', $formatted_startDate, ' to ', $formatted_endDate, '</td>';}
-								echo '<td><a href="https://www.maps.google.com/maps/search/?api=1&query=', str_replace(" ", "+", $data[0][5]),'+IL" target = "_blank">', $data[0][5], '</a></td>';
-								echo '</tr>';
-						}
+							echo '<tr>';
+							echo '<td title ="', $data[0][2] ,'">', $data[0][1], '</td>';
+							if($data[0][3]===$data[0][4]){echo '<td>',$formatted_startDate, '</td>';}
+							else{echo '<td>', $formatted_startDate, ' to ', $formatted_endDate, '</td>';}
+							echo '<td><a href="https://www.maps.google.com/maps/search/?api=1&query=', str_replace(" ", "+", $data[0][5]),'+IL" target = "_blank">', $data[0][5], '</a></td>';
+							echo '</tr>';
+					}
 				}
 			}
 		}
