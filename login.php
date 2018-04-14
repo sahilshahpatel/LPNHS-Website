@@ -92,7 +92,7 @@
                     <button id = "loginButton" type = "submit" value="Log In">Sign In</button>
                 </div>
                 <div>
-                    <img id = "tester" style = "margin: auto;" src = "https://www.nhs.us/assets/images/nhs/NHS_header_logo.png">
+                    <img style = "margin: auto;" src = "img/NHS_logo.png">
                 </div>                
             </form>
             
