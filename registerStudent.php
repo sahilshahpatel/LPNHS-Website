@@ -17,8 +17,14 @@
 
 	for($i = 0; $i<$eventCount; $i++){
 
-		// Checking if that event was picked -> $i -> event number
+		$sql = "SELECT * FROM studentshiftrequests WHERE EventID=:eventID";
+		$stmt = $pdo->prepare($sql);
+		$stmt->execute(['eventID' => $eventData[$i][0]]);
+		$requestCount = $stmt->rowCount();
 
+		for($q = 0; $q<$requestCount; $q++){
+			
+			// Checking if that request was picked -> $i and $q
 			if(isset($_POST["submit"][$i])){
 
 				// Deletes data from "requests" table
@@ -46,6 +52,7 @@
 				header('Location: roster-requests.php?formSubmitConfirm=true');
 
 			}
+		}
 	}
 
 	header('Location: roster-requests.php?formSubmitConfirm=true');
