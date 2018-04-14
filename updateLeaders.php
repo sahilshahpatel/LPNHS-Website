@@ -31,14 +31,12 @@
 			$sql = "UPDATE students SET HoursCompleted=:hrs, Position=:pos, VicePresident=:vp WHERE StudentID=:sID";
 			$stmt = $pdo->prepare($sql);
 			$stmt->execute(["hrs"=>$_POST["hoursCompleted"][$i], "pos"=>$_POST["position"][$i], "vp"=>$_POST['vicePresident'][$i], "sID" => $adminData[$i][0]]);
-			setcookie("formSubmitConfirm", "Leader information updated", time()+3600);
 			header('Location:members.php?manage=true&formSubmitConfirm=true');
 		}
 		elseif(isset($_POST["remove"][$i])){
 			$sql = "DELETE FROM students WHERE StudentID=:sID";
 			$stmt = $pdo->prepare($sql);
 			$stmt->execute(["sID" => $adminData[$i][0]]);
-			setcookie("formSubmitConfirm", "Leader account removed", time()+3600);
 			header('Location:members.php?manage=true&formSubmitConfirm=true');
 		}}
 ?>

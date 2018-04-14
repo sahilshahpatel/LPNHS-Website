@@ -32,7 +32,6 @@
 						$sql = "DELETE FROM students WHERE StudentID=:sID";
 						$stmt = $pdo->prepare($sql);
 						$stmt->execute(["sID" => $studentData[$i][0]]);
-						setcookie("formSubmitConfirm", "Student account removed", time()+3600);
 						header('Location:members.php?manage=true&formSubmitConfirm=true');
 				}
 		}
