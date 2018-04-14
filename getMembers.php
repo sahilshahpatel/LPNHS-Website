@@ -37,7 +37,7 @@
 
 			// Checking users permissions based on "Position"
 	
-				if(isset($_GET["manage"]) && htmlspecialchars($_GET["manage"])==="true" && ($data->Position==="President" || $data->Position==="Advisor" || $data->Position==="Admin" || $data->Position==="Vice President")):
+				if(isset($_GET["manage"]) && htmlspecialchars($_GET["manage"])==="true" && ($data->Position==="Vice President")):
 
 					// User "Position" : admin view
 
@@ -71,7 +71,7 @@
 									echo '<td>', $data[0][3], '</td>';
 								
 								// Display list of positions
-									$positions = array("Admin", "Advisor", "President", "Vice President", "Student");
+									$positions = array("President", "Vice President", "Student");
 									echo '<td><select name="position[', $i,']">';
 									foreach($positions as $p){
 										echo '<option ';
@@ -109,6 +109,79 @@
 									echo '<td><input name = "remove[', $i,']" value = "Remove" class = "classicColor" type = "submit" onclick="return confirm(\'Are you sure?\')" style = "margin-right: 0px; background-color:red"></td>';
 									echo '</tr>';
 							}
+					elseif(isset($_GET["manage"]) && htmlspecialchars($_GET["manage"])==="true" && ($data->Position==="President" || $data->Position==="Advisor" || $data->Position==="Admin")):
+
+						// User "Position" : admin view
+	
+							echo '<tr>
+								<th>Name</th>
+								<th>Email</th>
+								<th>Position</th>
+								<th>VP</th>
+								<th>Hours Completed</th>
+								<th>Submit Changes</th>
+								<th>Remove</th>
+								</tr>';
+	
+							
+							// Looping data for each student
+	
+								for($i = 0; $i<$studentCount; $i++){
+									
+									// Pulling data from "students"
+	
+										$sql = "SELECT * FROM students WHERE StudentID=:studentID";
+										$stmt = $pdo->prepare($sql);
+										$stmt->execute(["studentID" => $studentIDs[0][$i]]);
+										$data = array();
+										$data = $stmt->fetchAll();
+									
+									// Displaying the student data into HTML elements
+	
+										echo '<tr>';
+										echo '<td><input name = "studFirstName[', $i,']" value="', $data[0][1],'">
+										<input name = "studLastName[', $i,']" value="',$data[0][2] ,'"></td>';
+										echo '<td><input name="studEmail[', $i,']" value="', $data[0][3], '"></td>';
+									
+									// Display list of positions
+										$positions = array("Admin", "Advisor", "President", "Vice President", "Student");
+										echo '<td><select name="position[', $i,']">';
+										foreach($positions as $p){
+											echo '<option ';
+											//set default value
+											if($data[0][7] === $p){
+												echo 'selected = "selected" ';
+											}
+											echo 'value = "', $p, '">', $p, '</option>';
+										}
+										unset($p);
+										echo '</select></td>';
+									
+									// Getting a list of all Vice Presidents
+	
+										$sql = "SELECT * FROM students WHERE Position=:vp";
+										$stmt = $pdo->prepare($sql);
+										$stmt->execute(['vp'=>"Vice President"]);
+										$vpData = array();
+										$vpData = $stmt->fetchAll();
+	
+									// Displaying Vice President data
+	
+										echo '<td><select name = "vicePresident[', $i, ']" form = "manageMembersForm">';
+										for($vp = 0; $vp<count($vpData); $vp++){
+											echo '<option ';
+											//set default value
+											if($vpData[$vp][0] === $data[0][6]){
+												echo 'selected = "selected" ';
+											}
+											echo 'value = "', $vpData[$vp][0], '">', $vpData[$vp][1], ' ', $vpData[$vp][2], '</option>';
+										}
+										echo '</select></td>';
+										echo '<td><input name = "hoursCompleted[', $i,']" type = "number" style = "max-width: 40px;" value=', $data[0][5], '></td>';
+										echo '<td><input name = "submit[', $i,']" value = "Submit" class = "classicColor" type = "submit"></td>';
+										echo '<td><input name = "remove[', $i,']" value = "Remove" class = "classicColor" type = "submit" onclick="return confirm(\'Are you sure?\')" style = "margin-right: 0px; background-color:red"></td>';
+										echo '</tr>';
+								}
 					else:
 
 						// User "Position" : student view

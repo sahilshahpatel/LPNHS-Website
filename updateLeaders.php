@@ -27,6 +27,12 @@
 		$adminData = $stmt->fetchAll();
 	}
 	for($i = 0; $i<$adminCount; $i++){
+		if(isset($_POST["submit"][$i]) && ($data->Position==="President" || $data->Position==="Advisor" || $data->Position==="Admin")){
+			$sql = "UPDATE students SET FirstName=:FN, LastName=:LN, Email=:email, HoursCompleted=:hrs, Position=:pos, VicePresident=:vp WHERE StudentID=:sID";
+			$stmt = $pdo->prepare($sql);
+			$stmt->execute(["FN"=>$_POST['studFirstName'][$i], "LN"=>$_POST['studLastName'][$i], "email"=>$_POST['studEmail'][$i], "hrs"=>$_POST["hoursCompleted"][$i], "pos"=>$_POST["position"][$i], "vp"=>$_POST['vicePresident'][$i], "sID" => $adminData[$i][0]]);
+			header('Location:members.php?manage=true&formSubmitConfirm=true');
+		}
 		if(isset($_POST["submit"][$i])){
 			$sql = "UPDATE students SET HoursCompleted=:hrs, Position=:pos, VicePresident=:vp WHERE StudentID=:sID";
 			$stmt = $pdo->prepare($sql);
@@ -34,9 +40,39 @@
 			header('Location:members.php?manage=true&formSubmitConfirm=true');
 		}
 		elseif(isset($_POST["remove"][$i])){
-			$sql = "DELETE FROM students WHERE StudentID=:sID";
+			// Removes the user chosen
+
+			$sql = "DELETE FROM students WHERE StudentID=:stID";
 			$stmt = $pdo->prepare($sql);
-			$stmt->execute(["sID" => $adminData[$i][0]]);
+			$stmt->execute(["stID" => $adminData[$i][0]]);
+
+			$sql = "DELETE FROM studentevent WHERE StudentID=:stID";
+			$stmt = $pdo->prepare($sql);
+			$stmt->execute(["stID" => $adminData[$i][0]]);
+			
+			$sql = "DELETE FROM studentshiftrequests WHERE StudentID=:stID";
+			$stmt = $pdo->prepare($sql);
+			$stmt->execute(["stID" => $adminData[$i][0]]);
+			
+			$sql = "SELECT FROM positions WHERE StudentID=:stID";
+			$stmt = $pdo->prepare($sql);
+			$stmt->execute(["stID" => $adminData[$i][0]]);
+			$studPos = array();
+			$studPos = $stmt->fetchAll();
+
+			$sql = "DELETE FROM positions WHERE StudentID=:stID";
+			$stmt = $pdo->prepare($sql);
+			$stmt->execute(["stID" => $adminData[$i][0]]);
+
+			for($i = 0; $i<count($studPos); $i++){
+				$sql = "UPDATE shifts SET PositionsAvailable = PositionsAvailable + 1 WHERE ShiftID =:shiftID";
+				$stmt = $pdo->prepare($sql);
+				$stmt->execute(['shiftID' => $studPos[$i][1]]);
+			}
+
+			$sql = "DELETE FROM shiftcovers WHERE RequesterID=:stID OR CovererID=:stID";
+			$stmt = $pdo->prepare($sql);
+			$stmt->execute(["stID" => $adminData[$i][0]]);
 			header('Location:members.php?manage=true&formSubmitConfirm=true');
 		}}
 ?>
