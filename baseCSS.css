@@ -105,6 +105,7 @@
         position: absolute;
         top: 0;
         right: 0;
+        
     }
 
     div.headerSignIn button {
@@ -112,6 +113,7 @@
         border-bottom-left-radius: 5px;
         background-color: #333;
         color: #fff;
+        font-size: 18px;
     }
 
 /* Nav Bar */
