@@ -50,7 +50,7 @@
 
 							$sql = "SELECT * FROM students WHERE StudentID=:studentID";
 							$stmt = $pdo->prepare($sql);
-							$stmt->execute(['studentID' => $requestData[0][1]]);
+							$stmt->execute(['studentID' => $requestData[$q][1]]);
 							$studentData = array();
 							$studentData = $stmt->fetchAll();
 
@@ -58,7 +58,7 @@
 
 							$sql = "SELECT * FROM shifts WHERE ShiftID=:shiftID";
 							$stmt = $pdo->prepare($sql);
-							$stmt->execute(['shiftID' => $requestData[0][2]]);
+							$stmt->execute(['shiftID' => $requestData[$q][2]]);
 							$shiftData = array();
 							$shiftData = $stmt->fetchAll();
 
@@ -78,13 +78,13 @@
 								// Pulling data from "studentevent" to see how many times the student has signed up for the same event (events with same name)
 									$sql = "SELECT * FROM studentevent WHERE EventID=:eventID AND StudentID=:studentID";
 									$stmt = $pdo->prepare($sql);
-									$stmt->execute(['eventID' => $sameEventsData[$l][0], 'studentID' => $studentData[$q][0]]);
+									$stmt->execute(['eventID' => $sameEventsData[$l][0], 'studentID' => $studentData[0][0]]);
 									$repetitionCounter += $stmt->rowCount();
 							}
 
-							$formatted_date = date('m/d/Y', strtotime($shiftData[$q][1]));// Formatting time
-							$formatted_startTime = date('g:i A', strtotime($shiftData[$q][2]));
-							$formatted_endTime = date('g:i A', strtotime($shiftData[$q][3]));
+							$formatted_date = date('m/d/Y', strtotime($shiftData[0][1]));// Formatting time
+							$formatted_startTime = date('g:i A', strtotime($shiftData[0][2]));
+							$formatted_endTime = date('g:i A', strtotime($shiftData[0][3]));
 
 						// Display the data in HTML elements
 
@@ -92,13 +92,13 @@
 						
 							// Hidden form info to be passed
 
-								echo '<input name = "studentID[', $i,']" type = "hidden" value = "', $studentData[$q][0],'">';
+								echo '<input name = "studentID[', $i,']" type = "hidden" value = "', $studentData[0][0],'">';
 								echo '<input name = "eventID[', $i,']" type = "hidden" value = "', $eventData[$i][0],'">';
-								echo '<input name = "shiftID[', $i,']" type = "hidden" value = "', $shiftData[$q][0],'">';
+								echo '<input name = "shiftID[', $i,']" type = "hidden" value = "', $shiftData[0][0],'">';
 							
 							echo '<td>', $eventData[$i][1], '</td>';
-							echo '<td>', $studentData[$q][1],' ', $studentData[$q][2], '</td>';
-							echo '<td>', $studentData[$q][5], '</td>';
+							echo '<td>', $studentData[0][1],' ', $studentData[0][2], '</td>';
+							echo '<td>', $studentData[0][5], '</td>';
 							echo '<td>', $formatted_date, '</td>';
 							echo '<td>', $formatted_startTime, ' to ', $formatted_endTime, '</td>';
 							echo '<td>', $repetitionCounter, '</td>';
