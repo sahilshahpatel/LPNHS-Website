@@ -63,7 +63,8 @@
 								echo '<td>', $formatted_date, '</td>';
 								echo '<td>', $formatted_startTime, ' to ', $formatted_endTime, '</td>';
 								echo '<td><a title = "Click to view current roster" href = "roster.php?eventID=', $eventIDs[0][$i],'&shiftID=', $shiftData[0][0], '">', $shiftData[0][4], '</a></td>';
-								echo '<td><input type = "submit" name = "submit[', $l, ']" value = "Volunteer!" class = "classicColor"></td>';
+								if($shiftData[0][4]!=0){echo '<td><input type = "submit" name = "submit[', $l, ']" value = "Volunteer!" class = "classicColor"></td>';}
+								else{echo '<td><p>Full</p></td>';}
 								echo '</tr>';
 							}
 					}

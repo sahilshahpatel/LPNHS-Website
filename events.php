@@ -61,6 +61,23 @@
                 });
         </script>
 
+         <?php
+
+            // Form Submission Confirmation and date validation
+
+                if(isset($_GET['Volunteer'])):
+                ?>
+                    <script>
+                    $(document).ready(function(){
+                        $("#banner").animate({backgroundColor: '#FF0000'});
+                        $("#banner").animate({backgroundColor: '#fff'});
+                    });
+                    </script>
+                <?php
+                    endif;
+            ?>
+
+
     </head>
 
     <header id = "header"><?php include "header.php"; ?></header>

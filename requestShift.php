@@ -10,29 +10,40 @@
 		$shiftsList = array();
 		$shiftsList = $stmt->fetchAll();
 
+	// Pulling data from shifts to see if it's full or not
+
+		$sql = "SELECT * FROM shifts WHERE ShiftID=:shiftID";
+		$stmt = $pdo->prepare($sql);
+		$stmt->execute(['shiftID' => $_GET['shiftID']]);
+		$sc = $stmt->fetch(PDO::FETCH_OBJ);
+		$PA = $sc->PositionsAvailable;
+
 	// Looping for every shift
 
 		for($l = 0; $l<count($shiftsList); $l++){
 
 			// Checks if that shift is picked -> $l -> shift number
 				if(isset($_POST['submit'][$l])){
-					// Pulling data from "studentshiftrequest" to check for a repeat
+					if($PA!=0){
+						// Pulling data from "studentshiftrequest" to check for a repeat
 
-						$sql = "SELECT * FROM studentshiftrequests WHERE EventID = :eventID AND StudentID = :studentID AND ShiftID = :shiftID";
-						$stmt = $pdo->prepare($sql);
-						$stmt->execute(['eventID' => $_POST['eventID'], 'studentID' => $_SESSION['StudentID'], 'shiftID' => $_POST['shiftID'][$l]]);
+							$sql = "SELECT * FROM studentshiftrequests WHERE EventID = :eventID AND StudentID = :studentID AND ShiftID = :shiftID";
+							$stmt = $pdo->prepare($sql);
+							$stmt->execute(['eventID' => $_POST['eventID'], 'studentID' => $_SESSION['StudentID'], 'shiftID' => $_POST['shiftID'][$l]]);
 
-					// Check for repeat
+						// Check for repeat
 
-						if($stmt->rowCount()===0){
-							// Inserting data into "studentshiftrequests"
+							if($stmt->rowCount()===0){
+								// Inserting data into "studentshiftrequests"
 
-								$sql = "INSERT INTO studentshiftrequests (EventID, StudentID, ShiftID) VALUES ( :eventID, :studentID, :shiftID)";
-								$stmt = $pdo->prepare($sql);
-								$stmt->execute(['eventID' => $_POST['eventID'], 'studentID' => $_SESSION['StudentID'], 'shiftID' => $_POST['shiftID'][$l]]);
+									$sql = "INSERT INTO studentshiftrequests (EventID, StudentID, ShiftID) VALUES ( :eventID, :studentID, :shiftID)";
+									$stmt = $pdo->prepare($sql);
+									$stmt->execute(['eventID' => $_POST['eventID'], 'studentID' => $_SESSION['StudentID'], 'shiftID' => $_POST['shiftID'][$l]]);
 
-								header('location: events.php?formSubmitConfirm=true');
-						}
+									header('location: events.php?formSubmitConfirm=true');
+							}
+					}
+					else{header('location: events.php?Volunteer=false');}
 				}
 		}
 

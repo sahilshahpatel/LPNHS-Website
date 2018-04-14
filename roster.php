@@ -84,7 +84,8 @@
 
                                 echo '<td>', $formatted_date, '</td>';
                                 echo '<td>', $formatted_startTime, ' to ', $formatted_endTime, '</td>';
-                                echo '<td><input type = "submit" name = "submit" value = "Volunteer!" class = "classicColor"></td>';
+                                if($shiftData[0][4]!=0){echo '<td><input type = "submit" name = "submit" value = "Volunteer!" class = "classicColor"></td>';}
+                                else{echo '<td>Full</td>';}
                                 echo '</tr>';
                             }
                         ?>
