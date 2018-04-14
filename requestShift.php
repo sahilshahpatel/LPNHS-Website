@@ -10,17 +10,16 @@
 		$shiftsList = array();
 		$shiftsList = $stmt->fetchAll();
 
-	// Pulling data from shifts to see if it's full or not
-
-		$sql = "SELECT * FROM shifts WHERE ShiftID=:shiftID";
-		$stmt = $pdo->prepare($sql);
-		$stmt->execute(['shiftID' => $_GET['shiftID']]);
-		$sc = $stmt->fetch(PDO::FETCH_OBJ);
-		$PA = $sc->PositionsAvailable;
-
 	// Looping for every shift
-
 		for($l = 0; $l<count($shiftsList); $l++){
+
+			// Pulling data from shifts to see if it's full or not
+
+			$sql = "SELECT * FROM shifts WHERE ShiftID=:shiftID";
+			$stmt = $pdo->prepare($sql);
+			$stmt->execute(['shiftID' => $_POST['shiftID'][$l]]);
+			$sc = $stmt->fetch(PDO::FETCH_OBJ);
+			$PA = $sc->PositionsAvailable;
 
 			// Checks if that shift is picked -> $l -> shift number
 				if(isset($_POST['submit'][$l])){
