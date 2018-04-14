@@ -88,6 +88,10 @@
                                 $sql = "DELETE FROM positions WHERE ShiftID=:shiftID";
                                 $stmt = $pdo->prepare($sql);
                                 $stmt->execute(['shiftID' => $shiftIDS[$i][0]]);
+
+                                $sql = "DELETE FROM shiftcovers WHERE ShiftID=:shiftID";
+                                $stmt = $pdo->prepare($sql);
+                                $stmt->execute(['shiftID' => $shiftIDS[$i][0]]);
                             } 
 
                         // Rerouting back to first page

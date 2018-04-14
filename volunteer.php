@@ -3,6 +3,7 @@
     session_start();
     include "database.php";
     include "loginCheck.php";
+
 ?>
 <html>
     <head>
@@ -56,7 +57,6 @@
 
             <div id = "shiftsPanel" class = "classic panel">
                 <div id = "informationContainer">
-                    <p>Available Shifts</p>
                     <!--Content loaded throuhg PHP-->
                     <form method = "post" action = "requestShift.php">
                         <table id = "shiftsTable">

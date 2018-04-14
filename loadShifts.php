@@ -11,15 +11,6 @@
 		$eventIDs = array();
 		array_push($eventIDs, $stmt->fetchAll(PDO::FETCH_COLUMN, 0));
 
-	// Displaying data into HTML elements
-
-		echo '<tr>
-			  <th>Date</th>
-			  <th>Time</th>
-			  <th title = "Click to view current rosters">Positions Available</th>
-			  <th>Request Shift</th>
-			  </tr>';
-
 	// Looping for every event
 
 	for($i = 0; $i<$eventCount; $i++){
@@ -36,6 +27,22 @@
 					$shiftsList = array();
 					$shiftsList = $stmt->fetchAll();
 
+					// Displaying data into HTML elements
+
+					$sql = "SELECT * FROM events WHERE EventID=:eventID";
+					$stmt = $pdo->prepare($sql);
+					$stmt->execute(['eventID' => $eventIDs[0][$i]]);
+					$data = array();
+					$data = $stmt->fetchAll();
+
+					echo '<p>Available Shifts for ',$data[0][1],'</p>
+							<tr>
+						<th>Date</th>
+						<th>Time</th>
+						<th title = "Click to view current rosters">Positions Available</th>
+						<th>Request Shift</th>
+						</tr>';
+
 				// Looping the data pulling and display for each of those shifts
 
 					for($l = 0; $l<count($shiftsList); $l++){
@@ -47,6 +54,13 @@
 							$stmt->execute(['shiftID' => $shiftsList[$l][1]]);
 							$shiftData = array();
 							$shiftData = $stmt->fetchAll();
+
+						// Pulling data from "studentshiftrequest" to check for a repeat
+
+							$sql = "SELECT * FROM studentshiftrequests WHERE EventID = :eventID AND StudentID = :studentID AND ShiftID = :shiftID";
+							$stmt = $pdo->prepare($sql);
+							$stmt->execute(['eventID' => $eventIDs[0][$i], 'studentID' => $_SESSION['StudentID'], 'shiftID' => $shiftData[0][0]]);
+							$StudentRowCount = $stmt->rowCount();
 							$formatted_startTime = date('g:i A', strtotime($shiftData[0][2]));
 							$formatted_endTime = date('g:i A', strtotime($shiftData[0][3]));
 							$formatted_date = date('m/d/Y', strtotime($shiftData[0][1]));
@@ -63,7 +77,8 @@
 								echo '<td>', $formatted_date, '</td>';
 								echo '<td>', $formatted_startTime, ' to ', $formatted_endTime, '</td>';
 								echo '<td><a title = "Click to view current roster" href = "roster.php?eventID=', $eventIDs[0][$i],'&shiftID=', $shiftData[0][0], '">', $shiftData[0][4], '</a></td>';
-								if($shiftData[0][4]!=0){echo '<td><input type = "submit" name = "submit[', $l, ']" value = "Volunteer!" class = "classicColor"></td>';}
+								if($StudentRowCount!==0){echo '<td><p>Request Sent</p></td>';}
+								else if($shiftData[0][4]!=0){echo '<td><input type = "submit" name = "submit[', $l, ']" value = "Volunteer!" class = "classicColor"></td>';}
 								else{echo '<td><p>Full</p></td>';}
 								echo '</tr>';
 							}

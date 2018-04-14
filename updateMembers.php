@@ -32,7 +32,35 @@
 						$sql = "DELETE FROM students WHERE StudentID=:sID";
 						$stmt = $pdo->prepare($sql);
 						$stmt->execute(["sID" => $studentData[$i][0]]);
-						header('Location:members.php?manage=true&formSubmitConfirm=true');
+
+						$sql = "DELETE FROM studentevent WHERE StudentID=:sID";
+						$stmt = $pdo->prepare($sql);
+						$stmt->execute(["sID" => $studentData[$i][0]]);
+						
+						$sql = "DELETE FROM studentshiftrequests WHERE StudentID=:sID";
+						$stmt = $pdo->prepare($sql);
+						$stmt->execute(["sID" => $studentData[$i][0]]);
+						
+						$sql = "SELECT FROM positions WHERE StudentID=:sID";
+						$stmt = $pdo->prepare($sql);
+						$stmt->execute(["sID" => $studentData[$i][0]]);
+						$studPos = array();
+						$studPos = $stmt->fetchAll();
+
+						$sql = "DELETE FROM positions WHERE StudentID=:sID";
+						$stmt = $pdo->prepare($sql);
+						$stmt->execute(["sID" => $studentData[$i][0]]);
+
+						for($i = 0; $i<count($studPos); $i++{
+							$sql = "UPDATE shifts SET PositionsAvailable = PositionsAvailable + 1 WHERE ShiftID =:shiftID AND PositionsAvailable > 0";
+							$stmt = $pdo->prepare($sql);
+							$stmt->execute(['shiftID' => $studPos[$i][1]]);
+						}
+
+						$sql = "DELETE FROM shiftcovers WHERE StudentID=:sID";
+						$stmt = $pdo->prepare($sql);
+						$stmt->execute(["sID" => $studentData[$i][0]]);
+						//header('Location:members.php?manage=true&formSubmitConfirm=true');
 				}
 		}
 ?>
