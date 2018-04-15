@@ -58,6 +58,7 @@
                                 echo '<tr>
                                     <th>Date</th>
                                     <th>Time</th>
+                                    <th></th>
                                     <th>Select Coverer</th>
                                     <th><th>
                                     </tr>';
@@ -92,6 +93,8 @@
     
                                             echo '<td>', $formatted_date, '</td>';
                                             echo '<td>', $formatted_startTime, ' to ', $formatted_endTime, '</td>';
+
+                                            echo '<td><a href = "roster.php?eventID=', $_POST['eventID'][$i], '&shiftID=', $shiftsList[$s][1], '">View Roster</a></td>';
 
                                             //List of all students (pick who to cover for you)
                                             $sql = "SELECT * FROM students WHERE NOT Position = :position";
