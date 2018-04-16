@@ -11,8 +11,7 @@
 		$eventCount = $stmt->rowCount();
 		$eventIDs = array();
 		array_push($eventIDs, $stmt->fetchAll(PDO::FETCH_COLUMN, 0));
-
-
+		
 	// Initializing data into HTML elements
 		echo '<tr>
 			  <th>Event Name</th>

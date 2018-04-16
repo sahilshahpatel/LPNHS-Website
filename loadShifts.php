@@ -11,6 +11,12 @@
 		$eventIDs = array();
 		array_push($eventIDs, $stmt->fetchAll(PDO::FETCH_COLUMN, 0));
 
+		$sql = "SELECT * FROM students WHERE StudentID=:studentID";
+		$stmt = $pdo->prepare($sql);
+		$stmt->execute(["studentID" => $_SESSION["StudentID"]]);
+		$Sdata = $stmt->fetch(PDO::FETCH_OBJ);
+		$level = $Sdata->Position;
+
 	// Looping for every event
 
 	for($i = 0; $i<$eventCount; $i++){
@@ -93,6 +99,7 @@
 									$stmt = $pdo->prepare($sql);
 									$stmt->execute(['shiftID'=>$shiftData[0][0], 'studentID'=>$_SESSION['StudentID']]);
 									$shiftRepetitions = $stmt->rowCount();
+									if($level==="Advisor"){$otherEntry="N/A for Advisors"}
 									if($shiftRepetitions>0){
 										$otherEntry = "Already Registered";
 									}

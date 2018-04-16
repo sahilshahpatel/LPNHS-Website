@@ -5,6 +5,12 @@
     if(!isset($_GET['eventID']) || !isset($_GET['shiftID'])){
         header("location: events.php");
     }
+
+    $sql = "SELECT * FROM students WHERE StudentID=:studentID";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute(["studentID" => $_SESSION["StudentID"]]);
+    $Sdata = $stmt->fetch(PDO::FETCH_OBJ);
+    $level = $Sdata->Position;
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -96,6 +102,7 @@
                                     $stmt = $pdo->prepare($sql);
                                     $stmt->execute(['shiftID'=>$shiftData[0][0], 'studentID'=>$_SESSION['StudentID']]);
                                     $shiftRepetitions = $stmt->rowCount();
+                                    if($level==="Advisor"){$otherEntry="N/A for Advisors"}
                                     if($shiftRepetitions>0){
                                         $otherEntry = "Already Registered";
                                     }

@@ -91,7 +91,16 @@
                                             // Hidden form info to be passed
                                             echo '<input type = "hidden" name = "shiftID[', $s,'][', $p, ']" value = "', $shiftData[0][0], '">';
     
-                                            echo '<td>', $formatted_date, '</td>';
+                                            echo '<td><a href="http://www.google.com/calendar/event?
+                                            action=TEMPLATE
+                                            &text="',$_POST['eventName'][$i],'"
+                                            &dates="',$shiftData[0][1],'"
+                                            &details="NHS event"
+                                            &location="TBD"
+                                            &trp=false
+                                            &sprop=
+                                            &sprop=name:"
+                                            target="_blank" rel="nofollow">', $formatted_date, '</a></td>';
                                             echo '<td>', $formatted_startTime, ' to ', $formatted_endTime, '</td>';
 
                                             echo '<td><a href = "roster.php?eventID=', $_POST['eventID'][$i], '&shiftID=', $shiftsList[$s][1], '">View Roster</a></td>';
