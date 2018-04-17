@@ -89,23 +89,23 @@
                     <div id = "frontImg" style="margin-right:30px;">
                         <img src = "img/what_it_takes.jpg">
                     </div>
-                    <div style= "padding-left:30px;padding-top:10px;"><?php echo $whatittakes; ?></div>
+                    <div style= "padding-left:30px;padding-top:10px;" style="white-space: pre-wrap;"><a style="white-space: pre-wrap;"><?php echo $whatittakes; ?></a></div>
                     <hr style = "width: 95%;">
                     <div id = "applicationRequirements" class = "classic" style="margin: 0 px; padding-top:0px;background-color: #ffebcd;">
                         <h2 style = "color: #005da3">Application Requirements</h2>
-                        <ul id="appreqs" >
+                        <ul id="appreqs">
                             <?php $arraysplitter = array();
                                             for($k = 1; $k<=$appreqsnum; $k++)
                                             {
                                                 $arraysplitter = explode("&",$appreqsbpositions[$k-1]);
                                                 $arraysplitter = explode("&",$appreqsbpositions[$k-1]);
-                                                echo '<li style="color: black;"><b style="color: #005da3">',$arraysplitter[0],'</b><br>';
+                                                echo '<li style="white-space: pre-wrap;color: black;"><b style="color: #005da3">',$arraysplitter[0],'</b><br>';
                                                 echo $arraysplitter[1], '</li>';
                                                 }?> <!-- Inserting reqs by loop of php -->
                         </ul>
                     </div>
                     <hr style = "width: 95%;">
-                    <div  style= "padding-left:30px;padding-right:30px; margin-bottom: 30px;"><?php echo $whatittakesunder; ?></div>
+                    <div  style= "padding-left:30px;padding-right:30px; margin-bottom: 30px;" ><a style="white-space: pre-wrap;"><?php echo $whatittakesunder; ?></a></div>
                 </article>
             </div>
 

@@ -157,13 +157,14 @@
                             <hr style="font-size:18px;">
                         <table>
                             <tr><td><p style = "text-align: center;">Home Image (Changes are irreversible!)</p></td></tr>
+                            <tr><td><img src = "img/frontImg.jpg"><!--NHS picture of students--></td></tr>
                             <tr><td><input type = "file" name = "frontImg" style = "border: 0; width: 180px; margin: 0 auto;"></td></tr>
                             <tr><td><p style = "text-align: center;">Home Image Caption</p></td></tr>
-                            <tr><td><textarea id="frontImgCaption" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" rows="6" cols="144" maxlength="512" style="overflow:hidden; width: 100%;" name="frontImgCaption" placeholder="<?php echo $frontImgCaption;?>" form="siteUpdater"><?php echo $frontImgCaption;?></textarea></tr>
+                            <tr><td><textarea id="frontImgCaption" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" rows="6" cols="144" maxlength="512" style="font-size: 17px;overflow:hidden; width: 100%;" name="frontImgCaption" placeholder="<?php echo $frontImgCaption;?>" form="siteUpdater"><?php echo $frontImgCaption;?></textarea></tr>
                             <tr><td><p style="text-align: center;">Alert</p></td></tr>
-                            <tr><td><textarea id="alert" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" rows="6" cols="144" maxlength="512" style="overflow:hidden; width: 100%;" name="alert" placeholder="<?php echo $attention;?>" form="siteUpdater"><?php echo $attention;?></textarea></tr>
+                            <tr><td><textarea id="alert" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" rows="6" cols="144" maxlength="512" style="font-size: 17px;overflow:hidden; width: 100%;" name="alert" placeholder="<?php echo $attention;?>" form="siteUpdater"><?php echo $attention;?></textarea></tr>
                             <tr><td><p style="text-align: center;">About Us</p></td></tr>
-                            <tr><td><textarea id="aboutUsText" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" rows="10" cols="144" maxlength="512" style="overflow:hidden; width: 100%;" name="aboutUsText" placeholder="<?php echo $aboutus;?>" form="siteUpdater"><?php echo $aboutus;?></textarea></td></tr>
+                            <tr><td><textarea id="aboutUsText" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" rows="10" cols="144" maxlength="512" style="font-size: 17px;overflow:hidden; width: 100%;" name="aboutUsText" placeholder="<?php echo $aboutus;?>" form="siteUpdater"><?php echo $aboutus;?></textarea></td></tr>
                             <tr><td><button id = "indexSubmit"  type="submit" value = "Submit" class = "classicColor submit">Submit</button></td></tr>
                         </table>
                     </div>
@@ -180,8 +181,9 @@
                                 <h1 style = "color: #005da3;text-align: center;">What It Takes to Be a Member</h1>
                                 <hr style = "width: 95%;">
                                 <p style = "text-align: center">Article Image (Changes are irreversible!)</p>
+                                <img src = "img/what_it_takes.jpg"><br>
                                 <input type = "file" name = "what_it_takes" style = "border: 0; width: 180px; margin: 0 auto;">
-                                <div style= "padding-top:10px;"><a style="font-size:14px;">*Note, if you want to create a new paragraph, type in <\br> TBD!</a><textarea id="whatItTakes" rows="16" autocomplete="off" autocorrect="off" style="font-size: 17px;height:100%;" autocapitalize="off" spellcheck="false" cols="144" maxlength="1024" style="overflow:hidden;" name="whatItTakes" placeholder="<?php echo $whatittakes;?>" form="siteUpdater"><?php echo $whatittakes;?></textarea></div>
+                                <div style= "padding-top:10px;"><textarea id="whatItTakes" rows="16" autocomplete="off" autocorrect="off" style="font-size: 17px;height:100%;" autocapitalize="off" spellcheck="false" cols="144" maxlength="1024" style="overflow:hidden;" name="whatItTakes" placeholder="<?php echo $whatittakes;?>" form="siteUpdater"><?php echo $whatittakes;?></textarea></div>
                                 <hr style = "width: 95%;">
                                 <div id = "applicationRequirements" class = "classic" style="margin: 0 px; padding-top:0px; background-color: #ffebcd;">
                                     <h2 style = "color: #005da3">Application Requirements</h2>
