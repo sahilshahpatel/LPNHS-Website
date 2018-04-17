@@ -102,7 +102,7 @@
                                     $stmt = $pdo->prepare($sql);
                                     $stmt->execute(['shiftID'=>$shiftData[0][0], 'studentID'=>$_SESSION['StudentID']]);
                                     $shiftRepetitions = $stmt->rowCount();
-                                    if($level==="Advisor"){$otherEntry="N/A for Advisors"}
+                                    if($level==="Advisor"){$otherEntry="N/A for Advisors";}
                                     if($shiftRepetitions>0){
                                         $otherEntry = "Already Registered";
                                     }

@@ -79,6 +79,9 @@
                                         $formatted_startTime = date('g:i A', strtotime($shiftData[0][2]));
                                         $formatted_endTime = date('g:i A', strtotime($shiftData[0][3]));
                                         $formatted_date = date('m/d/Y', strtotime($shiftData[0][1]));
+                                        $formatted_dateCalendar = date('Ymd', strtotime($shiftData[0][1]));
+                                        $formatted_timeCalendar = date('hi00', strtotime($shiftData[0][2]));
+                                        $formatted_timeCalendar2 = date('hi00', strtotime($shiftData[0][3]));
                                         
                                         $sql = "SELECT * FROM positions WHERE ShiftID=:shiftID AND StudentID=:studentID";
                                         $stmt = $pdo->prepare($sql);
@@ -90,17 +93,7 @@
 
                                             // Hidden form info to be passed
                                             echo '<input type = "hidden" name = "shiftID[', $s,'][', $p, ']" value = "', $shiftData[0][0], '">';
-    
-                                            echo '<td><a href="http://www.google.com/calendar/event?
-                                            action=TEMPLATE
-                                            &text="',$_POST['eventName'][$i],'"
-                                            &dates="',$shiftData[0][1],'"
-                                            &details="NHS event"
-                                            &location="TBD"
-                                            &trp=false
-                                            &sprop=
-                                            &sprop=name:"
-                                            target="_blank" rel="nofollow">', $formatted_date, '</a></td>';
+                                            echo '<td><a href="http://www.google.com/calendar/event?action=TEMPLATE&text=',str_replace(' ', '%20', $_POST['eventName'][$i]),'&dates=',$formatted_dateCalendar,'T',$formatted_timeCalendar,'/',$formatted_dateCalendar,'T',$formatted_timeCalendar2,'&details=',str_replace(' ', '%20', $_POST['eventName'][$i]),'%20--%20Lake%20Park%20National%20Honors%20Society%20Event&location=',str_replace(' ', '%20', $_POST['eventLocation'][$i]),'&trp=false&sprop=&sprop=name:"target="_blank" rel="nofollow">', $formatted_date, '</a></td>';
                                             echo '<td>', $formatted_startTime, ' to ', $formatted_endTime, '</td>';
 
                                             echo '<td><a href = "roster.php?eventID=', $_POST['eventID'][$i], '&shiftID=', $shiftsList[$s][1], '">View Roster</a></td>';

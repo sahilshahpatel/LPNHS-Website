@@ -59,6 +59,8 @@
 							echo '<td><a href="https://www.maps.google.com/maps/search/?api=1&query=', str_replace(" ", "+", $data[0][5]),'+IL" target = "_blank">', $data[0][5], '</a></td>';
 							echo '<input type = "hidden" name = "eventID[', $i, ']" value = "', $eventIDs[0][$i], '">';
 							echo '<input type = "hidden" name = "eventName[', $i, ']" value = "', $data[0][1], '">';
+							echo '<input type = "hidden" name = "eventLocation[', $i, ']" value = "', $data[0][5], '">';
+							echo '<input type = "hidden" name = "eventDescription[', $i, ']" value = "', $data[0][2], '">';
 							echo '<td><input type = "submit" name = "myShifts[', $i, ']" value = "View My Shifts" formaction = "myShifts.php" class = "classicColor"></td>';
 							echo '</tr>';
 					}
@@ -111,18 +113,6 @@
 							else{echo '<td>', $formatted_startDate, ' to ', $formatted_endDate, '</td>';}
 							echo '<td><a href="https://www.maps.google.com/maps/search/?api=1&query=', str_replace(" ", "+", $data[0][5]),'+IL" target = "_blank">', $data[0][5], '</a></td>';
 							echo '</tr>';
-
-
-// 							<a href="http://www.google.com/calendar/event?
-						// action=TEMPLATE
-						// &text=[event-title]
-						// &dates=[start-custom format='Ymd\\THi00\\Z']/[end-custom format='Ymd\\THi00\\Z']
-						// &details=[description]
-						// &location=[location]
-						// &trp=false
-						// &sprop=
-						// &sprop=name:"
-						// target="_blank" rel="nofollow">Add to my calendar</a>
 					}
 				}
 			}
