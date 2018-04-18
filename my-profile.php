@@ -115,7 +115,8 @@
                     </tr>
                     <tr>
                         <td><?php echo $data->FirstName, ' ', $data->LastName;?></td>
-                        <td><?php echo $data->HoursCompleted;?></td>
+                        <?php if($data->HoursCompleted>25){echo '<td style="background-color: #90EE90;"><a style="color: #137B13">',$data->HoursCompleted,'</a></td>';}
+                        else{echo '<td>',$data->HoursCompleted,'</td>';}?>
                         <td>
                             <?php 
                                 $sql = "SELECT * FROM students WHERE StudentID=:studentID";

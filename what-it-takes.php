@@ -86,7 +86,7 @@
                 <article>
                     <h1 style = "color: #005da3;text-align: center;">What It Takes to Be a Member</h1>
                     <hr style = "width: 95%;">
-                    <div id = "frontImg" style="margin-right:30px;">
+                    <div id = "frontImg" style="margin-right:30px;width:50%">
                         <img src = "img/what_it_takes.jpg">
                     </div>
                     <div style= "padding-left:30px;padding-top:10px;" style="white-space: pre-wrap;"><a style="white-space: pre-wrap;"><?php echo $whatittakes; ?></a></div>
