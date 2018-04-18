@@ -274,18 +274,46 @@
                                                         $stmt->execute(['studentID' => $positionData[0][2]]);
                                                         $sct = $stmt->fetch(PDO::FETCH_OBJ);
                                                         $studentemail = $sct->Email;
+
+                                                        // Getting a list of all Vice Presidents
+                        
+                                                            $sql = "SELECT * FROM students WHERE NOT Position=:Av ORDER BY LastName Asc";
+                                                            $stmt = $pdo->prepare($sql);
+                                                            $stmt->execute(['Av'=>"Advisor"]);
+                                                            $AvData = array();
+                                                            $AvData = $stmt->fetchAll();
+                        
+                                                        // Displaying Vice President data
+                        
+                                                            echo 'Position ',($g+1),':  <select name = "PosStudents[', $i, ']" form = "eventCreator">';
+                                                            for($Av = 0; $Av<count($AvData); $Av++){
+                                                                echo '<option ';
+                                                                //set default value
+                                                                if($AvData[$Av][3] === $studentemail){
+                                                                    echo 'selected = "selected" ';
+                                                                }
+                                                                echo 'value = "', $AvData[$Av][0], '">', $AvData[$Av][1], ' ', $AvData[$Av][2], '</option>';
+                                                            }
+                                                            echo '</select>';
+
                                                         echo    
                                                     
-                                                        '
-                                                            Position ',($g+1),': ',$studentemail,'</td>
-                                                            <td><input name = "empty[',$i,'][',$g,']" value = "Empty" class = "classicColor" type = "submit">
-                                                            <input name = "remove[',$i,'][',$g,']" value = "Delete" class = "classicColor" type = "submit" onclick="return confirm(\'Are you sure?\')" style = "margin-right: 0px; background-color:red"></td>
-                                                        </tr>';}
-                                                    else{echo    
-                                                    
-                                                        '
-                                                            Position ',($g+1),': Empty</td>
+                                                        '</td>
                                                             <td><input name = "remove[',$i,'][',$g,']" value = "Delete" class = "classicColor" type = "submit" onclick="return confirm(\'Are you sure?\')" style = "margin-right: 0px; background-color:red"></td>
+                                                        </tr>';}
+                                                    else{
+                                                    
+                                                        
+                                                        echo 'Position ',($g+1),':  <select name = "PosStudents[', $i, ']" form = "eventCreator">';
+                                                        for($Av = 0; $Av<count($AvData); $Av++){
+                                                            echo '<option ';
+                                                            //set default value
+                                                                echo 'selected = "empty" ';
+                                                            
+                                                            echo 'value = "', $AvData[$Av][0], '">', $AvData[$Av][1], ' ', $AvData[$Av][2], '</option>';
+                                                        }
+                                                        echo '</select>';
+                                                      echo'      <td><input name = "remove[',$i,'][',$g,']" value = "Delete" class = "classicColor" type = "submit" onclick="return confirm(\'Are you sure?\')" style = "margin-right: 0px; background-color:red"></td>
                                                         </tr>';}
                                                     
                                                 }}
