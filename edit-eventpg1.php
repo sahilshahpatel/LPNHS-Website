@@ -305,10 +305,10 @@
                                                     
                                                         
                                                         echo 'Position ',($g+1),':  <select name = "PosStudents[', $i, ']" form = "eventCreator">';
+                                                        echo'<option disabled selected value> -- select an option -- </option>';
                                                         for($Av = 0; $Av<count($AvData); $Av++){
                                                             echo '<option ';
                                                             //set default value
-                                                                echo 'selected = "empty" ';
                                                             
                                                             echo 'value = "', $AvData[$Av][0], '">', $AvData[$Av][1], ' ', $AvData[$Av][2], '</option>';
                                                         }
