@@ -67,6 +67,15 @@
                 $stmt->execute(['shiftID' => $_POST['shiftID'][$i]]);
                 $positionData = $stmt->rowcount();
 
+                if($_POST['submit'][$i]==="Add Position"){
+                    $sql = "INSERT INTO `positions`(`ShiftID`, `HoursConfirmed`) VALUES (:shiftid, 0)";
+                    $stmt = $pdo->prepare($sql);
+                    $stmt->execute(["shiftid" => $_POST['shiftID'][$i]]);
+
+                    $sql = "UPDATE `shifts` SET PositionsAvailable=:PA WHERE ShiftID=:ShiftID";
+                    $stmt = $pdo->prepare($sql);
+                    $stmt->execute(["PA" => ((int)$_POST['PA'][$i]+1), "ShiftID" => $_POST['shiftID'][$i]]);
+                }
 
                 for($f = 0 ; $f < $positionData;$f++){
 
@@ -107,7 +116,7 @@
 
                         $sql = "UPDATE `shifts` SET PositionsAvailable=:PA WHERE ShiftID=:ShiftID";
                         $stmt = $pdo->prepare($sql);
-                        $stmt->execute(["PA" => ((int)$_POST['PA']-1), "ShiftID" => $_POST['shiftID'][$i]]);   
+                        $stmt->execute(["PA" => ((int)$_POST['PA'][$i]-1), "ShiftID" => $_POST['shiftID'][$i]]);   
                     
                     }
 
@@ -122,16 +131,6 @@
                             $stmt = $pdo->prepare($sql);
                             $stmt->execute(['PID' => $_POST['positionID'][$i][$f],'stID' => $_POST["PosStudents"][$i][$f]]);
                         }
-                    }
-
-                    if($_POST['submit']==="Add Position"){
-                        $sql = "INSERT INTO `positions`(`ShiftID`, `HoursConfirmed`) VALUES (:shiftid, 0)";
-                        $stmt = $pdo->prepare($sql);
-                        $stmt->execute(["shiftid" => $shiftID]);
-
-                        $sql = "UPDATE `shifts` SET PositionsAvailable=:PA WHERE ShiftID=:ShiftID";
-                        $stmt = $pdo->prepare($sql);
-                        $stmt->execute(["PA" => ((int)$_POST['PA']+1), "ShiftID" => $_POST['shiftID'][$i]]);
                     }
 
                 }

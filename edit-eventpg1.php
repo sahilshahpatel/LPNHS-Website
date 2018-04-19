@@ -276,7 +276,7 @@
             
                                                     if(count($positionData)>0){
                                                         echo'<tr> <td><input type="hidden" name="positionID[',$i,'][',$g,']" value="',$positionData[0][0],'">
-                                                        <input type="hidden" name="PA" value="',$shiftData[0][4],'">';
+                                                        <input type="hidden" name="PA[',$i,']" value="',$shiftData[0][4],'">';
                                                     if($positionData[0][2]!=null){
                                                         $sql = "SELECT * FROM students WHERE StudentID=:studentID";
                                                         $stmt = $pdo->prepare($sql);
@@ -319,11 +319,11 @@
                                                 }
                                             }
                                     }
-                                    echo '<tr><td></td><td style = "text-align:center;"><input type="submit" value="Add Position" class = "classicColor"/></td></tr>';
+                                    echo '<tr><td></td><td style = "text-align:center;"><input name="submit[',$i,']" type="submit" value="Add Position" class = "classicColor"/></td></tr>';
                                 }
                                     echo'<tr>
                                     <td></td>
-                                    <td style = "text-align:center;"><input type="submit" value="Submit Changes" class = "classicColor"/></td>
+                                    <td style = "text-align:center;"><input name="submit "type="submit" value="Submit Changes" class = "classicColor"/></td>
                                     </tr></table>';
                                 ?>
                                 </form>
