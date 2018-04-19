@@ -263,6 +263,15 @@
                                                     $stmt->execute(['positionID' => $positionList[$g][0]]);
                                                     $positionData = array();
                                                     $positionData = $stmt->fetchAll();
+
+                                                    // Getting a list of all Vice Presidents
+                                                                            
+                                                    $sql = "SELECT * FROM students WHERE NOT Position=:Av ORDER BY LastName Asc";
+                                                    $stmt = $pdo->prepare($sql);
+                                                    $stmt->execute(['Av'=>"Advisor"]);
+                                                    $AvData = array();
+                                                    $AvData = $stmt->fetchAll();
+
                                                     // Displaying the data for each shift
             
                                                     if(count($positionData)>0){
@@ -274,18 +283,11 @@
                                                         $stmt->execute(['studentID' => $positionData[0][2]]);
                                                         $sct = $stmt->fetch(PDO::FETCH_OBJ);
                                                         $studentemail = $sct->Email;
-
-                                                        // Getting a list of all Vice Presidents
                         
-                                                            $sql = "SELECT * FROM students WHERE NOT Position=:Av ORDER BY LastName Asc";
-                                                            $stmt = $pdo->prepare($sql);
-                                                            $stmt->execute(['Av'=>"Advisor"]);
-                                                            $AvData = array();
-                                                            $AvData = $stmt->fetchAll();
+                                                        // Displaying Position data
                         
-                                                        // Displaying Vice President data
-                        
-                                                            echo 'Position ',($g+1),':  <select name = "PosStudents[', $i, ']" form = "eventCreator">';
+                                                            echo 'Position ',($g+1),':  <select name = "PosStudents[', $i, '][',$g,']" form = "eventCreator">';
+                                                            echo'<option value="NULL"> -- select an option -- </option>';
                                                             for($Av = 0; $Av<count($AvData); $Av++){
                                                                 echo '<option ';
                                                                 //set default value
@@ -304,20 +306,21 @@
                                                     else{
                                                     
                                                         
-                                                        echo 'Position ',($g+1),':  <select name = "PosStudents[', $i, ']" form = "eventCreator">';
-                                                        echo'<option disabled selected value> -- select an option -- </option>';
+                                                        echo 'Position ',($g+1),':  <select name = "PosStudents[', $i, '][',$g,']" form = "eventCreator">';
+                                                        echo'<option value="NULL" selected value> -- select an option -- </option>';
                                                         for($Av = 0; $Av<count($AvData); $Av++){
-                                                            echo '<option ';
-                                                            //set default value
-                                                            
+                                                            echo '<option ';                                                            
                                                             echo 'value = "', $AvData[$Av][0], '">', $AvData[$Av][1], ' ', $AvData[$Av][2], '</option>';
                                                         }
                                                         echo '</select>';
                                                       echo'      <td><input name = "remove[',$i,'][',$g,']" value = "Delete" class = "classicColor" type = "submit" onclick="return confirm(\'Are you sure?\')" style = "margin-right: 0px; background-color:red"></td>
                                                         </tr>';}
                                                     
-                                                }}
-                                    }}
+                                                }
+                                            }
+                                    }
+                                    echo '<tr><td></td><td style = "text-align:center;"><input type="submit" value="Add Position" class = "classicColor"/></td></tr>';
+                                }
                                     echo'<tr>
                                     <td></td>
                                     <td style = "text-align:center;"><input type="submit" value="Submit Changes" class = "classicColor"/></td>

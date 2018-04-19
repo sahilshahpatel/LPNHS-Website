@@ -107,29 +107,31 @@
 
                         $sql = "UPDATE `shifts` SET PositionsAvailable=:PA WHERE ShiftID=:ShiftID";
                         $stmt = $pdo->prepare($sql);
-                        $stmt->execute(["PA" => ((int)$_POST['PA']-1), "ShiftID" => $_POST['shiftID'][$i]]); //order of arrays corresponds order of ?    
+                        $stmt->execute(["PA" => ((int)$_POST['PA']-1), "ShiftID" => $_POST['shiftID'][$i]]);   
                     
                     }
 
-                    if(isset($_POST["empty"][$i][$f])){
-
-                        $sql = "SELECT StudentID FROM positions WHERE PositionID=:PID";
-                        $stmt = $pdo->prepare($sql);
-                        $stmt->execute(['PID' => $_POST['positionID'][$i][$f]]);
-                        $data = $stmt->fetch(PDO::FETCH_OBJ);
-                        $sid = $data->StudentID;
-                        echo $sid;
-                        if(!empty($sid)){
-
-                            $sql = "UPDATE positions SET StudentID=:SID WHERE PositionID=:PID";
+                    if(isset($_POST["PosStudents"][$i][$f])){
+                        if($_POST["PosStudents"][$i][$f]=="NULL"){
+                            $sql = "UPDATE positions SET StudentID=NULL WHERE PositionID=:PID";
                             $stmt = $pdo->prepare($sql);
-                            $stmt->execute(['PID' => $_POST['positionID'][$i][$f],'SID' => NULL]);
-
-                            $sql = "UPDATE `shifts` SET PositionsAvailable=:PA WHERE ShiftID=:ShiftID";
-                            $stmt = $pdo->prepare($sql);
-                            $stmt->execute(["PA" => ((int)$_POST['PA']-1), "ShiftID" => $_POST['shiftID'][$i]]); //order of arrays corresponds order of ?    
+                            $stmt->execute(['PID' => $_POST['positionID'][$i][$f]]);
                         }
+                        else{
+                            $sql = "UPDATE positions SET StudentID=:stID WHERE PositionID=:PID";
+                            $stmt = $pdo->prepare($sql);
+                            $stmt->execute(['PID' => $_POST['positionID'][$i][$f],'stID' => $_POST["PosStudents"][$i][$f]]);
+                        }
+                    }
 
+                    if($_POST['submit']==="Add Position"){
+                        $sql = "INSERT INTO `positions`(`ShiftID`, `HoursConfirmed`) VALUES (:shiftid, 0)";
+                        $stmt = $pdo->prepare($sql);
+                        $stmt->execute(["shiftid" => $shiftID]);
+
+                        $sql = "UPDATE `shifts` SET PositionsAvailable=:PA WHERE ShiftID=:ShiftID";
+                        $stmt = $pdo->prepare($sql);
+                        $stmt->execute(["PA" => ((int)$_POST['PA']+1), "ShiftID" => $_POST['shiftID'][$i]]);
                     }
 
                 }
