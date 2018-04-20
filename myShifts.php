@@ -93,7 +93,7 @@
 
                                             // Hidden form info to be passed
                                             echo '<input type = "hidden" name = "shiftID[', $s,'][', $p, ']" value = "', $shiftData[0][0], '">';
-                                            echo '<td><a href="http://www.google.com/calendar/event?action=TEMPLATE&text=',str_replace(' ', '%20', $_POST['eventName'][$i]),'&dates=',$formatted_dateCalendar,'T',$formatted_timeCalendar,'/',$formatted_dateCalendar,'T',$formatted_timeCalendar2,'&details=',str_replace(' ', '%20', $_POST['eventName'][$i]),'%20--%20Lake%20Park%20National%20Honors%20Society%20Event&location=',str_replace(' ', '%20', $_POST['eventLocation'][$i]),'&trp=false&sprop=&sprop=name:"target="_blank" rel="nofollow">', $formatted_date, '</a></td>';
+                                            echo '<td><a title="Add to my Google calendar" href="http://www.google.com/calendar/event?action=TEMPLATE&text=',str_replace(' ', '%20', $_POST['eventName'][$i]),'&dates=',$formatted_dateCalendar,'T',$formatted_timeCalendar,'/',$formatted_dateCalendar,'T',$formatted_timeCalendar2,'&details=',str_replace(' ', '%20', $_POST['eventName'][$i]),'%20--%20Lake%20Park%20National%20Honors%20Society%20Event&location=',str_replace(' ', '%20', $_POST['eventLocation'][$i]),'&trp=false&sprop=&sprop=name:"target="_blank" rel="nofollow">', $formatted_date, '</a></td>';
                                             echo '<td>', $formatted_startTime, ' to ', $formatted_endTime, '</td>';
 
                                             echo '<td><a href = "roster.php?eventID=', $_POST['eventID'][$i], '&shiftID=', $shiftsList[$s][1], '">View Roster</a></td>';

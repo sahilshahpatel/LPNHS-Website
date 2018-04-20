@@ -174,6 +174,14 @@
             $('div.toggleInner').toggle(false); //hide all the tables on load.
 
             $('.shiftButton').click(function() {
+                if($(this).attr('name')=='newShift'){
+                    if($(this).attr('value')==="Add New Shift"){
+                        $(this).attr('value', "Close New Shift");
+                    }
+                    else{
+                        $(this).attr('value', "Add New Shift");
+                    }
+                }
                 $(this).parents('div.toggleWrapper').find('div.toggleInner').slideToggle('fast');
                 });
             });
@@ -190,7 +198,7 @@
         <div id = "footerPusher">
             <div id = "mainPanel" class = "classic panel">
                 <p style = "text-align: center;">Edit Event - <?php echo $data[0][1];?></p>
-                <p style = "text-align: center;">Only edit the fields you want to change</p>
+                <p style = "text-align: center;font-size:12;">Only edit the fields you want to change</p>
                 <div class="container">
                     <div class="main">
                         
@@ -344,7 +352,7 @@
                                 <tr><td colspan=2><div class="toggleWrapper">';
                 
                                 if($invalidshiftdate):
-                                    echo'<input type="button" style="width: 100%; height: 30px; background-color: red; color: white;cursor:pointer;" value="Add New Shift" class="shiftButton"></input>
+                                    echo'<input type="button" style="width: 100%; height: 30px; background-color: red; color: white;cursor:pointer;" name="newShift" value="Add New Shift" class="shiftButton"></input>
                                     <div class="toggleInner"><table>
                                     <tr><td colspan=2 style="color:red">Invalid Date</td></tr>
                                     <tr>
@@ -367,7 +375,7 @@
                                 else:
                                     echo    
                                         
-                                    '<input type="button" style="width: 100%; height: 30px; background-color: #005da3; color: white;cursor:pointer;" value="Add New Shift" class="shiftButton"></input>
+                                    '<input type="button" style="width: 100%; height: 30px; background-color: #005da3; color: white;cursor:pointer;" name="newShift" value="Add New Shift" class="shiftButton"></input>
                                     <div class="toggleInner"><table>
                                     <tr><td colspan=2><hr style="font-size:20px;"></td></tr>
                                     <tr>
