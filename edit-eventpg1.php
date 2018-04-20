@@ -316,7 +316,7 @@
                                                         echo    
                                                     
                                                         '</td>
-                                                            <td><input name = "remove[',$i,'][',$g,']" value = "Delete" class = "classicColor" type = "submit" onclick="return confirm(\'Are you sure?\')" style = "margin-right: 0px; background-color:red;cursor:pointer;"></td>
+                                                            <td><input name = "remove[',$i,'][',$g,']" value = "Delete" class = "classicColor" type = "submit" style = "margin-right: 0px; background-color:red;cursor:pointer;"></td>
                                                         </tr>';}
                                                     else{
                                                     
