@@ -101,10 +101,7 @@
                             $stmt->execute(["shiftid" => $shiftID]);
                         }
                 }
-
-            // Setting cookie for forSubmitConfirm
-
-                
+               
 
         }
         else{

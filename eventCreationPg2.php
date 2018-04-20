@@ -92,7 +92,7 @@
                                                 <tr>
                                                     <td><label>Shift Date :<span>*</span></label></td>';
                                                     if($_SESSION['dateErrors'][$i]): echo'<td><input name="date[',$i,']" type="date"  style="border: 1px solid;border-color: red;background: rgba(255,92,92,.3);"  value="',$date[$i],'" placeholder="eg: 01/01/2018" required></td>';
-                                                    else: echo'<td><input name="date[',$i,']" type="date" value="',$date[$i],'" placeholder="eg: 01/01/2018" required></td>';
+                                                    else: echo'<td><input name="date[',$i,']" type="date" value="',$date[$i],'" required></td>';
                                                     endif;
                                                     echo'</tr>
                                                 
@@ -116,7 +116,7 @@
                                                 '<tr><td colspan=2><hr style="font-size:20px;"></td></tr>
                                                 <tr>
                                                     <td><label>Shift Date :<span>*</span></label></td>
-                                                    <td><input name="date[',$i,']" type="date" value="',$_POST['startdate'],'" placeholder="eg: 01/01/2018" required></td>
+                                                    <td><input name="date[',$i,']" type="date" value="',$_POST['startdate'],'" required></td>
                                                 </tr>
                                                 <tr>
                                                     <td><label>Start Time :<span>*</span></label></td>

@@ -135,7 +135,44 @@
 
                 }
         }
+    // Checking for new shift as last task
+    if(!empty($_POST['newdate']) && !empty($_POST['newstarttime']) && !empty($_POST['newendtime']) && !empty($_POST['newpositionsavailable'])){
+        $Dateerror = false;
+        if($_POST['newdate']>$_POST['enddate'] || $_POST['startdate']>$_POST['newdate']){
+            $Dateerror = true;
+        }
+        if($Dateerror){header("Location: edit-eventpg1.php?formSubmitConfirm=true&eventID=".$_POST['eventID']."&date=invalid");}
+        else{
+            // Putting in inputed data for the shift
+
+                $sql = "INSERT INTO `shifts`(`Date`, `StartTime`, `EndTime`, `PositionsAvailable`, `EventID`) VALUES (:date, :starttime, :endtime, :positionsavailable, :eventid)";
+                $stmt = $pdo->prepare($sql);
+                $stmt->execute(["date" => $_POST['newdate'], "starttime" => $_POST['newstarttime'], "endtime" => $_POST['newendtime'], "positionsavailable" => $_POST['newpositionsavailable'], "eventid" => $_POST['eventID']]); //order of arrays corresponds order of ?
         
+            // Getting shift id from new shift
+
+                $sql = "SELECT * FROM `shifts` WHERE EventID=:eventID AND Date=:date AND StartTime=:starttime AND EndTime=:endtime";
+                $stmt = $pdo->prepare($sql);
+                $stmt->execute(["eventID" => $_POST['eventID'], "date" => $_POST['newdate'], "starttime" => $_POST['newstarttime'], "endtime" => $_POST['newendtime']]);
+                $shift = $stmt->fetch(PDO::FETCH_OBJ);
+                $shiftID = $shift->ShiftID;
+
+            // Putting shift id into "eventshift" for each shift to correlate each shift with the event
+
+                $sql = "INSERT INTO `eventshift`(`EventID`, `ShiftID`) VALUES (:eventid, :shiftid)";
+                $stmt = $pdo->prepare($sql);
+                $stmt->execute(["eventid" => $_POST['eventID'], "shiftid" => $shiftID]);
+
+            // Looping the creation of positions for each shift and correlating the two
+
+                for($j = 0;$j<$_POST['newpositionsavailable'];$j++){
+                    $sql = "INSERT INTO `positions`(`ShiftID`, `HoursConfirmed`) VALUES (:shiftid, 0)";
+                    $stmt = $pdo->prepare($sql);
+                    $stmt->execute(["shiftid" => $shiftID]);
+                }
+            }
+
+        }
     // Setting cookie for Submit confirmation and rerouting user plus resetting session variables
             
         $temp = $_SESSION['StudentID'];

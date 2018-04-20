@@ -4,6 +4,9 @@
     include "database.php";
     include "adminCheck.php";
 
+    $invalidshiftdate=false;
+    if(isset($_GET['date'])){$invalidshiftdate = true;}
+
     $sql = "SELECT * FROM events";
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute();
@@ -244,9 +247,9 @@
                                         
                                                 '<tr><td colspan=2><hr style="font-size:20px;"><hr style="font-size:20px;"></td></tr>
                                                 <tr><td colspan=2><div class="toggleWrapper">
-                                                <input type="button" style="width: 100%; height: 30px; background-color: #005da3; color: white;" value="Open/Close Shift #',($i+1),'" class="shiftButton"></input>
-                                                <div class="toggleInner"><table><tr>
-                                                <tr><td>Shift ',($i+1),'</td><td><input name = "removeShift[',$i,']" value = "Delete" class = "classicColor" type = "submit" onclick="return confirm(\'Are you sure?\')" style = "margin-right: 0px; background-color:red"></td></tr>
+                                                <input type="button" style="width: 100%; height: 30px; background-color: #005da3; color: white;cursor:pointer;" value="Open/Close Shift #',($i+1),'" class="shiftButton"></input>
+                                                <div class="toggleInner"><table>
+                                                <tr><td>Shift ',($i+1),'</td><td><input name = "removeShift[',$i,']" value = "Delete" class = "classicColor" type = "submit" onclick="return confirm(\'Are you sure?\')" style = "cursor:pointer;margin-right: 0px; background-color:red"></td></tr>
                                                 <tr><td colspan=2><hr style="font-size:20px;"></td></tr>
                                                 <tr>
                                                     <td><label>Shift Date :<span>*</span></label></td>
@@ -313,7 +316,7 @@
                                                         echo    
                                                     
                                                         '</td>
-                                                            <td><input name = "remove[',$i,'][',$g,']" value = "Delete" class = "classicColor" type = "submit" onclick="return confirm(\'Are you sure?\')" style = "margin-right: 0px; background-color:red"></td>
+                                                            <td><input name = "remove[',$i,'][',$g,']" value = "Delete" class = "classicColor" type = "submit" onclick="return confirm(\'Are you sure?\')" style = "margin-right: 0px; background-color:red;cursor:pointer;"></td>
                                                         </tr>';}
                                                     else{
                                                     
@@ -325,18 +328,73 @@
                                                             echo 'value = "', $AvData[$Av][0], '">', $AvData[$Av][1], ' ', $AvData[$Av][2], '</option>';
                                                         }
                                                         echo '</select>';
-                                                      echo'      <td><input name = "remove[',$i,'][',$g,']" value = "Delete" class = "classicColor" type = "submit" onclick="return confirm(\'Are you sure?\')" style = "margin-right: 0px; background-color:red"></td>
+                                                      echo'      <td><input name = "remove[',$i,'][',$g,']" value = "Delete" class = "classicColor" type = "submit" onclick="return confirm(\'Are you sure?\')" style = "margin-right: 0px; background-color:red;cursor:pointer;"></td>
                                                         </tr>';}
                                                     
                                                 }
                                             }
                                     }
-                                    echo '<tr><td></td><td style = "text-align:center;"><input name="submit[',$i,']" type="submit" value="Add Position" class = "classicColor"/></td></tr></table></div></div></td></tr>';
+
+                                    echo '<tr><td></td><td style = "text-align:center;"><input name="submit[',$i,']" type="submit" value="Add Position" style="cursor:pointer;" class = "classicColor"/></td></tr></table></div></div></td></tr>';
                                 }
-                                    echo'<tr>
-                                    <td></td>
-                                    <td style = "text-align:center;"><input name="submit "type="submit" value="Submit Changes" class = "classicColor"/></td>
-                                    </tr></table>';
+
+                                // Add shift
+
+                                echo'<tr><td colspan=2><hr style="font-size:20px;"><hr style="font-size:20px;"></td></tr>
+                                <tr><td colspan=2><div class="toggleWrapper">';
+                
+                                if($invalidshiftdate):
+                                    echo'<input type="button" style="width: 100%; height: 30px; background-color: red; color: white;cursor:pointer;" value="Add New Shift" class="shiftButton"></input>
+                                    <div class="toggleInner"><table>
+                                    <tr><td colspan=2 style="color:red">Invalid Date</td></tr>
+                                    <tr>
+                                        <td><label>Shift Date :<span>*</span></label></td>';
+                                        echo'<td><input name="newdate" type="date"  style="border: 1px solid;border-color: red;background: rgba(255,92,92,.3);" required> </td>';
+                                        echo'</tr>
+                                    
+                                    <tr>
+                                        <td><label>Start Time :<span>*</span></label></td>
+                                        <td><input name="newstarttime" value="',$starttime[$i],'"type="time" placeholder="eg: 8:00 AM" required></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label>End Time :<span>*</span></label></td>
+                                        <td><input name="newendtime" value="',$endtime[$i],'" type="time" placeholder="eg: 5:00 PM" required></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label>Positions Available :<span>*</span></label></td>
+                                        <td><input name="newpositionsavailable" value="',$positionsavailable[$i],'" maxlength="2" type="number" placeholder="eg: 5 postions" required></td>
+                                    </tr>';
+                                else:
+                                    echo    
+                                        
+                                    '<input type="button" style="width: 100%; height: 30px; background-color: #005da3; color: white;cursor:pointer;" value="Add New Shift" class="shiftButton"></input>
+                                    <div class="toggleInner"><table>
+                                    <tr><td colspan=2><hr style="font-size:20px;"></td></tr>
+                                    <tr>
+                                        <td><label>Shift Date :<span>*</span></label></td>
+                                        <td><input name="newdate" type="date" required></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label>Start Time :<span>*</span></label></td>
+                                        <td><input name="newstarttime" type="time" placeholder="eg: 8:00 AM" required></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label>End Time :<span>*</span></label></td>
+                                        <td><input name="newendtime" type="time" placeholder="eg: 5:00 PM" required></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label>Positions Available :<span>*</span></label></td>
+                                        <td><input name="newpositionsavailable" maxlength="2" type="number" placeholder="eg: 5 postions" required></td>
+                                    </tr>';
+                                endif;
+                                echo'</table></div></div></td></tr>';
+
+                                // Ending table and php inputed data
+
+                                echo'<tr>
+                                <td></td>
+                                <td style = "text-align:center;"><input name="submit" style="cursor:pointer;" type="submit" value="Submit Changes" class = "classicColor"/></td>
+                                </tr></table>';
                                 ?>
                                 </form>
                     </div>
