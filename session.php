@@ -1,6 +1,8 @@
 <?php
     session_start();
+    error_reporting(E_ALL ^ E_NOTICE);
     include "database.php";
+
 
     // Checking previous input fields and assigning to variables
 
