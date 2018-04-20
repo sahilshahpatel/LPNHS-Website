@@ -135,6 +135,7 @@
                 margin: 0;
             }
             table tr:nth-child(even){background-color: #e8cfa4;}
+            span.clicker { cursor: pointer; }
             #addUserTable th, td{width: 12.5%;}
             textarea, input {
                 -webkit-box-sizing: border-box;
@@ -165,6 +166,15 @@
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script src="headerJQuery.js"></script>
+        <script>
+        $(document).ready(function() {
+            $('div.toggleInner').toggle(false); //hide all the tables on load.
+
+            $('.shiftButton').click(function() {
+                $(this).parents('div.toggleWrapper').find('div.toggleInner').slideToggle('fast');
+                });
+            });
+        </script>
 
     </head>
 
@@ -232,8 +242,10 @@
 
                                         echo    
                                         
-                                                '<tr><td colspan=2><hr style="font-size:20px;">
-                                                <hr style="font-size:20px;"></td></tr>
+                                                '<tr><td colspan=2><hr style="font-size:20px;"><hr style="font-size:20px;"></td></tr>
+                                                <tr><td colspan=2><div class="toggleWrapper">
+                                                <input type="button" style="width: 100%; height: 30px; background-color: #005da3; color: white;" value="Open/Close Shift #',($i+1),'" class="shiftButton"></input>
+                                                <div class="toggleInner"><table><tr>
                                                 <tr><td>Shift ',($i+1),'</td><td><input name = "removeShift[',$i,']" value = "Delete" class = "classicColor" type = "submit" onclick="return confirm(\'Are you sure?\')" style = "margin-right: 0px; background-color:red"></td></tr>
                                                 <tr><td colspan=2><hr style="font-size:20px;"></td></tr>
                                                 <tr>
@@ -319,7 +331,7 @@
                                                 }
                                             }
                                     }
-                                    echo '<tr><td></td><td style = "text-align:center;"><input name="submit[',$i,']" type="submit" value="Add Position" class = "classicColor"/></td></tr>';
+                                    echo '<tr><td></td><td style = "text-align:center;"><input name="submit[',$i,']" type="submit" value="Add Position" class = "classicColor"/></td></tr></table></div></div></td></tr>';
                                 }
                                     echo'<tr>
                                     <td></td>

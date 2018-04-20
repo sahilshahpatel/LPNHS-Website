@@ -62,7 +62,7 @@
         
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script src="headerJQuery.js"></script>
-        
+                
     </head>
 
     <header id = "header"><?php include "header.php"; ?></header>
