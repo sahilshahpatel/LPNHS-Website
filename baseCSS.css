@@ -190,8 +190,13 @@
     .baseText {
         font-family: Bookman, sans-serif;
         text-align: center;
+        font-size:48px;
     }
-
+    .baseTextb {
+        font-family: Bookman, sans-serif;
+        text-align: center;
+        font-size:18px;
+    }
     .urgentText{
         font-family: Trebuchet MS, sans-serif;
         text-align: center;
