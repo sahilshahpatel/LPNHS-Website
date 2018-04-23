@@ -123,7 +123,8 @@
                                 $stmt = $pdo->prepare($sql);
                                 $stmt->execute(['studentID'=>($data->VicePresident)]);
                                 $vpData = $stmt->fetch(PDO::FETCH_OBJ);
-                                echo $vpData->FirstName, ' ', $vpData->LastName;
+                                if($data->Position==='Advisor' || $data->Position==='President' || $data->Position==='Admin'|| $data->Position==='Vice President'){echo 'N/A';}
+								else{echo $vpData->FirstName, ' ', $vpData->LastName;}
                             ?>
                         </td>
                     </tr>

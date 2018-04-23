@@ -35,6 +35,7 @@
         background-color: #333;
         color: #bbb;
         font-family: Bookman, sans-serif;
+        overflow-x: hidden;
     }
     #footerPusher{
         position:relative;
