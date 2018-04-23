@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 27, 2018 at 06:10 PM
+-- Generation Time: Apr 23, 2018 at 11:10 PM
 -- Server version: 10.1.29-MariaDB
 -- PHP Version: 7.2.0
 
@@ -44,10 +44,10 @@ CREATE TABLE `events` (
 --
 
 INSERT INTO `events` (`EventID`, `Name`, `Description`, `StartDate`, `EndDate`, `Location`, `Shifts`, `ReleaseDate`) VALUES
-(2, 'Test Event', 'Testing hour confirmation', '2018-04-27', '2018-04-27', '600 Medinah Rd, Roselle, IL', 1, '2018-01-15'),
-(3, 'Sign Up Test Event', 'Sign up for this event as part of the demo.', '2018-02-14', '2018-02-14', '500 W Bryn Mawr Ave, Roselle, IL', 1, '2018-02-10'),
-(4, 'Release Date Test', '', '2018-02-16', '2018-02-16', 'location', 1, '2018-02-14'),
-(5, 'Roster Request Bug Checker', '', '2018-03-31', '2018-03-31', 'aswd', 1, '2018-03-19');
+(2, 'Sample Event 1', 'An example event', '2018-05-09', '2018-05-09', '600 Medinah Rd, Roselle, IL', 1, '2018-01-15'),
+(3, 'Sample Event 2', 'Another example event', '2018-05-08', '2018-05-08', '500 W Bryn Mawr Ave, Roselle, IL', 1, '2018-02-10'),
+(4, 'Sample Event 3', 'Another example event', '2018-02-16', '2018-02-16', '123 Example St, Bloomingdale, IL', 1, '2018-02-14'),
+(5, 'Sample Event 4', 'Another example event', '2018-03-31', '2018-03-31', '321 Another Rd, Medinah, IL', 1, '2018-03-19');
 
 -- --------------------------------------------------------
 
@@ -88,10 +88,10 @@ CREATE TABLE `positions` (
 --
 
 INSERT INTO `positions` (`PositionID`, `ShiftID`, `StudentID`, `HoursConfirmed`) VALUES
-(3, 2, 123456, 1),
-(4, 2, 0, 0),
+(3, 2, 654321, 1),
+(4, 2, 123456, 0),
 (5, 3, 123456, 0),
-(6, 3, NULL, 0),
+(6, 3, 654321, 0),
 (7, 4, NULL, 0),
 (8, 5, NULL, 0),
 (9, 5, NULL, 0),
@@ -133,7 +133,7 @@ CREATE TABLE `shifts` (
 
 INSERT INTO `shifts` (`ShiftID`, `Date`, `StartTime`, `EndTime`, `PositionsAvailable`, `EventID`) VALUES
 (2, '2018-01-27', '05:00:00', '06:30:00', 0, 2),
-(3, '2018-02-14', '04:00:00', '05:00:00', 1, 3),
+(3, '2018-02-14', '04:00:00', '05:00:00', 0, 3),
 (4, '2018-02-16', '01:00:00', '02:00:00', 1, 4),
 (5, '2018-03-31', '12:00:00', '14:00:00', 5, 5);
 
@@ -176,9 +176,10 @@ CREATE TABLE `studentevent` (
 --
 
 INSERT INTO `studentevent` (`StudentID`, `EventID`) VALUES
-(123456, 2),
+(654321, 2),
 (123456, 3),
-(0, 2);
+(0, 2),
+(654321, 3);
 
 -- --------------------------------------------------------
 
@@ -192,9 +193,9 @@ CREATE TABLE `students` (
   `LastName` varchar(12) NOT NULL,
   `Email` varchar(32) NOT NULL,
   `PasswordHash` varchar(255) NOT NULL,
-  `HoursCompleted` float NOT NULL,
+  `HoursCompleted` float NOT NULL DEFAULT '0',
   `VicePresident` varchar(12) NOT NULL,
-  `Position` varchar(16) NOT NULL
+  `Position` varchar(16) NOT NULL DEFAULT 'Student'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -202,11 +203,14 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`StudentID`, `FirstName`, `LastName`, `Email`, `PasswordHash`, `HoursCompleted`, `VicePresident`, `Position`) VALUES
-(0, 'Test', 'Student', 'test@email.com', '$2y$10$TRpNkBJfdi0gk0u.YXR8sO/j92LlAXo05kJ/8oR.ZvkShdkcA451m', 0, '111111', 'Student'),
-(111111, 'Miloni', 'Shah', 'vp1@email.com', '$2y$10$TRpNkBJfdi0gk0u.YXR8sO/j92LlAXo05kJ/8oR.ZvkShdkcA451m', 0, '111111', 'Vice President'),
-(123456, 'Sahil', 'Patel', 'email@email.com', '$2y$10$TRpNkBJfdi0gk0u.YXR8sO/j92LlAXo05kJ/8oR.ZvkShdkcA451m', 6.5, '111111', 'Admin'),
-(222222, 'Nic', 'Conry', 'vp2@email.com', '', 0, '222222', 'Vice President'),
-(654321, 'Ben', 'Wagrez', 'email2@email.com', '$2y$10$T44pEYOXmU.nXNmXBIWkCeVFQhrsBvmUSauRoKgRJ4EQ8oh9Qz7tu', 3.5, '222222', 'Student');
+(0, 'James', 'Craig', 'jamcraig@students.lphs.org', '$2y$10$TRpNkBJfdi0gk0u.YXR8sO/j92LlAXo05kJ/8oR.ZvkShdkcA451m', 0, '111111', 'Student'),
+(111111, 'Miloni', 'Shah', 'milshah@students.lphs.org', '$2y$10$TRpNkBJfdi0gk0u.YXR8sO/j92LlAXo05kJ/8oR.ZvkShdkcA451m', 0, '111111', 'Vice President'),
+(123456, 'Sahil', 'Patel', 'sahpatel@students.lphs.org', '$2y$10$TRpNkBJfdi0gk0u.YXR8sO/j92LlAXo05kJ/8oR.ZvkShdkcA451m', 6.5, '111111', 'Admin'),
+(186573, 'Tejas', 'Hullur', 'tejhullur@students.lphs.org', '', 25, 'Miloni', 'President'),
+(194567, 'John', 'Smith', 'johsmith@students.lphs.org', '$2y$10$TRpNkBJfdi0gk0u.YXR8sO/j92LlAXo05kJ/8oR.ZvkShdkcA451m', 0, '111111', 'Student'),
+(196752, 'Jane', 'Doe', 'jandoe@students.lphs.org', '$2y$10$TRpNkBJfdi0gk0u.YXR8sO/j92LlAXo05kJ/8oR.ZvkShdkcA451m', 0, '222222', 'Student'),
+(222222, 'Nic', 'Conry', 'nicconry@students.lphs.org', '$2y$10$TRpNkBJfdi0gk0u.YXR8sO/j92LlAXo05kJ/8oR.ZvkShdkcA451m', 0, '222222', 'Vice President'),
+(654321, 'Ben', 'Wagrez', 'benwagrez@students.lphs.org', '$2y$10$TRpNkBJfdi0gk0u.YXR8sO/j92LlAXo05kJ/8oR.ZvkShdkcA451m', 3.5, '222222', 'Student');
 
 -- --------------------------------------------------------
 
@@ -225,7 +229,8 @@ CREATE TABLE `studentshiftrequests` (
 --
 
 INSERT INTO `studentshiftrequests` (`EventID`, `StudentID`, `ShiftID`) VALUES
-(5, 123456, 5);
+(5, 123456, 5),
+(2, 123456, 2);
 
 --
 -- Indexes for dumped tables
