@@ -4,6 +4,18 @@
         background-color: #005da3;
         min-height: 100%;
     }
+    #imageFlexItem{
+        width: 20%;
+    }
+    #bugFlexItem{
+        width: 40%;
+    }
+    #contactUsFlextItem{
+        width: 40%;
+    }
+    #NHSimageItem{
+        width: 137px;
+    }
     .flexContainer{
         display: flex;
         align-items: center;

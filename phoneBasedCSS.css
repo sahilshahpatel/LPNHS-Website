@@ -16,6 +16,18 @@
         align-self: flex-start;
         padding: 0px 15px;
     }
+    #imageFlexItem{
+        width: 20%;
+    }
+    #bugFlexItem{
+        width: 40%;
+    }
+    #contactUsFlextItem{
+        width: 40%;
+    }
+    #NHSimageItem{
+        width: 90px;
+    }
     .flexItemStart p{
         margin: 5px auto;
         text-align: left;
