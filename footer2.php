@@ -1,75 +1,55 @@
-<!DOCTYPE HTML>
-<?php
-    require 'database.php';
-    session_start();
-?>
-<html>
-	<head>
-		<title>test</title>
-		<style>
-			.flexContainer{
-				display: flex;
-				align-items: center;
-				justify-content: center;
-                width: 100%;
-			}
-			.flexItemStart{
-				margin: 0px auto;
-                align-self: flex-start;
-            }
-            .flexItemStart p{
-                margin: 5px auto;
-                white-space: pre-wrap;
-            }
-            .flexItemCenter {
-                margin: 0 auto;
-                align-self: center;
-            }
-            #contactUsFlexItem p{
-                margin: 5px auto;
-            }
-            footer {
-                margin: 0px;
-                padding: 20px;
-                width: calc(100% - 20px);
-                position: absolute;
-                left: 0;
-                background-color: #333;
-                color: #bbb;
-                font-family: Bookman, sans-serif;
-            }
-		</style>
-	</head>
-    <body>
-        <footer id= "footer">
-            <div class="flexContainer" style="margin: 0; padding: 0; position: relative; top: 0;">
-                <div class="flexItemStart" id="contactUsFlexItem">
-		            <h3>Contact Us</h3>
-                    <?php
-                        $sql = "SELECT * FROM students WHERE Position = :pos LIMIT 1";
-                        $stmt = $pdo->prepare($sql);
-                        $stmt->execute(['pos' => 'President']);
-                        $presidentData = $stmt->fetchAll();
-                        if(!empty($presidentData)){
-                            echo '<p>', $presidentData[0][1], ' ', $presidentData[0][2], ': ', $presidentData[0][3], ' (President)</p>';
-                        }
-                    ?>
-			        <p>Patrice Lovelace: plovelace@lphs.org (Advisor)</p>
-                    <p>Pia Laudadio: plaudadio@lphs.org (Advisor)</p>
-                    <p>West Campus: 500 W. Bryn Mawr Ave. Roselle, IL 60172-1978</p>
-                </div>
-                <div class="flexItemStart">
-                    <h3>Found a Bug?</h3>
-                    <p>Report any issues to the site to the president, an advisor, or a site admin.</p>
-                    <p>The NHS website was created by two students, Ben Wagrez and Sahil  Patel, in 2018.</p>
-                    <p>By using the site and reporting errors and/or bugs, you are giving experience to the</p>
-                    <!--Insert Tab-->
-                    <p>&#09current computer science students at Lake Park.</p>
-                </div>
-                <div class="flexItemStart">
-                    <img src = "img/NHS-LOGO-TM.png" style = "width: 137px">
-                </div>
-            </div>
-        </footer>
-    </body>
-</html>
+
+<div style="position: relative;
+                                background: #005DA3;
+                                box-shadow: 0 0 10px #999;
+                                z-index: 2;">
+		<div class="ui-clear">
+        <img src="img/NHS-LOGO-TM.png" style="width: 137px;
+                                            height: 150px;
+                                            position: absolute;
+                                            left: 50%;
+                                            top: 3px;
+                                            margin-left: -72px;opacity: 1;"></a>
+			<div style="color: #FFF;
+                                            font-family: 'Lato', sans-serif;
+                                            font-weight: 700;
+                                            font-size: 14px;width: 33.23%;
+                                            text-align: center;
+                                            float: left;
+                                            background: rgba(0,0,0,.5);
+                                            margin-top: 0px;
+                                            min-height: 150px;
+                                            padding: 10px 0 0 0;opacity: 0.8">
+				<p>Other</p>
+				<p style="font-weight: 500;
+                        font-size: 14px;"> Other stuff</p>
+			</div>
+			<div style="color: #FFF;
+                                            font-family: 'Lato', sans-serif;
+                                            font-weight: 700;
+                                            font-size: 14px;width: 33.23%;
+                                            text-align: center;
+                                            float: left;
+                                            background: rgba(0,0,0,.5);
+                                            min-height: 150px;
+                                            padding: 10px 0 0 0;
+                                            margin: 170px .15% 0;
+                                            margin-top: 0px;opacity: 0.8">
+				
+			</div>
+			<div style="color: #FFF;
+                                            font-family: 'Lato', sans-serif;
+                                            font-weight: 700;
+                                            font-size: 14px;width: 33.23%;
+                                            text-align: center;
+                                            float: left;
+                                            background: rgba(0,0,0,.5);
+                                            margin-top: 0px;
+                                            min-height: 150px;
+                                            padding: 10px 0 0 0;opacity: 0.8">
+				<p>Contact</p>
+				<p style="font-weight: 500;
+                        font-size: 14px;">Patrice Lovelace: plovelace@lphs.org<br>Pia Laudadio: plaudadio@lphs.org<br><br>West Campus: 500 W. Bryn Mawr Ave.<br>Roselle, IL 60172-1978</p>
+			</div>
+		</div>
+	</div>

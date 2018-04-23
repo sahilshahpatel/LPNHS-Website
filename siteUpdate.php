@@ -71,7 +71,7 @@
                 print_r($errors);
             }
         }
-        if(!file_exists($_FILES['frontImg']['tmp_name']) || !is_uploaded_file($_FILES['frontImg']['tmp_name'])){
+        if(!file_exists($_FILES['what_it_takes']['tmp_name']) || !is_uploaded_file($_FILES['frontImg']['tmp_name'])){
             $errors= array();
             $file_name = $_FILES['what_it_takes']['name'];
             $file_size =$_FILES['what_it_takes']['size'];

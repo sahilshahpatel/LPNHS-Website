@@ -80,6 +80,9 @@
                 $("#backups").click(function(){
                     window.location.href = "databaseBackups.php";
                 });
+                $("#resetChapter").click(function(){
+                    window.location.href = "resetChapter.php";
+                });
         });
         </script>
 
@@ -127,7 +130,7 @@
                     </div>
                 <?php endif;?>
             </div>
-            <?php if($userData->Position!== "Vice President"): ?>
+            <?php if($userData->Position!== "Vice President" && $userData->Position!=="President"): ?>
                 <div id = "databaseOptions" class = "dashboard">
                     <div id = "backups" class = "dashboardButton">
                         <p>Restore From/Delete Database Backups</p>
