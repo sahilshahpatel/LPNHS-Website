@@ -1,7 +1,7 @@
 /* General */
     body{
         margin: 0px;
-        background-color: #005da3;
+        background-color: white;/*#005da3;*/
         min-height: 100%;
     }
     h1 {font-size: 20px;}
