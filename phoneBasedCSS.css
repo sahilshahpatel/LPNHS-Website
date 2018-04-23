@@ -6,7 +6,7 @@
     }
     h1 {font-size: 20px;}
     .flexContainer{
-        display: flex;
+        display: block;
         align-items: center;
         justify-content: center;
         width: 100%;
