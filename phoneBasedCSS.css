@@ -4,6 +4,7 @@
         background-color: #005da3;
         min-height: 100%;
     }
+    h1 {font-size: 20px;}
     .flexContainer{
         display: flex;
         align-items: center;
