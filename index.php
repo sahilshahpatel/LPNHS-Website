@@ -15,12 +15,12 @@
 
 ?>
 <html>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <head>
 
         <title>LPNHS - Home</title>
         
-        <link rel="stylesheet" type="text/css" href="baseCSS.css">
+        <link rel="stylesheet" type="text/css" media="screen and (max-width: 480px)" href="phoneBasedCSS.css">
+        <link rel="stylesheet" type="text/css" media="screen and (min-width: 481px)" href="baseCSS.css">
 
         <link rel="icon" type="image/png" href="img/nhs_logo.png">
 
