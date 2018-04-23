@@ -26,7 +26,7 @@
 
 			if((isset($_GET["manage"]) && htmlspecialchars($_GET["manage"])==="true" && $data->Position==="Vice President")){
 				//If a VP is trying to manage members, only load their specific students
-				$sql = "SELECT * FROM students WHERE VicePresident=:vpID AND NOT Position='Student' ORDER BY LastName, FirstName";
+				$sql = "SELECT * FROM students WHERE StudentID=:vpID AND NOT Position='Student' ORDER BY LastName, FirstName";
 				$stmt = $pdo->prepare($sql);
 				$stmt->execute(['vpID' => $_SESSION['StudentID']]);
 				
@@ -71,18 +71,7 @@
 
 								// Display list of positions
 
-									$positions = array("President", "Vice President", "Student");
-									echo '<td><select name="position[', $i,']">';
-									foreach($positions as $p){
-										echo '<option ';
-										//set default value
-										if($data[0][7] === $p){
-											echo 'selected = "selected" ';
-										}
-										echo 'value = "', $p, '">', $p, '</option>';
-									}
-									unset($p);
-									echo '</select></td>';
+									echo '<td>',$data[0][7],'</td>';
 
 								// Getting a list of all Vice Presidents
 
@@ -93,7 +82,8 @@
 									$vpData = $stmt->fetchAll();
 
 								// Displaying Vice President data
-
+								if($data[0][7]==='Advisor' || $data[0][7]==='President' || $data[0][7]==='Admin'|| $data[0][7]==='Vice President'){echo '<td>N/A</td>';}
+								else{
 									echo '<td><select name = "vicePresident[', $i, ']" form = "manageLeadersForm">';
 									for($vp = 0; $vp<count($vpData); $vp++){
 										echo '<option ';
@@ -103,11 +93,13 @@
 										}
 										echo 'value = "', $vpData[$vp][0], '">', $vpData[$vp][1], ' ', $vpData[$vp][2], '</option>';
 									}
-									echo '</select></td>';
+									echo '</select></td>';}
+									if($data[0][7]==='Advisor' || $data[0][7]==='Admin'){echo '<td>N/A</td>';}
+									else{
 									echo '<td><input name = "hoursCompleted[', $i,']" type = "number" style = "max-width: 40px;" value=', $data[0][5], '></td>';
-									echo '<td><input name = "submit[', $i,']" value = "Submit" class = "classicColor" type = "submit"></td>';
-									if($_SESSION['StudentID']!==$data[0][0]){echo '<td><input name = "remove[', $i,']" value = "Remove" class = "classicColor" type = "submit" onclick="return confirm(\'Are you sure?\')" style = "margin-right: 0px; background-color:red"></td>';}
-									else echo'<td>N/A</td>';
+									}echo '<td><input name = "submit[', $i,']" value = "Submit" class = "classicColor" type = "submit"></td>';
+									if($_SESSION['StudentID']!==$data[0][0] && $data[0][7]!=='Advisor' && $data[0][7]!=='Admin'){echo '<td><input name = "remove[', $i,']" value = "Remove" class = "classicColor" type = "submit" onclick="return confirm(\'Are you sure?\')" style = "margin-right: 0px; background-color:red"></td>';}
+									else {echo'<td>N/A</td>';}
 									echo '</tr>';
 							} 
 				elseif(isset($_GET["manage"]) && htmlspecialchars($_GET["manage"])==="true" && ($data->Position==="President" || $data->Position==="Advisor" || $data->Position==="Admin")):
@@ -167,7 +159,8 @@
 									$vpData = $stmt->fetchAll();
 
 								// Displaying Vice President data
-
+								if($data[0][7]==='Advisor' || $data[0][7]==='President' || $data[0][7]==='Admin' || $data[0][7]==='Vice President'){echo '<td>N/A</td>';}
+								else{
 									echo '<td><select name = "vicePresident[', $i, ']" form = "manageLeadersForm">';
 									for($vp = 0; $vp<count($vpData); $vp++){
 										echo '<option ';
@@ -177,10 +170,12 @@
 										}
 										echo 'value = "', $vpData[$vp][0], '">', $vpData[$vp][1], ' ', $vpData[$vp][2], '</option>';
 									}
-									echo '</select></td>';
+									echo '</select></td>';}
+									if($data[0][7]==='Advisor' || $data[0][7]==='Admin'){echo '<td>N/A</td>';}
+									else{
 									echo '<td><input name = "hoursCompleted[', $i,']" type = "number" style = "max-width: 40px;" value=', $data[0][5], '></td>';
-									echo '<td><input name = "submit[', $i,']" value = "Submit" class = "classicColor" type = "submit"></td>';
-									if($_SESSION['StudentID']!==$data[0][0]){echo '<td><input name = "remove[', $i,']" value = "Remove" class = "classicColor" type = "submit" onclick="return confirm(\'Are you sure?\')" style = "margin-right: 0px; background-color:red"></td>';}
+									}echo '<td><input name = "submit[', $i,']" value = "Submit" class = "classicColor" type = "submit"></td>';
+									if($_SESSION['StudentID']!==$data[0][0]  && $data[0][7]!=='Advisor' && $data[0][7]!=='Admin'){echo '<td><input name = "remove[', $i,']" value = "Remove" class = "classicColor" type = "submit" onclick="return confirm(\'Are you sure?\')" style = "margin-right: 0px; background-color:red"></td>';}
 									else echo'<td>N/A</td>';
 									echo '</tr>';
 							} 

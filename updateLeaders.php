@@ -75,4 +75,5 @@
 			$stmt->execute(["stID" => $adminData[$i][0]]);
 			header('Location:members.php?manage=true&formSubmitConfirm=true');
 		}}
-?>
+		header('Location:members.php?manage=true&formSubmitConfirm=true');
+		?>
