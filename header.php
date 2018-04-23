@@ -4,8 +4,8 @@
 
 	<img id = "LPLogo" src = "img/LP_logo.png" style = "opacity: 0; height: 100px;"><!--LPHS Logo-->
         
-	<h1 class = "baseText" style = "padding-bottom: 0px; margin-bottom:0px; color: #005da3;  font-size:48px;"><span id = "LPNHS" style = "cursor: pointer;" onclick = "location.href='index.php'" title = "LPNHS - Home">Lake Park High School National Honor Society</span></h1>
-	<h2 class = "baseText" style = "padding-top: 0px; margin-top:0px; color: #666; font-size:18px;">Scholarship | Leadership | Character | Service</h2>
+	<h1 class = "baseText" style = "padding-bottom: 0px; margin-bottom:0px; color: #005da3;"><span id = "LPNHS" style = "cursor: pointer;" onclick = "location.href='index.php'" title = "LPNHS - Home">Lake Park High School National Honor Society</span></h1>
+	<h2 class = "baseTextb" style = "padding-top: 0px; margin-top:0px; color: #666;">Scholarship | Leadership | Character | Service</h2>
 	<?php if(isset($_SESSION["StudentID"])) : ?><!--Checking if user is logged in for either sign in or sign out button-->
 		<div id = "headerLogout" class = "headerSignIn"><button id = "headerLogoutButton">Sign Out</button></div>
 	<?php else: ?>
