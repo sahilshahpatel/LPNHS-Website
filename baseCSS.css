@@ -1,8 +1,4 @@
 /* General */
-    @viewport {
-        width: device-width ;
-        zoom: 1.0 ;
-    }
     body{
         margin: 0px;
         background-color: #005da3;
