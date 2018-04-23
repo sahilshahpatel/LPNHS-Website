@@ -46,7 +46,7 @@
         padding:0;
         min-height: calc(-421px + 100vh);
     }
-    
+
     .hidden{
         visibility: hidden;
     }
@@ -54,7 +54,7 @@
         display: none;
     }
 
-/* Stuff above NavBar */
+    /* Stuff above NavBar */
     #banner {
         background-color: #fff;
         width: 100%;
@@ -65,13 +65,13 @@
         /*the container must be positioned relative:*/
         position: relative;
         display: inline-block;
-      }
-      input, textarea{
+    }
+    input, textarea{
         border: 1px solid transparent;
         resize: none;
-      }
+    }
 
-      .autocomplete-items {
+    .autocomplete-items {
         position: absolute;
         border: 1px solid #d4d4d4;
         border-bottom: none;
@@ -81,30 +81,30 @@
         top: 100%;
         left: 0;
         right: 0;
-      }
-      .autocomplete-items div {
+    }
+    .autocomplete-items div {
         padding: 10px;
         cursor: pointer;
         background-color: #fff; 
         border-bottom: 1px solid #d4d4d4; 
-      }
-      .autocomplete-items div:hover {
+    }
+    .autocomplete-items div:hover {
         /*when hovering an item:*/
         background-color: #e9e9e9; 
-      }
-      .autocomplete-active {
+    }
+    .autocomplete-active {
         /*when navigating through the items using the arrow keys:*/
         background-color: DodgerBlue !important; 
         color: #ffffff; 
-      }
+    }
 
     button{
         border: none;
         padding: 5px 10px;
         border-radius: 15px;
-        font-size: 12px;
+        font-size: 20px;
     }
-    
+
     button.classicColor{
         background-color: #005da3;
         color: white;
@@ -140,7 +140,7 @@
         font-size: 18px;
     }
 
-/* Nav Bar */
+    /* Nav Bar */
     #navBar {
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         background-color: #fff;
@@ -172,7 +172,7 @@
         text-align: center;
         padding: 14px 0px;
         text-decoration: none;
-        font-size: 20px;
+        font-size: 40px;
         width: 25%;
     }
 
@@ -186,7 +186,7 @@
         color: white;
     }
 
-/* Texts */
+    /* Texts */
     p{
         font-family: Bookman, sans-serif;
         text-align: center;
@@ -204,7 +204,7 @@
         color: #005da3;
     }
 
-/* Panel Divs */
+    /* Panel Divs */
     div.panel{
         border: 3px solid;
         border-radius: 15px;
@@ -228,7 +228,7 @@
         font-size: 20px;
     }
 
-/* Cards (shadowed imgs) */
+    /* Cards (shadowed imgs) */
     .card{
         margin: 30px auto;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);  
@@ -241,7 +241,7 @@
         padding: 10px;
     }
 
-/* Select Imgs */
+    /* Select Imgs */
     #LPLogo{
         position:absolute;
         bottom:calc(100% - 115px); 
