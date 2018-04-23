@@ -20,8 +20,8 @@
 
         <title>LPNHS - Home</title>
         
-        <link rel="stylesheet" type="text/css" media="(max-width: 480px)" href="phoneBasedCSS.css">
-        <link rel="stylesheet" type="text/css" media="(min-width: 481px)" href="baseCSS.css">
+        <!--<link rel="stylesheet" type="text/css" media="(max-width: 480px)" href="phoneBasedCSS.css">-->
+        <link rel="stylesheet" type="text/css" href="baseCSS.css">
 
         <link rel="icon" type="image/png" href="img/nhs_logo.png">
 
