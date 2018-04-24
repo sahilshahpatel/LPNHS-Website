@@ -1,8 +1,10 @@
 <!DOCTYPE HTML>
 <?php 
     session_start();
-    include "database.php";
-    include "adminCheck.php";
+    require "database.php";
+    require "adminCheck.php";
+
+    include 'loading.html'; // Display loading screen
 
     // Checking all previous entries for content and then updating the event
 

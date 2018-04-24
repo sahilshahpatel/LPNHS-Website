@@ -2,6 +2,8 @@
     session_start();
     require 'database.php';
     
+    include 'loading.html'; // Display loading screen
+
     $s=0;
     while(!isset($_POST['submit'][$s])){
         $s++;

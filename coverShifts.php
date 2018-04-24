@@ -1,6 +1,8 @@
 <?php
     require 'database.php';
 
+    include 'loading.html'; // Display loading screen
+
     //Implements the shift cover, transferring the position from requester to coverer
 
     $sql = "SELECT * FROM shiftcovers WHERE Agreed=1";

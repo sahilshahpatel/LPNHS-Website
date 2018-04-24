@@ -1,8 +1,10 @@
 <?php
 
     session_start();
-    include "database.php";
-    include "adminCheck.php";
+    require "database.php";
+    require "adminCheck.php";
+
+    include 'loading.html'; // Display loading screen
 
     // Checks input from previous fields, and then updates the corresponding data
 

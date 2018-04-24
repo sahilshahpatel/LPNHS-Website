@@ -1,8 +1,10 @@
 <!DOCTYPE HTML>
 <?php 
     session_start();
-    include "database.php";
-    include "adminCheck.php";
+    require "database.php";
+    require "adminCheck.php";
+
+    include 'loading.html'; // Display loading screen
 
     // Checking if previous fields were all filled and then storing information into SESSION
 

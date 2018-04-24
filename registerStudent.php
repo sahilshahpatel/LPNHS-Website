@@ -2,7 +2,9 @@
 
 // This document registers students for postions in events
 
-	include "database.php";
+	require "database.php";
+
+	include 'loading.html'; // Display loading screen
 
 	// Pulling data from "events"
 

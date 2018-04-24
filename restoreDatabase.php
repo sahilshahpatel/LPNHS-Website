@@ -1,4 +1,7 @@
 <?php
+
+    include 'loading.html'; // Display loading screen
+
     if(isset($_GET['filename'])){
         
         $commands = 'cd C:\xampp\mysql\bin && mysql -u root nhs_data < C:/xampp/htdocs/lpnhs/dbBackup/'.$_GET['filename'];

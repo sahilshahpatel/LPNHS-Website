@@ -1,6 +1,8 @@
 <?php
 	session_start();
-    include "database.php";
+    require "database.php";
+
+	include 'loading.html'; // Display loading screen
 
 	// Pulling data from "eventshift" 
 

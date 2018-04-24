@@ -2,6 +2,8 @@
 	session_start();
 	include 'database.php';
 
+	include 'loading.html'; // Display loading screen
+
 	// Pulling data from database
 
 		$sql = "SELECT * FROM events WHERE StartDate < CURDATE()";

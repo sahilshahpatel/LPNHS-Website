@@ -1,6 +1,8 @@
 <?php
     require 'database.php';
 
+    include 'loading.html'; // Display loading screen
+
     //Mark shift cover as accepted
 
     $sql = "SELECT * FROM shiftcovers WHERE CovererID = :covererID AND Agreed=0";
