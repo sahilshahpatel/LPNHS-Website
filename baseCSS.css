@@ -11,10 +11,6 @@ div.panel{
     margin: 30px 10%;
     padding: 0px 10px;
 }
-div.panel p{
-    margin: 10px;
-    font-size: 20px;
-}
 div.urgent{
     border-color: red; 
     background-color: #eea29a;
@@ -55,7 +51,14 @@ button.reverseColor{
 .footerText{
     color: #005da3;
 }
-
+#fixedBGImg{
+    display: block;
+    position: fixed; 
+    opacity:0.25; 
+    width: 300px; 
+    margin: 10% calc(50% - 150px); /* img is 300px wide */
+    z-index:-1;
+}
 @media only screen and (min-width: 629px){
 /* General */
     
@@ -121,7 +124,10 @@ button.reverseColor{
     .vanish{
         display: none;
     }
-
+    div.panel p{
+        margin: 10px;
+        font-size: 20px;
+    }
 
     /**/
     .autocomplete {
@@ -249,7 +255,9 @@ button.reverseColor{
         text-align: center;
     }
 
-
+    #frontImg{
+        width: 50%;
+    }
 /* Cards (shadowed imgs) */
     .card{
         margin: 30px auto;
@@ -270,19 +278,12 @@ button.reverseColor{
         right:calc(100% - 150px); 
         z-index:1;
     }
-    #fixedBGImg{
-        display: block;
-        position: fixed; 
-        opacity:0.25; 
-        width: 300px; 
-        margin: 10% calc(50% - 150px); /* img is 300px wide */
-        z-index:-1;
-    }
 }
 @media only screen and (max-width: 630px) {
     /* General */
 
     h1 {font-size: 20vmin;}
+    h3{font-size: 5vmin;}
     .flexContainer{
         display: flex;
         align-items: center;
@@ -290,14 +291,27 @@ button.reverseColor{
         width: 100%;
         flex-direction: column;
     }
+    
     .flexItemStart{
         margin: 0px auto;
         align-self: flex-start;
         padding: 0px 15px;
     }
     #imageFlexItem{
+        position: absolute;
+        z-index: 0;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: url("img/NHS-LOGO-TM.png") center center no-repeat;
+        opacity: .3;
         width: 100%;
-        text-align: center;
+        height: 100%;
+        background-size: 60% 90%;
+    }
+    #NHSimageItem{
+        display:none;
     }
     #bugFlexItem{
         display:none;
@@ -311,6 +325,7 @@ button.reverseColor{
     .flexItemStart p{
         margin: 5px auto;
         text-align: left;
+        font-size: 5vmin;
     }
     .flexItemCenter {
         margin: 0 auto;
@@ -508,11 +523,18 @@ button.reverseColor{
         text-align: center;
         font-size:3vmin;
     }
+
     .urgentText{
         font-family: Trebuchet MS, sans-serif;
         text-align: center;
     }
-
+    div.panel p{
+        margin: 10px;
+        font-size: 4.5vmin;
+    }
+    #frontImg{
+        width: 85%;
+    }
 
     /* Cards (shadowed imgs) */
     .card{
@@ -522,7 +544,7 @@ button.reverseColor{
     }
 
     .card p{
-        font-size: 20px;
+        font-size: 3vmin;
         margin: 0; 
         padding: 10px;
     }
@@ -533,13 +555,5 @@ button.reverseColor{
         bottom:calc(100% - 115px); 
         right:calc(100% - 150px); 
         z-index:1;
-    }
-    #fixedBGImg{
-        display: block;
-        position: fixed; 
-        opacity:0.25; 
-        width: 300px; 
-        margin: 10% calc(50% - 150px); /* img is 300px wide */
-        z-index:-1;
     }
 }

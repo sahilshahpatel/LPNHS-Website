@@ -46,7 +46,7 @@
 
             <!--Home Page Main Image Card-->
 
-            <div id = "frontImg" class = "card" style = "width: 50%;">
+            <div id = "frontImg" class = "card">
                 <img src = "img/frontImg.jpg" style = "width: 100%;"><!--NHS picture of students-->
                 <p style = "font-style: italic; font-size: 16px;"><?php echo $frontImgCaption; ?></p>
             </div>
