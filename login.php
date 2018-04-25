@@ -95,7 +95,7 @@
                     <button id = "loginButton" type = "submit" value="Log In">Sign In</button>
                 </div>
                 <div>
-                    <img style = "margin: auto;" src = "img/NHS_logo.png">
+                    <img id="loginImage" style = "margin: auto;" src = "img/NHS_logo.png">
                 </div>                
             </form>
             

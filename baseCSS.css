@@ -61,7 +61,15 @@ button.reverseColor{
 }
 @media only screen and (min-width: 629px){
 /* General */
-    
+    #login{
+
+        display: inline-block;
+        margin: 5% auto;
+        padding: 30px;
+        background-color: #333;
+        border-radius: 15px;
+        text-align: left;
+    }
     #imageFlexItem{
         width: 20%;
     }
@@ -139,7 +147,10 @@ button.reverseColor{
         border: 1px solid transparent;
         resize: none;
       }
-
+      #login div{
+        display: inline-block;
+        padding: 30px;
+        }
       .autocomplete-items {
         position: absolute;
         border: 1px solid #d4d4d4;
@@ -204,6 +215,7 @@ button.reverseColor{
     position: fixed;
     width: 100%;
     }
+    
 
     /* Add a black background color to the top navigation */
     .topnav {
@@ -425,6 +437,19 @@ button.reverseColor{
         background-color: inherit;
         display:flex;
     }
+    #login{
+        width:80%;
+        display: inline-block;
+        margin: 0;
+        background-color: #333;
+        border-radius: 15px;
+        text-align: left;
+    }
+    #login div{
+        display: inline-block;
+        padding: 0px;
+    }
+    #loginImage{display:none;}
     .dropbtn {
         cursor: pointer;
         right:0;
