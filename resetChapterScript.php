@@ -92,14 +92,14 @@
                     $num = count($data);
                     $studentSQL.="(";
                     for ($i=0; $i < $num; $i++) {
-                        $studentSQL.=$data[$i];
+                        $studentSQL.='\''.$data[$i].'\'';
                         $studentSQL.=", ";
 
                         if(in_array(trim(strtolower($columnTitles[$i])), $emailColumnNames)){
                             $email = $data[$i];
                         }
                     }
-                    $studentSQL.=password_hash($password, PASSWORD_DEFAULT)."), ";
+                    $studentSQL.='\''.password_hash($password, PASSWORD_DEFAULT)."'), ";
                     mailIntro($email, $password);
                 }
                 else{
@@ -129,14 +129,8 @@
             fclose($handle);
         }
         
-        //TESTING:
-        $studentSQL = 'INSERT INTO students (StudentID, LastName, FirstName, Email, PasswordHash) VALUES (555555, Query, Test, test@students.lphs.org, $2y$10$mcli8tyeZclGxoSYe3CBhuqfZoNMdrNJWRkr0k.Hgtoor6MhG5F3i)';
-        $stmt = $pdo->prepare($studentSQL);
-        if($stmt->execute()){
-            echo 'success';
-        }
-        else{
-            echo 'failure';
-        }
+        // Create database backup before reseting NOT WORKING...
+        /*$commdands = 'cd C:\xampp\htdocs\lpnhs\dbBackup\ && nhsDataBackup.bat';
+        shell_exec($commands);*/
     }
 ?>
