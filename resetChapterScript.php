@@ -73,7 +73,7 @@
         }
 
         //Reset Chapter
-        $sql = "";
+        $studentSQL = '';
         if (($handle = fopen("data/studentInfoCSV.csv", "r")) !== FALSE) {
             $iteration = 0;
             $columnTitles = array();
@@ -90,16 +90,16 @@
                     $password = random_str(10);
                     //append student data to query
                     $num = count($data);
-                    $sql.="(";
+                    $studentSQL.="(";
                     for ($i=0; $i < $num; $i++) {
-                        $sql.=$data[$i];
-                        $sql.=", ";
+                        $studentSQL.=$data[$i];
+                        $studentSQL.=", ";
 
                         if(in_array(trim(strtolower($columnTitles[$i])), $emailColumnNames)){
                             $email = $data[$i];
                         }
                     }
-                    $sql.=password_hash($password, PASSWORD_DEFAULT)."), ";
+                    $studentSQL.=password_hash($password, PASSWORD_DEFAULT)."), ";
                     mailIntro($email, $password);
                 }
                 else{
@@ -124,10 +124,19 @@
                 }
             }
             $sqlColumns.="PasswordHash"; 
-            $sql = "INSERT INTO students (".$sqlColumns.") VALUES ".$sql;
-            $sql = substr($sql, 0, -2); //Gets rid of last ', ' from $sql
+            $studentSQL = "INSERT INTO students (".$sqlColumns.") VALUES ".$studentSQL;
+            $studentSQL = substr($studentSQL, 0, -2); //Gets rid of last ', ' from $studentSQL
             fclose($handle);
         }
-        //echo $sql;
+        
+        //TESTING:
+        $studentSQL = 'INSERT INTO students (StudentID, LastName, FirstName, Email, PasswordHash) VALUES (555555, Query, Test, test@students.lphs.org, $2y$10$mcli8tyeZclGxoSYe3CBhuqfZoNMdrNJWRkr0k.Hgtoor6MhG5F3i)';
+        $stmt = $pdo->prepare($studentSQL);
+        if($stmt->execute()){
+            echo 'success';
+        }
+        else{
+            echo 'failure';
+        }
     }
 ?>
