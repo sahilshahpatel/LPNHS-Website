@@ -41,10 +41,11 @@
             </body>
         </html>';
         $headers = array(
+            'Content-type' => 'text/html',
             'From'=>'no-reply@34.223.226.43'
         );
         
-        //mail($email, 'Welcome to LPNHS', $message, $headers);
+        mail($email, 'Welcome to LPNHS', $message, $headers);
     }
 
     if(isset($_POST["submit"])){
