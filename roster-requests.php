@@ -6,6 +6,9 @@
 	include "adminCheck.php";
 ?>
 <html>
+<meta name="HandheldFriendly" content="true" />
+<meta name="MobileOptimized" content="320" />
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, width=device-width, user-scalable=no" />
     <head>
 
         <title>LP NHS - Roster Requests</title>

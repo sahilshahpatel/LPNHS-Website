@@ -11,6 +11,9 @@
 
 ?>
 <html>
+<meta name="HandheldFriendly" content="true" />
+<meta name="MobileOptimized" content="320" />
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, width=device-width, user-scalable=no" />
     <head>
 
         <title>LPNHS - Login</title>
@@ -25,42 +28,10 @@
                 background-color: #005da3;
                 text-align: center;
             }
-            #login{
-                display: inline-block;
-                margin: 10% auto;
-                padding: 30px;
-                background-color: #333;
-                border-radius: 15px;
-                text-align: left;
-            }
-            #login div{
-                display: inline-block;
-                padding: 30px;
-            }
-            #login button{
-                border: none;
-                padding: 10px;
-                border-radius: 15px;
-                font-size: 12px;
-                margin-top: 10px;
-                margin-bottom: 0px;
-                background-color: #005da3;
-                color: white;
-                
-                font-family: Bookman, sans-serif;
-                font-size: 24px;
-            }
-
-            #login p{
-                margin: 5px 0px;
-                color: white;
-                text-align: left;
-                font-family: Bookman, sans-serif;
-                font-size: 24px;
-            }
-            #login input{
-                font-family: Bookman, sans-serif;
-                font-size: 24px;
+            @media only screen and (max-width: 780px) {
+                #loginImage{
+                    display:none;
+                }
             }
         </style>
 
@@ -73,7 +44,7 @@
 
             <img id = "fixedBGImg" src = "img/NHS_logo.png"> <!--Fixed image in background-->
 
-            <form id="login" class="form" action="session.php" method="post" style="height:350px;">
+            <form id="login" class="form" action="session.php" method="post">
                 <div>
                     <p style = "font-size: 30px; text-decoration: underline;">Sign in</p>
                     <br/>
@@ -92,7 +63,7 @@
                     <button id = "loginButton" type = "submit" value="Log In">Sign In</button>
                 </div>
                 <div>
-                    <img style = "margin: auto;" src = "img/NHS_logo.png">
+                    <img id="loginImage" style = "margin: auto;" src = "img/NHS_logo.png">
                 </div>                
             </form>
             

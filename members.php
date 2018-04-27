@@ -10,6 +10,9 @@
 		}
 ?>
 <html>
+<meta name="HandheldFriendly" content="true" />
+<meta name="MobileOptimized" content="320" />
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, width=device-width, user-scalable=no" />
 	<head>
 
 		<title>LPNHS - Members</title>
@@ -27,7 +30,6 @@
 				margin: 0;
 			}
 			table tr:nth-child(even){background-color: #e8cfa4;}
-			#addUserTable th, td{width: 12.5%;}
 			input{max-width: 130px;}
 		</style>
 
