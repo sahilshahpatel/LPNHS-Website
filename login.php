@@ -1,7 +1,12 @@
 <!Doctype HTML>
 <?php 
     session_start();
-    include "database.php";
+    require "database.php";
+
+    // Checking if they are already logged in
+        if(isset($_SESSION['StudentID'])){
+            header("Location: index.php");
+        }
 
     $loginError = false;
 
