@@ -27,40 +27,6 @@
 
         <link rel="stylesheet" href="baseCSS.css">
         <link rel="icon" type="image/png" href="img/nhs_logo.png">
-        <style>
-            #frontImg{
-                width: 60%;
-                margin: 10px;
-                float: right;
-            }
-            li {
-            padding-left: 1em; 
-            text-indent: -1.4em;
-            }
-
-            li::before {
-            content: "■";
-            padding-right:14px;
-            font-family:"Arial Black";
-            color: #005da3; /* or whatever color you prefer */
-            }
-            #frontImg p{text-align: center;}
-            #frontImg img{width: 100%;}
-            #applicationRequirements{
-                padding: 10px;
-                border-left: solid 10px #005da3;
-                background-color: white;
-                margin: 5px auto;
-                width: 90%;
-            }
-            ul{
-                list-style: none;
-                padding: 0;
-                font-family: Bookman, sans-serif;
-                font-size: 18px;
-            }
-            ul li{margin: 10px;}
-        </style>
         
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script src="headerJQuery.js"></script>
@@ -78,21 +44,14 @@
         <div id = "footerPusher">
 
             <img id = "fixedBGImg" src = "img/NHS_logo.png"><!--Fixed Image in Background-->
-            <div style="padding: 10px;
-                        width: 60%;margin: 30px auto;
-                        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);  
-                        background-color: #fff;font-size: 20px;
-                        border-radius: 15px;
-                        border: 3px solid;
-                        border-color: #daa520;
-                        background-color: #ffebcd">
+            <div class="what-it-takes">
                 <article>
                     <h1 style = "color: #005da3;text-align: center;">What It Takes to Be a Member</h1>
                     <hr style = "width: 95%;">
                     <div id = "frontImg" style="margin-right:30px;width:50%">
                         <img src = "img/what_it_takes.jpg">
                     </div>
-                    <div style= "padding-left:30px;padding-top:10px;" style="white-space: pre-wrap;"><a style="white-space: pre-wrap;"><?php echo $whatittakes; ?></a></div>
+                    <div style= "padding-left:3vmin;padding-top:10px;" style="white-space: pre-wrap;"><a style="white-space: pre-wrap;"><?php echo $whatittakes; ?></a></div>
                     <hr style = "width: 95%;">
                     <div id = "applicationRequirements" class = "classic" style="margin: 0 px; padding-top:0px;background-color: #ffebcd;">
                         <h2 style = "color: #005da3">Application Requirements</h2>
@@ -108,7 +67,7 @@
                         </ul>
                     </div>
                     <hr style = "width: 95%;">
-                    <div  style= "padding-left:30px;padding-right:30px; margin-bottom: 30px;" ><a style="white-space: pre-wrap;"><?php echo $whatittakesunder; ?></a></div>
+                    <div  style= "padding-left:3vmin;padding-right:30px; margin-bottom: 30px;" ><a style="white-space: pre-wrap;"><?php echo $whatittakesunder; ?></a></div>
                 </article>
             </div>
 

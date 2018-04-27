@@ -69,18 +69,35 @@ button.reverseColor{
         background-color: #333;
         border-radius: 15px;
         text-align: left;
+        height:350px;
     }
-    #imageFlexItem{
-        width: 20%;
+    #imageFlexItem{width: 20%;}
+    #bugFlexItem{width: 40%;}
+    #contactUsFlextItem{width: 40%;}
+    #NHSimageItem{width: 137px;}
+    #login button{
+        border: none;
+        padding: 10px;
+        border-radius: 15px;
+        font-size: 12px;
+        margin-top: 10px;
+        margin-bottom: 0px;
+        background-color: #005da3;
+        color: white;
+        font-family: Bookman, sans-serif;
+        font-size: 24px;
     }
-    #bugFlexItem{
-        width: 40%;
+
+    #login p{
+        margin: 5px 0px;
+        color: white;
+        text-align: left;
+        font-family: Bookman, sans-serif;
+        font-size: 24px;
     }
-    #contactUsFlextItem{
-        width: 40%;
-    }
-    #NHSimageItem{
-        width: 137px;
+    #login input{
+        font-family: Bookman, sans-serif;
+        font-size: 24px;
     }
     .dropdown {display:none;}
     .dropbtn {display:none;}
@@ -136,32 +153,71 @@ button.reverseColor{
         margin: 10px;
         font-size: 20px;
     }
-
+    #frontImg{
+        width: 60%;
+    }
+    li {
+    padding-left: 1em; 
+    text-indent: -1.4em;
+    }
+    li::before {
+    content: "■";
+    padding-right:14px;
+    font-family:"Arial Black";
+    color: #005da3; /* or whatever color you prefer */
+    }
+    #frontImg p{text-align: center;}
+    #frontImg img{width: 100%;}
+    #applicationRequirements{
+        padding: 10px;
+        border-left: solid 10px #005da3;
+        background-color: white;
+        margin: 5px auto;
+        width: 90%;
+    }
+    ul{
+        list-style: none;
+        padding: 0;
+        font-family: Bookman, sans-serif;
+        font-size: 18px;
+    }
+    ul li{margin: 10px;}
     /**/
     .autocomplete {
         /*the container must be positioned relative:*/
         position: relative;
         display: inline-block;
       }
-      input, textarea{
-        border: 1px solid transparent;
-        resize: none;
-      }
-      #login div{
-        display: inline-block;
-        padding: 30px;
-        }
-      .autocomplete-items {
-        position: absolute;
-        border: 1px solid #d4d4d4;
-        border-bottom: none;
-        border-top: none;
-        z-index: 99;
-        /*position the autocomplete items to be the same width as the container:*/
-        top: 100%;
-        left: 0;
-        right: 0;
-      }
+      .what-it-takes{
+        padding: 10px;
+        width: 60%;margin: 30px auto;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);  
+        background-color: #fff;font-size: 20px;
+        border-radius: 15px;
+        border: 3px solid;
+        border-color: #daa520;
+        background-color: #ffebcd
+    }
+    #addUserTable th, td{width: 12.5%;}
+    input, textarea{
+    border: 1px solid transparent;
+    resize: none;
+    }
+    #login div{
+    display: inline-block;
+    padding: 30px;
+    }
+    .autocomplete-items {
+    position: absolute;
+    border: 1px solid #d4d4d4;
+    border-bottom: none;
+    border-top: none;
+    z-index: 99;
+    /*position the autocomplete items to be the same width as the container:*/
+    top: 100%;
+    left: 0;
+    right: 0;
+    }
       .autocomplete-items div {
         padding: 10px;
         cursor: pointer;
@@ -374,7 +430,35 @@ button.reverseColor{
         border: 1px solid transparent;
         resize: none;
     }
-
+    #frontImg{
+        width: 60%;
+    }
+    li {
+    padding-left: 1em; 
+    text-indent: -1.4em;
+    }
+    li::before {
+    content: "■";
+    padding-right:14px;
+    font-family:"Arial Black";
+    color: #005da3; /* or whatever color you prefer */
+    }
+    #frontImg p{text-align: center;}
+    #frontImg img{width: 100%;}
+    #applicationRequirements{
+        padding: 10px;
+        border-left: solid 10px #005da3;
+        background-color: white;
+        margin: 5px auto;
+        width: 90%;
+    }
+    ul{
+        list-style: none;
+        padding: 0;
+        font-family: Bookman, sans-serif;
+        font-size: 18px;
+    }
+    ul li{margin: 10px;}
     .autocomplete-items {
         position: absolute;
         border: 1px solid #d4d4d4;
@@ -386,13 +470,25 @@ button.reverseColor{
         left: 0;
         right: 0;
     }
+    .what-it-takes{
+        padding: 10px;
+        width: 90%;margin: 30px auto;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);  
+        background-color: #fff;font-size: 20px;
+        border-radius: 15px;
+        border: 3px solid;
+        border-color: #daa520;
+        background-color: #ffebcd
+    }
     .autocomplete-items div {
         padding: 10px;
         cursor: pointer;
         background-color: #fff; 
         border-bottom: 1px solid #d4d4d4; 
     }
-
+    article h1{
+        font-size: 7vmin;
+    }
     button{
         border: none;
         padding: 5px 10px;
@@ -408,7 +504,7 @@ button.reverseColor{
         background-color: #005da3;
         color: white;
     }
-
+    #addUserTable th, td{width: 12.5%;font-size:4vmin;}
     div.headerSignIn {
         position: absolute;
         top: 0;
@@ -429,16 +525,17 @@ button.reverseColor{
         display:flex;
     }
     #login{
-        width:80%;
+        margin-top:3vmin;
+        margin-bottom:3vmin;
+        width:80vmin;
         display: inline-block;
-        margin: 0;
         background-color: #333;
         border-radius: 15px;
         text-align: left;
     }
     #login div{
         display: inline-block;
-        padding: 0px;
+        padding: 3vmin;
     }
     #loginImage{display:none;}
     .dropbtn {
@@ -451,6 +548,30 @@ button.reverseColor{
         color: black;
         font-size:8vmin;
         padding: 0px 25px;
+    }
+    #login button{
+        border: none;
+        padding: 2vmin;
+        border-radius: 15px;
+        margin-top: 10px;
+        margin-bottom: 0px;
+        background-color: #005da3;
+        color: white;
+        font-family: Bookman, sans-serif;
+        font-size: 5vmin;
+    }
+
+    #login p{
+        margin: 5px 0px;
+        color: white;
+        text-align: left;
+        font-family: Bookman, sans-serif;
+        font-size: 5vmin;
+    }
+    #login input{
+        font-family: Bookman, sans-serif;
+        font-size: 24px;
+        width: 75vmin;
     }
     
     /* Dropdown Content (Hidden by Default) */

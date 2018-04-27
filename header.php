@@ -58,7 +58,6 @@ window.onclick = function(event) {
             --><a class = "baseText" href="login.php">Sign In</a><!--Removing spacing
             --><button onclick="navBarDD()" class="dropbtn" aria-haspopup="true">&#9776;</button>
                 <div id="navBarDD" class="dropdown-content">
-                    <a style="padding-left: 10px;border-bottom: .5px solid gray;width:100%;" href="index.php">Home</a>
                     <a style="padding-left: 10px;border-bottom: .5px solid gray;width:100%;" href="community-involvement.php">Community Events</a>
                     <a style="padding-left: 10px;border-bottom: .5px solid gray;width:100%;" href="members.php">Members</a>
                     <a style="padding-left: 10px;border-bottom: .5px solid gray;width:100%;" href="what-it-takes.php">What It Takes</a>

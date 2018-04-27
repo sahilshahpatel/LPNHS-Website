@@ -30,7 +30,6 @@
 				margin: 0;
 			}
 			table tr:nth-child(even){background-color: #e8cfa4;}
-			#addUserTable th, td{width: 12.5%;}
 			input{max-width: 130px;}
 		</style>
 
