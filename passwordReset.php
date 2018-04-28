@@ -4,13 +4,13 @@
     require "database.php";
 
     function encode_URL_safe($string){
-        $search = array('$', '&', '+', ',' '/', ':', ';', '=', '?', '@');
+        $search = array('$', '&', '+', ',', '/', ':', ';', '=', '?', '@');
         $replace = array('%24', '%26', '2B', '2C', '2F', '3A', '3B', '3D', '3F', '40');
         return str_replace($search, $replace, $string);
     }
     function decode_URL_safe($string){
         $search = array('%24', '%26', '2B', '2C', '2F', '3A', '3B', '3D', '3F', '40');
-        $replace = array('$', '&', '+', ',' '/', ':', ';', '=', '?', '@');
+        $replace = array('$', '&', '+', ',', '/', ':', ';', '=', '?', '@');
         return str_replace($search, $replace, $string);
     }
 

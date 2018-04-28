@@ -2,15 +2,15 @@
     require 'database.php';
     session_start();
 
-    function encode_URL_safe($string){
-        $search = array('$', '&', '+', ',' '/', ':', ';', '=', '?', '@');
+    function encode_URL_safe($s){
+        $search = array('$', '&', '+', ',', '/', ':', ';', '=', '?', '@');
         $replace = array('%24', '%26', '2B', '2C', '2F', '3A', '3B', '3D', '3F', '40');
-        return str_replace($search, $replace, $string);
+        return str_replace($search, $replace, $s);
     }
-    function decode_URL_safe($string){
+    function decode_URL_safe($s){
         $search = array('%24', '%26', '2B', '2C', '2F', '3A', '3B', '3D', '3F', '40');
-        $replace = array('$', '&', '+', ',' '/', ':', ';', '=', '?', '@');
-        return str_replace($search, $replace, $string);
+        $replace = array('$', '&', '+', ',', '/', ':', ';', '=', '?', '@');
+        return str_replace($search, $replace, $s);
     }
 
     $email = $_POST['email'];
