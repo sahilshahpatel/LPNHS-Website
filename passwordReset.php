@@ -9,7 +9,7 @@
         $sql = "SELECT * FROM passrecovertokens WHERE Token = :token";
         $stmt = $pdo->prepare($sql);
         $stmt->execute(['token' => $_GET['token']]);
-        $tokenData = $stmt->fetchAll(PDO::FETCH_OBJ);
+        $tokenData = $stmt->fetch(PDO::FETCH_OBJ);
         if($tokenData->StudentID===$_GET['userID'] && $tokenData->Expiration < date('Y-m-d')){ //Checks if studentID matches, and if token hasn't expired
             $sql = "UPDATE students SET PasswordHash=:passHash WHERE StudentID=:studentID";
             $stmt = $pdo->prepare($sql);
@@ -43,7 +43,7 @@
     <body>
 		<div id = "footerPusher">
 
-            <form id="login" class="form" action="passwordReset.php?token=<?php echo $_GET['token']);?>&userID=<?php echo $_GET['userID'];?>" method="post">
+            <form id="login" class="form" action="passwordReset.php?token=<?php echo $_GET['token'];?>&userID=<?php echo $_GET['userID'];?>" method="post">
                 <div>
                     <h id="logTitle">Password Reset</h>
                     <hr class="loghr">
