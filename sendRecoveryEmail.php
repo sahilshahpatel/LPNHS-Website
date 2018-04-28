@@ -4,7 +4,7 @@
 
     $email = $_POST['email'];
 
-    $sql = "SELECT * FROM users WHERE email = :email";
+    $sql = "SELECT * FROM students WHERE Email = :email";
     $stmt = $pdo->prepare($sql);
     $stmt->execute(['email' => $email]);
     $userData = $stmt->fetchAll();

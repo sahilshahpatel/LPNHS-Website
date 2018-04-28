@@ -4,9 +4,9 @@
     require "database.php";
 
     if(isset($_POST["submit"])){
-        $sql = "SELECT * FROM users WHERE userID = :userID";
+        $sql = "SELECT * FROM students WHERE studentID = :studentID";
         $stmt = $pdo->prepare($sql);
-        $stmt->execute(['userID' => $_GET['userID']]);
+        $stmt->execute(['studentID' => $_GET['userID']]);
         $userData = $stmt->fetchAll();
 
         if($userData[0][4]===$_GET['hash']){
