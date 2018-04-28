@@ -20,8 +20,7 @@
 
         $headers = 'From: maintenanceLPNHS@gmail.com';
         // Send
-        //mail($email, '[Foodle] Password Reset Request', $message, $headers);
-        echo 'Email function not yet available. Password reset request can not be made at this time.';
+        mail($email, '[LPNHS] Password Reset Request', $message, $headers);
     }
     else{
         header("location: forgotPassword.php?email=unknown");
