@@ -3,27 +3,27 @@
     session_start();
     require "database.php";
 
-    function encode_URL_safe($string){
-        $search = array('$', '&', '+', ',', '/', ':', ';', '=', '?', '@');
-        $replace = array('%24', '%26', '2B', '2C', '2F', '3A', '3B', '3D', '3F', '40');
-        return str_replace($search, $replace, $string);
-    }
-    function decode_URL_safe($string){
-        $search = array('%24', '%26', '2B', '2C', '2F', '3A', '3B', '3D', '3F', '40');
-        $replace = array('$', '&', '+', ',', '/', ':', ';', '=', '?', '@');
-        return str_replace($search, $replace, $string);
-    }
+    $success = false; //Initially false until the database is ubdated!
 
     if(isset($_POST["submit"])){
-        $sql = "SELECT * FROM students WHERE studentID = :studentID";
+        $sql = "SELECT * FROM passrecovertokens WHERE Token = :token";
         $stmt = $pdo->prepare($sql);
-        $stmt->execute(['studentID' => $_GET['userID']]);
-        $userData = $stmt->fetchAll();
-
-        if($userData[0][4]===decode_URL_safe($_GET['hash'])){ // Converts passHash back to appropriate format
-            $sql = "UPDATE users SET passwordHash = :passHash";
+        $stmt->execute(['token' => $_GET['token']]);
+        $tokenData = $stmt->fetchAll(PDO::FETCH_OBJ);
+        if($tokenData->StudentID===$_GET['userID'] && $tokenData->Expiration < date('Y-m-d')){ //Checks if studentID matches, and if token hasn't expired
+            $sql = "UPDATE students SET PasswordHash=:passHash WHERE StudentID=:studentID";
             $stmt = $pdo->prepare($sql);
-            $success = $stmt->execute(['passHash' => password_hash($_POST['password'], PASSWORD_DEFAULT)]);
+            $success = $stmt->execute(['passHash' => password_hash($_POST['password'], PASSWORD_DEFAULT), 'studentID' => $tokenData->StudentID]);
+            if($success){ //Delete token if it has been used
+                $sql = "DELETE FROM passrecovertokens WHERE Token = :token";
+                $stmt = $pdo->prepare($sql);
+                $stmt->execute(['token' => $_GET['token']]);
+            }
+        }
+        else if($tokenData->Expiration !< date('Y-m-d')){ //Delete token if it is too old
+            $sql = "DELETE FROM passrecovertokens WHERE Token = :token";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute(['token' => $_GET['token']]);
         }
     }
 ?>
@@ -43,7 +43,7 @@
     <body>
 		<div id = "footerPusher">
 
-            <form id="login" class="form" action="passwordReset.php?hash=<?php echo encode_URL_safe($_GET['hash']);?>&userID=<?php echo $_GET['userID'];?>" method="post"> <!--Converts passHash into URL-viable format-->
+            <form id="login" class="form" action="passwordReset.php?token=<?php echo $_GET['token']);?>&userID=<?php echo $_GET['userID'];?>" method="post">
                 <div>
                     <h id="logTitle">Password Reset</h>
                     <hr class="loghr">
@@ -51,6 +51,9 @@
                     <?php 
                         if($success){
                             echo '<p style = "text-align: center; font-size: 16px; font-weight: bold;">Password Updated</p>';
+                        }
+                        else if(!isset($_GET['emailLink']) || !$_GET['emailLink']==='true'){
+                            echo '<p style = "text-align: center; font-size: 16px; font-weight: bold;">An error occured</p>';
                         }
                     ?>
                     <input class="input2" placeholder = "Password*" type = "password" name = "password" autofocus required>

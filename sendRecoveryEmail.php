@@ -2,15 +2,31 @@
     require 'database.php';
     session_start();
 
-    function encode_URL_safe($s){
-        $search = array('$', '&', '+', ',', '/', ':', ';', '=', '?', '@');
-        $replace = array('%24', '%26', '2B', '2C', '2F', '3A', '3B', '3D', '3F', '40');
-        return str_replace($search, $replace, $s);
+    include 'loading.html';
+
+    function crypto_rand_secure($min, $max) {
+        $range = $max - $min;
+        if ($range < 0) return $min; // not so random...
+        $log = log($range, 2);
+        $bytes = (int) ($log / 8) + 1; // length in bytes
+        $bits = (int) $log + 1; // length in bits
+        $filter = (int) (1 << $bits) - 1; // set all lower bits to 1
+        do {
+            $rnd = hexdec(bin2hex(openssl_random_pseudo_bytes($bytes)));
+            $rnd = $rnd & $filter; // discard irrelevant bits
+        } while ($rnd >= $range);
+        return $min + $rnd;
     }
-    function decode_URL_safe($s){
-        $search = array('%24', '%26', '2B', '2C', '2F', '3A', '3B', '3D', '3F', '40');
-        $replace = array('$', '&', '+', ',', '/', ':', ';', '=', '?', '@');
-        return str_replace($search, $replace, $s);
+
+    function generateToken($length){
+        $token = "";
+        $codeAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        $codeAlphabet.= "abcdefghijklmnopqrstuvwxyz";
+        $codeAlphabet.= "0123456789";
+        for($i=0;$i<$length;$i++){
+            $token .= $codeAlphabet[crypto_rand_secure(0,strlen($codeAlphabet))];
+        }
+        return $token;
     }
 
     $email = $_POST['email'];
@@ -19,12 +35,30 @@
     $stmt = $pdo->prepare($sql);
     $stmt->execute(['email' => $email]);
     $userData = $stmt->fetchAll();
-    if($stmt->rowCount()>0){
+    $userCount = $stmt->rowCount();
+
+    //Generate token and ensure it is unique
+    $token = "";
+    $tokenCopies = 0;
+    do{
+        $token = generateToken(32);
+        $sql = "SELECT * FROM passrecovertokens WHERE Token = :token";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute(['token'=>$token]);
+        $tokenCopies = $stmt->rowCount();
+    }while($tokenCopies>0);
+    $expiration = date('Y-m-d', strtotime("+1 day")); //date 1 day in the future
+    $sql = "INSERT INTO passrecoverytokens VALUES (:token, :studentID, :expiration)";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute(['token' => $token, 'studentID'=>$userData[0][0], 'expiration'=>$expiration]);
+
+    if($userCount>0){
         //Mail password reset link
         // The message
         $message = "You are recieving this email because you requested a password reset for your LPNHS Acount.
-        \r\nPlease click the following link or paste it into your web browser to reset your password. http://34.223.226.34/lpnhs/passwordReset.php?hash=".encode_URL_safe($userData[0][4])."&userID=".$userData[0][0]
-        ."\r\nIf this does not pertain to you, please ignore this email.";
+        \r\nPlease click the following link or paste it into your web browser to reset your password. http://34.223.226.34/lpnhs/passwordReset.php?token=".$token."&userID=".$userData[0][0]."&emailLink=true".
+        ."\r\nThis link will only function for the next two days.
+        \r\nIf this does not pertain to you, please ignore this email.";
 
         // In case any of our lines are larger than 70 characters, we should use wordwrap()
         $message = wordwrap($message, 70, "\r\n");
@@ -34,7 +68,7 @@
         );
         // Send
         mail($email, '[LPNHS] Password Reset Request', $message, $headers);
-        echo 'email sent to ', $email, ' with message: ', $message;
+        echo '<script>alert("Password reset email sent");</script>';
     }
     else{
         header("location: forgotPassword.php?email=unknown");
