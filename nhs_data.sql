@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 23, 2018 at 11:10 PM
+-- Generation Time: Apr 28, 2018 at 04:00 AM
 -- Server version: 10.1.29-MariaDB
 -- PHP Version: 7.2.0
 
@@ -69,6 +69,18 @@ INSERT INTO `eventshift` (`EventID`, `ShiftID`) VALUES
 (3, 3),
 (4, 4),
 (5, 5);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `passrecovertokens`
+--
+
+CREATE TABLE `passrecovertokens` (
+  `Token` varchar(32) NOT NULL,
+  `StudentID` int(12) NOT NULL,
+  `Expiration` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -203,14 +215,14 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`StudentID`, `FirstName`, `LastName`, `Email`, `PasswordHash`, `HoursCompleted`, `VicePresident`, `Position`) VALUES
-(0, 'James', 'Craig', 'jamcraig@students.lphs.org', '$2y$10$TRpNkBJfdi0gk0u.YXR8sO/j92LlAXo05kJ/8oR.ZvkShdkcA451m', 0, '111111', 'Student'),
-(111111, 'Miloni', 'Shah', 'milshah@students.lphs.org', '$2y$10$TRpNkBJfdi0gk0u.YXR8sO/j92LlAXo05kJ/8oR.ZvkShdkcA451m', 0, '111111', 'Vice President'),
-(123456, 'Sahil', 'Patel', 'sahpatel@students.lphs.org', '$2y$10$TRpNkBJfdi0gk0u.YXR8sO/j92LlAXo05kJ/8oR.ZvkShdkcA451m', 6.5, '111111', 'Admin'),
-(186573, 'Tejas', 'Hullur', 'tejhullur@students.lphs.org', '', 25, 'Miloni', 'President'),
-(194567, 'John', 'Smith', 'johsmith@students.lphs.org', '$2y$10$TRpNkBJfdi0gk0u.YXR8sO/j92LlAXo05kJ/8oR.ZvkShdkcA451m', 0, '111111', 'Student'),
-(196752, 'Jane', 'Doe', 'jandoe@students.lphs.org', '$2y$10$TRpNkBJfdi0gk0u.YXR8sO/j92LlAXo05kJ/8oR.ZvkShdkcA451m', 0, '222222', 'Student'),
-(222222, 'Nic', 'Conry', 'nicconry@students.lphs.org', '$2y$10$TRpNkBJfdi0gk0u.YXR8sO/j92LlAXo05kJ/8oR.ZvkShdkcA451m', 0, '222222', 'Vice President'),
-(654321, 'Ben', 'Wagrez', 'benwagrez@students.lphs.org', '$2y$10$TRpNkBJfdi0gk0u.YXR8sO/j92LlAXo05kJ/8oR.ZvkShdkcA451m', 3.5, '222222', 'Student');
+(0, 'James', 'Craig', 'jamcraig@students.lphs.org', '$2y$10$3ngEZpbmj3bGILwUJUp.ouorOgXySkBBWVlMWSQF1S8K/MSYGlH5C', 0, '111111', 'Student'),
+(111111, 'Miloni', 'Shah', 'milshah@students.lphs.org', '$2y$10$3ngEZpbmj3bGILwUJUp.ouorOgXySkBBWVlMWSQF1S8K/MSYGlH5C', 0, '111111', 'Vice President'),
+(123456, 'Sahil', 'Patel', 'sahpatel@students.lphs.org', '$2y$10$3ngEZpbmj3bGILwUJUp.ouorOgXySkBBWVlMWSQF1S8K/MSYGlH5C', 6.5, '111111', 'Admin'),
+(186573, 'Tejas', 'Hullur', 'tejhullur@students.lphs.org', '$2y$10$3ngEZpbmj3bGILwUJUp.ouorOgXySkBBWVlMWSQF1S8K/MSYGlH5C', 25, 'Miloni', 'President'),
+(194567, 'John', 'Smith', 'johsmith@students.lphs.org', '$2y$10$3ngEZpbmj3bGILwUJUp.ouorOgXySkBBWVlMWSQF1S8K/MSYGlH5C', 0, '111111', 'Student'),
+(196752, 'Jane', 'Doe', 'jandoe@students.lphs.org', '$2y$10$3ngEZpbmj3bGILwUJUp.ouorOgXySkBBWVlMWSQF1S8K/MSYGlH5C', 0, '222222', 'Student'),
+(222222, 'Nic', 'Conry', 'nicconry@students.lphs.org', '$2y$10$3ngEZpbmj3bGILwUJUp.ouorOgXySkBBWVlMWSQF1S8K/MSYGlH5C', 0, '222222', 'Vice President'),
+(654321, 'Ben', 'Wagrez', 'benwagrez@students.lphs.org', '$2y$10$3ngEZpbmj3bGILwUJUp.ouorOgXySkBBWVlMWSQF1S8K/MSYGlH5C', 3.5, '222222', 'Student');
 
 -- --------------------------------------------------------
 
@@ -241,6 +253,12 @@ INSERT INTO `studentshiftrequests` (`EventID`, `StudentID`, `ShiftID`) VALUES
 --
 ALTER TABLE `events`
   ADD PRIMARY KEY (`EventID`);
+
+--
+-- Indexes for table `passrecovertokens`
+--
+ALTER TABLE `passrecovertokens`
+  ADD PRIMARY KEY (`Token`);
 
 --
 -- Indexes for table `positions`
