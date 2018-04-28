@@ -56,7 +56,7 @@
         //Mail password reset link
         // The message
         $message = "You are recieving this email because you requested a password reset for your LPNHS Acount.
-        \r\nPlease click the following link or paste it into your web browser to reset your password. http://34.223.226.34/lpnhs/passwordReset.php?token=".$token."&userID=".$userData[0][0]."&emailLink=true".
+        \r\nPlease click the following link or paste it into your web browser to reset your password. http://34.223.226.34/lpnhs/passwordReset.php?token=".$token."&userID=".$userData[0][0]."&emailLink=true"
         ."\r\nThis link will only function for the next two days.
         \r\nIf this does not pertain to you, please ignore this email.";
 
@@ -67,8 +67,12 @@
             'From' => 'maintenanceLPNHS@gmail.com'
         );
         // Send
-        mail($email, '[LPNHS] Password Reset Request', $message, $headers);
-        echo '<script>alert("Password reset email sent");</script>';
+        if(mail($email, '[LPNHS] Password Reset Request', $message, $headers)){
+            echo '<script>alert("Password reset email sent");</script>';
+        }
+        else{
+            echo '<script>alert("An error occurred. Please try again later.");</script>';
+        }
     }
     else{
         header("location: forgotPassword.php?email=unknown");
