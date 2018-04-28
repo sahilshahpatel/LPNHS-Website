@@ -37,22 +37,24 @@
     $userData = $stmt->fetchAll();
     $userCount = $stmt->rowCount();
 
-    //Generate token and ensure it is unique
-    $token = "";
-    $tokenCopies = 0;
-    do{
-        $token = generateToken(32);
-        $sql = "SELECT * FROM passrecovertokens WHERE Token = :token";
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute(['token'=>$token]);
-        $tokenCopies = $stmt->rowCount();
-    }while($tokenCopies>0);
-    $expiration = date('Y-m-d', strtotime("+1 day")); //date 1 day in the future
-    $sql = "INSERT INTO passrecoverytokens VALUES (:token, :studentID, :expiration)";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute(['token' => $token, 'studentID'=>$userData[0][0], 'expiration'=>$expiration]);
-
     if($userCount>0){
+        //Generate token and ensure it is unique
+        $token = "";
+        $tokenCopies = 0;
+        do{
+            $token = generateToken(16);
+            $sql = "SELECT * FROM passrecovertokens WHERE Token = :token";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute(['token'=>$token]);
+            $tokenCopies = $stmt->rowCount();
+        }while($tokenCopies>0);
+
+        $expiration = date('Y-m-d', strtotime("+1 day")); //date 1 day in the future
+
+        $sql = "INSERT INTO passrecovertokens VALUES (:token, :studentID, :expiration)";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute(['token' => $token, 'studentID'=>$userData[0][0], 'expiration'=>$expiration]);
+
         //Mail password reset link
         // The message
         $message = "You are recieving this email because you requested a password reset for your LPNHS Acount.
@@ -67,13 +69,14 @@
             'From' => 'maintenanceLPNHS@gmail.com'
         );
         // Send
-        if(mail($email, '[LPNHS] Password Reset Request', $message, $headers)){
-            echo '<script>alert("Password reset email sent");</script>';
+        /*if(mail($email, '[LPNHS] Password Reset Request', $message, $headers)){
+            echo '<script>if(confirm("Password reset email sent"))
+            header.location("index.php");</script>';
         }
         else{
-            echo '<script>alert("An error occurred. Please try again later.");</script>';
-        }
-        header('location: index.php');
+            echo '<script>if(confirm("An error occurred. Please try again later."))
+            header.location("forgotPassword.php");</script>';
+        }*/
     }
     else{
         header("location: forgotPassword.php?email=unknown");
