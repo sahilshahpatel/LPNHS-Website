@@ -18,9 +18,12 @@
         // In case any of our lines are larger than 70 characters, we should use wordwrap()
         $message = wordwrap($message, 70, "\r\n");
 
-        $headers = 'From: maintenanceLPNHS@gmail.com';
+        $headers = array(
+            'From' => 'maintenanceLPNHS@gmail.com'
+        );
         // Send
         mail($email, '[LPNHS] Password Reset Request', $message, $headers);
+        echo 'email sent to ', $email, ' with message: ', $message;
     }
     else{
         header("location: forgotPassword.php?email=unknown");
