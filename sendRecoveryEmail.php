@@ -69,14 +69,14 @@
             'From' => 'maintenanceLPNHS@gmail.com'
         );
         // Send
-        /*if(mail($email, '[LPNHS] Password Reset Request', $message, $headers)){
+        if(mail($email, '[LPNHS] Password Reset Request', $message, $headers)){
             echo '<script>if(confirm("Password reset email sent"))
             header.location("index.php");</script>';
         }
         else{
             echo '<script>if(confirm("An error occurred. Please try again later."))
             header.location("forgotPassword.php");</script>';
-        }*/
+        }
     }
     else{
         header("location: forgotPassword.php?email=unknown");
