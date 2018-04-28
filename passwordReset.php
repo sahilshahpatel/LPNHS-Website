@@ -10,7 +10,7 @@
     if(isset($_POST["submit"])){
         if($_POST['password']===$_POST['confirmPassword']){
             $firstTime = false;
-            $sql = "SELECT * FROM passrecovertokens WHERE Token = :token AND Expiration >= Now()";
+            $sql = "SELECT * FROM passrecovertokens WHERE Token = :token AND Expiration >= NOW()";
             $stmt = $pdo->prepare($sql);
             $stmt->execute(['token' => $_GET['token']]);
             $tokenData = array();
@@ -20,9 +20,10 @@
                 $stmt = $pdo->prepare($sql);
                 $success = $stmt->execute(['passHash' => password_hash($_POST['password'], PASSWORD_DEFAULT), 'studentID' => $tokenData[0][1]]);
                 if($success){ //Delete token if it has been used
-                    $sql = "DELETE FROM passrecovertokens WHERE Token = :token";
+                    $sql = "DELETE FROM passrecovertokens WHERE Token = :token OR Expiration < NOW()"; //Also cleans up any expired tokens that may not have been used
                     $stmt = $pdo->prepare($sql);
                     $stmt->execute(['token' => $_GET['token']]);
+                    header("location: index.php?formSubmitConfirm=true;");
                 }
                 else{
                     $errorMsg = "An error occurred. Please try again later.";
@@ -57,10 +58,7 @@
                     <hr class="loghr">
                     <br/>
                     <?php 
-                        if($success){
-                            echo '<p style = "color: green; text-align: center; font-size: 16px; font-weight: bold;">Password updated</p>';
-                        }
-                        else if(!$firstTime){
+                        if(!$success && !$firstTime){
                             echo '<p style = "color: red; text-align: center; font-size: 16px; font-weight: bold;">', $errorMsg, '</p>';
                         }
                     ?>

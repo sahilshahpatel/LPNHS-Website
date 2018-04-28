@@ -36,7 +36,7 @@
                         <li style="font-family: Bookman, sans-serif; font-size: 18px; color: #fff;">Username: '.$email.'</li>
                         <li style="font-family: Bookman, sans-serif; font-size: 18px; color: #fff;">Password: '.$password.'</li>
                     </ul>
-                    <p style="font-family: Bookman, sans-serif; font-size: 18px; color: #fff;">Please log in at <a href="http://34.223.226.43/lpnhs/login.php" style="color: #fff;">34.223.226.43/lpnhs/login</a>. You may change your password at any time by accessing the profile page.</p>
+                    <p style="font-family: Bookman, sans-serif; font-size: 18px; color: #fff;">You may continue using this login, or change it via "forgot my password", at <a href="http://34.223.226.43/lpnhs/login.php" style="color: #fff;">34.223.226.43/lpnhs/login</a></p>
                 </div>
             </body>
         </html>';

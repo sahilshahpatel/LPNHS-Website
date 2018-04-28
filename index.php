@@ -33,7 +33,21 @@
                 $("#homeLink").addClass("active");
             });
         </script>
+        <?php
 
+        // Form Submission Confirmation
+
+            if(isset($_GET['formSubmitConfirm'])):
+            ?>
+                <script>
+                $(document).ready(function(){
+                    $("#banner").animate({backgroundColor: '#00CC00'});
+                    $("#banner").animate({backgroundColor: '#fff'});
+                });
+                </script>
+            <?php
+                endif;
+        ?>
     </head>
 
     <header id = "header"><?php include "header.php"; ?></header>
