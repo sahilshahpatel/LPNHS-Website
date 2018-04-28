@@ -2,8 +2,6 @@
     require 'database.php';
     session_start();
 
-    include 'loading.html';
-
     function crypto_rand_secure($min, $max) {
         $range = $max - $min;
         if ($range < 0) return $min; // not so random...

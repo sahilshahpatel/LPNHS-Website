@@ -3,7 +3,7 @@
     session_start();
     require "database.php";
 
-    $success = false; //Initially false until the database is ubdated!
+    $success = false; //Initially false until the database is updated!
 
     if(isset($_POST["submit"])){
         $sql = "SELECT * FROM passrecovertokens WHERE Token = :token AND Expiration >= Now()";
