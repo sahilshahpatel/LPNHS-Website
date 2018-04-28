@@ -61,7 +61,7 @@
                     <p>Email</p>
                     <input id = "loginEmail" placeholder = "Email" type = "email" name = "email" autofocus required>
                     <br/><br/>
-                    <p>Password</p>
+                    <p>Password <a style = "font-size: 12px; color: #fff;" href = "forgotPassword.php">Forgot your password?</a></p>
                     <input id = "loginPassword" placeholder = "Password" type = "password" name = "password" required>
                     <br/>
                     <br/>

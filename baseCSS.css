@@ -140,7 +140,7 @@ button.reverseColor{
         position:relative;
         margin:0;
         padding:0;
-        min-height: calc(-421px + 100vh);
+        min-height: calc(-417px + 100vh);
     }
     
     .hidden{
@@ -408,7 +408,7 @@ button.reverseColor{
         position:relative;
         margin:0;
         padding:0;
-        min-height: calc(-421px + 100vh);
+        min-height: calc(-417px + 100vh);
     }
     #navBarNormal{
         display:none;;

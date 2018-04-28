@@ -1,6 +1,6 @@
 <div class="flexContainer" style="margin: 0; padding: 0; position: relative; top: 0;">
     <div class="flexItemStart" id="contactUsFlexItem">
-        <h3>Contact Us</h3>
+        <h3 style = "text-align: left">Contact Us</h3>
         <?php
             $sql = "SELECT * FROM students WHERE Position = :pos LIMIT 1";
             $stmt = $pdo->prepare($sql);
@@ -15,11 +15,11 @@
         <p>West Campus: 500 W. Bryn Mawr Ave. Roselle, IL 60172-1978</p>
     </div>
     <div class="flexItemStart" id="bugFlexItem">
-        <h3>Found a Bug?</h3>
+        <h3 style = "text-align: left;">Found a Bug?</h3>
         <p>Report any issues to the site to the president, an advisor, or a site admin.</p>
         <p>The NHS website was created by two students, Ben Wagrez and Sahil  Patel, in 2018. By using the site and reporting errors and/or bugs, you are giving experience to the current computer science students at Lake Park.</p>
     </div>
     <div class="flexItemCenter" id="imageFlexItem">
-        <img src = "img/NHS-LOGO-TM.png" id="NHSimageItem" style = "width: 137px" >
+        <img src = "img/NHS-LOGO-TM.png" id="NHSimageItem" style = "width: 137px; display: block; margin: 0 auto;" >
     </div>
 </div>

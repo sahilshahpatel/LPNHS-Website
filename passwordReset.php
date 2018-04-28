@@ -4,22 +4,33 @@
     require "database.php";
 
     $success = false; //Initially false until the database is updated!
+    $errorMsg = "";
+    $firstTime = true;
 
     if(isset($_POST["submit"])){
-        $sql = "SELECT * FROM passrecovertokens WHERE Token = :token AND Expiration >= Now()";
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute(['token' => $_GET['token']]);
-        $tokenData = array();
-        $tokenData = $stmt->fetchAll();
-        if(!empty($tokenData) && $tokenData[0][1]===$_GET['userID']){
-            $sql = "UPDATE students SET PasswordHash=:passHash WHERE StudentID=:studentID";
+        if($_POST['password']===$_POST['confirmPassword']){
+            $firstTime = false;
+            $sql = "SELECT * FROM passrecovertokens WHERE Token = :token AND Expiration >= Now()";
             $stmt = $pdo->prepare($sql);
-            $success = $stmt->execute(['passHash' => password_hash($_POST['password'], PASSWORD_DEFAULT), 'studentID' => $tokenData[0][1]]);
-            if($success){ //Delete token if it has been used
-                $sql = "DELETE FROM passrecovertokens WHERE Token = :token";
+            $stmt->execute(['token' => $_GET['token']]);
+            $tokenData = array();
+            $tokenData = $stmt->fetchAll();
+            if(!empty($tokenData) && $tokenData[0][1]===$_GET['userID']){
+                $sql = "UPDATE students SET PasswordHash=:passHash WHERE StudentID=:studentID";
                 $stmt = $pdo->prepare($sql);
-                $stmt->execute(['token' => $_GET['token']]);
+                $success = $stmt->execute(['passHash' => password_hash($_POST['password'], PASSWORD_DEFAULT), 'studentID' => $tokenData[0][1]]);
+                if($success){ //Delete token if it has been used
+                    $sql = "DELETE FROM passrecovertokens WHERE Token = :token";
+                    $stmt = $pdo->prepare($sql);
+                    $stmt->execute(['token' => $_GET['token']]);
+                }
+                else{
+                    $errorMsg = "An error occurred. Please try again later.";
+                }
             }
+        }
+        else{
+            $errorMsg = "Passwords did not match.";
         }
     }
 ?>
@@ -29,7 +40,9 @@
         <title>LPNHS - Password Reset</title>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="headerJQuery.js"></script>
         <link rel="stylesheet" href="baseCSS.css">
+        <link rel="icon" type="image/png" href="img/nhs_logo.png">
 
     </head>
 
@@ -38,22 +51,23 @@
     <body>
 		<div id = "footerPusher">
 
-            <form class="form" action="passwordReset.php?token=<?php echo $_GET['token'];?>&userID=<?php echo $_GET['userID'];?>" method="post">
+            <form id = "login" class="form" action="passwordReset.php?token=<?php echo $_GET['token'];?>&userID=<?php echo $_GET['userID'];?>" method="post" style = "display: block; margin: 30px auto; max-width: 350px; max-height: 275px;">
                 <div>
-                    <h id="logTitle">Password Reset</h>
+                    <p>Password Reset</p>
                     <hr class="loghr">
                     <br/>
                     <?php 
                         if($success){
-                            echo '<p style = "text-align: center; font-size: 16px; font-weight: bold;">Password Updated</p>';
+                            echo '<p style = "color: green; text-align: center; font-size: 16px; font-weight: bold;">Password updated</p>';
                         }
-                        else if(!isset($_GET['emailLink']) || !$_GET['emailLink']==='true'){
-                            echo '<p style = "text-align: center; font-size: 16px; font-weight: bold;">An error occured</p>';
+                        else if(!$firstTime){
+                            echo '<p style = "color: red; text-align: center; font-size: 16px; font-weight: bold;">', $errorMsg, '</p>';
                         }
                     ?>
-                    <input class="input2" placeholder = "Password*" type = "password" name = "password" autofocus required>
+                    <input placeholder = "New password" type = "password" name = "password" autofocus required style = "margin-bottom: 10px;">
+                    <input placeholder = "Confirm new password" type = "password" name = "confirmPassword" required>
                     <br/><br/>
-                    <button type = "submit" name = 'submit' value="changePassword" style = "min-height: 75px;">Change Password</button>
+                    <button id = "loginbutton" type = "submit" name = 'submit' value="changePassword">Change Password</button>
                 </div>              
             </form>
             
