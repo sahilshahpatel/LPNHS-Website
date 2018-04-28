@@ -9,7 +9,7 @@
         $stmt->execute(['studentID' => $_GET['userID']]);
         $userData = $stmt->fetchAll();
 
-        if($userData[0][4]===$_GET['hash']){
+        if($userData[0][4]===str_replace('%24', '$', $_GET['hash']){ // Converts passHash back to appropriate format
             $sql = "UPDATE users SET passwordHash = :passHash";
             $stmt = $pdo->prepare($sql);
             $success = $stmt->execute(['passHash' => password_hash($_POST['password'], PASSWORD_DEFAULT)]);
@@ -32,7 +32,7 @@
     <body>
 		<div id = "footerPusher">
 
-            <form id="login" class="form" action="passwordReset.php?hash=<?php echo $_GET['hash'];?>&userID=<?php echo $_GET['userID'];?>" method="post">
+            <form id="login" class="form" action="passwordReset.php?hash=<?php echo str_replace('$', '%24', $_GET['hash']);?>&userID=<?php echo $_GET['userID'];?>" method="post"> <!--Converts passHash into URL-viable format-->
                 <div>
                     <h id="logTitle">Password Reset</h>
                     <hr class="loghr">
