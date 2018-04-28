@@ -20,7 +20,7 @@
                 $stmt->execute(['token' => $_GET['token']]);
             }
         }
-        else if($tokenData->Expiration !< date('Y-m-d')){ //Delete token if it is too old
+        else if($tokenData->Expiration >= date('Y-m-d')){ //Delete token if it is too old
             $sql = "DELETE FROM passrecovertokens WHERE Token = :token";
             $stmt = $pdo->prepare($sql);
             $stmt->execute(['token' => $_GET['token']]);

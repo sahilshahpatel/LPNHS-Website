@@ -73,6 +73,7 @@
         else{
             echo '<script>alert("An error occurred. Please try again later.");</script>';
         }
+        header('location: index.php');
     }
     else{
         header("location: forgotPassword.php?email=unknown");
