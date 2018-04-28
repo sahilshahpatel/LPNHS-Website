@@ -2,6 +2,17 @@
     require 'database.php';
     session_start();
 
+    function encode_URL_safe($string){
+        $search = array('$', '&', '+', ',' '/', ':', ';', '=', '?', '@');
+        $replace = array('%24', '%26', '2B', '2C', '2F', '3A', '3B', '3D', '3F', '40');
+        return str_replace($search, $replace, $string);
+    }
+    function decode_URL_safe($string){
+        $search = array('%24', '%26', '2B', '2C', '2F', '3A', '3B', '3D', '3F', '40');
+        $replace = array('$', '&', '+', ',' '/', ':', ';', '=', '?', '@');
+        return str_replace($search, $replace, $string);
+    }
+
     $email = $_POST['email'];
 
     $sql = "SELECT * FROM students WHERE Email = :email";
@@ -12,7 +23,7 @@
         //Mail password reset link
         // The message
         $message = "You are recieving this email because you requested a password reset for your LPNHS Acount.
-        \r\nPlease click the following link or paste it into your web browser to reset your password. http://34.223.226.34/lpnhs/passwordReset.php?hash=".str_replace('$', '%24', $userData[0][4])."&userID=".$userData[0][0]
+        \r\nPlease click the following link or paste it into your web browser to reset your password. http://34.223.226.34/lpnhs/passwordReset.php?hash=".encode_URL_safe($userData[0][4])."&userID=".$userData[0][0]
         ."\r\nIf this does not pertain to you, please ignore this email.";
 
         // In case any of our lines are larger than 70 characters, we should use wordwrap()

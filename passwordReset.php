@@ -3,13 +3,24 @@
     session_start();
     require "database.php";
 
+    function encode_URL_safe($string){
+        $search = array('$', '&', '+', ',' '/', ':', ';', '=', '?', '@');
+        $replace = array('%24', '%26', '2B', '2C', '2F', '3A', '3B', '3D', '3F', '40');
+        return str_replace($search, $replace, $string);
+    }
+    function decode_URL_safe($string){
+        $search = array('%24', '%26', '2B', '2C', '2F', '3A', '3B', '3D', '3F', '40');
+        $replace = array('$', '&', '+', ',' '/', ':', ';', '=', '?', '@');
+        return str_replace($search, $replace, $string);
+    }
+
     if(isset($_POST["submit"])){
         $sql = "SELECT * FROM students WHERE studentID = :studentID";
         $stmt = $pdo->prepare($sql);
         $stmt->execute(['studentID' => $_GET['userID']]);
         $userData = $stmt->fetchAll();
 
-        if($userData[0][4]===str_replace('%24', '$', $_GET['hash']){ // Converts passHash back to appropriate format
+        if($userData[0][4]===decode_URL_safe($_GET['hash']){ // Converts passHash back to appropriate format
             $sql = "UPDATE users SET passwordHash = :passHash";
             $stmt = $pdo->prepare($sql);
             $success = $stmt->execute(['passHash' => password_hash($_POST['password'], PASSWORD_DEFAULT)]);
@@ -32,7 +43,7 @@
     <body>
 		<div id = "footerPusher">
 
-            <form id="login" class="form" action="passwordReset.php?hash=<?php echo str_replace('$', '%24', $_GET['hash']);?>&userID=<?php echo $_GET['userID'];?>" method="post"> <!--Converts passHash into URL-viable format-->
+            <form id="login" class="form" action="passwordReset.php?hash=<?php echo encode_URL_safe($_GET['hash']);?>&userID=<?php echo $_GET['userID'];?>" method="post"> <!--Converts passHash into URL-viable format-->
                 <div>
                     <h id="logTitle">Password Reset</h>
                     <hr class="loghr">
