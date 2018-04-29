@@ -175,9 +175,9 @@
             $success = $stmt->execute() && $success;
 
             //Students (Advisors NOT deleted)
-            $sql = "DELETE FROM students WHERE NOT Position = :pos";
+            $sql = "DELETE FROM students WHERE NOT Position IN ('Advisor', 'Admin')";
             $stmt = $pdo->prepare($sql);
-            $success = $stmt->execute(['pos'=>'Advisor']) && $success;
+            $success = $stmt->execute() && $success;
 
             //StudentShiftRequests
             $sql = "DELETE FROM studentshiftrequests";
