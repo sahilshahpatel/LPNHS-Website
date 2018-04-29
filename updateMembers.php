@@ -1,5 +1,5 @@
 <?php
-	include "database.php";
+	require "database.php";
 	session_start();
 
 	// Pulling data from "students" where "Position" : student

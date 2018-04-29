@@ -75,6 +75,7 @@
 
         //Reset Chapter
         $studentSQL = '';
+        $emailIntroData = array();
         if (($handle = fopen("data/studentInfoCSV.csv", "r")) !== FALSE) {
             $iteration = 0;
             $columnTitles = array();
@@ -101,7 +102,7 @@
                         }
                     }
                     $studentSQL.='\''.password_hash($password, PASSWORD_DEFAULT)."'), ";
-                    mailIntro($email, $password);
+                    $emailIntroData[] = array($email, $password);
                 }
                 else{
                     $columnTitles = $data;
@@ -134,57 +135,74 @@
         $backupName = exec('dbBackup\nhsDataBackup.bat');
         
         //Delete all data in all tables
-            $errors = array();
+            $success = true;
 
             //Events
             $sql = "DELETE FROM events";
             $stmt = $pdo->prepare($sql);
-            $errors[] = $stmt->execute();
+            $success = $stmt->execute() && $success;
 
             //EventShift
             $sql = "DELETE FROM eventshift";
             $stmt = $pdo->prepare($sql);
-            $errors[] = $stmt->execute();
+            $success = $stmt->execute() && $success;
 
             //PassRecoverTokens
             $sql = "DELETE FROM passrecovertokens";
             $stmt = $pdo->prepare($sql);
-            $errors[] = $stmt->execute();
+            $success = $stmt->execute() && $success;
 
             //Positions
             $sql = "DELETE FROM positions";
             $stmt = $pdo->prepare($sql);
-            $errors[] = $stmt->execute();
+            $success = $stmt->execute() && $success;
 
             //ShiftCovers
             $sql = "DELETE FROM shiftcovers";
             $stmt = $pdo->prepare($sql);
-            $errors[] = $stmt->execute();
+            $success = $stmt->execute() && $success;
 
             //Shifts
             $sql = "DELETE FROM shifts";
             $stmt = $pdo->prepare($sql);
-            $errors[] = $stmt->execute();
+            $success = $stmt->execute() && $success;
 
             //SiteContent NOT deleted
 
             //studentEvent
             $sql = "DELETE FROM studentEvent";
             $stmt = $pdo->prepare($sql);
-            $errors[] = $stmt->execute();
+            $success = $stmt->execute() && $success;
 
             //Students (Advisors NOT deleted)
             $sql = "DELETE FROM students WHERE NOT Position = :pos";
             $stmt = $pdo->prepare($sql);
-            $errors[] = $stmt->execute(['pos'=>'Advisor']);
+            $success = $stmt->execute(['pos'=>'Advisor']) && $success;
 
             //StudentShiftRequests
             $sql = "DELETE FROM studentshiftrequests";
             $stmt = $pdo->prepare($sql);
-            $errors[] = $stmt->execute();
+            $success = $stmt->execute() && $success;
 
-            var_dump($errors);
+        //Add new students
+        $sql = $studentSQL;
+        $stmt = $pdo->prepare($sql);
+        $success = $stmt->execute() && $success;
+            
+        if($success){
+            //Mail out invitations
+            for($i = 0; $i<count($emailIntroData); $i++){
+                mailIntro($emailIntroData[$i][0], $emailIntroData[$i][1]);
+            }
 
-            require 'restoreDatabase.php?filename='.$backupName;
+            header("location: resetChapter.php?formSubmitConfirm=false;");
+        }
+        else{
+            //Restore to backup created before the reset
+            $commands = 'cd C:\xampp\mysql\bin && mysql -u root nhs_data < C:/xampp/htdocs/lpnhs/dbBackup/'.$backupName;
+            shell_exec($commands);
+
+            header("location: resetChapter.php?formSubmitConfirm=false;");
+        }
     }
 ?>

@@ -1,8 +1,8 @@
 <!DOCTYPE HTML>
 <?php 
     session_start();
-    include "database.php";
-    include "adminCheck.php";
+    require "database.php";
+    require "adminCheck.php";
 
     $invalidshiftdate=false;
     if(isset($_GET['date'])){$invalidshiftdate = true;}

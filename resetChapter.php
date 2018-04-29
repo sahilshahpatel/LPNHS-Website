@@ -26,6 +26,35 @@
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script src="headerJQuery.js"></script>
+        <?php
+        // Form Submission Confirmation
+            if(isset($_GET['formSubmitConfirm']) && $_GET['formSubmitConfirm']==="true"):
+        ?>
+                <script>
+                $(document).ready(function(){
+                    $("#banner").animate({backgroundColor: '#00CC00'});
+                    $("#banner").animate({backgroundColor: '#fff'});
+                });
+                </script>
+                <script>
+                    alert('Chapter reset successful! Please check to make sure students have been added correctly.');
+                </script>
+        <?php
+            endif;
+            if(isset($_GET['formSubmitConfirm']) && $_GET['formSubmitConfirm']==="false"):
+        ?>
+                <script>
+                $(document).ready(function(){
+                    $("#banner").animate({backgroundColor: '#f45642'});
+                    $("#banner").animate({backgroundColor: '#fff'});
+                });
+                </script>
+                <script>
+                alert('Chapter reset failed. Database was restored to its previous state. Please try again later.');
+                </script>
+        <?php
+            endif;
+        ?>
     </head>
     <header><?php include 'header.php';?><header>
     <body>
