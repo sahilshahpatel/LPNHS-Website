@@ -1,6 +1,6 @@
 <?php
     session_start();
-    include "database.php";
+    require "database.php";
 
 	// Pulling data from "students" -> the amount of students there are ordered by position, lastname, and firstname
 
@@ -22,6 +22,11 @@
 				$stmt->execute(["studentID" => $_SESSION["StudentID"]]);
 				$data = $stmt->fetch(PDO::FETCH_OBJ);
 
+			//Kicking out non-leadership if they want to "manage"
+				if(isset($_GET["manage"]) && $_GET['manage']==="true" && $data->Position!=="Vice  President" && $data->Position!=="President" && $data->Position!=="Advisor" && $data->Position!=="Admin"){
+					header('location: members.php');
+				}
+			
 			//Resetting "students" $data if a VP is tryring to manage...
 
 			if((isset($_GET["manage"]) && htmlspecialchars($_GET["manage"])==="true" && $data->Position==="Vice President")){
@@ -197,15 +202,24 @@
 									$sql = "SELECT * FROM students WHERE StudentID=:studentID";
 									$stmt = $pdo->prepare($sql);
 									$stmt->execute(["studentID" => $studentIDs[0][$i]]);
-									$data = array();
-									$data = $stmt->fetchAll();
+									$studentData = array();
+									$studentData = $stmt->fetchAll();
 
 								// Displaying data from "students" into HTML elements
 
-									if($data[0][7]==='Student'){
+									if($studentData[0][7]==='Student'){
 										echo '<tr>';
-										echo '<td>', $data[0][1],' ',$data[0][2] ,'</td>';
-										echo '<td>', $data[0][3], '</td>';
+										//Link to Event History if user is leadership
+										if($data->Position==="Vice President" && $studentData[0][6]===$data->StudentID
+										|| $data->Position==="President"
+										|| $data->Position==="Advisor"
+										|| $data->Position==="Admin"){
+											echo '<td><a href = "eventHistory.php?StudentID=', $studentData[0][0], '" title = "Click to view event history">', $studentData[0][1],' ',$studentData[0][2] ,'</a></td>';
+										}
+										else{
+											echo '<td>', $studentData[0][1],' ',$studentData[0][2] ,'</td>';
+										}
+										echo '<td>', $studentData[0][3], '</td>';
 										echo '</tr>';
 									}
 							} 
