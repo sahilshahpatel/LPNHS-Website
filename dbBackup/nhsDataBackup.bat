@@ -1,4 +1,4 @@
-@echo off
+@echo on
 
 set datetime=%date:~10,4%%date:~4,2%%date:~7,2%
 
@@ -7,3 +7,5 @@ SET mysqlusername=root
 SET database=nhs_data
 
 "C:\xampp\mysql\bin\mysqldump.exe" -u %mysqlusername% %database%> %backupdir%\%database%_%datetime%.sql
+
+ECHO %database%_%datetime%.sql
