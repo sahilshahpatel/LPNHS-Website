@@ -131,8 +131,60 @@
         }
         
         // Create database backup before reseting
-        $result = exec('dbBackup\nhsDataBackup.bat');
-        echo $result;
+        $backupName = exec('dbBackup\nhsDataBackup.bat');
+        
+        //Delete all data in all tables
+            $errors = array();
 
+            //Events
+            $sql = "DELETE FROM events";
+            $stmt = $pdo->prepare($sql);
+            $errors[] = $stmt->execute();
+
+            //EventShift
+            $sql = "DELETE FROM eventshift";
+            $stmt = $pdo->prepare($sql);
+            $errors[] = $stmt->execute();
+
+            //PassRecoverTokens
+            $sql = "DELETE FROM passrecovertokens";
+            $stmt = $pdo->prepare($sql);
+            $errors[] = $stmt->execute();
+
+            //Positions
+            $sql = "DELETE FROM positions";
+            $stmt = $pdo->prepare($sql);
+            $errors[] = $stmt->execute();
+
+            //ShiftCovers
+            $sql = "DELETE FROM shiftcovers";
+            $stmt = $pdo->prepare($sql);
+            $errors[] = $stmt->execute();
+
+            //Shifts
+            $sql = "DELETE FROM shifts";
+            $stmt = $pdo->prepare($sql);
+            $errors[] = $stmt->execute();
+
+            //SiteContent NOT deleted
+
+            //studentEvent
+            $sql = "DELETE FROM studentEvent";
+            $stmt = $pdo->prepare($sql);
+            $errors[] = $stmt->execute();
+
+            //Students (Advisors NOT deleted)
+            $sql = "DELETE FROM students WHERE NOT Position = :pos";
+            $stmt = $pdo->prepare($sql);
+            $errors[] = $stmt->execute(['pos'=>'Advisor']);
+
+            //StudentShiftRequests
+            $sql = "DELETE FROM studentshiftrequests";
+            $stmt = $pdo->prepare($sql);
+            $errors[] = $stmt->execute();
+
+            var_dump($errors);
+
+            require 'restoreDatabase.php?filename='.$backupName;
     }
 ?>
