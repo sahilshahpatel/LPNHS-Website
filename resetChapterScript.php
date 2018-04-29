@@ -130,8 +130,9 @@
             fclose($handle);
         }
         
-        // Create database backup before reseting NOT WORKING...
-        /*$commdands = 'cd C:\xampp\htdocs\lpnhs\dbBackup\ && nhsDataBackup.bat';
-        shell_exec($commands);*/
+        // Create database backup before reseting
+        $result = exec('dbBackup\nhsDataBackup.bat');
+        echo $result;
+
     }
 ?>
