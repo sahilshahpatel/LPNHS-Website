@@ -133,7 +133,7 @@
                     </div>
                 <?php endif;?>
             </div>
-            <?php if($userData->Position!== "Vice President" && $userData->Position!=="President"): ?>
+            <?php if($userData->Position==='Advisor'): ?>
                 <div id = "databaseOptions" class = "dashboard">
                     <div id = "backups" class = "dashboardButton">
                         <p>Restore From/Delete Database Backups</p>

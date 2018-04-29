@@ -195,14 +195,14 @@
                 mailIntro($emailIntroData[$i][0], $emailIntroData[$i][1]);
             }
 
-            header("location: resetChapter.php?formSubmitConfirm=false;");
+            header("location: resetChapter.php?formSubmitConfirm=true");
         }
         else{
             //Restore to backup created before the reset
             $commands = 'cd C:\xampp\mysql\bin && mysql -u root nhs_data < C:/xampp/htdocs/lpnhs/dbBackup/'.$backupName;
             shell_exec($commands);
 
-            header("location: resetChapter.php?formSubmitConfirm=false;");
+            header("location: resetChapter.php?formSubmitConfirm=false");
         }
     }
 ?>
