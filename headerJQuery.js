@@ -19,12 +19,12 @@ $(document).ready(function(){
         //Fade-out for #LPLogo img (initial and on resize)
         var dist = $("#LPNHS").position().left - $("#LPLogo").position().left;
         if(dist>0){
-            $("#LPLogo").css("opacity", (dist-120)/70);    
+            $("#LPLogo").css("opacity", (dist-100)/70);    
         }
         $(window).resize(function(){
             var dist = $("#LPNHS").position().left - $("#LPLogo").position().left;
             if(dist>0){
-                $("#LPLogo").css("opacity", (dist-120)/70);    
+                $("#LPLogo").css("opacity", (dist-100)/70);    
             }
         });
     });
