@@ -198,7 +198,7 @@ button.reverseColor{
         border-color: #daa520;
         background-color: #ffebcd
     }
-    #addUserTable th, td{width: 12.5%;}
+    #addUserTable th, #addUserTable td{width: 12.5%;}
     input, textarea{
     border: 1px solid transparent;
     resize: none;

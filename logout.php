@@ -1,6 +1,6 @@
 <?php 
     session_start();
-    include "loginCheck.php";
+    require "loginCheck.php";
 
     // Unset all of the session variables.
         $_SESSION = array();
