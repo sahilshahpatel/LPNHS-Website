@@ -210,6 +210,7 @@
                                                 var input1 = document.createElement("input"); 
                                                 input1.id="largo";
                                                 input1.name="largo"; 
+                                                input1.type="hidden"; 
                                                 //input1.type="hidden";
                                                 document.getElementById("siteUpdater").appendChild(input1);
                                                 document.getElementById("largo").value = largo;
