@@ -20,40 +20,6 @@
         <title>LPNHS - Admin Dashboard</title>
         
         <link rel="stylesheet" href="baseCSS.css">
-        <style>
-            div.dashboard{
-                width: 80%;
-                margin: 30px auto;
-                padding: 0;
-                
-                display: flex;
-                align-self: center;
-            }
-            #dashboard{height: 250px;}
-            #presidentialOptions{height: 100px;}
-            div.dashboardButton
-            {
-                cursor: pointer;
-                display: inline-flex;
-                margin: 5px;
-                padding: 0 15px;
-                width: 50%;
-                height: 100%;
-                border: 5px solid white;
-                border-radius: 10px;
-                font-size: 28px;
-                align-items: center;
-                justify-content: center;
-                background-color: white;
-                color: #005da3;
-            }
-            div.dashboardButton:hover 
-            {
-                background-color: transparent;
-                border-color: white;
-                color: white;
-            }
-        </style>
         <link rel="icon" type="image/png" href="img/nhs_logo.png">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script src="headerJQuery.js"></script>

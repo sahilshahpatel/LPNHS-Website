@@ -346,6 +346,38 @@ button.reverseColor{
         right:calc(100% - 150px); 
         z-index:1;
     }
+    div.dashboard{
+        width: 80%;
+        margin: 30px auto;
+        padding: 0;
+        display: flex;
+        align-self: center;
+    }
+    #dashboard{height: 250px;}
+    #presidentialOptions{height: 100px;}
+    div.dashboardButton
+    {
+        cursor: pointer;
+        display: inline-flex;
+        margin: 5px;
+        padding: 0 15px;
+        width: 50%;
+        height: 100%;
+        border: 5px solid white;
+        border-radius: 10px;
+        font-size: 28px;
+        align-items: center;
+        justify-content: center;
+        background-color: white;
+        color: #005da3;
+    }
+    div.dashboardButton:hover 
+    {
+        background-color: transparent;
+        border-color: white;
+        color: white;
+    }
+    
 }
 @media only screen and (max-width: 630px) {
     /* General */
@@ -693,5 +725,35 @@ button.reverseColor{
         bottom:calc(100% - 115px); 
         right:calc(100% - 150px); 
         z-index:1;
+    }
+    div.dashboard{
+        width: 95%;
+        margin: 3.5vmin auto;
+        padding: 0;
+        display: flex;
+        align-self: center;
+    }
+    #dashboard{height: 150px;}
+    #presidentialOptions{height: 100px;}
+    div.dashboardButton
+    {
+        cursor: pointer;
+        display: inline-flex;
+        margin: 5px;
+        padding: 0 2vmin;
+        height: 80%;
+        border: 5px solid white;
+        border-radius: 10px;
+        font-size: 3.75vmin;
+        align-items: center;
+        justify-content: center;
+        background-color: white;
+        color: #005da3;
+    }
+    div.dashboardButton:hover 
+    {
+        background-color: transparent;
+        border-color: white;
+        color: white;
     }
 }

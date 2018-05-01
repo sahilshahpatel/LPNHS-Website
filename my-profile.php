@@ -22,7 +22,7 @@
             }
             #ProfileDataDiv input{text-align: center;}
             #ProfileDataDiv button{margin: 10px;}
-            div.dashboardButton{
+            div.dashboardButtonProfile{
                 text-align: center;
                 margin: 30px 10%;
                 border: 3px solid white;
@@ -37,12 +37,12 @@
                 background-color: white;
                 color: #005da3;
             }
-            div.dashboardButton:hover {
+            div.dashboardButtonProfile:hover {
                 background-color: transparent;
                 border-color: white;
                 color: white;
             }
-            div.dashboardButton p{margin: 5px;}
+            div.dashboardButtonProfile p{margin: 5px;}
             #eventsPanel{padding: 0;}
             table tr:nth-child(even){background-color: #e8cfa4;}
             #eventsPanel div{
@@ -59,9 +59,17 @@
             #tabs div.inactive{background-color: #e8cfa4; /*darkened moccasin*/}
             #informationContainer{padding: 10px;}
             table{width: 100%;}
+            @media only screen and (min-width: 629px){
+                    th, td{
+                    font-family: Bookman, sans-serif;
+                    font-size: 18px;
+                    text-align: center;
+                }
+            }
+            @media only screen and (max-width: 630px) {
             th, td{
                 font-family: Bookman, sans-serif;
-                font-size: 18px;
+                font-size: 4vmin;
                 text-align: center;
             }
             #informationContainer div table th, td{width: 33.33%;}
@@ -101,7 +109,7 @@
                 // If users "Position" : admin -> admin dashboard
                 
                     if($data->Position!=="Student"):
-                        echo '<div id = "adminDashboardButton" class = "dashboardButton">
+                        echo '<div id = "adminDashboardButton" class = "dashboardButtonProfile">
                             <p>Admin Dashboard</p>
                             </div>';
                     endif;
