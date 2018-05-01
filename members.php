@@ -31,6 +31,25 @@
 			}
 			table tr:nth-child(even){background-color: #e8cfa4;}
 			input{max-width: 130px;}
+			@media only screen and (min-width: 629px){
+                #informationContainer form table  th, td{
+                    padding: 5px;
+                    font-family: Bookman, sans-serif;
+                    font-size: 18px;
+                    text-align: center;
+                }
+				#leaderPanel{padding: 0;}
+				#studentPanel{padding: 0;}
+            }
+            @media only screen and (max-width: 630px) {
+                #informationContainer form table  th, td{
+                    font-family: Bookman, sans-serif;
+                    font-size: 3vmin;
+                    text-align: center;
+                }
+				#leaderPanel{padding: 0;margin: 4.5vmin;}
+				#studentPanel{padding: 0;margin: 4.5vmin;}
+            }
 		</style>
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -67,7 +86,7 @@
 
 			<img id = "fixedBGImg" src = "img/NHS_logo.png"><!--Fixed Image in Background-->
 			
-			<div class = "classic panel">
+			<div class = "classic panel" id="leaderPanel">
 				<p>Leadership</p>
 				<div class = "scrollable">
 						<?php 
@@ -99,7 +118,7 @@
 						?>
 				</div>
 			</div>
-			<div class = "classic panel">
+			<div class = "classic panel" id="studentPanel">
 				<p>Students</p>
 				<div class = "scrollable">
 						<?php 

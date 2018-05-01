@@ -16,7 +16,6 @@
         <link rel="stylesheet" href="baseCSS.css">
         <link rel="icon" type="image/png" href="img/nhs_logo.png">
         <style>
-            #eventsPanel{padding: 0;}
             table tr:nth-child(even){
                 background-color: #e8cfa4;
             }
@@ -34,11 +33,23 @@
             #tabs div.inactive{background-color: #e8cfa4; /*darkened moccasin*/}
             #informationContainer{padding: 10px;}
             #informationContainer div table{width: 100%;}
-            #informationContainer div table th, td{
-                width: 33.33%;
-                font-family: Bookman, sans-serif;
-                font-size: 18px;
-                text-align: center;
+            @media only screen and (min-width: 629px){
+                #informationContainer div table  th, td{
+                    width: 33.33%;
+                    font-family: Bookman, sans-serif;
+                    font-size: 18px;
+                    text-align: center;
+                }
+                #eventsPanel{padding: 0;}
+            }
+            @media only screen and (max-width: 630px) {
+                #informationContainer div table  th, td{
+                    width: 33.33%;
+                    font-family: Bookman, sans-serif;
+                    font-size: 3.5vmin;
+                    text-align: center;
+                }
+                #eventsPanel{padding: 0;margin: 4.5vmin;}
             }
             
         </style>

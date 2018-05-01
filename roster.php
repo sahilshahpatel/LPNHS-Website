@@ -40,6 +40,7 @@
             table tr:nth-child(even){
                 background-color: #e8cfa4;
             }
+            
         </style>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>

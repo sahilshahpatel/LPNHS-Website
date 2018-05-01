@@ -67,10 +67,13 @@
                 }
             }
             @media only screen and (max-width: 630px) {
-            th, td{
-                font-family: Bookman, sans-serif;
-                font-size: 4vmin;
-                text-align: center;
+                th, td{
+                    font-family: Bookman, sans-serif;
+                    font-size: 4vmin;
+                    text-align: center;
+                }
+                #myProfilePanels{margin:4.5vmin;}
+                #eventsPanel{padding: 0;margin:4.5vmin;}
             }
             #informationContainer div table th, td{width: 33.33%;}
         </style>
@@ -115,7 +118,7 @@
                     endif;
             ?>
 
-            <div class = "classic panel">
+            <div class = "classic panel" id="myProfilePanels">
                 <p>My Information</p>
                 <!--View only data-->
                 <table id = "profileDataTable">
@@ -143,7 +146,7 @@
             </div>
             
             <!--Shift Cover requests-->
-            <div class = "classic panel">
+            <div class = "classic panel" id="myProfilePanels">
                 <div id = "shiftCoverRequests">
                     <form method = "post" action = "acceptCoverShifts.php">
                         <p style = "margin-bottom: 0;">Accept/Deny Shift Covers</p>
