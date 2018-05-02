@@ -16,7 +16,6 @@
         <link rel="stylesheet" href="baseCSS.css">
         <link rel="icon" type="image/png" href="img/nhs_logo.png">
         <style>
-            #eventsPanel{padding: 0;}
             table tr:nth-child(even){background-color: #e8cfa4;}
             #eventsPanel div{
                 border-top-left-radius: 15px;
@@ -29,12 +28,25 @@
                 width: calc(50% - 2px);
                 background-color: #ffebcd; /*blanched almond*/
             }
-            #mainPanel table th, td{
-                font-family: Bookman, sans-serif;
-                font-size: 18px;
-                text-align: center;
-            }
             #tableheader{font-size: 20px;}
+            @media only screen and (min-width: 629px){
+                #mainPanel table th, td{
+                    padding: 5px;
+                    font-family: Bookman, sans-serif;
+                    font-size: 18px;
+                    text-align: center;
+                    
+                }
+                #eventsPanel{padding: 0;overflow-y: auto;}
+            }
+            @media only screen and (max-width: 630px) {
+                #mainPanel table th, td{
+                    font-family: Bookman, sans-serif;
+                    font-size: 2.5vmin;
+                    text-align: center;
+                }
+                #eventsPanel{padding: 0;margin: 4.5vmin;overflow-y: auto;}
+            }
         </style>
         
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>

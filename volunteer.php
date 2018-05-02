@@ -30,7 +30,7 @@
                     font-size: 18px;
                     text-align: center;
                 }
-                #shiftsPanel{padding: 0;}
+                #shiftsPanel{padding: 0;overflow-y: auto;}
             }
             @media only screen and (max-width: 630px) {
                 #informationContainer form table th, td{
@@ -38,7 +38,7 @@
                     font-size: 4vmin;
                     text-align: center;
                 }
-                #shiftsPanel{padding: 0;margin:4.5vmin;}
+                #shiftsPanel{padding: 0;margin:4.5vmin;overflow-y: auto;}
             }
         </style>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>

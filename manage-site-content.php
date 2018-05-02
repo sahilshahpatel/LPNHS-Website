@@ -63,19 +63,13 @@
             #tabs div.inactive{background-color: #e8cfa4; /*darkened moccasin*/}
             #informationContainer{padding: 10px;}
             #informationContainer div table{width: 100%;}
-            #informationContainer div table th, td{
-                width: 33.33%;
-                font-family: Bookman, sans-serif;
-                font-size: 18px;
-                text-align: center;
-            }
             textarea {
                 font-family: Bookman, sans-serif;
                 -webkit-box-sizing: border-box;
                 -moz-box-sizing: border-box;
                 box-sizing: border-box;
                 resize: none;
-                width: 100%;
+                width:100%;
                 margin-top: 10px;
                 -moz-transition: none 0s ease 0s;
                 border: 1px solid black;
@@ -118,6 +112,25 @@
                 font-size: 18px;
             }
             ul li{margin: 10px;}
+            @media only screen and (min-width: 629px){
+                #informationContainer form table  th, td{
+                    padding: 5px;
+                    font-family: Bookman, sans-serif;
+                    font-size: 18px;
+                    text-align: center;
+                }   
+                #homePage{padding: 0;overflow-y: auto;}
+				#eventsPanel{padding: 0;overflow-y: auto;}
+            }
+            @media only screen and (max-width: 630px) {
+                #informationContainer form table  th, td{
+                    font-family: Bookman, sans-serif;
+                    font-size: 3.5vmin;
+                    text-align: center;
+                }
+                #homePage{padding: 0;margin: 4.5vmin;overflow-y: auto;}
+				#eventsPanel{padding: 0;margin: 4.5vmin;overflow-y: auto;}
+            }
         </style>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>

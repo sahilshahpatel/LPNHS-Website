@@ -21,6 +21,23 @@
             table tr:nth-child(even){
                 background-color: #e8cfa4;
             }
+            @media only screen and (min-width: 629px){
+                #th, td{
+                    padding: 5px;
+                    font-family: Bookman, sans-serif;
+                    font-size: 18px;
+                    text-align: center;
+                }
+                #backupsPanel{padding: 0;overflow-y: auto;}
+            }
+            @media only screen and (max-width: 630px) {
+                #th, td{
+                    font-family: Bookman, sans-serif;
+                    font-size: 3vmin;
+                    text-align: center;
+                }
+                #backupsPanel{padding: 0;margin: 4.5vmin;overflow-y: auto;}
+            }
         </style>
 
         <?php

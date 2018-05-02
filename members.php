@@ -30,7 +30,14 @@
 				margin: 0;
 			}
 			table tr:nth-child(even){background-color: #e8cfa4;}
-			input{max-width: 130px;}
+			input {
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                box-sizing: border-box;
+                resize: none;
+                -moz-transition: none 0s ease 0s;
+                line-height: 2em;
+            }
 			@media only screen and (min-width: 629px){
                 #informationContainer form table  th, td{
                     padding: 5px;
@@ -38,17 +45,22 @@
                     font-size: 18px;
                     text-align: center;
                 }
-				#leaderPanel{padding: 0;}
-				#studentPanel{padding: 0;}
+				#leaderPanel{padding: 0;overflow-y: auto;}
+				#studentPanel{padding: 0;overflow-y: auto;}
+				input {max-width: 130px;}
             }
             @media only screen and (max-width: 630px) {
                 #informationContainer form table  th, td{
                     font-family: Bookman, sans-serif;
-                    font-size: 3vmin;
+                    font-size: 3.5vmin;
                     text-align: center;
                 }
-				#leaderPanel{padding: 0;margin: 4.5vmin;}
-				#studentPanel{padding: 0;margin: 4.5vmin;}
+				#leaderPanel{padding: 0;margin: 4.5vmin;overflow-y: auto;}
+				#studentPanel{padding: 0;margin: 4.5vmin;overflow-y: auto;}
+				select{
+                    font-size:3vmin;
+				}
+				input {max-width: 120px;}
             }
 		</style>
 

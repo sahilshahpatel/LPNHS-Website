@@ -153,6 +153,24 @@
                 -moz-transition: none 0s ease 0s;
                 line-height: 2em;
             }
+            @media only screen and (min-width: 629px){
+                #mainPanel table th, td{
+                    padding: 5px;
+                    font-family: Bookman, sans-serif;
+                    font-size: 18px;
+                    text-align: center;
+                    
+                }
+                #eventsPanel{padding: 0;overflow: scroll;}
+            }
+            @media only screen and (max-width: 630px) {
+                #mainPanel table th, td{
+                    font-family: Bookman, sans-serif;
+                    font-size: 2.5vmin;
+                    text-align: center;
+                }
+                #eventsPanel{padding: 0;margin: 4.5vmin;overflow: scroll;}
+            }
         </style>
 
         <?php

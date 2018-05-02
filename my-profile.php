@@ -43,7 +43,7 @@
                 color: white;
             }
             div.dashboardButtonProfile p{margin: 5px;}
-            #eventsPanel{padding: 0;}
+            #eventsPanel{padding: 0;overflow-y: auto;}
             table tr:nth-child(even){background-color: #e8cfa4;}
             #eventsPanel div{
                 border-top-left-radius: 15px;
@@ -65,6 +65,7 @@
                     font-size: 18px;
                     text-align: center;
                 }
+                #myProfilePanels{overflow-y: auto;}
             }
             @media only screen and (max-width: 630px) {
                 th, td{
@@ -72,8 +73,8 @@
                     font-size: 4vmin;
                     text-align: center;
                 }
-                #myProfilePanels{margin:4.5vmin;}
-                #eventsPanel{padding: 0;margin:4.5vmin;}
+                #myProfilePanels{margin:4.5vmin;overflow-y: auto;}
+                #eventsPanel{padding: 0;margin:4.5vmin;overflow-y: auto;}
             }
             #informationContainer div table th, td{width: 33.33%;}
         </style>

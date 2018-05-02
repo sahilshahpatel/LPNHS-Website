@@ -40,7 +40,7 @@
                     font-size: 18px;
                     text-align: center;
                 }
-                #eventsPanel{padding: 0;}
+                #eventsPanel{padding: 0;overflow-y: auto;}
             }
             @media only screen and (max-width: 630px) {
                 #informationContainer div table  th, td{
@@ -49,7 +49,7 @@
                     font-size: 3.5vmin;
                     text-align: center;
                 }
-                #eventsPanel{padding: 0;margin: 4.5vmin;}
+                #eventsPanel{padding: 0;margin: 4.5vmin;overflow-y: auto;}
             }
             
         </style>
