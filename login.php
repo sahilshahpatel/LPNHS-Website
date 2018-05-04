@@ -63,7 +63,7 @@
                     <br/><br/>
                     <p>Password </p>
                     <input id = "loginPassword" placeholder = "Password" type = "password" name = "password" required>
-                    <p><a style = "font-size: 12px; color: #fff;" href = "forgotPassword.php">Forgot your password?</a></p>
+                    <p><a style = "font-size: 12px; color: #fff;" href = "changePassword.php">Forgot your password?</a></p>
                     <button id = "loginButton" type = "submit" value="Log In">Sign In</button>
                 </div>
                 <div>

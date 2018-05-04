@@ -120,7 +120,7 @@
             ?>
 
             <div class = "classic panel" id="myProfilePanels">
-                <p>My Information</p>
+                <p>My Information <a style = "font-size: 12px;" href = "changePassword.php">Change Password Temp</a></p> 
                 <!--View only data-->
                 <table id = "profileDataTable">
                     <tr>
