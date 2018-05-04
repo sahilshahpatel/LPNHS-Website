@@ -34,6 +34,7 @@
             $errorMsg = "Passwords did not match.";
         }
     }
+
 ?>
 <html>
     <head>
@@ -62,7 +63,9 @@
                             echo '<p style = "color: red; text-align: center; font-size: 16px; font-weight: bold;">', $errorMsg, '</p>';
                         }
                     ?>
-                    <input placeholder = "New password" type = "password" name = "password" autofocus required style = "margin-bottom: 10px;">
+                    <p>Recovery Question from user (?)</p>
+                    <input placeholder = "Recovery Question Answer" name = "recoveryAnswer" autofocus required style = "margin-bottom: 10px;">
+                    <input placeholder = "New password" type = "password" name = "password" required style = "margin-bottom: 10px;">
                     <input placeholder = "Confirm new password" type = "password" name = "confirmPassword" required>
                     <br/><br/>
                     <button id = "loginbutton" type = "submit" name = 'submit' value="changePassword">Change Password</button>
