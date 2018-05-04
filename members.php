@@ -1,12 +1,13 @@
 <!DOCTYPE HTML>
 <?php 
     session_start();
-	include "database.php";
+	require "database.php";
+	require "loginCheck.php";
 	
 	// Checking if manage is currently in effect
 
 		if(isset($_GET["manage"]) && $_GET["manage"]==="true"){
-			include "adminCheck.php";
+			require "adminCheck.php";
 		}
 ?>
 <html>
