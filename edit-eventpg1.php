@@ -379,20 +379,20 @@
                                     <tr><td colspan=2 style="color:red">Invalid Date</td></tr>
                                     <tr>
                                         <td><label>Shift Date :<span>*</span></label></td>';
-                                        echo'<td><input name="newdate" type="date"  style="border: 1px solid;border-color: red;background: rgba(255,92,92,.3);" required> </td>';
+                                        echo'<td><input name="newdate" type="date"  style="border: 1px solid;border-color: red;background: rgba(255,92,92,.3);"> </td>';
                                         echo'</tr>
                                     
                                     <tr>
                                         <td><label>Start Time :<span>*</span></label></td>
-                                        <td><input name="newstarttime" value="',$starttime[$i],'"type="time" placeholder="eg: 8:00 AM" required></td>
+                                        <td><input name="newstarttime" value="',$starttime[$i],'"type="time" placeholder="eg: 8:00 AM"></td>
                                     </tr>
                                     <tr>
                                         <td><label>End Time :<span>*</span></label></td>
-                                        <td><input name="newendtime" value="',$endtime[$i],'" type="time" placeholder="eg: 5:00 PM" required></td>
+                                        <td><input name="newendtime" value="',$endtime[$i],'" type="time" placeholder="eg: 5:00 PM"></td>
                                     </tr>
                                     <tr>
                                         <td><label>Positions Available :<span>*</span></label></td>
-                                        <td><input name="newpositionsavailable" value="',$positionsavailable[$i],'" maxlength="2" type="number" placeholder="eg: 5 postions" required></td>
+                                        <td><input name="newpositionsavailable" value="',$positionsavailable[$i],'" maxlength="2" type="number" placeholder="eg: 5 postions"></td>
                                     </tr>';
                                 else:
                                     echo    
@@ -402,19 +402,19 @@
                                     <tr><td colspan=2><hr style="font-size:20px;"></td></tr>
                                     <tr>
                                         <td><label>Shift Date :<span>*</span></label></td>
-                                        <td><input name="newdate" type="date" required></td>
+                                        <td><input name="newdate" type="date"></td>
                                     </tr>
                                     <tr>
                                         <td><label>Start Time :<span>*</span></label></td>
-                                        <td><input name="newstarttime" type="time" placeholder="eg: 8:00 AM" required></td>
+                                        <td><input name="newstarttime" type="time" placeholder="eg: 8:00 AM"></td>
                                     </tr>
                                     <tr>
                                         <td><label>End Time :<span>*</span></label></td>
-                                        <td><input name="newendtime" type="time" placeholder="eg: 5:00 PM" required></td>
+                                        <td><input name="newendtime" type="time" placeholder="eg: 5:00 PM"></td>
                                     </tr>
                                     <tr>
                                         <td><label>Positions Available :<span>*</span></label></td>
-                                        <td><input name="newpositionsavailable" maxlength="2" type="number" placeholder="eg: 5 postions" required></td>
+                                        <td><input name="newpositionsavailable" maxlength="2" type="number" placeholder="eg: 5 postions"></td>
                                     </tr>';
                                 endif;
                                 echo'</table></div></div></td></tr>';
