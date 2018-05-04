@@ -34,7 +34,6 @@
         <style>
             #footerPusher p{text-align: left;}
             form{
-                display: inline-block;
                 font-family: Bookman, sans-serif;
                 font-size: 20px;
                 align-items: center;
@@ -120,7 +119,7 @@
                     text-align: center;
                 }   
                 #homePage{padding: 0;overflow-y: auto;}
-				#eventsPanel{padding: 0;overflow-y: auto;}
+			    #whatItTakes{padding: 0;overflow-y: auto;}
             }
             @media only screen and (max-width: 630px) {
                 #informationContainer form table  th, td{
@@ -129,7 +128,7 @@
                     text-align: center;
                 }
                 #homePage{padding: 0;margin: 4.5vmin;overflow-y: auto;}
-				#eventsPanel{padding: 0;margin: 4.5vmin;overflow-y: auto;}
+				#whatItTakes{padding: 0;margin: 4.5vmin;overflow-y: auto;}
             }
         </style>
 

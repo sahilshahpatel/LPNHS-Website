@@ -48,10 +48,12 @@
                 <article>
                     <h1 style = "color: #005da3;text-align: center;">What It Takes to Be a Member</h1>
                     <hr style = "width: 95%;">
-                    <div id = "frontImg" style="margin-right:30px;width:50%">
-                        <img src = "img/what_it_takes.jpg">
-                    </div>
-                    <div style= "padding-left:3vmin;padding-top:10px;" style="white-space: pre-wrap;"><a style="white-space: pre-wrap;"><?php echo $whatittakes; ?></a></div>
+                    <div style= "padding-left:3vmin;padding-top:10px;" style="white-space: pre-wrap;">
+                        <div id = "frontImg" style="margin-right:30px;width:40%;float:right;">
+                            <img src = "img/what_it_takes.jpg">
+                        </div>
+                        <a style="white-space: pre-wrap;"><?php echo $whatittakes; ?></a>
+                </div>
                     <hr style = "width: 95%;">
                     <div id = "applicationRequirements" class = "classic" style="margin: 0 px; padding-top:0px;background-color: #ffebcd;">
                         <h2 style = "color: #005da3">Application Requirements</h2>
