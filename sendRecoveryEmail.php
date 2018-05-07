@@ -70,13 +70,13 @@
         );
         // Send
         if(mail($email, '[LPNHS] Password Reset Request', $message, $headers)){
-            header("location: forgotPassword.php?email=sent");
+            header("location: changePassword.php?email=sent");
         }
         else{
-            header("location: forgotPassword.php?email=not_sent");
+            header("location: changePassword.php?email=not_sent");
         }
     }
     else{
-        header("location: forgotPassword.php?email=unknown");
+        header("location: changePassword.php?email=unknown");
     }
 ?>

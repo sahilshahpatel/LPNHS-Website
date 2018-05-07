@@ -53,6 +53,7 @@
                 // Checking if remove was pressed for $i -> number event -> then removing that event
 
                     else if(isset($_POST["remove"][$i])){
+                        include 'loading.html'; // Display loading screen and fixing long load for some reason
 
                         // Deleting from database table "events" and "shifts"
 

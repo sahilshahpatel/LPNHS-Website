@@ -25,7 +25,7 @@
     <div class="flexItemStart" id="bugFlexItem">
         <h3 style = "text-align: left;">Found a Bug?</h3>
         <p>Report any issues to the site to the president, an advisor, or a site admin.</p>
-        <p>The NHS website was created by two students, Ben Wagrez and Sahil  Patel, in 2018. <a href="howToUse.php">How To Use the site</a></p><!--By using the site and reporting errors and/or bugs, you are giving experience to the current computer science students at Lake Park.</p>-->
+        <p>The NHS website was created by two students, Ben Wagrez and Sahil  Patel, in 2018. <a href="howToUse.php" style="color: white">How To Use the Site</a></p><!--By using the site and reporting errors and/or bugs, you are giving experience to the current computer science students at Lake Park.</p>-->
     </div>
     <div class="flexItemCenter" id="imageFlexItem">
         <img src = "img/NHS-LOGO-TM.png" id="NHSimageItem" style = "width: 137px; display: block; margin: 0 auto;" >

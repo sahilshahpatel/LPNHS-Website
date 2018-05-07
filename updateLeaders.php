@@ -40,6 +40,7 @@
 			header('Location:members.php?manage=true&formSubmitConfirm=true');
 		}
 		elseif(isset($_POST["remove"][$i])){
+			include 'loading.html'; // Display loading screen and fixing long load for some reason
 			// Removes the user chosen
 
 			$sql = "DELETE FROM students WHERE StudentID=:stID";

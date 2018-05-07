@@ -38,7 +38,7 @@
 
             <form id="login" class="form" action="sendRecoveryEmail.php" method="post" style = "display: block; margin: 30px auto; max-width: 350px; max-height: 225px;">
                 <div>
-                    <p>Forgot My Password</p>
+                    <p>Change My Password</p>
                     <hr class="loghr">
                     <br/>
                     <?php 

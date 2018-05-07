@@ -63,7 +63,7 @@
                             echo '<p style = "color: red; text-align: center; font-size: 16px; font-weight: bold;">', $errorMsg, '</p>';
                         }
                     ?>
-                    <p>Recovery Question from user (?)</p>
+                    <p>Recovery question from user (?)</p>
                     <input placeholder = "Recovery Question Answer" name = "recoveryAnswer" autofocus required style = "margin-bottom: 10px;">
                     <input placeholder = "New password" type = "password" name = "password" required style = "margin-bottom: 10px;">
                     <input placeholder = "Confirm new password" type = "password" name = "confirmPassword" required>

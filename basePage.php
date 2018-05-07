@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <?php 
     session_start();
-    include "database.php";
+    require "database.php";
 ?>
 <html>
 <meta name="HandheldFriendly" content="true" />

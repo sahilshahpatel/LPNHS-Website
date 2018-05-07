@@ -50,11 +50,11 @@ window.onclick = function(event) {
                     <a style="padding-left: 10px;border-bottom: .5px solid gray;width:100%;" href="logout.php">Sign Out</a>
                 </div></div>
         <?php else :?><!--If not logged in then the nav bar below-->
-        <div id = "navBarNormal"><a class = "baseText" id = "homeLink" href = "index.php">Home</a><!--Removing spacing
-            --><a class = "baseText" id = "communityInvolvementLink" href = "community-involvement.php">Community Events</a><!--Removing spacing
-			--><a class = "baseText" id = "whatItTakesLink" href = "what-it-takes.php">What It Takes</a></div><!--Removing spacing
-            --><div class="dropdown"><a class = "baseText" href="index.php">Home</a><!--Removing spacing
-            --><a class = "baseText" href="login.php">Sign In</a><!--Removing spacing
+        <div id = "navBarNormal"><a class = "baseText" id = "homeLink" style="width:33.33%" href = "index.php">Home</a><!--Removing spacing
+            --><a class = "baseText" id = "communityInvolvementLink" style="width:33.33%" href = "community-involvement.php">Community Events</a><!--Removing spacing
+			--><a class = "baseText" id = "whatItTakesLink" style="width:33.33%" href = "what-it-takes.php">What It Takes</a></div><!--Removing spacing
+            --><div class="dropdown"><a style="width:33.33%" class = "baseText" href="index.php">Home</a><!--Removing spacing
+            --><a class = "baseText" style="width:33.33%" href="login.php">Sign In</a><!--Removing spacing
             --><button onclick="navBarDD()" class="dropbtn" aria-haspopup="true">&#9776;</button>
                 <div id="navBarDD" class="dropdown-content">
                     <a style="padding-left: 10px;border-bottom: .5px solid gray;width:100%;" href="community-involvement.php">Community Events</a>
