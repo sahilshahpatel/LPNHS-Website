@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 28, 2018 at 04:00 AM
--- Server version: 10.1.29-MariaDB
--- PHP Version: 7.2.0
+-- Generation Time: May 08, 2018 at 07:17 PM
+-- Server version: 10.1.28-MariaDB
+-- PHP Version: 7.1.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -207,22 +207,25 @@ CREATE TABLE `students` (
   `PasswordHash` varchar(255) NOT NULL,
   `HoursCompleted` float NOT NULL DEFAULT '0',
   `VicePresident` varchar(12) NOT NULL,
-  `Position` varchar(16) NOT NULL DEFAULT 'Student'
+  `Position` varchar(16) NOT NULL DEFAULT 'Student',
+  `Activated` tinyint(1) NOT NULL,
+  `Recoveryquestion` varchar(128) NOT NULL,
+  `Recoveryanswer` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `students`
 --
 
-INSERT INTO `students` (`StudentID`, `FirstName`, `LastName`, `Email`, `PasswordHash`, `HoursCompleted`, `VicePresident`, `Position`) VALUES
-(0, 'James', 'Craig', 'jamcraig@students.lphs.org', '$2y$10$3ngEZpbmj3bGILwUJUp.ouorOgXySkBBWVlMWSQF1S8K/MSYGlH5C', 0, '111111', 'Student'),
-(111111, 'Miloni', 'Shah', 'milshah@students.lphs.org', '$2y$10$3ngEZpbmj3bGILwUJUp.ouorOgXySkBBWVlMWSQF1S8K/MSYGlH5C', 0, '111111', 'Vice President'),
-(123456, 'Sahil', 'Patel', 'sahpatel@students.lphs.org', '$2y$10$3ngEZpbmj3bGILwUJUp.ouorOgXySkBBWVlMWSQF1S8K/MSYGlH5C', 6.5, '111111', 'Admin'),
-(186573, 'Tejas', 'Hullur', 'tejhullur@students.lphs.org', '$2y$10$3ngEZpbmj3bGILwUJUp.ouorOgXySkBBWVlMWSQF1S8K/MSYGlH5C', 25, 'Miloni', 'President'),
-(194567, 'John', 'Smith', 'johsmith@students.lphs.org', '$2y$10$3ngEZpbmj3bGILwUJUp.ouorOgXySkBBWVlMWSQF1S8K/MSYGlH5C', 0, '111111', 'Student'),
-(196752, 'Jane', 'Doe', 'jandoe@students.lphs.org', '$2y$10$3ngEZpbmj3bGILwUJUp.ouorOgXySkBBWVlMWSQF1S8K/MSYGlH5C', 0, '222222', 'Student'),
-(222222, 'Nic', 'Conry', 'nicconry@students.lphs.org', '$2y$10$3ngEZpbmj3bGILwUJUp.ouorOgXySkBBWVlMWSQF1S8K/MSYGlH5C', 0, '222222', 'Vice President'),
-(654321, 'Ben', 'Wagrez', 'benwagrez@students.lphs.org', '$2y$10$3ngEZpbmj3bGILwUJUp.ouorOgXySkBBWVlMWSQF1S8K/MSYGlH5C', 3.5, '222222', 'Student');
+INSERT INTO `students` (`StudentID`, `FirstName`, `LastName`, `Email`, `PasswordHash`, `HoursCompleted`, `VicePresident`, `Position`, `Activated`, `Recoveryquestion`, `Recoveryanswer`) VALUES
+(0, 'James', 'Craig', 'jamcraig@students.lphs.org', '$2y$10$3ngEZpbmj3bGILwUJUp.ouorOgXySkBBWVlMWSQF1S8K/MSYGlH5C', 0, '111111', 'Student', 0, '', ''),
+(111111, 'Miloni', 'Shah', 'milshah@students.lphs.org', '$2y$10$3ngEZpbmj3bGILwUJUp.ouorOgXySkBBWVlMWSQF1S8K/MSYGlH5C', 0, '111111', 'Vice President', 0, '', ''),
+(123456, 'Sahil', 'Patel', 'sahpatel@students.lphs.org', '$2y$10$3ngEZpbmj3bGILwUJUp.ouorOgXySkBBWVlMWSQF1S8K/MSYGlH5C', 6.5, '111111', 'Admin', 0, '', ''),
+(186573, 'Tejas', 'Hullur', 'tejhullur@students.lphs.org', '$2y$10$3ngEZpbmj3bGILwUJUp.ouorOgXySkBBWVlMWSQF1S8K/MSYGlH5C', 25, 'Miloni', 'President', 0, '', ''),
+(194567, 'John', 'Smith', 'johsmith@students.lphs.org', '$2y$10$3ngEZpbmj3bGILwUJUp.ouorOgXySkBBWVlMWSQF1S8K/MSYGlH5C', 0, '111111', 'Student', 0, '', ''),
+(196752, 'Jane', 'Doe', 'jandoe@students.lphs.org', '$2y$10$3ngEZpbmj3bGILwUJUp.ouorOgXySkBBWVlMWSQF1S8K/MSYGlH5C', 0, '222222', 'Student', 0, '', ''),
+(222222, 'Nic', 'Conry', 'nicconry@students.lphs.org', '$2y$10$3ngEZpbmj3bGILwUJUp.ouorOgXySkBBWVlMWSQF1S8K/MSYGlH5C', 0, '222222', 'Vice President', 0, '', ''),
+(654321, 'Ben', 'Wagrez', 'benwagrez@students.lphs.org', '$2y$10$3ngEZpbmj3bGILwUJUp.ouorOgXySkBBWVlMWSQF1S8K/MSYGlH5C', 3.5, '222222', 'Student', 0, '', '');
 
 -- --------------------------------------------------------
 
