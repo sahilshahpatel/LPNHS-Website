@@ -71,6 +71,44 @@ button.reverseColor{
         text-align: left;
         height:350px;
     }
+    #activationForm{
+
+        display: inline-block;
+        margin: 5% auto;
+        padding: 30px;
+        background-color: #333;
+        border-radius: 15px;
+        text-align: left;
+        height:400px;
+    }
+    #activationForm button{
+        border: none;
+        padding: 10px;
+        border-radius: 15px;
+        font-size: 12px;
+        margin-top: 10px;
+        margin-bottom: 0px;
+        background-color: #005da3;
+        color: white;
+        font-family: Bookman, sans-serif;
+        font-size: 24px;
+    }
+
+    #activationForm p{
+        margin: 5px 0px;
+        color: white;
+        text-align: left;
+        font-family: Bookman, sans-serif;
+        font-size: 24px;
+    }
+    #activationForm input{
+        font-family: Bookman, sans-serif;
+        font-size: 24px;
+    }
+    #activationForm select{
+        font-family: Bookman, sans-serif;
+        font-size: 24px;
+    }
     #imageFlexItem{width: 20%;}
     #bugFlexItem{width: 40%;}
     #contactUsFlextItem{width: 40%;}
@@ -570,6 +608,55 @@ button.reverseColor{
         padding: 3vmin;
     }
     #loginImage{display:none;}
+    #activationForm{
+        margin-top:3vmin;
+        margin-bottom:3vmin;
+        width:80vmin;
+        display: inline-block;
+        background-color: #333;
+        border-radius: 15px;
+        text-align: left;
+    }
+    #activationForm div{
+        display: inline-block;
+        padding: 3vmin;
+    }
+    #activationForm button{
+        border: none;
+        padding: 2vmin;
+        border-radius: 15px;
+        margin-top: 10px;
+        margin-bottom: 0px;
+        background-color: #005da3;
+        color: white;
+        font-family: Bookman, sans-serif;
+        font-size: 5vmin;
+    }
+
+    #activationForm p{
+        margin: 5px 5px;
+        color: white;
+        text-align: left;
+        font-family: Bookman, sans-serif;
+        font-size: 4.5vmin;
+    }
+    #activationForm H1{
+        margin: 5px 5px;
+        color: white;
+        text-align: left;
+        font-family: Bookman, sans-serif;
+        font-size: 6vmin;
+    }
+    #activationForm input{
+        font-family: Bookman, sans-serif;
+        font-size: 24px;
+        width: 75vmin;
+    }
+    #activationForm select{
+        font-family: Bookman, sans-serif;
+        font-size: 24px;
+        width: 75vmin;
+    }
     .dropbtn {
         cursor: pointer;
         right:0;

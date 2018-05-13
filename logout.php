@@ -1,7 +1,9 @@
 <?php 
     session_start();
-    require "loginCheck.php";
 
+    if(!(isset($_SESSION["StudentID"]))){
+        header("Location: index.php");
+    }
     // Unset all of the session variables.
         $_SESSION = array();
 

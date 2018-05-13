@@ -6,11 +6,11 @@
             header("Location: index.php");
         }
         else{
-            $sql = "SELECT * WHERE StudentID = :studentID";
+            $sql = "SELECT * FROM students WHERE StudentID=:studentID";
             $stmt = $pdo->prepare($sql);
-            $stmt->execute(['studentID'=>$_SESSION['StudentID']]);
-            $userData = $stmt->fetch(PDO::FETCH_OBJ);
-            if($userData->Activated==0){
+            $stmt->execute(["studentID" => $_SESSION["StudentID"]]);
+            $data = $stmt->fetch(PDO::FETCH_OBJ);
+            if($data->Activated==0){
                 header("Location: activateAccount.php");
             }
         }
