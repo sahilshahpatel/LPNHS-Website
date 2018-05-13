@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 08, 2018 at 07:17 PM
+-- Generation Time: May 10, 2018 at 07:01 PM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -209,15 +209,15 @@ CREATE TABLE `students` (
   `VicePresident` varchar(12) NOT NULL,
   `Position` varchar(16) NOT NULL DEFAULT 'Student',
   `Activated` tinyint(1) NOT NULL,
-  `Recoveryquestion` varchar(128) NOT NULL,
-  `Recoveryanswer` varchar(128) NOT NULL
+  `RecoveryQuestion` varchar(128) NOT NULL,
+  `RecoveryAnswer` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `students`
 --
 
-INSERT INTO `students` (`StudentID`, `FirstName`, `LastName`, `Email`, `PasswordHash`, `HoursCompleted`, `VicePresident`, `Position`, `Activated`, `Recoveryquestion`, `Recoveryanswer`) VALUES
+INSERT INTO `students` (`StudentID`, `FirstName`, `LastName`, `Email`, `PasswordHash`, `HoursCompleted`, `VicePresident`, `Position`, `Activated`, `RecoveryQuestion`, `RecoveryAnswer`) VALUES
 (0, 'James', 'Craig', 'jamcraig@students.lphs.org', '$2y$10$3ngEZpbmj3bGILwUJUp.ouorOgXySkBBWVlMWSQF1S8K/MSYGlH5C', 0, '111111', 'Student', 0, '', ''),
 (111111, 'Miloni', 'Shah', 'milshah@students.lphs.org', '$2y$10$3ngEZpbmj3bGILwUJUp.ouorOgXySkBBWVlMWSQF1S8K/MSYGlH5C', 0, '111111', 'Vice President', 0, '', ''),
 (123456, 'Sahil', 'Patel', 'sahpatel@students.lphs.org', '$2y$10$3ngEZpbmj3bGILwUJUp.ouorOgXySkBBWVlMWSQF1S8K/MSYGlH5C', 6.5, '111111', 'Admin', 0, '', ''),
