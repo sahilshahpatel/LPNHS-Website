@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 10, 2018 at 07:01 PM
+-- Generation Time: May 17, 2018 at 07:18 PM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -206,9 +206,9 @@ CREATE TABLE `students` (
   `Email` varchar(32) NOT NULL,
   `PasswordHash` varchar(255) NOT NULL,
   `HoursCompleted` float NOT NULL DEFAULT '0',
-  `VicePresident` varchar(12) NOT NULL,
+  `VicePresident` int(12) NOT NULL,
   `Position` varchar(16) NOT NULL DEFAULT 'Student',
-  `Activated` tinyint(1) NOT NULL,
+  `Activated` tinyint(1) NOT NULL DEFAULT '0',
   `RecoveryQuestion` varchar(128) NOT NULL,
   `RecoveryAnswer` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -218,14 +218,14 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`StudentID`, `FirstName`, `LastName`, `Email`, `PasswordHash`, `HoursCompleted`, `VicePresident`, `Position`, `Activated`, `RecoveryQuestion`, `RecoveryAnswer`) VALUES
-(0, 'James', 'Craig', 'jamcraig@students.lphs.org', '$2y$10$3ngEZpbmj3bGILwUJUp.ouorOgXySkBBWVlMWSQF1S8K/MSYGlH5C', 0, '111111', 'Student', 0, '', ''),
-(111111, 'Miloni', 'Shah', 'milshah@students.lphs.org', '$2y$10$3ngEZpbmj3bGILwUJUp.ouorOgXySkBBWVlMWSQF1S8K/MSYGlH5C', 0, '111111', 'Vice President', 0, '', ''),
-(123456, 'Sahil', 'Patel', 'sahpatel@students.lphs.org', '$2y$10$3ngEZpbmj3bGILwUJUp.ouorOgXySkBBWVlMWSQF1S8K/MSYGlH5C', 6.5, '111111', 'Admin', 0, '', ''),
-(186573, 'Tejas', 'Hullur', 'tejhullur@students.lphs.org', '$2y$10$3ngEZpbmj3bGILwUJUp.ouorOgXySkBBWVlMWSQF1S8K/MSYGlH5C', 25, 'Miloni', 'President', 0, '', ''),
-(194567, 'John', 'Smith', 'johsmith@students.lphs.org', '$2y$10$3ngEZpbmj3bGILwUJUp.ouorOgXySkBBWVlMWSQF1S8K/MSYGlH5C', 0, '111111', 'Student', 0, '', ''),
-(196752, 'Jane', 'Doe', 'jandoe@students.lphs.org', '$2y$10$3ngEZpbmj3bGILwUJUp.ouorOgXySkBBWVlMWSQF1S8K/MSYGlH5C', 0, '222222', 'Student', 0, '', ''),
-(222222, 'Nic', 'Conry', 'nicconry@students.lphs.org', '$2y$10$3ngEZpbmj3bGILwUJUp.ouorOgXySkBBWVlMWSQF1S8K/MSYGlH5C', 0, '222222', 'Vice President', 0, '', ''),
-(654321, 'Ben', 'Wagrez', 'benwagrez@students.lphs.org', '$2y$10$3ngEZpbmj3bGILwUJUp.ouorOgXySkBBWVlMWSQF1S8K/MSYGlH5C', 3.5, '222222', 'Student', 0, '', '');
+(0, 'James', 'Craig', 'jamcraig@students.lphs.org', '$2y$10$3ngEZpbmj3bGILwUJUp.ouorOgXySkBBWVlMWSQF1S8K/MSYGlH5C', 0, 111111, 'Student', 0, '', ''),
+(111111, 'Miloni', 'Shah', 'milshah@students.lphs.org', '$2y$10$3ngEZpbmj3bGILwUJUp.ouorOgXySkBBWVlMWSQF1S8K/MSYGlH5C', 0, 111111, 'Vice President', 0, '', ''),
+(123456, 'Sahil', 'Patel', 'sahpatel@students.lphs.org', '$2y$10$ZKOqPei2OfRec3wkhicjGuvxkF/ENL.9n4gZ0Y.j9RMvLURh00bCW', 6.5, 111111, 'Admin', 1, 'What is your mother\'s maiden name?', 'Shah'),
+(186573, 'Tejas', 'Hullur', 'tejhullur@students.lphs.org', '$2y$10$3ngEZpbmj3bGILwUJUp.ouorOgXySkBBWVlMWSQF1S8K/MSYGlH5C', 25, 111111, 'President', 0, '', ''),
+(194567, 'John', 'Smith', 'johsmith@students.lphs.org', '$2y$10$3ngEZpbmj3bGILwUJUp.ouorOgXySkBBWVlMWSQF1S8K/MSYGlH5C', 0, 111111, 'Student', 0, '', ''),
+(196752, 'Jane', 'Doe', 'jandoe@students.lphs.org', '$2y$10$3ngEZpbmj3bGILwUJUp.ouorOgXySkBBWVlMWSQF1S8K/MSYGlH5C', 0, 222222, 'Student', 0, '', ''),
+(222222, 'Nic', 'Conry', 'nicconry@students.lphs.org', '$2y$10$3ngEZpbmj3bGILwUJUp.ouorOgXySkBBWVlMWSQF1S8K/MSYGlH5C', 0, 222222, 'Vice President', 0, '', ''),
+(654321, 'Ben', 'Wagrez', 'benwagrez@students.lphs.org', '$2y$10$3ngEZpbmj3bGILwUJUp.ouorOgXySkBBWVlMWSQF1S8K/MSYGlH5C', 3.5, 222222, 'Student', 0, '', '');
 
 -- --------------------------------------------------------
 

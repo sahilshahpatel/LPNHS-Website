@@ -34,7 +34,6 @@
             });
         </script>
         <?php
-
         // Form Submission Confirmation
 
             if(isset($_GET['formSubmitConfirm']) && $_GET['formSubmitConfirm']==="true"):
